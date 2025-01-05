@@ -14,7 +14,10 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                'sans': ['Figtree', 'serif'],
+                'inknut': ['Inknut Antiqua', 'serif'],
+                'inclusive': ['Inclusive Sans', 'serif'],
+                'inria' : ['Inria Serif', 'serif']
             },
         },
     },

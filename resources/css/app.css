@@ -3,15 +3,21 @@
 @tailwind utilities;
 
 @layer base {
-    .custom-bg {
-        background: rgb(15 21 35);
-    }
+
 
     .custom-text {
         color: rgb(223,209,190);
     }
 
-    .test-bg {
-        background: rgb(174 118 62);
+    .custom-text-hover {
+        color: rgb(117, 82, 42);
+    }
+
+    .gourmania-bg {
+        background: rgb(174, 118, 62);
+    }
+
+    .nav-link{
+        @apply m-5 font-inclusive text-2xl hover:custom-text-hover transition;
     }
 }
