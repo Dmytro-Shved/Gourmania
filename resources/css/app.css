@@ -13,11 +13,11 @@
         color: rgb(117, 82, 42);
     }
 
-    .gourmania-bg {
+    .bg-gourmania {
         background: rgb(174, 118, 62);
     }
 
     .nav-link{
-        @apply m-5 font-inclusive text-2xl hover:custom-text-hover transition;
+        @apply font-inclusive text-white text-sm hover:underline rounded-2xl transition m-2 p-2;
     }
 }
