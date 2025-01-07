@@ -5,12 +5,12 @@
 @layer base {
 
 
-    .custom-text {
+    .text-gourmania {
         color: rgb(223,209,190);
     }
 
-    .custom-text-hover {
-        color: rgb(117, 82, 42);
+    .gourmania-hover {
+        background: rgb(197, 143, 92);
     }
 
     .bg-gourmania {
@@ -18,6 +18,6 @@
     }
 
     .nav-link{
-        @apply font-inclusive text-white text-sm hover:underline rounded-2xl transition m-2 p-2;
+        @apply font-inclusive text-white text-sm hover:gourmania-hover transition ;
     }
 }
