@@ -450,15 +450,17 @@
                 <span class="font-inclusive italic text-white text-xs">© George Bernard Shaw</span>
             </div>
 
-            <hr class="my-6 border-[#592D00] md:my-8 h-2"/>
-
             {{-- Footer logo --}}
             <div class="text-center my-5">
                 <img src="{{ asset('storage/logo/logo.svg') }}"
-                     class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mx-auto" alt="">
-                <small class="font-inclusive text-center text-sm text-neutral-100 p-8 italic">
-                    © 2025 Gourmania. All rights reserved.
-                </small>
+                     class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mx-auto" alt="Logo">
+                <div class="flex items-center justify-center my-4">
+                    <span class="flex-grow border-t border-neutral-200"></span>
+                    <small class="font-inclusive text-sm text-neutral-100 px-4 italic">
+                        © 2025 Gourmania. All rights reserved.
+                    </small>
+                    <span class="flex-grow border-t border-neutral-200"></span>
+                </div>
             </div>
         </div>
     </footer>
