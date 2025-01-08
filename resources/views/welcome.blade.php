@@ -39,7 +39,7 @@
     aria-label="penguin ui menu"
 >
     <!-- Logo -->
-    <a href="#" class="flex items-center max-w-[150px] sm:max-w-[180px]">
+    <a href="#" class="flex items-center max-w-[150px] sm:max-w-[180px] ">
         <img src="{{ asset('storage/logo/full-logo-nobg.svg') }}" alt="Gourmania"
              class="w-full h-full sm:w-full sm:h-full object-contain"/>
     </a>
@@ -59,13 +59,13 @@
 
     <!-- Desktop Menu -->
     <ul class="hidden items-center gap-4 flex-shrink-0 sm:flex">
-        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1">Recipes</a>
+        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1 lg:text-lg">Recipes</a>
         </li>
-        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1">Authors</a>
+        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1 lg:text-lg">Authors</a>
         </li>
-        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1">Basics</a>
+        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1 lg:text-lg">Basics</a>
         </li>
-        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1">Cuisines</a>
+        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1 lg:text-lg">Cuisines</a>
         </li>
 
         <!-- User Pic -->
@@ -111,9 +111,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round"
                                   d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                         </svg>
-
                         <span>Profile</span>
-
                     </a>
                 </li>
                 <li><a href="#"
