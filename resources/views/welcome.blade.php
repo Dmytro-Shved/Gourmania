@@ -38,37 +38,30 @@
     class="flex items-center justify-between bg-gourmania border-b border-neutral-300 gap-4 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-900"
     aria-label="penguin ui menu"
 >
-    <!-- Logo -->
+    {{-- Logo --}}
     <a href="#" class="flex items-center max-w-[150px] sm:max-w-[180px] ">
-        <img src="{{ asset('storage/logo/full-logo-nobg.svg') }}" alt="Gourmania"
-             class="w-full h-full sm:w-full sm:h-full object-contain"/>
+        <img src="{{ asset('storage/logo/full-logo-nobg.svg') }}" alt="Gourmania" class="w-full h-full sm:w-full sm:h-full object-contain"/>
     </a>
 
-    <!-- Search -->
+    {{-- Search --}}
     <div
         class="relative flex mr-auto w-full max-w-64 flex-col gap-1 font-inclusive text-neutral-600 dark:text-neutral-300">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
              aria-hidden="true"
              class="absolute left-2.5 top-1/2 size-5 -translate-y-1/2 text-neutral-600/50 dark:text-neutral-300/50">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
         </svg>
-        <input type="text" name="search" placeholder="" aria-label="search"
-               class="w-full rounded-full border-none bg-neutral-50 py-2.5 pl-10 pr-2 text-sm disabled:cursor-not-allowed disabled:opacity-75 dark:bg-neutral-900/50"/>
+        <input type="text" name="search" placeholder="" aria-label="search" class="w-full rounded-full border-none bg-neutral-50 py-2.5 pl-10 pr-2 text-sm disabled:cursor-not-allowed disabled:opacity-75 dark:bg-neutral-900/50"/>
     </div>
 
-    <!-- Desktop Menu -->
+    {{-- Desktop Menu --}}
     <ul class="hidden items-center gap-4 flex-shrink-0 sm:flex">
-        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1 lg:text-lg">Recipes</a>
-        </li>
-        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1 lg:text-lg">Authors</a>
-        </li>
-        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1 lg:text-lg">Basics</a>
-        </li>
-        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1 lg:text-lg">Cuisines</a>
-        </li>
+        <li><a href="#" class="desktop-menu-btn">Recipes</a></li>
+        <li><a href="#" class="desktop-menu-btn">Authors</a></li>
+        <li><a href="#" class="desktop-menu-btn">Basics</a></li>
+        <li><a href="#" class="desktop-menu-btn">Cuisines</a></li>
 
-        <!-- User Pic -->
+        {{-- User Pic --}}
         <li x-data="{ userDropDownIsOpen: false, openWithKeyboard: false }"
             @keydown.esc.window="userDropDownIsOpen = false, openWithKeyboard = false"
             class="relative flex items-center">
@@ -156,7 +149,7 @@
         </li>
     </ul>
 
-    <!-- Mobile Menu Button -->
+    {{-- Mobile Menu Button --}}
     <button @click="mobileMenuIsOpen = !mobileMenuIsOpen" :aria-expanded="mobileMenuIsOpen"
             :class="mobileMenuIsOpen ? 'fixed top-6 right-6 z-20' : null" type="button"
             class="flex text-neutral-600 dark:text-neutral-300 sm:hidden" aria-label="mobile menu"
@@ -171,7 +164,7 @@
         </svg>
     </button>
 
-    <!-- Mobile Menu -->
+    {{-- Mobile Menu --}}
     <ul x-cloak
         x-show="mobileMenuIsOpen"
         x-transition:enter="transition motion-reduce:transition-none ease-out duration-300"
@@ -182,6 +175,7 @@
         x-transition:leave-end="-translate-y-full"
         class="fixed max-h-svh overflow-y-auto inset-x-0 top-0 z-10 flex flex-col rounded-b-md border-b border-neutral-300 bg-[#c58f5c] px-8 pb-6 pt-10 dark:border-neutral-700 dark:bg-neutral-900 sm:hidden">
 
+        {{-- Name & email--}}
         <li class="mb-4 border-none">
             <div class="flex items-center gap-2 py-2">
                 <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile"
@@ -192,52 +186,37 @@
                 </div>
             </div>
         </li>
-        <li class="p-2"><a href="#" class="w-full text-lg text-neutral-100 focus:underline font-inclusive"
-                           aria-current="page">Recipes</a></li>
-        <li class="p-2"><a href="#" class="w-full text-lg text-neutral-100 focus:underline font-inclusive">Authors</a>
-        </li>
-        <li class="p-2"><a href="#" class="w-full text-lg text-neutral-100 focus:underline font-inclusive">Basics</a>
-        </li>
-        <li class="p-2"><a href="#" class="w-full text-lg text-neutral-100 focus:underline font-inclusive">Cuisines</a>
-        </li>
+        {{-- Links --}}
+        <li class="p-2"><a href="#" class="mobile-menu-link">Recipes</a></li>
+        <li class="p-2"><a href="#" class="mobile-menu-link">Authors</a></li>
+        <li class="p-2"><a href="#" class="mobile-menu-link">Basics</a></li>
+        <li class="p-2"><a href="#" class="mobile-menu-link">Cuisines</a></li>
+
         <hr role="none" class="my-2 border-outline border-[#603912]">
 
-
-        <li class="p-2 my-1 bg-[#603912] bg-opacity-10 rounded-full hover:bg-opacity-25 transition">
-            <a href="#"
-               class="flex items-center space-x-2 py-2 text-white underline font-inclusive"
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="#342B22" class="size-7 mx-1">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+        {{-- Profile --}}
+        <li class="mobile-menu-btn">
+            <a href="#" class="mobile-menu-btn-style">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#342B22" class="size-7 mx-1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                 </svg>
-
                 <span class="text-md text-neutral-100">Profile</span>
-
             </a>
         </li>
 
-        <li class="p-2 my-1 bg-[#603912] bg-opacity-10 rounded-full hover:bg-opacity-25 transition">
-            <a href="#"
-               class="flex items-center space-x-2 py-2 text-white underline font-inclusive"
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="darkred" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="darkred" class="size-7 mx-1">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"/>
+        {{-- My recipes --}}
+        <li class="mobile-menu-btn">
+            <a href="#" class="mobile-menu-btn-style">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="darkred" viewBox="0 0 24 24" stroke-width="1.5" stroke="darkred" class="size-7 mx-1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"/>
                 </svg>
-
-
                 <span class="text-md text-neutral-100">My recipes</span>
-
             </a>
         </li>
 
-        <li class="p-2 my-1 bg-[#603912] bg-opacity-10 rounded-full hover:bg-opacity-25 transition">
-            <a href="#"
-               class="flex items-center space-x-2 py-2 text-white underline font-inclusive"
-            >
+        {{-- Settings --}}
+        <li class="mobile-menu-btn">
+            <a href="#" class="mobile-menu-btn-style">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="#342B22" class="size-7 mx-1">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -249,10 +228,9 @@
             </a>
         </li>
 
-        <!-- CTA Button -->
+        {{-- Sign Out --}}
         <li class="mt-4 w-full border-none">
-            <a href="#"
-               class="rounded-md bg-red-500 px-4 py-2 block text-center font-medium tracking-wide text-neutral-100 hover:bg-red-700 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 dark:bg-white dark:text-black dark:focus-visible:outline-white font-inclusive">
+            <a href="#" class="rounded-md bg-red-500 px-4 py-2 block text-center font-medium tracking-wide text-neutral-100 hover:bg-red-700 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 dark:bg-white dark:text-black dark:focus-visible:outline-white font-inclusive">
                 <span>Sign Out</span>
             </a>
         </li>
@@ -319,12 +297,16 @@
     <footer class="bg-gourmania dark:bg-gray-900">
         <div class="container px-6 py-12 mx-auto">
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
+
+                {{-- Email subscribtion --}}
                 <div class="sm:col-span-2">
-                    <h1 class="max-w-lg text-[10] text-center font-inclusive tracking-tight text-neutral-100 xl:text-md dark:text-white">
+                    <h1 class="max-w-lg text-[10] text-center font-inclusive tracking-tight text-white px-1 xl:text-md italic py-1">
                         Subscribe our newsletter to get a new recipes and dishes of the week!
                     </h1>
 
-                    <div class="flex flex-col mx-auto mt-6 space-y-3 md:space-y-0 md:flex-row">
+                    <img src="" alt="">
+
+                    <div class="flex flex-col mt-6 space-y-3 md:space-y-0 md:flex-row px-3 my-3 bg-[#DDB892] rounded p-3">
                         <input id="email" type="text"
                                class="px-4 py-2 text-gray-700 font-serif border border-white bg-white rounded-lg dark:bg-gray-900 dark:text-gray-300 focus:outline-none focus:ring-0"
                                placeholder="email"/>
@@ -336,28 +318,30 @@
                     </div>
                 </div>
 
+                {{-- Quick links--}}
                 <div>
                     <p class="font-inclusive font-semibold text-white text-xl text-center">Quick Links</p>
 
                     <div class="flex flex-col items-center mt-5 space-y-2">
-                        <p class="text-white font-inclusive transition-colors duration-300 underline hover:cursor-pointer hover:text-white">
+                        <p class="quick-link">
                             Recipes</p>
-                        <p class="text-white font-inclusive transition-colors duration-300 underline hover:cursor-pointer hover:text-white">
+                        <p class="quick-link">
                             Authors</p>
-                        <p class="text-white font-inclusive transition-colors duration-300 underline hover:cursor-pointer hover:text-white">
+                        <p class="quick-link">
                             Basics</p>
-                        <p class="text-white font-inclusive transition-colors duration-300 underline hover:cursor-pointer hover:text-white">
+                        <p class="quick-link">
                             Cuisines</p>
                     </div>
                 </div>
 
+                {{-- Info --}}
                 <div>
                     <p class="font-inclusive font-semibold text-white text-xl text-center">Info</p>
 
                     <div class="w-full max-w-md mx-auto sm:w-44">
                         <div x-data="{selected:null}">
                             <ul class="shadow-box">
-                                <!-- Item 1 -->
+                                {{-- Who we are --}}
                                 <li class="relative border-b border-gray-200">
                                     <button type="button" class="w-full py-6 text-left"
                                             @click="selected !== 1 ? selected = 1 : selected = null">
@@ -379,7 +363,7 @@
                                     </div>
                                 </li>
 
-                                <!-- Item 2 -->
+                                {{-- Team --}}
                                 <li class="relative border-b border-gray-200">
                                     <button type="button" class="w-full py-6 text-left"
                                             @click="selected !== 2 ? selected = 2 : selected = null">
@@ -401,7 +385,7 @@
                                     </div>
                                 </li>
 
-                                <!-- Accordion Item 3 -->
+                                {{-- FAQ --}}
                                 <li class="relative border-b border-gray-200">
                                     <button type="button" class="w-full py-6 text-left"
                                             @click="selected !== 3 ? selected = 3 : selected = null">
@@ -429,7 +413,7 @@
                 </div>
             </div>
 
-            <!-- Social Media Buttons Section -->
+            {{-- Social Media Buttons Section --}}
             <div class="text-center my-8">
                 <p class="font-inclusive font-semibold text-white text-xl">Socials</p>
                 <div class="flex justify-center mt-4 space-x-4">
@@ -460,6 +444,7 @@
                 </div>
             </div>
 
+            {{-- Quote --}}
             <div class="text-center my-10">
                 <span class="font-inclusive italic text-white text-sm">“There is no love more sincere than the love of food.”</span>
                 <span class="font-inclusive italic text-white text-xs">© George Bernard Shaw</span>
@@ -467,6 +452,7 @@
 
             <hr class="my-6 border-[#592D00] md:my-8 h-2"/>
 
+            {{-- Footer logo --}}
             <div class="text-center my-5">
                 <img src="{{ asset('storage/logo/logo.svg') }}"
                      class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mx-auto" alt="">

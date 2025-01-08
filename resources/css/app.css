@@ -17,7 +17,23 @@
         background: rgb(174, 118, 62);
     }
 
-    .nav-link{
-        @apply font-inclusive text-white text-sm hover:gourmania-hover transition ;
+    .desktop-menu-btn{
+        @apply font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1 lg:text-lg;
+    }
+
+    .mobile-menu-link{
+        @apply w-full text-lg text-neutral-100 focus:underline font-inclusive;
+    }
+
+    .mobile-menu-btn{
+        @apply p-2 my-1 bg-[#603912] bg-opacity-10 rounded-full hover:bg-opacity-25 transition;
+    }
+
+    .mobile-menu-btn-style{
+        @apply flex items-center space-x-2 py-2 text-white underline font-inclusive;
+    }
+
+    .quick-link{
+        @apply text-white font-inclusive transition-colors duration-300 underline hover:cursor-pointer hover:text-white;
     }
 }
