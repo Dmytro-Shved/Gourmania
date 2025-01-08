@@ -38,10 +38,9 @@
     class="flex items-center justify-between bg-gourmania border-b border-neutral-300 gap-4 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-900"
     aria-label="penguin ui menu"
 >
-     <!-- Logo -->
-    <a href="#" class="text-xl md:text-2xl text-white font-inknut dark:text-white">
-        <span>Gourmania</span>
-         {{--<img src="{{ asset('storage/user_logo/default.svg') }}" alt="brand logo" class="w-10" />--}}
+    <!-- Logo -->
+    <a href="#" class="flex items-center max-w-[150px] sm:max-w-[180px]">
+        <img src="{{ asset('storage/logo/full-logo-nobg.svg') }}" alt="Gourmania" class="w-full h-full sm:w-full sm:h-full object-contain" />
     </a>
 
     <!-- Search -->
@@ -52,31 +51,31 @@
             <path stroke-linecap="round" stroke-linejoin="round"
                   d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
         </svg>
-        <input type="search" name="search" placeholder="" aria-label="search" class="w-full rounded-full border-none bg-neutral-50 py-2.5 pl-10 pr-2 text-sm disabled:cursor-not-allowed disabled:opacity-75 dark:bg-neutral-900/50"/>
+        <input type="text" name="search" placeholder="" aria-label="search" class="w-full rounded-full border-none bg-neutral-50 py-2.5 pl-10 pr-2 text-sm disabled:cursor-not-allowed disabled:opacity-75 dark:bg-neutral-900/50"/>
     </div>
 
     <!-- Desktop Menu -->
     <ul class="hidden items-center gap-4 flex-shrink-0 sm:flex">
-        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1">Recipes</a>
-        </li>
-        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1">Authors</a>
-        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1">Basics</a>
-        </li>
-        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1">Cuisines</a>
-        </li>
+        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1">Recipes</a></li>
+        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1">Authors</a></li>
+        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1">Basics</a></li>
+        <li><a href="#" class="font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1">Cuisines</a></li>
 
         <!-- User Pic -->
         <li x-data="{ userDropDownIsOpen: false, openWithKeyboard: false }"
             @keydown.esc.window="userDropDownIsOpen = false, openWithKeyboard = false"
             class="relative flex items-center">
-            <button @click="userDropDownIsOpen = ! userDropDownIsOpen" :aria-expanded="userDropDownIsOpen"
-                    @keydown.space.prevent="openWithKeyboard = true" @keydown.enter.prevent="openWithKeyboard = true"
-                    @keydown.down.prevent="openWithKeyboard = true"
-                    class="rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
-                    aria-controls="userMenu">
-                <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile"
-                     class="size-10 rounded-full object-cover"/>
-            </button>
+
+            <div class="flex space-x-2">
+                <button @click="userDropDownIsOpen = ! userDropDownIsOpen" :aria-expanded="userDropDownIsOpen"
+                        @keydown.space.prevent="openWithKeyboard = true" @keydown.enter.prevent="openWithKeyboard = true"
+                        @keydown.down.prevent="openWithKeyboard = true"
+                        class="rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
+                        aria-controls="userMenu">
+                    <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile"
+                         class="size-10 rounded-full object-cover"/>
+                </button>
+            </div>
 
             <!-- User Dropdown -->
             <ul x-cloak
@@ -97,24 +96,46 @@
                     </div>
                 </li>
                 <li><a href="#"
-                       class="block bg-neutral-50 px-4 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">Dashboard</a>
+                       class="flex items-center space-x-1 block bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="size-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        </svg>
+
+                        <span>Profile</span>
+
+                    </a>
                 </li>
                 <li><a href="#"
-                       class="block bg-neutral-50 px-4 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">Subscription</a>
+                       class="flex items-center space-x-1 bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="darkred" viewBox="0 0 24 24" stroke-width="1.5" stroke="darkred" class="size-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
+                        </svg>
+
+
+                        <span>My recipes</span>
+                    </a>
                 </li>
                 <li><a href="#"
-                       class="block bg-neutral-50 px-4 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">Settings</a>
+                       class="flex items-center space-x-1 bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="size-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        </svg>
+
+                        <span>Settings</span>
+                    </a>
                 </li>
                 <li>
                     <a href="#"
                        class="bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white flex items-center space-x-1">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="red" class="size-5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"/>
-
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"/>
                         </svg>
-                        <p class="text-red-600">Sign Out</p>
+                        <span class="text-red-600">Sign Out</span>
                     </a>
                 </li>
             </ul>
@@ -166,19 +187,59 @@
         <li class="p-2"><a href="#" class="w-full text-lg text-neutral-100 focus:underline font-inclusive">Cuisines</a>
         </li>
         <hr role="none" class="my-2 border-outline border-[#603912]">
-        <li class="p-2"><a href="#" class="w-full focus:underline text-neutral-100 font-inclusive">Dashboard</a></li>
-        <li class="p-2"><a href="#" class="w-full focus:underline text-neutral-100 font-inclusive">Subscription</a></li>
-        <li class="p-2"><a href="#" class="w-full focus:underline text-neutral-100 font-inclusive">Settings</a></li>
+
+
+        <li class="p-2 my-1 bg-[#603912] bg-opacity-10 rounded-full hover:bg-opacity-25 transition">
+            <a href="#"
+               class="flex items-center space-x-2 py-2 text-white underline font-inclusive"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#603912" class="size-7 mx-1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                </svg>
+
+                <span class="text-md text-neutral-100">Profile</span>
+
+            </a>
+        </li>
+
+        <li class="p-2 my-1 bg-[#603912] bg-opacity-10 rounded-full hover:bg-opacity-25 transition">
+            <a href="#"
+               class="flex items-center space-x-2 py-2 text-white underline font-inclusive"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="darkred" viewBox="0 0 24 24" stroke-width="1.5" stroke="darkred" class="size-7 mx-1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
+                </svg>
+
+
+                <span class="text-md text-neutral-100">My recipes</span>
+
+            </a>
+        </li>
+
+        <li class="p-2 my-1 bg-[#603912] bg-opacity-10 rounded-full hover:bg-opacity-25 transition">
+            <a href="#"
+               class="flex items-center space-x-2 py-2 text-white underline font-inclusive"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#636160" class="size-7 mx-1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                </svg>
+
+                <span class="text-md text-neutral-100">Settings</span>
+            </a>
+        </li>
 
         <!-- CTA Button -->
         <li class="mt-4 w-full border-none">
             <a href="#"
                class="rounded-md bg-red-500 px-4 py-2 block text-center font-medium tracking-wide text-neutral-100 hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 dark:bg-white dark:text-black dark:focus-visible:outline-white font-inclusive">
-                Sign Out
+               <span>Sign Out</span>
             </a>
         </li>
     </ul>
 </nav>
+
+
 
 <div class="flex flex-col min-h-screen">
 
@@ -220,23 +281,24 @@
         <div class="container px-6 py-12 mx-auto">
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
                 <div class="sm:col-span-2">
-                    <h1 class="max-w-lg text-xl font-inclusive tracking-tight text-neutral-100 xl:text-2xl dark:text-white">
-                        Subscribe our newsletter to get a new recipes and dishes of the week!</h1>
+                    <h1 class="max-w-lg text-[10] text-center font-inclusive tracking-tight text-neutral-100 xl:text-md dark:text-white">
+                        Subscribe our newsletter to get a new recipes and dishes of the week!
+                    </h1>
 
                     <div class="flex flex-col mx-auto mt-6 space-y-3 md:space-y-0 md:flex-row">
                         <input id="email" type="text"
-                               class="px-4 py-2 text-gray-700 font-serif bg-white border rounded-full dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:outline-none focus:ring-0"
+                               class="px-4 py-2 text-gray-700 font-serif border border-white bg-white rounded-lg dark:bg-gray-900 dark:text-gray-300 focus:outline-none focus:ring-0"
                                placeholder="email"/>
 
                         <button
-                            class="w-full px-6 py-2.5 text-sm font-inclusive tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-[#592D00] rounded-lg hover:bg-[#C58F5C] focus:ring focus:ring-gray-300 focus:ring-opacity-80">
+                            class="w-full px-6 py-2.5 text-sm font-inclusive tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-[#592D00] rounded-lg hover:bg-[#C58F5C]">
                             Subscribe
                         </button>
                     </div>
                 </div>
 
                 <div>
-                    <p class="font-inclusive font-semibold text-white text-xl">Quick Links:</p>
+                    <p class="font-inclusive font-semibold text-white text-xl text-center">Quick Links:</p>
 
                     <div class="flex flex-col items-start mt-5 space-y-2">
                         <p class="text-white font-inclusive transition-colors duration-300 underline hover:cursor-pointer hover:text-white">Home</p>
@@ -244,9 +306,9 @@
                 </div>
 
                 <div>
-                    <p class="font-inclusive font-semibold text-white text-xl">Info:</p>
+                    <p class="font-inclusive font-semibold text-white text-xl text-center">Info:</p>
 
-                    <div class="w-full max-w-md mx-auto">
+                    <div class="w-full max-w-md mx-auto sm:w-44">
                         <div x-data="{selected:null}">
                             <ul class="shadow-box">
                                 <!-- Item 1 -->
@@ -263,8 +325,8 @@
                                          x-ref="container1"
                                          x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
                                         <div class="p-6">
-                                            <p class="text-white text-sm font-inclusive">Content for accordion item 1 goes
-                                                here. You can add any HTML content.
+                                            <p class="text-white text-sm font-inclusive">
+                                                We are a local development project made by <a href="" class="underline">Dmytro Shved</a>
                                             </p>
                                         </div>
                                     </div>
@@ -330,8 +392,11 @@
             {{--    </div>--}}
             {{--</div>--}}
 
-            <div class="flex items-center justify-center">
-                <img src="{{ asset('storage/logo/logo.svg') }}" class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 " alt="">
+
+{{--             class="flex items-center justify-center"--}}
+
+            <div class="text-center">
+                <img src="{{ asset('storage/logo/logo.svg') }}" class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mx-auto" alt="">
                 <small class="font-inclusive text-center text-sm text-neutral-100 p-8 italic">
                     © 2025 Gourmania. All rights reserved.
                 </small>
