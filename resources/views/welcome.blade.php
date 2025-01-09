@@ -283,20 +283,24 @@
             <div class="flex items-center justify-center my-4">
                 <span class="flex-grow border-b border-black"></span>
                 <small class="font-inclusive text-xs xs:text-[14px] sm:text-[16px] md:text-[18px] lg:text-xl xl:text-2xl text-black px-4">
-                    Recipe selection
+                    Filter recipes
                 </small>
                 <span class="flex-grow border-t border-black"></span>
             </div>
 
             {{-- Filter --}}
-            <div class="flex-col items-center px-2">
+            <div x-data="{ firstValue: '', secondValue: '' }" class="flex flex-col items-center px-2 gap-3 md:flex-row md:justify-center md:gap-3 md:items-center">
+
+                {{-- Icon --}}
+                <img class="size-10 sm:size-12 md:size-24 md:rotate-45" src="{{ asset('storage/objects/piper.svg') }}" alt="">
 
                 {{-- Double select --}}
-                <div x-data="{ firstValue: '', secondValue: '' }" class="flex w-full flex-col items-center gap-4">
-
+                <div class="flex flex-col w-full max-w-xs items-center gap-1 md:w-1/4 md:px-4 md:py-2">
                     {{-- Dish --}}
-                    <div class="relative flex w-full max-w-xs flex-col gap-1 text-neutral-600 dark:text-neutral-300">
-                        <select id="modelName" name="modelName" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-4 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white" x-model="firstValue">
+                    <div class="relative w-full">
+                        <select id="modelName" name="modelName"
+                                class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white md:px-4 md:py-2 md:text-sm"
+                                x-model="firstValue">
                             <option value="" selected>Any dish</option>
                             <option value="camery">Broth</option>
                             <option value="4runner">Cookies</option>
@@ -305,26 +309,28 @@
                             <option value="corolla">Mohito</option>
                         </select>
                     </div>
+                </div>
 
-                    {{-- Dish type --}}
-                    <div class="relative flex w-full max-w-xs flex-col gap-1 text-neutral-600 dark:text-neutral-300">
-                        <select id="dish-type" name="dish-type" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-4 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white" x-model="secondValue" :disabled="!firstValue">
-                            <option value="" :selected="!firstValue" x-text="firstValue ? 'Select Dish Type' : 'Select dish first'"></option>
-                            <option value="-">-</option>
-                            <option value="-">-</option>
-                            <option value="-">-</option>
-                            <option value="-">-</option>
-                            <option value="-">-</option>
-                            <option value="-">-</option>
-                            <option value="-">-</option>
+                {{-- Dish type --}}
+                <div class="flex flex-col w-full max-w-xs items-center gap-2 md:w-1/4 md:px-4 md:py-2">
+                    <div class="relative w-full">
+                        <select id="dish-type" name="dish-type"
+                                class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white md:px-4 md:py-2 md:text-sm"
+                                x-model="secondValue"
+                                :disabled="!firstValue">
+                            <option value="" :selected="!firstValue" x-text="firstValue ? 'Any type' : 'Any type'"></option>
+                            <option value="-">Type 1</option>
+                            <option value="-">Type 2</option>
+                            <option value="-">Type 3</option>
+                            <option value="-">Type 4</option>
                         </select>
                     </div>
                 </div>
 
                 {{-- Select cuisine --}}
-                <div class="relative flex w-full max-w-xs flex-col py-4 text-black font-inclusive mx-auto">
-                    <select id="country" name="country" autocomplete="country" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-4 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white">
-                        <option selected>Please Select</option>
+                <div class="w-full max-w-xs md:w-1/4 md:px-4 md:py-2">
+                    <select id="country" name="country" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white md:px-4 md:py-2 md:text-sm">
+                        <option value="Any" selected>Any cuisine</option>
                         <option value="Australia">Australian</option>
                         <option value="Belgium">Belgian</option>
                         <option value="China">Chinese</option>
@@ -342,13 +348,29 @@
                     </select>
                 </div>
 
-                <div class="font-inclusive text-neutral-200 text-sm bg-gourmania hover:gourmania-hover transition rounded-xl p-1 relative flex w-full max-w-xs py-2 mx-auto">
-                    <button class="text-center mx-auto">Filter</button>
+                {{-- Select menu --}}
+                <div class="w-full max-w-xs md:w-1/4 md:px-4 md:py-2">
+                    <select id="country" name="country" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white md:px-4 md:py-2 md:text-sm">
+                        <option value="Any" selected>Any menu</option>
+                        <option value="Ketogenic">Ketogenic</option>
+                        <option value="Gluten-free">Gluten-free</option>
+                        <option value="Vegetarian">Vegetarian</option>
+                        <option value="Vegan">Vegan </option>
+                        <option value="Paleo">Paleo</option>
+                    </select>
+                </div>
+
+                {{-- Filter button --}}
+                <div class="w-full max-w-xs md:w-auto md:px-4 md:py-2 md:text-base">
+                    <button class="font-inclusive text-neutral-200 text-sm bg-gourmania hover:gourmania-hover transition rounded-xl px-4 py-1 w-full md:px-4 md:py-2 md:text-base">
+                        Filter
+                    </button>
                 </div>
             </div>
 
             <br>
-
+            <hr class="border-t border-black">
+            <br>
 
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae consectetur consequuntur cupiditate ex
             harum
