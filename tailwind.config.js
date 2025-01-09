@@ -19,6 +19,9 @@ export default {
                 'inclusive': ['Inclusive Sans', 'serif'],
                 'inria' : ['Inria Serif', 'serif']
             },
+            screens: {
+                'xs': '360px'
+            },
         },
     },
     plugins: [

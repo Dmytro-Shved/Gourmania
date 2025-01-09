@@ -36,4 +36,12 @@
     .quick-link{
         @apply text-white font-inclusive transition-colors duration-300 underline hover:cursor-pointer hover:text-white;
     }
+
+    .stats-text{
+        @apply text-[8.5px] px-1 items-center text-center flex space-x-0.5 xs:text-[10px] sm:text-[14px] md:text-[15px] md:space-x-1.5 lg:text-lg xl:text-xl;
+    }
+
+    .stats-ball{
+        @apply size-1 sm:size-1.5 md:size-2 lg:size-3;
+    }
 }

@@ -242,6 +242,45 @@
 
     <main class="flex-grow">
         <div class="font-inclusive text-xl">
+
+            <div class="flex items-center justify-center my-4">
+                <span class="flex-grow border-t border-black"></span>
+                <small class="font-inknut text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
+                    BEST CHOICE FOR GOURMETS
+                </small>
+                <span class="flex-grow border-t border- border-black"></span>
+            </div>
+
+            {{-- Stats --}}
+            <div class="flex justify-between items-center">
+                <img class="max-sm:size-10 max-sm:hidden sm:size-14 md:size-16 lg:size-20" src="{{ asset('storage/objects/leaf.svg')  }}" alt="">
+                <img class="max-sm:size-4 xs:size-5 sm:hidden" src="{{ asset('storage/objects/leave_right_mobile.svg')  }}" alt="">
+
+                <div class="stats-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#88C9CB" class="bi bi-circle-fill stats-ball" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8"/>
+                    </svg>
+                    <span>999 original recipes</span>
+                </div>
+
+                <div class="stats-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#CCD5AE" class="bi bi-circle-fill stats-ball" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8"/>
+                    </svg>
+                    <span>1000 autors</span>
+                </div>
+
+                <div class="stats-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#FEDC56" class="bi bi-circle-fill stats-ball" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8"/>
+                    </svg>
+                    <span>Explore 50+ world cuisines</span>
+                </div>
+
+                <img class="max-sm:size-10 max-sm:hidden sm:size-14 md:size-16 lg:size-20 transform scale-x-[-1]" src="{{ asset('storage/objects/leaf.svg')  }}" alt="">
+                <img class="max-sm:size-4 xs:size-5 sm:hidden transform scale-x-[-1]" src="{{ asset('storage/objects/leave_right_mobile.svg')  }}" alt="">
+            </div>
+
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae consectetur consequuntur cupiditate ex
             harum
             illo maxime molestias mollitia pariatur quia reiciendis similique, tempore? Accusamus ad adipisci animi
