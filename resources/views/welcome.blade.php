@@ -289,63 +289,63 @@
             </div>
 
             {{-- Filter --}}
-            <div>
+            <div class="flex-col items-center px-2">
 
-            </div>
+                {{-- Double select --}}
+                <div x-data="{ firstValue: '', secondValue: '' }" class="flex w-full flex-col items-center gap-4">
 
-            {{-- Double select --}}
-            <div x-data="{ firstValue: '', secondValue: '' }" class="flex w-full flex-col items-center gap-4">
+                    {{-- Dish --}}
+                    <div class="relative flex w-full max-w-xs flex-col gap-1 text-neutral-600 dark:text-neutral-300">
+                        <select id="modelName" name="modelName" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-4 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white" x-model="firstValue">
+                            <option value="" selected>Any dish</option>
+                            <option value="camery">Broth</option>
+                            <option value="4runner">Cookies</option>
+                            <option value="tacoma">Steak</option>
+                            <option value="rav4">Cheeseburger</option>
+                            <option value="corolla">Mohito</option>
+                        </select>
+                    </div>
 
-                {{-- Dish --}}
-                <div class="relative flex w-full max-w-xs flex-col gap-1 text-neutral-600 dark:text-neutral-300">
-                    <select id="modelName" name="modelName" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-4 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white" x-model="firstValue">
-                        <option value="" selected>Any dish</option>
-                        <option value="camery">Broth</option>
-                        <option value="4runner">Cookies</option>
-                        <option value="tacoma">Steak</option>
-                        <option value="rav4">Cheeseburger</option>
-                        <option value="corolla">Mohito</option>
+                    {{-- Dish type --}}
+                    <div class="relative flex w-full max-w-xs flex-col gap-1 text-neutral-600 dark:text-neutral-300">
+                        <select id="dish-type" name="dish-type" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-4 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white" x-model="secondValue" :disabled="!firstValue">
+                            <option value="" :selected="!firstValue" x-text="firstValue ? 'Select Dish Type' : 'Select dish first'"></option>
+                            <option value="-">-</option>
+                            <option value="-">-</option>
+                            <option value="-">-</option>
+                            <option value="-">-</option>
+                            <option value="-">-</option>
+                            <option value="-">-</option>
+                            <option value="-">-</option>
+                        </select>
+                    </div>
+                </div>
+
+                {{-- Select cuisine --}}
+                <div class="relative flex w-full max-w-xs flex-col py-4 text-black font-inclusive mx-auto">
+                    <select id="country" name="country" autocomplete="country" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-4 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white">
+                        <option selected>Please Select</option>
+                        <option value="Australia">Australian</option>
+                        <option value="Belgium">Belgian</option>
+                        <option value="China">Chinese</option>
+                        <option value="France">French</option>
+                        <option value="Germany">German</option>
+                        <option value="Italy">Italian</option>
+                        <option value="Mexico">Mexican</option>
+                        <option value="Poland">Polish</option>
+                        <option value="Portugal">Portuguese</option>
+                        <option value="Spain">Spanish</option>
+                        <option value="Turkey">Turkish</option>
+                        <option value="Ukraine">Ukrainian</option>
+                        <option value="United Kingdom">British</option>
+                        <option value="United States">American</option>
                     </select>
                 </div>
 
-                {{-- Dish type --}}
-                <div class="relative flex w-full max-w-xs flex-col gap-1 text-neutral-600 dark:text-neutral-300">
-                    <select id="dish-type" name="dish-type" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-4 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white" x-model="secondValue" :disabled="!firstValue">
-                        <option value="" :selected="!firstValue" x-text="firstValue ? 'Select Dish Type' : 'Select dish first'"></option>
-                        <option value="-">-</option>
-                        <option value="-">-</option>
-                        <option value="-">-</option>
-                        <option value="-">-</option>
-                        <option value="-">-</option>
-                        <option value="-">-</option>
-                        <option value="-">-</option>
-                    </select>
+                <div class="font-inclusive text-neutral-200 text-sm bg-gourmania hover:gourmania-hover transition rounded-xl p-1 relative flex w-full max-w-xs py-2 mx-auto">
+                    <button class="text-center mx-auto">Filter</button>
                 </div>
             </div>
-
-            {{-- Select cuisine --}}
-            <div class="relative flex w-full max-w-xs flex-col gap-1 text-black font-inclusive">
-                <label for="country" class="w-fit pl-0.5 text-sm">Country</label>
-                <select id="country" name="country" autocomplete="country" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-4 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white">
-                    <option selected>Please Select</option>
-                    <option value="Australia">Australian</option>
-                    <option value="Belgium">Belgian</option>
-                    <option value="China">Chinese</option>
-                    <option value="France">French</option>
-                    <option value="Germany">German</option>
-                    <option value="Italy">Italian</option>
-                    <option value="Mexico">Mexican</option>
-                    <option value="Poland">Polish</option>
-                    <option value="Portugal">Portuguese</option>
-                    <option value="Spain">Spanish</option>
-                    <option value="Turkey">Turkish</option>
-                    <option value="Ukraine">Ukrainian</option>
-                    <option value="United Kingdom">British</option>
-                    <option value="United States">American</option>
-                </select>
-            </div>
-            <button class="font-inclusive text-neutral-200 text-sm bg-gourmania hover:gourmania-hover transition rounded-xl p-1">Filter</button>
-
 
             <br>
 
