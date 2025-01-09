@@ -237,7 +237,6 @@
     </ul>
 </nav>
 
-
 <div class="flex flex-col min-h-screen">
 
     <main class="flex-grow">
@@ -267,7 +266,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="#CCD5AE" class="bi bi-circle-fill stats-ball" viewBox="0 0 16 16">
                         <circle cx="8" cy="8" r="8"/>
                     </svg>
-                    <span>1000 autors</span>
+                    <span>1000 authors</span>
                 </div>
 
                 <div class="stats-text">
@@ -281,55 +280,124 @@
                 <img class="max-sm:size-4 xs:size-5 sm:hidden transform scale-x-[-1]" src="{{ asset('storage/objects/leave_right_mobile.svg')  }}" alt="">
             </div>
 
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae consectetur consequuntur cupiditate ex
-            harum
-            illo maxime molestias mollitia pariatur quia reiciendis similique, tempore? Accusamus ad adipisci animi
-            aspernatur
-            commodi corporis, cum deleniti dolorem doloremque enim, error eveniet facilis fuga harum id ipsa maiores
-            minima
-            mollitia natus nemo neque non odit perspiciatis praesentium quae, quasi temporibus ullam unde voluptas
-            voluptatem.
-            Alias, animi deserunt ea ipsa modi mollitia quibusdam suscipit? Ab aliquam animi architecto, commodi
-            explicabo in
-            ipsum itaque laudantium perspiciatis quibusdam, quisquam quod, recusandae. Assumenda autem consequatur
-            consequuntur
-            cum cupiditate dolore fugit natus necessitatibus quod? Assumenda consequuntur distinctio dolorem ducimus
-            eius
-            eveniet illum ipsa libero maxime minus mollitia nam nesciunt officia placeat praesentium rem, temporibus
-            tenetur
-            vitae voluptatem, voluptates? Assumenda facere fugit itaque magni, minima quasi ratione reprehenderit totam.
-            Accusantium autem doloremque id itaque minus modi pariatur provident suscipit tempora unde. At deserunt
-            dolor harum
-            incidunt, laudantium magni, maiores mollitia necessitatibus nulla optio praesentium quia temporibus voluptas
-            voluptate voluptatem. Cumque dolorum excepturi harum modi quaerat quam soluta, voluptatum. Accusamus autem
-            blanditiis, distinctio doloremque earum enim, eveniet fugiat inventore nemo nihil nulla odio perspiciatis,
-            quas quis
-            rerum soluta tempora totam unde vero voluptatibus. Ab illo minima odit quae vitae voluptas voluptatem?
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae consectetur consequuntur cupiditate ex
-            harum
-            illo maxime molestias mollitia pariatur quia reiciendis similique, tempore? Accusamus ad adipisci animi
-            aspernatur
-            commodi corporis, cum deleniti dolorem doloremque enim, error eveniet facilis fuga harum id ipsa maiores
-            minima
-            mollitia natus nemo neque non odit perspiciatis praesentium quae, quasi temporibus ullam unde voluptas
-            voluptatem.
-            Alias, animi deserunt ea ipsa modi mollitia quibusdam suscipit? Ab aliquam animi architecto, commodi
-            explicabo in
-            ipsum itaque laudantium perspiciatis quibusdam, quisquam quod, recusandae. Assumenda autem consequatur
-            consequuntur
-            cum cupiditate dolore fugit natus necessitatibus quod? Assumenda consequuntur distinctio dolorem ducimus
-            eius
-            eveniet illum ipsa libero maxime minus mollitia nam nesciunt officia placeat praesentium rem, temporibus
-            tenetur
-            vitae voluptatem, voluptates? Assumenda facere fugit itaque magni, minima quasi ratione reprehenderit totam.
-            Accusantium autem doloremque id itaque minus modi pariatur provident suscipit tempora unde. At deserunt
-            dolor harum
-            incidunt, laudantium magni, maiores mollitia necessitatibus nulla optio praesentium quia temporibus voluptas
-            voluptate voluptatem. Cumque dolorum excepturi harum modi quaerat quam soluta, voluptatum. Accusamus autem
-            blanditiis, distinctio doloremque earum enim, eveniet fugiat inventore nemo nihil nulla odio perspiciatis,
-            quas quis
-            rerum soluta tempora totam unde vero voluptatibus. Ab illo minima odit quae vitae voluptas voluptatem?
+            <div class="flex items-center justify-center my-4">
+                <span class="flex-grow border-b border-black"></span>
+                <small class="font-inclusive text-xs xs:text-[14px] sm:text-[16px] md:text-[18px] lg:text-xl xl:text-2xl text-black px-4">
+                    Recipe selection
+                </small>
+                <span class="flex-grow border-t border-black"></span>
+            </div>
 
+            {{-- Filter --}}
+            <div>
+
+            </div>
+
+            {{-- Double select --}}
+            <div x-data="{ firstValue: '', secondValue: '' }" class="flex w-full flex-col items-center gap-4">
+
+                {{-- Dish --}}
+                <div class="relative flex w-full max-w-xs flex-col gap-1 text-neutral-600 dark:text-neutral-300">
+                    <select id="modelName" name="modelName" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-4 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white" x-model="firstValue">
+                        <option value="" selected>Any dish</option>
+                        <option value="camery">Broth</option>
+                        <option value="4runner">Cookies</option>
+                        <option value="tacoma">Steak</option>
+                        <option value="rav4">Cheeseburger</option>
+                        <option value="corolla">Mohito</option>
+                    </select>
+                </div>
+
+                {{-- Dish type --}}
+                <div class="relative flex w-full max-w-xs flex-col gap-1 text-neutral-600 dark:text-neutral-300">
+                    <select id="dish-type" name="dish-type" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-4 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white" x-model="secondValue" :disabled="!firstValue">
+                        <option value="" :selected="!firstValue" x-text="firstValue ? 'Select Dish Type' : 'Select dish first'"></option>
+                        <option value="-">-</option>
+                        <option value="-">-</option>
+                        <option value="-">-</option>
+                        <option value="-">-</option>
+                        <option value="-">-</option>
+                        <option value="-">-</option>
+                        <option value="-">-</option>
+                    </select>
+                </div>
+            </div>
+
+            {{-- Select cuisine --}}
+            <div class="relative flex w-full max-w-xs flex-col gap-1 text-black font-inclusive">
+                <label for="country" class="w-fit pl-0.5 text-sm">Country</label>
+                <select id="country" name="country" autocomplete="country" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-4 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white">
+                    <option selected>Please Select</option>
+                    <option value="Australia">Australian</option>
+                    <option value="Belgium">Belgian</option>
+                    <option value="China">Chinese</option>
+                    <option value="France">French</option>
+                    <option value="Germany">German</option>
+                    <option value="Italy">Italian</option>
+                    <option value="Mexico">Mexican</option>
+                    <option value="Poland">Polish</option>
+                    <option value="Portugal">Portuguese</option>
+                    <option value="Spain">Spanish</option>
+                    <option value="Turkey">Turkish</option>
+                    <option value="Ukraine">Ukrainian</option>
+                    <option value="United Kingdom">British</option>
+                    <option value="United States">American</option>
+                </select>
+            </div>
+            <button class="font-inclusive text-neutral-200 text-sm bg-gourmania hover:gourmania-hover transition rounded-xl p-1">Filter</button>
+
+
+            <br>
+
+
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae consectetur consequuntur cupiditate ex
+            harum
+            illo maxime molestias mollitia pariatur quia reiciendis similique, tempore? Accusamus ad adipisci animi
+            aspernatur
+            commodi corporis, cum deleniti dolorem doloremque enim, error eveniet facilis fuga harum id ipsa maiores
+            minima
+            mollitia natus nemo neque non odit perspiciatis praesentium quae, quasi temporibus ullam unde voluptas
+            voluptatem.
+            Alias, animi deserunt ea ipsa modi mollitia quibusdam suscipit? Ab aliquam animi architecto, commodi
+            explicabo in
+            ipsum itaque laudantium perspiciatis quibusdam, quisquam quod, recusandae. Assumenda autem consequatur
+            consequuntur
+            cum cupiditate dolore fugit natus necessitatibus quod? Assumenda consequuntur distinctio dolorem ducimus
+            eius
+            eveniet illum ipsa libero maxime minus mollitia nam nesciunt officia placeat praesentium rem, temporibus
+            tenetur
+            vitae voluptatem, voluptates? Assumenda facere fugit itaque magni, minima quasi ratione reprehenderit totam.
+            Accusantium autem doloremque id itaque minus modi pariatur provident suscipit tempora unde. At deserunt
+            dolor harum
+            incidunt, laudantium magni, maiores mollitia necessitatibus nulla optio praesentium quia temporibus voluptas
+            voluptate voluptatem. Cumque dolorum excepturi harum modi quaerat quam soluta, voluptatum. Accusamus autem
+            blanditiis, distinctio doloremque earum enim, eveniet fugiat inventore nemo nihil nulla odio perspiciatis,
+            quas quis
+            rerum soluta tempora totam unde vero voluptatibus. Ab illo minima odit quae vitae voluptas voluptatem?
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae consectetur consequuntur cupiditate ex
+            harum
+            illo maxime molestias mollitia pariatur quia reiciendis similique, tempore? Accusamus ad adipisci animi
+            aspernatur
+            commodi corporis, cum deleniti dolorem doloremque enim, error eveniet facilis fuga harum id ipsa maiores
+            minima
+            mollitia natus nemo neque non odit perspiciatis praesentium quae, quasi temporibus ullam unde voluptas
+            voluptatem.
+            Alias, animi deserunt ea ipsa modi mollitia quibusdam suscipit? Ab aliquam animi architecto, commodi
+            explicabo in
+            ipsum itaque laudantium perspiciatis quibusdam, quisquam quod, recusandae. Assumenda autem consequatur
+            consequuntur
+            cum cupiditate dolore fugit natus necessitatibus quod? Assumenda consequuntur distinctio dolorem ducimus
+            eius
+            eveniet illum ipsa libero maxime minus mollitia nam nesciunt officia placeat praesentium rem, temporibus
+            tenetur
+            vitae voluptatem, voluptates? Assumenda facere fugit itaque magni, minima quasi ratione reprehenderit totam.
+            Accusantium autem doloremque id itaque minus modi pariatur provident suscipit tempora unde. At deserunt
+            dolor harum
+            incidunt, laudantium magni, maiores mollitia necessitatibus nulla optio praesentium quia temporibus voluptas
+            voluptate voluptatem. Cumque dolorum excepturi harum modi quaerat quam soluta, voluptatum. Accusamus autem
+            blanditiis, distinctio doloremque earum enim, eveniet fugiat inventore nemo nihil nulla odio perspiciatis,
+            quas quis
+            rerum soluta tempora totam unde vero voluptatibus. Ab illo minima odit quae vitae voluptas voluptatem?
         </div>
     </main>
 
@@ -442,7 +510,7 @@
                                                 Which came first, the chicken or the egg?
                                         </span>
                                             <br>
-                                            <span class="text-neutral-200 text-xs font-inclusive">The egg as a method of reproduction predates chickens by a long way</span>
+                                            <span class="text-neutral-200 text-xs font-inclusive">The egg as a method of reproduction predates chickens by a long</span>
                                         </div>
                                     </div>
                                 </li>
