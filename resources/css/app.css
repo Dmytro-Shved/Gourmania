@@ -38,7 +38,7 @@
     }
 
     .stats-text{
-        @apply text-[8.5px] px-1 items-center text-center flex space-x-0.5 xs:text-[10px] sm:text-[14px] md:text-[15px] md:space-x-1.5 lg:text-lg xl:text-xl;
+        @apply text-[8.5px] px-1 items-center text-center flex space-x-0.5 sm:text-[14px] md:text-[15px] md:space-x-1.5 lg:text-lg xl:text-xl;
     }
 
     .stats-ball{
