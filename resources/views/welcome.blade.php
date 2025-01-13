@@ -243,7 +243,7 @@
         <div class="font-inclusive text-xl">
 
             {{-- Slogan --}}
-            <div class="flex items-center justify-center my-4">
+            <div class="title-container">
                 <span class="flex-grow border-t border-black"></span>
                 <small class="font-inknut text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
                     BEST CHOICE FOR GOURMETS
@@ -281,7 +281,7 @@
                 <img class="max-sm:size-4 xs:size-5 sm:hidden transform scale-x-[-1]" src="{{ asset('storage/objects/leave_right_mobile.svg')  }}" alt="">
             </div>
 
-            <div class="flex items-center justify-center my-4">
+            <div class="title-container">
                 <span class="flex-grow border-b border-black"></span>
                 <small class="font-inclusive text-xs xs:text-[14px] sm:text-[16px] md:text-[18px] lg:text-xl xl:text-2xl text-black px-4">
                     Filter recipes
@@ -372,7 +372,7 @@
             <br>
 
             {{-- Popular recipes --}}
-            <div class="flex items-center justify-center my-4">
+            <div class="title-container">
                 <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
                 <small class="font-inknut text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
                     POPULAR RECIPES
@@ -429,14 +429,18 @@
                     }" class="relative w-full overflow-hidden">
 
                 {{-- previous button --}}
-                <button type="button" class="absolute left-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/40 p-2 text-neutral-600 transition hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:outline-offset-0 dark:bg-neutral-950/40 dark:text-neutral-300 dark:hover:bg-neutral-950/60 dark:focus-visible:outline-white" aria-label="previous slide" x-on:click="previous()">
+                <button type="button" class="absolute left-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/40 p-2 text-neutral-600 transition hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:outline-offset-0 dark:bg-neutral-950/40 dark:text-neutral-300 dark:hover:bg-neutral-950/60 dark:focus-visible:outline-white"
+                        aria-label="previous slide"
+                        x-on:click="previous()">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="3" class="size-5 md:size-6 pr-0.5" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                     </svg>
                 </button>
 
                 {{-- next button --}}
-                <button type="button" class="absolute right-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/40 p-2 text-neutral-600 transition hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:outline-offset-0 dark:bg-neutral-950/40 dark:text-neutral-300 dark:hover:bg-neutral-950/60 dark:focus-visible:outline-white" aria-label="next slide" x-on:click="next()">
+                <button type="button" class="absolute right-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/40 p-2 text-neutral-600 transition hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:outline-offset-0 dark:bg-neutral-950/40 dark:text-neutral-300 dark:hover:bg-neutral-950/60 dark:focus-visible:outline-white"
+                        aria-label="next slide"
+                        x-on:click="next()">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="3" class="size-5 md:size-6 pl-0.5" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>
@@ -469,184 +473,183 @@
             <br>
 
             {{-- Latest recipes title --}}
-            <div class="flex items-center justify-center my-4">
-                <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
-                <small class="font-inknut text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
+            <div class="title-container">
+                <span class="border-line"></span>
+                <small class="section-title">
                     LATEST RECIPES
                 </small>
-                <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
+                <span class="border-line"></span>
             </div>
 
             {{-- Latest recipes grid --}}
             {{-- All images are 800 x 1200 --}}
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div class="section-container">
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/meat_stake_cuts_10247_800x1200.jpg"
                              alt="Image 1">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Delicious meat steak</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Delicious meat steak</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/pizza_food_glass_73012_800x1200.jpg"
                              alt="Image 2">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Fresh hot pizza</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Fresh hot pizza</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/french_fries_appetizing_greens_112053_800x1200.jpg"
                              alt="Image 3">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Crispy french fries</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Crispy french fries</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/salad_vegetables_leaves_88299_800x1200.jpg"
                              alt="Image 4">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">A salad full of vitamins</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">A salad full of vitamins</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/noodles_sauce_cheese_112659_800x1200.jpg"
                              alt="Image 5">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Pasta with vegetables and grated cheese</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Pasta with vegetables and grated cheese</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/pancakes_berries_dessert_157035_800x1200.jpg"
                              alt="Image 6">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Fluffy pancakes with sour cream and raspberries</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Fluffy pancakes with sour cream and raspberries</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/food_fish_herbs_108877_800x1200.jpg"
                              alt="Image 7">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Fresh fish with rice and herbs</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Fresh fish with rice and herbs</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/soup_toast_dish_208792_800x1200.jpg"
                              alt="Image 8">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Flavorful soup with crispy toast</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Flavorful soup with crispy toast</span>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="flex items-center justify-center my-4">
-                <button class="font-inclusive text-xs sm:text-sm md:text-lg text-black border border-black py-2 px-4 rounded-lg hover:bg-gourmania hover:text-neutral-200 transition-colors duration-300">
+            <div class="see-more-container">
+                <button class="see-more-btn">
                     See more
                 </button>
             </div>
 
             <br>
 
-
             {{-- Meat dishes title --}}
-            <div class="flex items-center justify-center my-4">
-                <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
-                <small class="font-inknut text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
+            <div class="title-container">
+                <span class="border-line"></span>
+                <small class="section-title">
                     MEAT DISHES
                 </small>
-                <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
+                <span class="border-line"></span>
             </div>
 
             {{-- Meat dishes grid --}}
             {{-- All images are 800 x 1200 --}}
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div class="section-container">
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/meat_stake_cuts_10247_800x1200.jpg"
                              alt="Image 1">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Delicious meat steak</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Delicious meat steak</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/pork_vegetables_meat_109770_800x1200.jpg"
                              alt="Image 2">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Fresh pork with vegetables</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Fresh pork with vegetables</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/meat_baking_vegetables_88477_800x1200.jpg"
                              alt="Image 3">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Hot backed meat with vegetables</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Hot backed meat with vegetables</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/meat_pork_dinner_112587_800x1200.jpg"
                              alt="Image 4">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Pork with sauce</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Pork with sauce</span>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="flex items-center justify-center my-4">
-                <button class="font-inclusive text-xs sm:text-sm md:text-lg text-black border border-black py-2 px-4 rounded-lg hover:bg-gourmania hover:text-neutral-200 transition-colors duration-300">
+            <div class="see-more-container">
+                <button class="see-more-btn">
                     See more
                 </button>
             </div>
@@ -654,67 +657,67 @@
             <br>
 
             {{-- Salads title --}}
-            <div class="flex items-center justify-center my-4">
-                <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
-                <small class="font-inknut text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
+            <div class="title-container">
+                <span class="border-line"></span>
+                <small class="section-title">
                     SALADS
                 </small>
-                <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
+                <span class="border-line"></span>
             </div>
 
             {{-- Salads grid --}}
             {{-- All images are 800 x 1200 --}}
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div class="section-container">
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/salad_vegetables_leaves_108329_800x1200.jpg"
                              alt="Image 1">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Salad with vegetables, leaves, spinach and cucumbers</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Salad with vegetables, leaves, spinach and cucumbers</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/salad_vegetables_eggs_114547_800x1200.jpg"
                              alt="Image 2">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Healthy salad with vegetables, eggs and carrots</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Healthy salad with vegetables, eggs and carrots</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/salad_cheese_fruit_107087_800x1200.jpg"
                              alt="Image 3">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Aromatic cheese, fruits and vegetables</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Aromatic cheese, fruits and vegetables</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/salad_lemon_cherry_tomatoes_107795_800x1200.jpg"
                              alt="Image 4">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Sour lemon with fresh cherry tomatoes and fresh herbs</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Sour lemon with fresh cherry tomatoes and fresh herbs</span>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="flex items-center justify-center my-4">
-                <button class="font-inclusive text-xs sm:text-sm md:text-lg text-black border border-black py-2 px-4 rounded-lg hover:bg-gourmania hover:text-neutral-200 transition-colors duration-300">
+            <div class="see-more-container">
+                <button class="see-more-btn">
                     See more
                 </button>
             </div>
@@ -722,67 +725,67 @@
             <br>
 
             {{-- Breakfasts title --}}
-            <div class="flex items-center justify-center my-4">
-                <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
-                <small class="font-inknut text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
+            <div class="title-container">
+                <span class="border-line"></span>
+                <small class="section-title">
                     BREAKFASTS
                 </small>
-                <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
+                <span class="border-line"></span>
             </div>
 
             {{-- Breakfasts grid --}}
             {{-- All images are 800 x 1200 --}}
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div class="section-container">
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/pancakes_raspberries_syrup_115255_800x1200.jpg"
                              alt="Image 1">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Pancakes with raspberries and syrup</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Pancakes with raspberries and syrup</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/fried_eggs_bacon_toast_102470_800x1200.jpg"
                              alt="Image 2">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Fresh scrambled eggs and meat</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Fresh scrambled eggs and meat</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/belgian_waffle_waffle_berries_873742_800x1200.jpg"
                              alt="Image 3">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Fluffy waffles</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Fluffy waffles</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/granola_strawberry_berries_207990_800x1200.jpg"
                              alt="Image 4">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Granola with strawberry</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Granola with strawberry</span>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="flex items-center justify-center my-4">
-                <button class="font-inclusive text-xs sm:text-sm md:text-lg text-black border border-black py-2 px-4 rounded-lg hover:bg-gourmania hover:text-neutral-200 transition-colors duration-300">
+            <div class="see-more-container">
+                <button class="see-more-btn">
                     See more
                 </button>
             </div>
@@ -790,67 +793,67 @@
             <br>
 
             {{-- Bakery title --}}
-            <div class="flex items-center justify-center my-4">
-                <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
-                <small class="font-inknut text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
+            <div class="title-container">
+                <span class="border-line"></span>
+                <small class="section-title">
                     BAKERY
                 </small>
-                <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
+                <span class="border-line"></span>
             </div>
 
             {{-- Bakery grid --}}
             {{-- All images are 800 x 1200 --}}
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div class="section-container">
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/bread_almonds_cakes_112884_800x1200.jpg"
                              alt="Image 1">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Soft, flavorful bread</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Soft, flavorful bread</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/donut_icing_still_life_163211_800x1200.jpg"
                              alt="Image 2">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Doughnuts with glaze and sprinkles </span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Doughnuts with glaze and sprinkles </span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/croissant_berries_strawberries_180033_800x1200.jpg"
                              alt="Image 3">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Delicious croissants</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Delicious croissants</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/cookies_chocolate_dessert_874621_800x1200.jpg"
                              alt="Image 4">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Chocolate chip cookie</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Chocolate chip cookie</span>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="flex items-center justify-center my-4">
-                <button class="font-inclusive text-xs sm:text-sm md:text-lg text-black border border-black py-2 px-4 rounded-lg hover:bg-gourmania hover:text-neutral-200 transition-colors duration-300">
+            <div class="see-more-container">
+                <button class="see-more-btn">
                     See more
                 </button>
             </div>
@@ -858,67 +861,67 @@
             <br>
 
             {{-- Desserts title --}}
-            <div class="flex items-center justify-center my-4">
-                <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
-                <small class="font-inknut text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
+            <div class="title-container">
+                <span class="border-line"></span>
+                <small class="section-title">
                     DESSERTS
                 </small>
-                <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
+                <span class="border-line"></span>
             </div>
 
             {{-- Desserts grid --}}
             {{-- All images are 800 x 1200 --}}
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div class="section-container">
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/tartlet_berries_cream_111477_800x1200.jpg"
                              alt="Image 1">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Tartalette with berries and cream</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Tartalette with berries and cream</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/icecream_balls_bilberry_45151_800x1200.jpg"
                              alt="Image 2">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Chilled ice cream</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Chilled ice cream</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/cake_souffles_cream_114050_800x1200.jpg"
                              alt="Image 3">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Tender tiramisu</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Tender tiramisu</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/cupcake_cherry_berries_289705_800x1200.jpg"
                              alt="Image 4">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Cupcake with cream and cherry</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Cupcake with cream and cherry</span>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="flex items-center justify-center my-4">
-                <button class="font-inclusive text-xs sm:text-sm md:text-lg text-black border border-black py-2 px-4 rounded-lg hover:bg-gourmania hover:text-neutral-200 transition-colors duration-300">
+            <div class="see-more-container">
+                <button class="see-more-btn">
                     See more
                 </button>
             </div>
@@ -926,67 +929,67 @@
             <br>
 
             {{-- Drinks title --}}
-            <div class="flex items-center justify-center my-4">
-                <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
-                <small class="font-inknut text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
+            <div class="title-container">
+                <span class="border-line"></span>
+                <small class="section-title">
                     DRINKS
                 </small>
-                <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
+                <span class="border-line"></span>
             </div>
 
             {{-- Drinks grid --}}
             {{-- All images are 800 x 1200 --}}
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div class="section-container">
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/tea_cup_lemon_209994_800x1200.jpg"
                              alt="Image 1">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Warming flavored tea</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Warming flavored tea</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/coffee_drink_cup_207326_800x1200.jpg"
                              alt="Image 2">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Invigorating coffee</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Invigorating coffee</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/mojito_drink_lemon_177472_800x1200.jpg"
                              alt="Image 3">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">A refreshing mojito</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">A refreshing mojito</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="relative block overflow-hidden group w-full">
                     <a href="#" class="block">
-                        <img class="h-auto max-w-full transform transition-transform duration-300 group-hover:scale-110"
+                        <img class="section-image"
                              src="https://images.wallpaperscraft.com/image/single/cocktail_mint_glass_272604_800x1200.jpg"
                              alt="Image 4">
 
-                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
-                            <span class="text-white font-inclusive text-lg font-semibold text-center">Mint Cocktail</span>
+                        <div class="hover-overlay">
+                            <span class="overlay-text">Mint Cocktail</span>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="flex items-center justify-center my-4">
-                <button class="font-inclusive text-xs sm:text-sm md:text-lg text-black border border-black py-2 px-4 rounded-lg hover:bg-gourmania hover:text-neutral-200 transition-colors duration-300">
+            <div class="see-more-container">
+                <button class="see-more-btn">
                     See more
                 </button>
             </div>
@@ -1206,7 +1209,7 @@
             <div class="text-center my-5">
                 <img src="{{ asset('storage/logo/logo.svg') }}"
                      class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mx-auto" alt="Logo">
-                <div class="flex items-center justify-center my-4">
+                <div class="see-more-container">
                     <span class="flex-grow border-t border-neutral-200"></span>
                     <small class="font-inclusive text-sm text-neutral-100 px-4 italic">
                         © 2025 Gourmania. All rights reserved.
