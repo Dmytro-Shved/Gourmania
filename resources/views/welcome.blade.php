@@ -1054,7 +1054,7 @@
                             <a href="#">
                                 <img src="{{ asset('storage/user_logo/default.svg') }}"
                                      alt="Team Member 1" class="author-image">
-                                <span class="author-name">Zlatan Ibrahimovic</span>
+                                <h3 class="author-name">Zlatan Ibrahimovic</h3>
                             </a>
                         </div>
 
