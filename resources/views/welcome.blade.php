@@ -40,7 +40,8 @@
 >
     {{-- Logo --}}
     <a href="#" class="flex items-center max-w-[150px] sm:max-w-[180px] ">
-        <img src="{{ asset('storage/logo/full-logo-nobg.svg') }}" alt="Gourmania" class="w-full h-full sm:w-full sm:h-full object-contain"/>
+        <img src="{{ asset('storage/logo/full-logo-nobg.svg') }}" alt="Gourmania"
+             class="w-full h-full sm:w-full sm:h-full object-contain"/>
     </a>
 
     {{-- Search --}}
@@ -49,9 +50,11 @@
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
              aria-hidden="true"
              class="absolute left-2.5 top-1/2 size-5 -translate-y-1/2 text-neutral-600/50 dark:text-neutral-300/50">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
         </svg>
-        <input type="text" name="search" placeholder="" aria-label="search" class="w-full rounded-full border-none bg-neutral-50 py-2.5 pl-10 pr-2 text-sm disabled:cursor-not-allowed disabled:opacity-75 dark:bg-neutral-900/50"/>
+        <input type="text" name="search" placeholder="" aria-label="search"
+               class="w-full rounded-full border-none bg-neutral-50 py-2.5 pl-10 pr-2 text-sm disabled:cursor-not-allowed disabled:opacity-75 dark:bg-neutral-900/50"/>
     </div>
 
     {{-- Desktop Menu --}}
@@ -197,8 +200,10 @@
         {{-- Profile --}}
         <li class="mobile-menu-btn">
             <a href="#" class="mobile-menu-btn-style">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#342B22" class="size-7 mx-1">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="#342B22" class="size-7 mx-1">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                 </svg>
                 <span class="text-md text-neutral-100">Profile</span>
             </a>
@@ -207,8 +212,10 @@
         {{-- My recipes --}}
         <li class="mobile-menu-btn">
             <a href="#" class="mobile-menu-btn-style">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="darkred" viewBox="0 0 24 24" stroke-width="1.5" stroke="darkred" class="size-7 mx-1">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="darkred" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="darkred" class="size-7 mx-1">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"/>
                 </svg>
                 <span class="text-md text-neutral-100">My recipes</span>
             </a>
@@ -230,7 +237,8 @@
 
         {{-- Sign Out --}}
         <li class="mt-4 w-full border-none">
-            <a href="#" class="rounded-md bg-red-500 px-4 py-2 block text-center font-medium tracking-wide text-neutral-100 hover:bg-red-700 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 dark:bg-white dark:text-black dark:focus-visible:outline-white font-inclusive">
+            <a href="#"
+               class="rounded-md bg-red-500 px-4 py-2 block text-center font-medium tracking-wide text-neutral-100 hover:bg-red-700 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 dark:bg-white dark:text-black dark:focus-visible:outline-white font-inclusive">
                 <span>Sign Out</span>
             </a>
         </li>
@@ -253,47 +261,57 @@
 
             {{-- Stats --}}
             <div class="flex justify-between items-center">
-                <img class="max-sm:size-10 max-sm:hidden sm:size-14 md:size-16 lg:size-20" src="{{ asset('storage/objects/leaf.svg')  }}" alt="">
-                <img class="max-sm:size-4 xs:size-5 sm:hidden" src="{{ asset('storage/objects/leave_right_mobile.svg')  }}" alt="">
+                <img class="max-sm:size-10 max-sm:hidden sm:size-14 md:size-16 lg:size-20"
+                     src="{{ asset('storage/objects/leaf.svg')  }}" alt="">
+                <img class="max-sm:size-4 xs:size-5 sm:hidden"
+                     src="{{ asset('storage/objects/leave_right_mobile.svg')  }}" alt="">
 
                 <div class="stats-text">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#88C9CB" class="bi bi-circle-fill stats-ball" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#88C9CB" class="bi bi-circle-fill stats-ball"
+                         viewBox="0 0 16 16">
                         <circle cx="8" cy="8" r="8"/>
                     </svg>
                     <span>999 original recipes</span>
                 </div>
 
                 <div class="stats-text">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#CCD5AE" class="bi bi-circle-fill stats-ball" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#CCD5AE" class="bi bi-circle-fill stats-ball"
+                         viewBox="0 0 16 16">
                         <circle cx="8" cy="8" r="8"/>
                     </svg>
                     <span>1000 authors</span>
                 </div>
 
                 <div class="stats-text">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#FEDC56" class="bi bi-circle-fill stats-ball" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#FEDC56" class="bi bi-circle-fill stats-ball"
+                         viewBox="0 0 16 16">
                         <circle cx="8" cy="8" r="8"/>
                     </svg>
                     <span>Explore 50+ world cuisines</span>
                 </div>
 
-                <img class="max-sm:size-10 max-sm:hidden sm:size-14 md:size-16 lg:size-20 transform scale-x-[-1]" src="{{ asset('storage/objects/leaf.svg')  }}" alt="">
-                <img class="max-sm:size-4 xs:size-5 sm:hidden transform scale-x-[-1]" src="{{ asset('storage/objects/leave_right_mobile.svg')  }}" alt="">
+                <img class="max-sm:size-10 max-sm:hidden sm:size-14 md:size-16 lg:size-20 transform scale-x-[-1]"
+                     src="{{ asset('storage/objects/leaf.svg')  }}" alt="">
+                <img class="max-sm:size-4 xs:size-5 sm:hidden transform scale-x-[-1]"
+                     src="{{ asset('storage/objects/leave_right_mobile.svg')  }}" alt="">
             </div>
 
             <div class="title-container">
                 <span class="flex-grow border-b border-black"></span>
-                <small class="font-inclusive text-xs xs:text-[14px] sm:text-[16px] md:text-[18px] lg:text-xl xl:text-2xl text-black px-4">
+                <small
+                    class="font-inclusive text-xs xs:text-[14px] sm:text-[16px] md:text-[18px] lg:text-xl xl:text-2xl text-black px-4">
                     Filter recipes
                 </small>
                 <span class="flex-grow border-t border-black"></span>
             </div>
 
             {{-- Filter --}}
-            <div x-data="{ firstValue: '', secondValue: '' }" class="flex flex-col items-center px-2 gap-2 md:flex-row md:justify-center md:gap-0.5 md:items-center">
+            <div x-data="{ firstValue: '', secondValue: '' }"
+                 class="flex flex-col items-center px-2 gap-2 md:flex-row md:justify-center md:gap-0.5 md:items-center">
 
                 {{-- Icon --}}
-                <img class="size-10 sm:size-12 md:size-24 md:rotate-45" src="{{ asset('storage/objects/piper.svg') }}" alt="">
+                <img class="size-10 sm:size-12 md:size-24 md:rotate-45" src="{{ asset('storage/objects/piper.svg') }}"
+                     alt="">
 
                 {{-- Double select --}}
                 <div class="flex flex-col w-full max-w-xs items-center gap-1 md:w-1/4 md:px-2 md:py-2">
@@ -319,7 +337,8 @@
                                 class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm"
                                 x-model="secondValue"
                                 :disabled="!firstValue">
-                            <option value="" :selected="!firstValue" x-text="firstValue ? 'Any type' : 'Any type'"></option>
+                            <option value="" :selected="!firstValue"
+                                    x-text="firstValue ? 'Any type' : 'Any type'"></option>
                             <option value="-">Type 1</option>
                             <option value="-">Type 2</option>
                             <option value="-">Type 3</option>
@@ -330,7 +349,8 @@
 
                 {{-- Select cuisine --}}
                 <div class="w-full max-w-xs md:w-1/4  md:py-2">
-                    <select id="country" name="country" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white md:px-4 md:py-2 md:text-sm">
+                    <select id="country" name="country"
+                            class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white md:px-4 md:py-2 md:text-sm">
                         <option value="Any" selected>Any cuisine</option>
                         <option value="Australia">Australian</option>
                         <option value="Belgium">Belgian</option>
@@ -351,19 +371,21 @@
 
                 {{-- Select menu --}}
                 <div class="w-full max-w-xs md:w-1/4 md:px-1 md:py-2">
-                    <select id="country" name="country" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white md:px-4 md:py-2 md:text-sm">
+                    <select id="country" name="country"
+                            class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white md:px-4 md:py-2 md:text-sm">
                         <option value="Any" selected>Any menu</option>
                         <option value="Ketogenic">Ketogenic</option>
                         <option value="Gluten-free">Gluten-free</option>
                         <option value="Vegetarian">Vegetarian</option>
-                        <option value="Vegan">Vegan </option>
+                        <option value="Vegan">Vegan</option>
                         <option value="Paleo">Paleo</option>
                     </select>
                 </div>
 
                 {{-- Filter button --}}
                 <div class="w-full max-w-xs md:w-auto md:px-4 md:py-2 md:text-base">
-                    <button class="font-inclusive text-neutral-200 text-sm bg-gourmania hover:gourmania-hover transition rounded-xl px-4 py-1 w-full md:px-4 md:py-2 md:text-base">
+                    <button
+                        class="font-inclusive text-neutral-200 text-sm bg-gourmania hover:gourmania-hover transition rounded-xl px-4 py-1 w-full md:px-4 md:py-2 md:text-base">
                         Filter
                     </button>
                 </div>
@@ -429,20 +451,24 @@
                     }" class="relative w-full overflow-hidden">
 
                 {{-- previous button --}}
-                <button type="button" class="absolute left-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/40 p-2 text-neutral-600 transition hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:outline-offset-0 dark:bg-neutral-950/40 dark:text-neutral-300 dark:hover:bg-neutral-950/60 dark:focus-visible:outline-white"
+                <button type="button"
+                        class="absolute left-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/40 p-2 text-neutral-600 transition hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:outline-offset-0 dark:bg-neutral-950/40 dark:text-neutral-300 dark:hover:bg-neutral-950/60 dark:focus-visible:outline-white"
                         aria-label="previous slide"
                         x-on:click="previous()">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="3" class="size-5 md:size-6 pr-0.5" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none"
+                         stroke-width="3" class="size-5 md:size-6 pr-0.5" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
                     </svg>
                 </button>
 
                 {{-- next button --}}
-                <button type="button" class="absolute right-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/40 p-2 text-neutral-600 transition hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:outline-offset-0 dark:bg-neutral-950/40 dark:text-neutral-300 dark:hover:bg-neutral-950/60 dark:focus-visible:outline-white"
+                <button type="button"
+                        class="absolute right-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/40 p-2 text-neutral-600 transition hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:outline-offset-0 dark:bg-neutral-950/40 dark:text-neutral-300 dark:hover:bg-neutral-950/60 dark:focus-visible:outline-white"
                         aria-label="next slide"
                         x-on:click="next()">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="3" class="size-5 md:size-6 pl-0.5" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none"
+                         stroke-width="3" class="size-5 md:size-6 pl-0.5" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                     </svg>
                 </button>
 
@@ -450,22 +476,36 @@
                 {{-- Change min-h-[50svh] to your preferred height size --}}
                 <div class="relative min-h-[50svh] w-full">
                     <template x-for="(slide, index) in slides">
-                        <div x-cloak x-show="currentSlideIndex == index + 1" class="absolute inset-0" x-transition.opacity.duration.1000ms>
-                            <div class="lg:px-32 lg:py-14 absolute inset-0 z-10 flex flex-col items-center justify-end gap-2 bg-gradient-to-t from-neutral-950/85 to-transparent px-16 py-12 text-center">
-                                <h3 class="w-full lg:w-[80%] text-balance text-2xl lg:text-3xl font-bold text-white" x-text="slide.title" x-bind:aria-describedby="'slide' + (index + 1) + 'Description'"></h3>
-                                <p class="lg:w-1/2 w-full text-pretty text-sm text-neutral-300" x-text="slide.description" x-bind:id="'slide' + (index + 1) + 'Description'"></p>
-                                <button type="button" x-cloak x-show="slide.ctaUrl !== null" class="mt-2 cursor-pointer whitespace-nowrap rounded-md border border-white bg-transparent px-4 py-2 text-center text-xs font-medium tracking-wide text-white transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-onSurfaceDarkStrong active:opacity-100 active:outline-offset-0 md:text-sm" x-text="slide.ctaText"></button>
+                        <div x-cloak x-show="currentSlideIndex == index + 1" class="absolute inset-0"
+                             x-transition.opacity.duration.1000ms>
+                            <div
+                                class="lg:px-32 lg:py-14 absolute inset-0 z-10 flex flex-col items-center justify-end gap-2 bg-gradient-to-t from-neutral-950/85 to-transparent px-16 py-12 text-center">
+                                <h3 class="w-full lg:w-[80%] text-balance text-2xl lg:text-3xl font-bold text-white"
+                                    x-text="slide.title"
+                                    x-bind:aria-describedby="'slide' + (index + 1) + 'Description'"></h3>
+                                <p class="lg:w-1/2 w-full text-pretty text-sm text-neutral-300"
+                                   x-text="slide.description" x-bind:id="'slide' + (index + 1) + 'Description'"></p>
+                                <button type="button" x-cloak x-show="slide.ctaUrl !== null"
+                                        class="mt-2 cursor-pointer whitespace-nowrap rounded-md border border-white bg-transparent px-4 py-2 text-center text-xs font-medium tracking-wide text-white transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-onSurfaceDarkStrong active:opacity-100 active:outline-offset-0 md:text-sm"
+                                        x-text="slide.ctaText"></button>
                             </div>
 
-                            <img class="absolute w-full h-full inset-0 object-cover text-neutral-600 dark:text-neutral-300" x-bind:src="slide.imgSrc" x-bind:alt="slide.imgAlt" />
+                            <img
+                                class="absolute w-full h-full inset-0 object-cover text-neutral-600 dark:text-neutral-300"
+                                x-bind:src="slide.imgSrc" x-bind:alt="slide.imgAlt"/>
                         </div>
                     </template>
                 </div>
 
                 {{-- indicators --}}
-                <div class="absolute rounded-md bottom-3 md:bottom-5 left-1/2 z-20 flex -translate-x-1/2 gap-4 md:gap-3 px-1.5 py-1 md:px-2" role="group" aria-label="slides" >
+                <div
+                    class="absolute rounded-md bottom-3 md:bottom-5 left-1/2 z-20 flex -translate-x-1/2 gap-4 md:gap-3 px-1.5 py-1 md:px-2"
+                    role="group" aria-label="slides">
                     <template x-for="(slide, index) in slides">
-                        <button class="size-2 cursor-pointer rounded-full transition" x-on:click="currentSlideIndex = index + 1" x-bind:class="[currentSlideIndex === index + 1 ? 'bg-neutral-300' : 'bg-neutral-300/50']" x-bind:aria-label="'slide ' + (index + 1)"></button>
+                        <button class="size-2 cursor-pointer rounded-full transition"
+                                x-on:click="currentSlideIndex = index + 1"
+                                x-bind:class="[currentSlideIndex === index + 1 ? 'bg-neutral-300' : 'bg-neutral-300/50']"
+                                x-bind:aria-label="'slide ' + (index + 1)"></button>
                     </template>
                 </div>
             </div>
@@ -915,7 +955,7 @@
                              alt="Image 4">
 
                         <div class="hover-overlay">
-                            <span class="overlay-text">Cupcake with cream and cherry</span>
+                            <span class="overlay-text">Cupcake with cream and berries</span>
                         </div>
                     </a>
                 </div>
@@ -996,7 +1036,131 @@
 
             <br>
 
+            {{-- Authors of the week title --}}
+            <div class="title-container">
+                <span class="border-line"></span>
+                <small class="section-title">
+                    AUTHORS OF THE WEEK
+                </small>
+                <span class="border-line"></span>
+            </div>
 
+            {{-- Authors of the week section --}}
+            <section id="authors" class="bg-gray-100">
+                <div class="container mx-auto px-4 lg:px-20 xl:px-52 2xl:px-80">
+                    <div class="grid grid-cols-3 gap-3">
+                        <!-- Author 1 -->
+                        <div class="author-container">
+                            <a href="#">
+                                <img src="{{ asset('storage/user_logo/default.svg') }}"
+                                     alt="Team Member 1" class="author-image">
+                                <span class="author-name">Zlatan Ibrahimovic</span>
+                            </a>
+                        </div>
+
+                        <!-- Author 2 -->
+                        <div class="author-container">
+                            <a href="#">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyWZYVXCeOjQRWl6iQxGJatl7HqVTqW2Imeg&s"
+                                     alt="Team Member 2" class="author-image">
+                                <h3 class="author-name">Drew Peterson</h3>
+                            </a>
+                        </div>
+
+                        <!-- Author 3 -->
+                        <div class="author-container">
+                            <a href="#">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFXBWELSJOytVPVMyycXAQRwpU0SDCY_ylHA&s"
+                                     alt="Team Member 3" class="author-image">
+                                <h3 class="author-name">Jane McIntosh</h3>
+                            </a>
+                        </div>
+
+                        <!-- Author 4 -->
+                        <div class="author-container">
+                            <a href="#">
+                                <img src="https://static.vecteezy.com/system/resources/thumbnails/000/364/628/small_2x/Chef_Avatar_Illustration-03.jpg"
+                                     alt="Team Member 4" class="author-image">
+                                <h3 class="author-name">Peter Johnson</h3>
+                            </a>
+                        </div>
+
+                        <!-- Author 5 -->
+                        <div class="author-container">
+                            <a href="#">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfWjzc8VJEvch8Q0OfClMZ9dxtj6jvkNFQog&s"
+                                     alt="Team Member 5" class="author-image">
+                                <h3 class="author-name">Emily Brown</h3>
+                            </a>
+                        </div>
+
+                        <!-- Author 6 -->
+                        <div class="author-container">
+                            <a href="#">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz9rBL0A1tN-LBsNdCgl_ZSPNH2ffSOIzDRw&s"
+                                     alt="Team Member 6" class="author-image">
+                                <h3 class="author-name">Anna Cook</h3>
+                            </a>
+                        </div>
+
+                        <!-- Author 7 -->
+                        <div class="author-container">
+                            <a href="#">
+                                <img src="{{ asset('storage/user_logo/default.svg') }}"
+                                     alt="Team Member 7" class="author-image">
+                                <h3 class="author-name">Sarah Johnson</h3>
+                            </a>
+                        </div>
+
+                        <!-- Author 8 -->
+                        <div class="author-container">
+                            <a href="#">
+                                <img src="{{ asset('storage/user_logo/default.svg') }}"
+                                     alt="Team Member 8" class="author-image">
+                                <h3 class="author-name">David Wilson</h3>
+                            </a>
+                        </div>
+
+                        <!-- Author 9 -->
+                        <div class="author-container">
+                            <a href="#">
+                                <img src="{{ asset('storage/user_logo/default.svg') }}"
+                                     alt="Team Member 9" class="author-image">
+                                <h3 class="author-name">David Wilson</h3>
+                            </a>
+                        </div>
+
+                        <!-- Author 10 -->
+                        <div class="author-container">
+                            <a href="#">
+                                <img src="{{ asset('storage/user_logo/default.svg') }}"
+                                     alt="Team Member 10" class="author-image">
+                                <h3 class="author-name">David Wilson</h3>
+                            </a>
+                        </div>
+
+                        <!-- Author 11 -->
+                        <div class="author-container">
+                            <a href="#">
+                                <img src="{{ asset('storage/user_logo/default.svg') }}"
+                                     alt="Team Member 11" class="author-image">
+                                <h3 class="author-name">David Wilson</h3>
+                            </a>
+                        </div>
+
+                        <!-- Author 12 -->
+                        <div class="author-container">
+                            <a href="#">
+                                <img src="{{ asset('storage/user_logo/default.svg') }}"
+                                     alt="Team Member 12" class="author-image">
+                                <h3 class="author-name">David Wilson</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <br>
 
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae consectetur consequuntur cupiditate ex
             harum
@@ -1061,7 +1225,8 @@
 
                     <img src="" alt="">
 
-                    <div class="flex flex-col mt-6 space-y-3 md:space-y-0 md:flex-row px-3 my-3 bg-[#DDB892] rounded p-3">
+                    <div
+                        class="flex flex-col mt-6 space-y-3 md:space-y-0 md:flex-row px-3 my-3 bg-[#DDB892] rounded p-3">
                         <input id="email" type="text"
                                class="px-4 py-2 text-gray-700 font-serif border border-white bg-white rounded-lg dark:bg-gray-900 dark:text-gray-300 focus:outline-none focus:ring-0"
                                placeholder="email"/>
