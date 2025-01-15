@@ -320,12 +320,12 @@
                         <select id="modelName" name="modelName"
                                 class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm"
                                 x-model="firstValue">
-                            <option value="" selected>Any dish</option>
-                            <option value="camery">Broth</option>
-                            <option value="4runner">Cookies</option>
-                            <option value="tacoma">Steak</option>
-                            <option value="rav4">Cheeseburger</option>
-                            <option value="corolla">Mohito</option>
+                            <option value="Any dish" selected>Any dish</option>
+                            <option value="Broth">Broth</option>
+                            <option value="Cookies">Cookies</option>
+                            <option value="Steak">Steak</option>
+                            <option value="Cheeseburger">Cheeseburger</option>
+                            <option value="Mohito">Mohito</option>
                         </select>
                     </div>
                 </div>
@@ -1036,6 +1036,64 @@
 
             <br>
 
+            {{-- Basics title --}}
+            <div class="title-container">
+                <span class="border-line"></span>
+                <small class="section-title">
+                    BASICS
+                </small>
+                <span class="border-line"></span>
+            </div>
+
+            {{-- Basics section --}}
+            <div class="w-full md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] mx-auto sm:px-5">
+                <div class="relative block overflow-hidden group w-full">
+                    <a href="#" class="block">
+                        <img
+                            class="w-full h-auto transform transition-transform duration-300 group-hover:scale-110"
+                            src="{{ asset('storage/images/basics.webp') }}"
+                            alt="Basics"
+                        >
+                        <div class="hidden absolute lg:inset-0 lg:bg-black lg:bg-opacity-50 lg:flex lg:items-center lg:justify-center lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-300">
+                            <span class="text-white font-medium px-4 text-center">
+                                Having the right tools can make cooking and food preparation much more enjoyable
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="see-more-container">
+                <button class="see-more-btn">
+                    See more
+                </button>
+            </div>
+
+            <br>
+
+            {{-- Techniques title --}}
+            <div class="title-container">
+                <span class="border-line"></span>
+                <small class="section-title">
+                    TECHNIQUES
+                </small>
+                <span class="border-line"></span>
+            </div>
+
+            {{-- Techniques section --}}
+            <div class="w-full md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] mx-auto sm:px-5">
+                <video class="w-full h-auto" controls autoplay loop>
+                    <source src="{{ asset('storage/video/video-optimized.mp4') }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="see-more-container">
+                <button class="see-more-btn">
+                    See more
+                </button>
+            </div>
+
+            <br>
+
             {{-- Authors of the week title --}}
             <div class="title-container">
                 <span class="border-line"></span>
@@ -1061,8 +1119,9 @@
                         <!-- Author 2 -->
                         <div class="author-container">
                             <a href="#">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyWZYVXCeOjQRWl6iQxGJatl7HqVTqW2Imeg&s"
-                                     alt="Team Member 2" class="author-image">
+                                <img
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyWZYVXCeOjQRWl6iQxGJatl7HqVTqW2Imeg&s"
+                                    alt="Team Member 2" class="author-image">
                                 <h3 class="author-name">Drew Peterson</h3>
                             </a>
                         </div>
@@ -1070,8 +1129,9 @@
                         <!-- Author 3 -->
                         <div class="author-container">
                             <a href="#">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFXBWELSJOytVPVMyycXAQRwpU0SDCY_ylHA&s"
-                                     alt="Team Member 3" class="author-image">
+                                <img
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFXBWELSJOytVPVMyycXAQRwpU0SDCY_ylHA&s"
+                                    alt="Team Member 3" class="author-image">
                                 <h3 class="author-name">Jane McIntosh</h3>
                             </a>
                         </div>
@@ -1079,8 +1139,9 @@
                         <!-- Author 4 -->
                         <div class="author-container">
                             <a href="#">
-                                <img src="https://static.vecteezy.com/system/resources/thumbnails/000/364/628/small_2x/Chef_Avatar_Illustration-03.jpg"
-                                     alt="Team Member 4" class="author-image">
+                                <img
+                                    src="https://static.vecteezy.com/system/resources/thumbnails/000/364/628/small_2x/Chef_Avatar_Illustration-03.jpg"
+                                    alt="Team Member 4" class="author-image">
                                 <h3 class="author-name">Peter Johnson</h3>
                             </a>
                         </div>
@@ -1088,8 +1149,9 @@
                         <!-- Author 5 -->
                         <div class="author-container">
                             <a href="#">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfWjzc8VJEvch8Q0OfClMZ9dxtj6jvkNFQog&s"
-                                     alt="Team Member 5" class="author-image">
+                                <img
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfWjzc8VJEvch8Q0OfClMZ9dxtj6jvkNFQog&s"
+                                    alt="Team Member 5" class="author-image">
                                 <h3 class="author-name">Emily Brown</h3>
                             </a>
                         </div>
@@ -1097,8 +1159,9 @@
                         <!-- Author 6 -->
                         <div class="author-container">
                             <a href="#">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz9rBL0A1tN-LBsNdCgl_ZSPNH2ffSOIzDRw&s"
-                                     alt="Team Member 6" class="author-image">
+                                <img
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz9rBL0A1tN-LBsNdCgl_ZSPNH2ffSOIzDRw&s"
+                                    alt="Team Member 6" class="author-image">
                                 <h3 class="author-name">Anna Cook</h3>
                             </a>
                         </div>
@@ -1162,54 +1225,6 @@
 
             <br>
 
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae consectetur consequuntur cupiditate ex
-            harum
-            illo maxime molestias mollitia pariatur quia reiciendis similique, tempore? Accusamus ad adipisci animi
-            aspernatur
-            commodi corporis, cum deleniti dolorem doloremque enim, error eveniet facilis fuga harum id ipsa maiores
-            minima
-            mollitia natus nemo neque non odit perspiciatis praesentium quae, quasi temporibus ullam unde voluptas
-            voluptatem.
-            Alias, animi deserunt ea ipsa modi mollitia quibusdam suscipit? Ab aliquam animi architecto, commodi
-            explicabo in
-            ipsum itaque laudantium perspiciatis quibusdam, quisquam quod, recusandae. Assumenda autem consequatur
-            consequuntur
-            cum cupiditate dolore fugit natus necessitatibus quod? Assumenda consequuntur distinctio dolorem ducimus
-            eius
-            eveniet illum ipsa libero maxime minus mollitia nam nesciunt officia placeat praesentium rem, temporibus
-            tenetur
-            vitae voluptatem, voluptates? Assumenda facere fugit itaque magni, minima quasi ratione reprehenderit totam.
-            Accusantium autem doloremque id itaque minus modi pariatur provident suscipit tempora unde. At deserunt
-            dolor harum
-            incidunt, laudantium magni, maiores mollitia necessitatibus nulla optio praesentium quia temporibus voluptas
-            voluptate voluptatem. Cumque dolorum excepturi harum modi quaerat quam soluta, voluptatum. Accusamus autem
-            blanditiis, distinctio doloremque earum enim, eveniet fugiat inventore nemo nihil nulla odio perspiciatis,
-            quas quis
-            rerum soluta tempora totam unde vero voluptatibus. Ab illo minima odit quae vitae voluptas voluptatem?
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae consectetur consequuntur cupiditate ex
-            harum
-            illo maxime molestias mollitia pariatur quia reiciendis similique, tempore? Accusamus ad adipisci animi
-            aspernatur
-            commodi corporis, cum deleniti dolorem doloremque enim, error eveniet facilis fuga harum id ipsa maiores
-            minima
-            mollitia natus nemo neque non odit perspiciatis praesentium quae, quasi temporibus ullam unde voluptas
-            voluptatem.
-            Alias, animi deserunt ea ipsa modi mollitia quibusdam suscipit? Ab aliquam animi architecto, commodi
-            explicabo in
-            ipsum itaque laudantium perspiciatis quibusdam, quisquam quod, recusandae. Assumenda autem consequatur
-            consequuntur
-            cum cupiditate dolore fugit natus necessitatibus quod? Assumenda consequuntur distinctio dolorem ducimus
-            eius
-            eveniet illum ipsa libero maxime minus mollitia nam nesciunt officia placeat praesentium rem, temporibus
-            tenetur
-            vitae voluptatem, voluptates? Assumenda facere fugit itaque magni, minima quasi ratione reprehenderit totam.
-            Accusantium autem doloremque id itaque minus modi pariatur provident suscipit tempora unde. At deserunt
-            dolor harum
-            incidunt, laudantium magni, maiores mollitia necessitatibus nulla optio praesentium quia temporibus voluptas
-            voluptate voluptatem. Cumque dolorum excepturi harum modi quaerat quam soluta, voluptatum. Accusamus autem
-            blanditiis, distinctio doloremque earum enim, eveniet fugiat inventore nemo nihil nulla odio perspiciatis,
-            quas quis
-            rerum soluta tempora totam unde vero voluptatibus. Ab illo minima odit quae vitae voluptas voluptatem?
         </div>
     </main>
 
