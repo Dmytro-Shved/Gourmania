@@ -32,218 +32,312 @@
 </head>
 <body>
 
-<nav
-    x-data="{ mobileMenuIsOpen: false }"
-    @click.away="mobileMenuIsOpen = false"
-    class="flex items-center justify-between bg-gourmania border-b border-neutral-300 gap-4 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-900"
-    aria-label="penguin ui menu"
->
-    {{-- Logo --}}
-    <a href="#" class="flex items-center max-w-[150px] sm:max-w-[180px] ">
-        <img src="{{ asset('storage/logo/full-logo-nobg.svg') }}" alt="Gourmania"
-             class="w-full h-full sm:w-full sm:h-full object-contain"/>
-    </a>
+<div x-data="{ open: false }">
+    <!-- Navigation bar -->
+    <nav
+        x-data="{ mobileMenuIsOpen: false }"
+        @click.away="mobileMenuIsOpen = false"
+        class="flex items-center justify-between bg-gourmania border-b border-neutral-300 gap-2 px-1.5 py-4 dark:border-neutral-700 dark:bg-neutral-900"
+        aria-label="penguin ui menu"
+    >
+        {{-- Logo --}}
+        <a href="#" class="flex items-center max-w-[150px] sm:max-w-[180px] ">
+            <img src="{{ asset('storage/logo/full-logo-nobg.svg') }}" alt="Gourmania"
+                 class="w-full h-full sm:w-full sm:h-full object-contain"/>
+        </a>
 
-    {{-- Search --}}
-    <div
-        class="relative flex mr-auto w-full max-w-64 flex-col gap-1 font-inclusive text-neutral-600 dark:text-neutral-300">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-             aria-hidden="true"
-             class="absolute left-2.5 top-1/2 size-5 -translate-y-1/2 text-neutral-600/50 dark:text-neutral-300/50">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
-        </svg>
-        <input type="text" name="search" placeholder="" aria-label="search"
-               class="w-full rounded-full border-none bg-neutral-50 py-2.5 pl-10 pr-2 text-sm disabled:cursor-not-allowed disabled:opacity-75 dark:bg-neutral-900/50"/>
-    </div>
+        {{-- Search --}}
+        <div
+            class="hidden relative sm:flex mr-auto w-full max-w-64 flex-col gap-1 font-inclusive text-neutral-600 dark:text-neutral-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                 aria-hidden="true"
+                 class="absolute left-2.5 top-1/2 size-5 -translate-y-1/2 text-neutral-600/50 dark:text-neutral-300/50">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
+            </svg>
+            <input type="text" name="search" placeholder="" aria-label="search"
+                   class="w-full rounded-full border-none bg-neutral-50 py-2.5 pl-10 pr-2 text-sm disabled:cursor-not-allowed disabled:opacity-75 dark:bg-neutral-900/50"/>
+        </div>
 
-    {{-- Desktop Menu --}}
-    <ul class="hidden items-center gap-4 flex-shrink-0 sm:flex">
-        <li><a href="#" class="desktop-menu-btn">Recipes</a></li>
-        <li><a href="#" class="desktop-menu-btn">Authors</a></li>
-        <li><a href="#" class="desktop-menu-btn">Basics</a></li>
-        <li><a href="#" class="desktop-menu-btn">Cuisines</a></li>
+        {{-- Desktop Menu --}}
+        <ul class="hidden items-center gap-4 flex-shrink-0 sm:flex">
+            <li><a href="#" class="desktop-menu-btn">Recipes</a></li>
+            <li><a href="#" class="desktop-menu-btn">Authors</a></li>
+            <li><a href="#" class="desktop-menu-btn">Basics</a></li>
+            <li><a href="#" class="desktop-menu-btn">Cuisines</a></li>
 
-        {{-- User Pic --}}
-        <li x-data="{ userDropDownIsOpen: false, openWithKeyboard: false }"
-            @keydown.esc.window="userDropDownIsOpen = false, openWithKeyboard = false"
-            class="relative flex items-center">
+            {{-- User Pic --}}
+            <li x-data="{ userDropDownIsOpen: false, openWithKeyboard: false }"
+                @keydown.esc.window="userDropDownIsOpen = false, openWithKeyboard = false"
+                class="relative flex items-center">
 
-            <div class="flex space-x-2">
-                <button @click="userDropDownIsOpen = ! userDropDownIsOpen" :aria-expanded="userDropDownIsOpen"
-                        @keydown.space.prevent="openWithKeyboard = true"
-                        @keydown.enter.prevent="openWithKeyboard = true"
-                        @keydown.down.prevent="openWithKeyboard = true"
-                        class="rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
-                        aria-controls="userMenu">
-                    <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile"
-                         class="size-10 rounded-full object-cover"/>
-                </button>
-            </div>
-
-            <!-- User Dropdown -->
-            <ul x-cloak
-                x-show="userDropDownIsOpen || openWithKeyboard"
-                x-transition.opacity x-trap="openWithKeyboard"
-                @click.outside="userDropDownIsOpen = false, openWithKeyboard = false"
-                @keydown.down.prevent="$focus.wrap().next()"
-                @keydown.up.prevent="$focus.wrap().previous()"
-                id="userMenu"
-                class="absolute right-0 top-12 flex w-full min-w-[12rem] flex-col overflow-hidden rounded-md border border-neutral-300 bg-neutral-50 py-1.5 dark:border-neutral-700 dark:bg-neutral-900"
-            >
-
-                <li class="border-b border-neutral-300 dark:border-neutral-700">
-                    <div class="flex flex-col px-4 py-2">
-                        <span class="text-sm font-inclusive text-neutral-900 dark:text-white">Gordon Ramsey</span>
-                        <p class="text-xs font-inclusive text-neutral-600 dark:text-neutral-300">
-                            gordon.ramsey@gmail.com</p>
-                    </div>
-                </li>
-                <li><a href="#"
-                       class="flex items-center space-x-1 block bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                             stroke="black" class="size-4">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
-                        </svg>
-                        <span>Profile</span>
-                    </a>
-                </li>
-                <li><a href="#"
-                       class="flex items-center space-x-1 bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="darkred" viewBox="0 0 24 24" stroke-width="1.5"
-                             stroke="darkred" class="size-4">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"/>
-                        </svg>
-
-
-                        <span>My recipes</span>
-                    </a>
-                </li>
-                <li><a href="#"
-                       class="flex items-center space-x-1 bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                             stroke="black" class="size-4">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
-                        </svg>
-
-                        <span>Settings</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"
-                       class="bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white flex items-center space-x-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                             stroke="red" class="size-5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"/>
-                        </svg>
-                        <span class="text-red-600">Sign Out</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-
-    {{-- Mobile Menu Button --}}
-    <button @click="mobileMenuIsOpen = !mobileMenuIsOpen" :aria-expanded="mobileMenuIsOpen"
-            :class="mobileMenuIsOpen ? 'fixed top-6 right-6 z-20' : null" type="button"
-            class="flex text-neutral-600 dark:text-neutral-300 sm:hidden" aria-label="mobile menu"
-            aria-controls="mobileMenu">
-        <svg x-cloak x-show="!mobileMenuIsOpen" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true"
-             viewBox="0 0 24 24" stroke-width="2" stroke="white" class="size-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
-        </svg>
-        <svg x-cloak x-show="mobileMenuIsOpen" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true"
-             viewBox="0 0 24 24" stroke-width="2" stroke="white" class="size-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
-        </svg>
-    </button>
-
-    {{-- Mobile Menu --}}
-    <ul x-cloak
-        x-show="mobileMenuIsOpen"
-        x-transition:enter="transition motion-reduce:transition-none ease-out duration-300"
-        x-transition:enter-start="-translate-y-full"
-        x-transition:enter-end="translate-y-0"
-        x-transition:leave="transition motion-reduce:transition-none ease-out duration-300"
-        x-transition:leave-start="translate-y-0"
-        x-transition:leave-end="-translate-y-full"
-        class="fixed max-h-svh overflow-y-auto inset-x-0 top-0 z-10 flex flex-col rounded-b-md border-b border-neutral-300 bg-[#c58f5c] px-8 pb-6 pt-10 dark:border-neutral-700 dark:bg-neutral-900 sm:hidden">
-
-        {{-- Name & email--}}
-        <li class="mb-4 border-none">
-            <div class="flex items-center gap-2 py-2">
-                <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile"
-                     class="size-14 rounded-full object-cover ring-2 ring-[#603912]"/>
-                <div>
-                    <span class="font-medium text-white font-inclusive">Gordon Ramsey</span>
-                    <p class="text-sm text-white font-inclusive">gordon.ramsey@gmail.com</p>
+                <div class="flex space-x-2">
+                    <button @click="userDropDownIsOpen = ! userDropDownIsOpen" :aria-expanded="userDropDownIsOpen"
+                            @keydown.space.prevent="openWithKeyboard = true"
+                            @keydown.enter.prevent="openWithKeyboard = true"
+                            @keydown.down.prevent="openWithKeyboard = true"
+                            class="rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
+                            aria-controls="userMenu">
+                        <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile"
+                             class="size-10 rounded-full object-cover"/>
+                    </button>
                 </div>
+
+                <!-- User Dropdown -->
+                <ul x-cloak
+                    x-show="userDropDownIsOpen || openWithKeyboard"
+                    x-transition.opacity x-trap="openWithKeyboard"
+                    @click.outside="userDropDownIsOpen = false, openWithKeyboard = false"
+                    @keydown.down.prevent="$focus.wrap().next()"
+                    @keydown.up.prevent="$focus.wrap().previous()"
+                    id="userMenu"
+                    class="absolute right-0 top-12 flex w-full min-w-[12rem] flex-col overflow-hidden rounded-md border border-neutral-300 bg-neutral-50 py-1.5 dark:border-neutral-700 dark:bg-neutral-900"
+                >
+
+                    <li class="border-b border-neutral-300 dark:border-neutral-700">
+                        <div class="flex flex-col px-4 py-2">
+                            <span class="text-sm font-inclusive text-neutral-900 dark:text-white">Gordon Ramsey</span>
+                            <p class="text-xs font-inclusive text-neutral-600 dark:text-neutral-300">
+                                gordon.ramsey@gmail.com</p>
+                        </div>
+                    </li>
+                    <li><a href="#"
+                           class="flex items-center space-x-1 block bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="black" class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                            </svg>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li><a href="#"
+                           class="flex items-center space-x-1 bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="darkred" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="darkred" class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"/>
+                            </svg>
+
+
+                            <span>My recipes</span>
+                        </a>
+                    </li>
+                    <li><a href="#"
+                           class="flex items-center space-x-1 bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="black" class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                            </svg>
+
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"
+                           class="bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="red" class="size-5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"/>
+                            </svg>
+                            <span class="text-red-600">Sign Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="flex flex-row items-center gap-5">
+            <button x-on:click="open = true" class="px-1.5 py-1.5 text-white sm:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+            </button>
+
+            <!-- Old logic -->
+
+            {{--<!-- Mobile Menu Button -->--}}
+            {{--<button @click="mobileMenuIsOpen = !mobileMenuIsOpen"--}}
+            {{--        :aria-expanded="mobileMenuIsOpen"--}}
+            {{--        :class="mobileMenuIsOpen ? 'fixed top-6 right-6 z-20' : null"--}}
+            {{--        type="button"--}}
+            {{--        class="flex text-neutral-600 dark:text-neutral-300 sm:hidden"--}}
+            {{--        aria-label="mobile menu"--}}
+            {{--        aria-controls="mobileMenu">--}}
+            {{--    <!-- Open -->--}}
+            {{--    <svg x-cloak x-show="!mobileMenuIsOpen" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true"--}}
+            {{--         viewBox="0 0 24 24" stroke-width="2" stroke="white" class="size-6">--}}
+            {{--        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>--}}
+            {{--    </svg>--}}
+            {{--    --}}{{--<!-- Close -->--}}
+            {{--    --}}{{--<svg x-cloak x-show="mobileMenuIsOpen" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true"--}}
+            {{--    --}}{{--     viewBox="0 0 24 24" stroke-width="2" stroke="white" class="size-6">--}}
+            {{--    --}}{{--    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>--}}
+            {{--    --}}{{--</svg>--}}
+            {{--</button>--}}
+
+            <!-- Mobile Menu Button -->
+            <button @click="mobileMenuIsOpen = true" type="button" class="flex text-neutral-600 dark:text-neutral-300 sm:hidden">
+                <!-- Open mobile menu -->
+                <svg x-cloak xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true"
+                     viewBox="0 0 24 24" stroke-width="2" stroke="white" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+            </button>
+        </div>
+
+        {{-- Mobile Menu --}}
+        <ul x-cloak
+            x-show="mobileMenuIsOpen"
+            x-transition:enter="transition motion-reduce:transition-none ease-out duration-300"
+            x-transition:enter-start="-translate-y-full"
+            x-transition:enter-end="translate-y-0"
+            x-transition:leave="transition motion-reduce:transition-none ease-out duration-300"
+            x-transition:leave-start="translate-y-0"
+            x-transition:leave-end="-translate-y-full"
+            class="fixed max-h-svh overflow-y-auto inset-x-0 top-0 z-50 flex flex-col rounded-b-md border-b border-neutral-300 bg-[#c58f5c] px-8 pb-6 pt-10 dark:border-neutral-700 dark:bg-neutral-900 sm:hidden">
+
+            <!-- Close mobile menu -->
+            <div class="self-end absolute bg-amber-800 bg-opacity-50 p-2.5 rounded-full -mx-6 -mt-7">
+                <svg @click="mobileMenuIsOpen = false" x-cloak x-show="mobileMenuIsOpen" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true"
+                     viewBox="0 0 24 24" stroke-width="2" stroke="white" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+                </svg>
             </div>
-        </li>
-        {{-- Links --}}
-        <li class="p-2"><a href="#" class="mobile-menu-link">Recipes</a></li>
-        <li class="p-2"><a href="#" class="mobile-menu-link">Authors</a></li>
-        <li class="p-2"><a href="#" class="mobile-menu-link">Basics</a></li>
-        <li class="p-2"><a href="#" class="mobile-menu-link">Cuisines</a></li>
 
-        <hr role="none" class="my-2 border-outline border-[#603912]">
+            {{-- Name & email--}}
+            <li class="mb-4 border-none">
+                <div class="flex items-center gap-2 py-2">
+                    <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile"
+                         class="size-14 rounded-full object-cover ring-2 ring-[#603912]"/>
+                    <div>
+                        <span class="font-medium text-white font-inclusive">Gordon Ramsey</span>
+                        <p class="text-sm text-white font-inclusive">gordon.ramsey@gmail.com</p>
+                    </div>
+                </div>
+            </li>
+            {{-- Links --}}
+            <li class="p-2"><a href="#" class="mobile-menu-link">Recipes</a></li>
+            <li class="p-2"><a href="#" class="mobile-menu-link">Authors</a></li>
+            <li class="p-2"><a href="#" class="mobile-menu-link">Basics</a></li>
+            <li class="p-2"><a href="#" class="mobile-menu-link">Cuisines</a></li>
 
-        {{-- Profile --}}
-        <li class="mobile-menu-btn">
-            <a href="#" class="mobile-menu-btn-style">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="#342B22" class="size-7 mx-1">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
-                </svg>
-                <span class="text-md text-neutral-100">Profile</span>
-            </a>
-        </li>
+            <hr role="none" class="my-2 border-outline border-[#603912]">
 
-        {{-- My recipes --}}
-        <li class="mobile-menu-btn">
-            <a href="#" class="mobile-menu-btn-style">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="darkred" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="darkred" class="size-7 mx-1">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"/>
-                </svg>
-                <span class="text-md text-neutral-100">My recipes</span>
-            </a>
-        </li>
+            {{-- Profile --}}
+            <li class="mobile-menu-btn">
+                <a href="#" class="mobile-menu-btn-style">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="#342B22" class="size-7 mx-1">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                    </svg>
+                    <span class="text-md text-neutral-100">Profile</span>
+                </a>
+            </li>
 
-        {{-- Settings --}}
-        <li class="mobile-menu-btn">
-            <a href="#" class="mobile-menu-btn-style">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="#342B22" class="size-7 mx-1">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
-                </svg>
+            {{-- My recipes --}}
+            <li class="mobile-menu-btn">
+                <a href="#" class="mobile-menu-btn-style">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="darkred" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="darkred" class="size-7 mx-1">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"/>
+                    </svg>
+                    <span class="text-md text-neutral-100">My recipes</span>
+                </a>
+            </li>
 
-                <span class="text-md text-neutral-100">Settings</span>
-            </a>
-        </li>
+            {{-- Settings --}}
+            <li class="mobile-menu-btn">
+                <a href="#" class="mobile-menu-btn-style">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="#342B22" class="size-7 mx-1">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                    </svg>
 
-        {{-- Sign Out --}}
-        <li class="mt-4 w-full border-none">
-            <a href="#"
-               class="rounded-md bg-red-500 px-4 py-2 block text-center font-medium tracking-wide text-neutral-100 hover:bg-red-700 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 dark:bg-white dark:text-black dark:focus-visible:outline-white font-inclusive">
-                <span>Sign Out</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+                    <span class="text-md text-neutral-100">Settings</span>
+                </a>
+            </li>
+
+            {{-- Sign Out --}}
+            <li class="mt-4 w-full border-none">
+                <a href="#"
+                   class="rounded-md bg-red-500 px-4 py-2 block text-center font-medium tracking-wide text-neutral-100 hover:bg-red-700 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 dark:bg-white dark:text-black dark:focus-visible:outline-white font-inclusive">
+                    <span>Sign Out</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Sidebar -->
+    <div>
+        <!-- Sidebar Overlay -->
+        <div x-cloak x-show="open" class="fixed inset-0 z-50 overflow-hidden">
+            <div @click="open = false" x-show="open" x-transition:enter="transition-opacity ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+            <!-- Sidebar Content -->
+            <section class="absolute inset-y-0 right-0 pl-10 max-w-full flex">
+                <div x-show="open" x-transition:enter="transition-transform ease-out duration-300" x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0" x-transition:leave="transition-transform ease-in duration-300" x-transition:leave-start="transform translate-x-0" x-transition:leave-end="transform translate-x-full" class="w-screen max-w-md">
+                    <div class="h-full flex flex-col py-6 bg-white shadow-xl">
+                        <!-- Sidebar Header -->
+                        <div class="flex items-center justify-between px-4">
+                            <h2 class="text-xl font-semibold text-black">Search</h2>
+                            <button x-on:click="open = false" class="text-gray-500 hover:text-gray-700">
+                                <span class="sr-only">Close</span>
+                                <svg class="h-6 w-6" x-description="Heroicon name: x" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- Search Input -->
+                        <div class="mt-4 px-4">
+                            <input type="text" placeholder="Search post here" class="w-full p-2 border border-gray-300 rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
+                        </div>
+                        <div class="mt-4 px-4">
+                            <p class="ml-2 text-gray-400">Results</p>
+                        </div>
+                        <!-- Sidebar Content -->
+                        <div class="mt-4 px-4 h-full overflow-auto">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <!-- Card 1 -->
+                                <div class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300">
+                                    <h3 class="text-lg font-semibold text-black mb-2">Card 1</h3>
+                                    <p class="text-gray-600">Content for card 1.</p>
+                                </div>
+                                <!-- Card 2 -->
+                                <div class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300">
+                                    <h3 class="text-lg font-semibold text-black mb-2">Card 2</h3>
+                                    <p class="text-gray-600">Content for card 2.</p>
+                                </div>
+                                <!-- Card 3 -->
+                                <div class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300">
+                                    <h3 class="text-lg font-semibold text-black mb-2">Card 3</h3>
+                                    <p class="text-gray-600">Content for card 3.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sidebar Footer -->
+                        <div class="mt-6 px-4">
+                            <button class="flex justify-center items-center bg-black text-white rounded-md text-sm p-2 gap-1">
+                                <svg width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 7C3 6.44772 3.44772 6 4 6H20C20.5523 6 21 6.44772 21 7C21 7.55228 20.5523 8 20 8H4C3.44772 8 3 7.55228 3 7ZM6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12ZM9 17C9 16.4477 9.44772 16 10 16H14C14.5523 16 15 16.4477 15 17C15 17.5523 14.5523 18 14 18H10C9.44772 18 9 17.5523 9 17Z" fill="currentColor"></path>
+                                </svg> Filters </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
 
 <div class="flex flex-col min-h-screen">
 
