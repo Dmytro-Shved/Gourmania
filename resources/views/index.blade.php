@@ -1,4 +1,6 @@
 <x-layout>
+    @section('title',  'Recipes and more')
+
     {{-- Main page--}}
     <div class="font-inclusive text-xl">
         {{-- Slogan --}}

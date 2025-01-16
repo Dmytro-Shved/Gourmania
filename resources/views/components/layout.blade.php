@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/vPsLc1c/gourmania-favicon.png">
-    <title>Gourmania | Recipes and more</title>
+    <title>Gourmania | @yield('title')</title>
 
     {{-- Inknut Antiqua --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
