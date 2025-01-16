@@ -78,7 +78,7 @@
                             @keydown.down.prevent="openWithKeyboard = true"
                             class="rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
                             aria-controls="userMenu">
-                        <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile"
+                        <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile" rel="preload"
                              class="size-10 rounded-full object-cover"/>
                     </button>
                 </div>
@@ -86,7 +86,8 @@
                 <!-- User Dropdown -->
                 <ul x-cloak
                     x-show="userDropDownIsOpen || openWithKeyboard"
-                    x-transition.opacity x-trap="openWithKeyboard"
+                    x-transition.opacity
+                    x-trap="openWithKeyboard"
                     @click.outside="userDropDownIsOpen = false, openWithKeyboard = false"
                     @keydown.down.prevent="$focus.wrap().next()"
                     @keydown.up.prevent="$focus.wrap().previous()"
@@ -186,7 +187,7 @@
             <!-- Mobile Menu Button -->
             <button @click="mobileMenuIsOpen = true" type="button" class="flex text-neutral-600 dark:text-neutral-300 sm:hidden">
                 <!-- Open mobile menu -->
-                <svg x-cloak xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true"
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true"
                      viewBox="0 0 24 24" stroke-width="2" stroke="white" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
                 </svg>
@@ -356,9 +357,9 @@
             {{-- Stats --}}
             <div class="flex justify-between items-center">
                 <img class="max-sm:size-10 max-sm:hidden sm:size-14 md:size-16 lg:size-20"
-                     src="{{ asset('storage/objects/leaf.svg')  }}" alt="">
+                     src="{{ asset('storage/objects/leaf.svg')  }}" alt="" rel="preload">
                 <img class="max-sm:size-4 xs:size-5 sm:hidden"
-                     src="{{ asset('storage/objects/leave_right_mobile.svg')  }}" alt="">
+                     src="{{ asset('storage/objects/leave_right_mobile.svg')  }}" alt="" rel="preload">
 
                 <div class="stats-text">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="#88C9CB" class="bi bi-circle-fill stats-ball"
@@ -385,9 +386,9 @@
                 </div>
 
                 <img class="max-sm:size-10 max-sm:hidden sm:size-14 md:size-16 lg:size-20 transform scale-x-[-1]"
-                     src="{{ asset('storage/objects/leaf.svg')  }}" alt="">
+                     src="{{ asset('storage/objects/leaf.svg')  }}" alt="" rel="preload">
                 <img class="max-sm:size-4 xs:size-5 sm:hidden transform scale-x-[-1]"
-                     src="{{ asset('storage/objects/leave_right_mobile.svg')  }}" alt="">
+                     src="{{ asset('storage/objects/leave_right_mobile.svg')  }}" alt="" rel="preload">
             </div>
 
             <div class="title-container">
@@ -400,20 +401,28 @@
             </div>
 
             {{-- Filter --}}
-            <div x-data="{ firstValue: '', secondValue: '' }"
+            <div x-data="{
+            firstValue: '',
+            secondValue: ''
+            }"
                  class="flex flex-col items-center px-2 gap-2 md:flex-row md:justify-center md:gap-0.5 md:items-center">
 
                 {{-- Icon --}}
                 <img class="size-10 sm:size-12 md:size-24 md:rotate-45" src="{{ asset('storage/objects/piper.svg') }}"
-                     alt="">
+                     alt="" rel="preload">
 
                 {{-- Double select --}}
                 <div class="flex flex-col w-full max-w-xs items-center gap-1 md:w-1/4 md:px-2 md:py-2">
                     {{-- Dish --}}
                     <div class="relative w-full">
-                        <select id="modelName" name="modelName"
+                        <select id="modelName"
+                                name="modelName"
                                 class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm"
-                                x-model="firstValue">
+                                x-model="firstValue"
+
+                                @change="secondValue = ''"
+
+                        >
                             <option value="Any dish" selected>Any dish</option>
                             <option value="Broth">Broth</option>
                             <option value="Cookies">Cookies</option>
@@ -430,7 +439,8 @@
                         <select id="dish-type" name="dish-type"
                                 class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm"
                                 x-model="secondValue"
-                                :disabled="!firstValue">
+                                :disabled="!firstValue"
+                        >
                             <option value="" :selected="!firstValue"
                                     x-text="firstValue ? 'Any type' : 'Any type'"></option>
                             <option value="-">Type 1</option>
@@ -569,9 +579,12 @@
                 {{-- slides --}}
                 {{-- Change min-h-[50svh] to your preferred height size --}}
                 <div class="relative min-h-[50svh] w-full">
-                    <template x-for="(slide, index) in slides">
+                    <template
+                        x-for="(slide, index) in slides">
                         <div x-cloak x-show="currentSlideIndex == index + 1" class="absolute inset-0"
-                             x-transition.opacity.duration.1000ms>
+                             x-transition.opacity.duration.1000ms
+
+                        >
                             <div
                                 class="lg:px-32 lg:py-14 absolute inset-0 z-10 flex flex-col items-center justify-end gap-2 bg-gradient-to-t from-neutral-950/85 to-transparent px-16 py-12 text-center">
                                 <h3 class="w-full lg:w-[80%] text-balance text-2xl lg:text-3xl font-bold text-white"
@@ -1495,7 +1508,7 @@
     </footer>
 </div>
 
-<script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+{{--<script src="../path/to/flowbite/dist/flowbite.min.js"></script>--}}
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 @livewireScripts
