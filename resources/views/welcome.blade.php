@@ -283,11 +283,28 @@
     <!-- Sidebar -->
     <div>
         <!-- Sidebar Overlay -->
-        <div x-cloak x-show="open" class="fixed inset-0 z-50 overflow-hidden">
-            <div @click="open = false" x-show="open" x-transition:enter="transition-opacity ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+        <div x-cloak x-show="open"
+
+             class="fixed inset-0 z-50 overflow-hidden">
+            <div @click="open = false"
+                 x-show="open"
+                 x-transition:enter="transition-opacity ease-out duration-300"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition-opacity ease-in duration-300"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
             <!-- Sidebar Content -->
             <section class="absolute inset-y-0 right-0 pl-10 max-w-full flex">
-                <div x-show="open" x-transition:enter="transition-transform ease-out duration-300" x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0" x-transition:leave="transition-transform ease-in duration-300" x-transition:leave-start="transform translate-x-0" x-transition:leave-end="transform translate-x-full" class="w-screen max-w-md">
+                <div x-show="open"
+                     x-transition:enter="transition-transform ease-out duration-300"
+                     x-transition:enter-start="transform translate-x-full"
+                     x-transition:enter-end="transform translate-x-0"
+                     x-transition:leave="transition-transform ease-in duration-300"
+                     x-transition:leave-start="transform translate-x-0"
+                     x-transition:leave-end="transform translate-x-full"
+                     class="w-screen max-w-md">
                     <div class="h-full flex flex-col py-6 bg-white shadow-xl">
                         <!-- Sidebar Header -->
                         <div class="flex items-center justify-between px-4">
@@ -301,7 +318,7 @@
                         </div>
                         <!-- Search Input -->
                         <div class="mt-4 px-4">
-                            <input type="text" placeholder="Search post here" class="w-full p-2 border border-gray-300 rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
+                            <input type="text" placeholder="Search for recipes..." class="w-full p-2 border border-gray-300 rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
                         </div>
                         <div class="mt-4 px-4">
                             <p class="ml-2 text-gray-400">Results</p>
@@ -328,10 +345,11 @@
                         </div>
                         <!-- Sidebar Footer -->
                         <div class="mt-6 px-4">
-                            <button class="flex justify-center items-center bg-black text-white rounded-md text-sm p-2 gap-1">
+                            <button class="flex justify-center items-center bg-gourmania text-neutral-200 rounded-md text-sm p-2 gap-1">
                                 <svg width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M3 7C3 6.44772 3.44772 6 4 6H20C20.5523 6 21 6.44772 21 7C21 7.55228 20.5523 8 20 8H4C3.44772 8 3 7.55228 3 7ZM6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12ZM9 17C9 16.4477 9.44772 16 10 16H14C14.5523 16 15 16.4477 15 17C15 17.5523 14.5523 18 14 18H10C9.44772 18 9 17.5523 9 17Z" fill="currentColor"></path>
-                                </svg> Filters </button>
+                                </svg> Filters
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1376,9 +1394,9 @@
                     </div>
                 </div>
 
-                {{-- Info --}}
+                {{-- FAQ --}}
                 <div>
-                    <p class="font-inclusive font-semibold text-white text-xl text-center">Info</p>
+                    <p class="font-inclusive font-semibold text-white text-xl text-center">FAQ</p>
 
                     <div class="w-full max-w-md mx-auto sm:w-44">
                         <div x-data="{selected:null}">
@@ -1433,7 +1451,7 @@
                                             @click="selected !== 3 ? selected = 3 : selected = null">
                                         <div class="flex items-center justify-between">
                                         <span class="text-white font-inclusive hover:cursor-pointer">
-                                            FAQ
+                                            Question
                                         </span>
                                         </div>
                                     </button>
