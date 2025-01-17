@@ -13,7 +13,7 @@
                 firstValue: '',
                 secondValue: ''
                 }"
-         class="flex flex-col items-center px-2 gap-2 md:flex-row md:justify-center md:gap-0.5 md:items-center">
+         class="flex flex-col items-center px-2 gap-2 md:flex-row md:justify-center md:gap-0.5 md:items-center font-inclusive">
 
         {{-- Icon --}}
         <img class="size-10 sm:size-12 md:size-24 md:rotate-45" src="{{ asset('storage/objects/piper.svg') }}" alt="" rel="preload">
