@@ -68,7 +68,7 @@
                         slides: [
                             {
                                 {{-- Image 1 --}}
-                                imgSrc: 'https://images.wallpaperscraft.com/image/single/steak_mushrooms_asparagus_103375_1920x1080.jpg',
+                                imgSrc: '{{ asset('storage/recipes-images/steak_mushrooms_asparagus_103375_1920x1080-min-opt.webp') }}',
                                 imgAlt: 'A perfectly grilled steak served with potatoes and greens.',
                                 title: 'Delicious Steak',
                                 description: 'A tender and juicy steak, cooked to perfection, paired with crispy potatoes.',
@@ -77,7 +77,7 @@
                             },
                             {
                                 {{-- Image 2 --}}
-                                imgSrc: 'https://images.wallpaperscraft.com/image/single/salmon_teriyaki_fish_108544_1920x1080.jpg',
+                                imgSrc: '{{ asset('storage/recipes-images/salmon_teriyaki_fish_108544_1920x1080-min-opt.webp') }}',
                                 imgAlt: 'Fresh fish fillet served on a plate with soy sauce and sesame seeds.',
                                 title: 'Grilled Fish',
                                 description: 'A delicate and flavorful grilled fish, perfect for any seafood lover.',
@@ -86,7 +86,7 @@
                             },
                             {
                                 {{-- Image 3--}}
-                                imgSrc: 'https://images.wallpaperscraft.com/image/single/pizza_pastry_appetizing_117398_1920x1080.jpg',
+                                imgSrc: '{{ asset('storage/recipes-images/pizza_pastry_appetizing_117398_1920x1080-min-opt.webp') }}',
                                 imgAlt: 'Hot pizza with cheese and toppings, sliced and ready to eat.',
                                 title: 'Hot Pizza',
                                 description: 'A delicious pizza with crispy crust, melted cheese, and your favorite toppings.',

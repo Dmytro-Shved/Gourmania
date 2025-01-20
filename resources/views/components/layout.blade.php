@@ -425,8 +425,9 @@
                                          x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
                                         <div class="p-6">
                                             <p class="text-white text-sm font-inclusive">
-                                                We are a local development project made by <a href="" class="underline">Dmytro
-                                                    Shved</a>
+                                                We are a local development project made by <a href="https://github.com/Dmytro-Shved" class="underline">Dmytro
+                                                    Shved
+                                                </a>
                                             </p>
                                         </div>
                                     </div>
