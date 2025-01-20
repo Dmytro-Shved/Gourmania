@@ -27,6 +27,7 @@
     @livewireStyles
 </head>
 <body>
+{{--class="animate-spin"--}}
 
 {{-- Navbar + Sidebar --}}
 <div x-data="{ open: false }">

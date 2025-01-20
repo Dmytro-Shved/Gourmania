@@ -6,3 +6,5 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'index')->name('home');
 
 Route::get('/recipes', [FilterController::class, 'filter'])->name('filter');
+
+Route::view('/recipes/name', 'recipe-guide');
