@@ -11,11 +11,18 @@
         <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
     </div>
 
-    <select class="block mx-auto w-sm text-sm font-inclusive transition duration-75 border border-gray-800 rounded-lg shadow-sm h-9 focus:border-blue-600 focus:ring-1 focus:ring-inset focus:ring-blue-600 bg-none" >
-        <option value="week">Last week</option>
-        <option value="month">Last month</option>
-        <option value="year">Last year</option>
-    </select>
+    {{-- Additional filter + Count of found recipes--}}
+    <div class="font-inclusive text-center text-sm flex items-center justify-center space-x-6">
+        <div class="flex gap-2 items-center">
+            <span class="bg-gourmania rounded-full p-1 text-white">999</span>
+            <span>recipes found</span>
+        </div>
+        <select class="block w-sm text-sm  transition duration-75 border border-gray-800 rounded-lg shadow-sm h-9 focus:border-blue-600 focus:ring-1 focus:ring-inset focus:ring-blue-600 bg-none">
+            <option value="week">Last week</option>
+            <option value="month">Last month</option>
+            <option value="year">Last year</option>
+        </select>
+    </div>
 
     <br>
 
