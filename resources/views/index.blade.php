@@ -191,7 +191,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/meat_stake_cuts_10247_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/meat_stake_cuts_10247_800x1200-min-opt.webp') }}"
                          alt="Image 1">
 
                     <div class="hover-overlay">
@@ -203,7 +203,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/pizza_food_glass_73012_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/pizza_food_glass_73012_800x1200-min-opt.webp') }} "
                          alt="Image 2">
 
                     <div class="hover-overlay">
@@ -215,7 +215,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/french_fries_appetizing_greens_112053_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/french_fries_appetizing_greens_112053_800x1200-min-opt.webp') }}"
                          alt="Image 3">
 
                     <div class="hover-overlay">
@@ -227,7 +227,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/salad_vegetables_leaves_88299_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/salad_vegetables_leaves_88299_800x1200-min-opt.webp')  }}"
                          alt="Image 4">
 
                     <div class="hover-overlay">
@@ -239,7 +239,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/noodles_sauce_cheese_112659_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/noodles_sauce_cheese_112659_800x1200-min-opt.webp') }}"
                          alt="Image 5">
 
                     <div class="hover-overlay">
@@ -251,7 +251,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/pancakes_berries_dessert_157035_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/pancakes_berries_dessert_157035_800x1200-min-opt.webp') }}"
                          alt="Image 6">
 
                     <div class="hover-overlay">
@@ -263,7 +263,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/food_fish_herbs_108877_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/food_fish_herbs_108877_800x1200-min-opt.webp') }}"
                          alt="Image 7">
 
                     <div class="hover-overlay">
@@ -275,7 +275,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/soup_toast_dish_208792_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/soup_toast_dish_208792_800x1200-min-opt.webp') }}"
                          alt="Image 8">
 
                     <div class="hover-overlay">
@@ -307,7 +307,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/meat_stake_cuts_10247_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/meat_stake_cuts_10247_800x1200-min-opt.webp') }}"
                          alt="Image 1">
 
                     <div class="hover-overlay">
@@ -319,7 +319,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/pork_vegetables_meat_109770_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/pork_vegetables_meat_109770_800x1200-min-opt.webp') }}"
                          alt="Image 2">
 
                     <div class="hover-overlay">
@@ -331,7 +331,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/meat_baking_vegetables_88477_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/meat_baking_vegetables_88477_800x1200-min-opt.webp') }}"
                          alt="Image 3">
 
                     <div class="hover-overlay">
@@ -343,7 +343,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/meat_pork_dinner_112587_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/meat_pork_dinner_112587_800x1200-min-opt.webp') }}"
                          alt="Image 4">
 
                     <div class="hover-overlay">
@@ -375,7 +375,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/salad_vegetables_leaves_108329_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/salad_vegetables_leaves_108329_800x1200-min-opt.webp') }}"
                          alt="Image 1">
 
                     <div class="hover-overlay">
@@ -387,7 +387,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/salad_vegetables_eggs_114547_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/salad_vegetables_eggs_114547_800x1200-min-opt.webp') }}"
                          alt="Image 2">
 
                     <div class="hover-overlay">
@@ -399,7 +399,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/salad_cheese_fruit_107087_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/salad_cheese_fruit_107087_800x1200-min-opt.webp') }}"
                          alt="Image 3">
 
                     <div class="hover-overlay">
@@ -411,7 +411,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/salad_lemon_cherry_tomatoes_107795_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/salad_lemon_cherry_tomatoes_107795_800x1200-min-opt.webp') }}"
                          alt="Image 4">
 
                     <div class="hover-overlay">
@@ -443,7 +443,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/pancakes_raspberries_syrup_115255_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/pancakes_raspberries_syrup_115255_800x1200-min-opt.webp') }}"
                          alt="Image 1">
 
                     <div class="hover-overlay">
@@ -455,7 +455,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/fried_eggs_bacon_toast_102470_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/fried_eggs_bacon_toast_102470_800x1200-min-opt.webp') }}"
                          alt="Image 2">
 
                     <div class="hover-overlay">
@@ -467,7 +467,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/belgian_waffle_waffle_berries_873742_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/belgian_waffle_waffle_berries_873742_800x1200-min-opt.webp') }}"
                          alt="Image 3">
 
                     <div class="hover-overlay">
@@ -479,7 +479,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/granola_strawberry_berries_207990_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/granola_strawberry_berries_207990_800x1200-min-opt.webp') }}"
                          alt="Image 4">
 
                     <div class="hover-overlay">
@@ -511,7 +511,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/bread_almonds_cakes_112884_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/bread_almonds_cakes_112884_800x1200-min-opt.webp') }}"
                          alt="Image 1">
 
                     <div class="hover-overlay">
@@ -523,7 +523,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/donut_icing_still_life_163211_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/donut_icing_still_life_163211_800x1200-min-opt.webp') }}"
                          alt="Image 2">
 
                     <div class="hover-overlay">
@@ -535,7 +535,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/croissant_berries_strawberries_180033_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/croissant_berries_strawberries_180033_800x1200-min-opt.webp') }}"
                          alt="Image 3">
 
                     <div class="hover-overlay">
@@ -547,7 +547,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/cookies_chocolate_dessert_874621_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/cookies_chocolate_dessert_874621_800x1200-min-opt.webp') }}"
                          alt="Image 4">
 
                     <div class="hover-overlay">
@@ -579,7 +579,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/tartlet_berries_cream_111477_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/tartlet_berries_cream_111477_800x1200-min-opt.webp') }}"
                          alt="Image 1">
 
                     <div class="hover-overlay">
@@ -591,7 +591,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/icecream_balls_bilberry_45151_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/icecream_balls_bilberry_45151_800x1200-min-opt.webp') }}"
                          alt="Image 2">
 
                     <div class="hover-overlay">
@@ -603,7 +603,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/cake_souffles_cream_114050_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/cake_souffles_cream_114050_800x1200-min-opt.webp') }}"
                          alt="Image 3">
 
                     <div class="hover-overlay">
@@ -615,7 +615,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/cupcake_cherry_berries_289705_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/cupcake_cherry_berries_289705_800x1200-min-opt.webp') }}"
                          alt="Image 4">
 
                     <div class="hover-overlay">
@@ -647,7 +647,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/tea_cup_lemon_209994_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/tea_cup_lemon_209994_800x1200-min-opt.webp') }}"
                          alt="Image 1">
 
                     <div class="hover-overlay">
@@ -659,7 +659,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/coffee_drink_cup_207326_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/coffee_drink_cup_207326_800x1200-min-opt.webp') }}"
                          alt="Image 2">
 
                     <div class="hover-overlay">
@@ -671,7 +671,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/mojito_drink_lemon_177472_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/mojito_drink_lemon_177472_800x1200-min-opt.webp') }}"
                          alt="Image 3">
 
                     <div class="hover-overlay">
@@ -683,7 +683,7 @@
             <div class="relative block overflow-hidden group w-full">
                 <a href="#" class="block">
                     <img class="section-image"
-                         src="https://images.wallpaperscraft.com/image/single/cocktail_mint_glass_272604_800x1200.jpg"
+                         src="{{ asset('storage/recipes-images/cocktail_mint_glass_272604_800x1200-min-opt.webp') }}"
                          alt="Image 4">
 
                     <div class="hover-overlay">

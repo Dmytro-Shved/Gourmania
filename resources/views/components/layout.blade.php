@@ -38,7 +38,7 @@
         aria-label="penguin ui menu"
     >
         {{-- Logo --}}
-        <a href="#" class="flex items-center max-w-[150px] sm:max-w-[180px] ">
+        <a href="/" class="flex items-center max-w-[150px] sm:max-w-[180px] ">
             <img src="{{ asset('storage/logo/full-logo-nobg.svg') }}" alt="Gourmania"
                  class="w-full h-full sm:w-full sm:h-full object-contain"/>
         </a>
