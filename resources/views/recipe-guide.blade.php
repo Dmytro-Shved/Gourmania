@@ -74,7 +74,29 @@
         </small>
     </div>
 
+    <br>
+
     {{-- Instruction card --}}
+    <div class="px-4 relative">
+        <div class="bg-white max-w-[500px] md:max-w-[1000px] md:h-auto border border-black flex flex-col md:flex-row justify-center mx-auto my-4 font-inclusive">
+            {{-- Step --}}
+            <div class="mx-auto absolute -top-3 self-center">
+                <div class="bg-white rounded-full px-2 border border-black">
+                    <p>9</p>
+                </div>
+            </div>
+            {{-- Image --}}
+            <div class="md:p-5 flex-1">
+                <img class="w-full md:w-auto md:max-w-[500px] h-auto border border-black object-cover" src="{{ asset('storage/steps/step-1.webp') }}" alt="Step 1" />
+            </div>
+            {{-- Text --}}
+            <div class="p-5 flex-1">
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    Place the chicken bones on a baking sheet and place in the oven preheated to 240 degrees for 20 minutes.
+                </p>
+            </div>
+        </div>
+    </div>
 
     <br>
 </x-layout>
