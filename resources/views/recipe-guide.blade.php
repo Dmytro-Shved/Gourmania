@@ -67,6 +67,85 @@
 
     <br>
 
+    {{-- Ingridients title --}}
+    <div class="title-container text-center">
+        <small class="font-inknut text-xl md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
+            INGREDIENTS
+        </small>
+    </div>
+
+    {{-- Ingridients block --}}
+    <div class="max-w-[500px] mx-auto font-inclusive text-sm md:text-[16px] lg:text-[18px]">
+        <div class="border border-black mx-4 justify-center p-1">
+            {{-- Ingridients--}}
+            <div class="flex flex-col p-2 gap-2 md:gap-3 lg:gap-4">
+                <!-- Ingredient block -->
+                <div class="flex items-center">
+                    <span class="mr-auto">Chicken soup set</span>
+                    <div class="flex-grow border-b border-black mx-2"></div>
+                    <span class="ml-auto">2 kg</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="mr-auto">Onions</span>
+                    <div class="flex-grow border-b border-black mx-2"></div>
+                    <span class="ml-auto">1 head</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="mr-auto">Carrot</span>
+                    <div class="flex-grow border-b border-black mx-2"></div>
+                    <span class="ml-auto">1 piece</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="mr-auto">Celery stalk</span>
+                    <div class="flex-grow border-b border-black mx-2"></div>
+                    <span class="ml-auto">2 pieces</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="mr-auto">Water</span>
+                    <div class="flex-grow border-b border-black mx-2"></div>
+                    <span class="ml-auto">5 l.</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="mr-auto">Dill stems</span>
+                    <div class="flex-grow border-b border-black mx-2"></div>
+                    <span class="ml-auto">5 pieces</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="mr-auto">Parsley stems</span>
+                    <div class="flex-grow border-b border-black mx-2"></div>
+                    <span class="ml-auto">5 pieces</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="mr-auto">Bay leaf</span>
+                    <div class="flex-grow border-b border-black mx-2"></div>
+                    <span class="ml-auto">1 piece</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="mr-auto">Thyme</span>
+                    <div class="flex-grow border-b border-black mx-2"></div>
+                    <span class="ml-auto">5 branches</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="mr-auto">Black peppercorns</span>
+                    <div class="flex-grow border-b border-black mx-2"></div>
+                    <span class="ml-auto">5 pieces</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="mr-auto">Allspice</span>
+                    <div class="flex-grow border-b border-black mx-2"></div>
+                    <span class="ml-auto">5 pieces</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="mr-auto">Salt</span>
+                    <div class="flex-grow border-b border-black mx-2"></div>
+                    <span class="ml-auto">to taste</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
     {{-- Instruction title --}}
     <div class="title-container text-center">
         <small class="font-inknut text-xl md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
@@ -74,26 +153,26 @@
         </small>
     </div>
 
-    <br>
-
     {{-- Instruction card --}}
     <div class="px-4 relative">
         <div class="bg-white max-w-[500px] md:max-w-[1000px] md:h-auto border border-black flex flex-col md:flex-row justify-center mx-auto my-4 font-inclusive">
             {{-- Step --}}
             <div class="mx-auto absolute -top-3 self-center">
                 <div class="bg-white rounded-full px-2 border border-black">
-                    <p>9</p>
+                    <p>1</p>
                 </div>
             </div>
-            {{-- Image --}}
-            <div class="md:p-5 flex-1">
-                <img class="w-full md:w-auto md:max-w-[500px] h-auto border border-black object-cover" src="{{ asset('storage/steps/step-1.webp') }}" alt="Step 1" />
-            </div>
-            {{-- Text --}}
-            <div class="p-5 flex-1">
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    Place the chicken bones on a baking sheet and place in the oven preheated to 240 degrees for 20 minutes.
-                </p>
+            <div class="md:flex md:items-center">
+                {{-- Image --}}
+                <div class="md:p-5 flex-1">
+                    <img class="w-full md:w-auto md:max-w-[500px] h-auto object-cover" src="{{ asset('storage/steps/step-1.webp') }}" alt="Step 1" />
+                </div>
+                {{-- Text --}}
+                <div class="p-5 flex-1">
+                    <p class="mb-3 lg:text-[17px] text-gray-700 dark:text-gray-400">
+                        Place the chicken bones on a baking sheet and place in the oven preheated to 240 degrees for 20 minutes.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
