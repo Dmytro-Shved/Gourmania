@@ -153,8 +153,9 @@
         </small>
     </div>
 
-    {{-- Instruction card --}}
+    {{-- Instruction --}}
     <div class="px-4 relative">
+
         {{-- Step --}}
         <div class="bg-white max-w-[500px] md:max-w-[1000px] md:h-auto border border-black flex flex-col md:flex-row justify-center mx-auto my-4 font-inclusive">
             <div class="mx-auto absolute -top-3 self-center">
@@ -182,6 +183,59 @@
                 FOUND A MISTAKE?
             </button>
         </div>
+    </div>
+
+    <br>
+
+    {{-- Useful links title --}}
+    <div class="title-container text-center">
+        <small class="font-inknut text-xl md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
+            USEFUL LINKS
+        </small>
+    </div>
+
+    {{-- Useful links section --}}
+    <div class="w-[320px] sm:w-[400px] md:w-[500px] lg:md:w-[550px] xl:md:w-[600px] mx-auto px-5">
+        <div class="flex flex-row">
+            <div>
+                <button class="relative block overflow-hidden group w-full">
+                    <a class="block">
+                        <img
+                            class="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-105"
+                            src="{{ asset('storage/images/useful-link-basics-min-opt.webp') }}"
+                            alt="Basics"
+                        >
+                    </a>
+                </button>
+                <span class="flex justify-center pt-1 font-inclusive text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px]">BASICS</span>
+            </div>
+            <div>
+                <button class="relative block overflow-hidden group w-full">
+                    <a class="block">
+                        <img
+                            class="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-105"
+                            src="{{ asset('storage/images/useful-link-techniques-min-opt.webp') }}"
+                            alt="Techniques"
+                        >
+                    </a>
+                </button>
+                <span class="flex justify-center pt-1 font-inclusive text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px]">TECHNIQUES</span>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    {{-- Similar recipes title --}}
+    <div class="title-container text-center">
+        <small class="font-inknut text-xl md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
+            SIMILAR RECIPES
+        </small>
+    </div>
+
+    {{-- Similar recipes grid --}}
+    <div class="grid-cols-1">
+        <x-recipe-card/>
     </div>
 
     <br>
