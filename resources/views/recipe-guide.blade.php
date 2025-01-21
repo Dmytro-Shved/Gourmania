@@ -155,8 +155,8 @@
 
     {{-- Instruction card --}}
     <div class="px-4 relative">
+        {{-- Step --}}
         <div class="bg-white max-w-[500px] md:max-w-[1000px] md:h-auto border border-black flex flex-col md:flex-row justify-center mx-auto my-4 font-inclusive">
-            {{-- Step --}}
             <div class="mx-auto absolute -top-3 self-center">
                 <div class="bg-white rounded-full px-2 border border-black">
                     <p>1</p>
@@ -174,6 +174,13 @@
                     </p>
                 </div>
             </div>
+        </div>
+
+        {{-- Found a mistake? --}}
+        <div class="max-w-[500px] md:max-w-[1000px] md:h-auto flex flex-row justify-end mx-auto my-4 font-inclusive pt-6">
+            <button class="font-inclusive text-xs md:text-sm text-black py-1 px-2 hover:bg-red-500 hover:text-white rounded-lg transition-colors duration-200">
+                FOUND A MISTAKE?
+            </button>
         </div>
     </div>
 
