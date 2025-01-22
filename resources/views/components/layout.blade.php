@@ -172,14 +172,14 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                           d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"/>
                                 </svg>
-                                <span class="text-red-600">Sign Out</span>
+                                <span class="text-red-600">Log Out</span>
                             </a>
                         </li>
                     @endauth
 
                     <!-- Unauthenticated -->
                     @guest
-                        <div x-data="{ modelOpen: false }">
+                        <x-login-modal>
                             <li class>
                                 <div class="flex flex-col px-4 py-2">
                                     <button @click="modelOpen =!modelOpen" class="text-sm text-white font-inclusive rounded-lg p-1 flex flex-row items-center space-x-9 dark:text-white bg-gourmania hover:gourmania-hover transition-colors duration-200">
@@ -188,96 +188,14 @@
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                   d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/>
                                         </svg>
-                                        <span class="text-sm">Login in</span>
+                                        <span class="text-sm">Log in</span>
                                     </button>
                                     <button class="text-sm text-black w-full font-inclusive rounded-lg p-1 flex justify-center hover:text-[#4F4F4F] transition-colors duration-200">
                                         <span class="text-sm">Register</span>
                                     </button>
                                 </div>
                             </li>
-
-                            <div x-show="modelOpen" class="fixed inset-0 z-50 overflow-y-auto"
-                                 aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                                <div
-                                    class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-                                    <div x-cloak @click="modelOpen = false" x-show="modelOpen"
-                                         x-transition:enter="transition ease-out duration-300 transform"
-                                         x-transition:enter-start="opacity-0"
-                                         x-transition:enter-end="opacity-100"
-                                         x-transition:leave="transition ease-in duration-200 transform"
-                                         x-transition:leave-start="opacity-100"
-                                         x-transition:leave-end="opacity-0"
-                                         class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40"
-                                         aria-hidden="true"
-                                    ></div>
-
-                                    <div x-cloak x-show="modelOpen"
-                                         x-transition:enter="transition ease-out duration-300 transform"
-                                         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                         x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                                         x-transition:leave="transition ease-in duration-200 transform"
-                                         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                                         x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                         class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left font-inclusive transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
-                                    >
-                                        <div class="flex items-center justify-between space-x-4">
-                                            <h1 class="text-xl font-medium text-gray-800 ">Log in</h1>
-
-                                            <button @click="modelOpen = false"
-                                                    class="text-gray-600 focus:outline-none hover:text-gray-700">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                                                     viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          stroke-width="2"
-                                                          d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-
-                                        <p class="mt-2 text-sm text-gray-500 ">
-                                            Sign up to save, rate recipes and create your own!
-                                        </p>
-
-                                        <form class="mt-5">
-                                            <div>
-                                                <label for="name"
-                                                       class="block text-sm text-gray-700 capitalize dark:text-gray-200">Name</label>
-                                                <input placeholder="Gordon Ramsay" type="text"
-                                                       class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-300 rounded-md focus:border-red-500 focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E]">
-                                            </div>
-
-                                            <div class="mt-4">
-                                                <label for="email"
-                                                       class="block text-sm text-gray-700 capitalize dark:text-gray-200">Email</label>
-                                                <input placeholder="email@example.app" type="email"
-                                                       class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-300 rounded-md focus:border-red-500 focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E]">
-                                            </div>
-
-                                            <div class="mt-4">
-                                                <div class="mt-4 space-y-5">
-                                                    <div class="flex items-center space-x-3">
-                                                        <div class="flex items-center mb-4">
-                                                            <input id="default-checkbox" type="checkbox" value=""
-                                                                   class="w-4 h-4 text-[#AE763E] bg-gray-100 border-gray-300 rounded focus:ring-[#AE763E] focus:ring-2 focus:bg-[#AE763E]">
-                                                            <label for="default-checkbox"
-                                                                   class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember
-                                                                me</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="flex justify-end mt-6">
-                                                <button type="button"
-                                                        class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-gourmania rounded-md hover:gourmania-hover focus:outline-none">
-                                                    Continue
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </x-login-modal>
                     @endguest
                 </ul>
             </li>
@@ -336,26 +254,27 @@
                 </li>
             @endauth
 
-
             @guest
-                {{-- Name & email--}}
-                <li class="mb-4 border-none">
-                    <div class="flex items-center gap-2 py-2">
-                        <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile" class="size-14 rounded-full object-cover ring-2 ring-[#603912]"/>
-                        <div class="flex flex-row gap-4 ml-2">
-                            <button @click="modelOpen =!modelOpen" class="text-sm text-white font-inclusive rounded-lg p-1 flex items-center justify-center space-x-1 dark:text-white bg-gourmania hover:gourmania-hover transition-colors duration-200 ring-2 ring-[#603912]">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                     stroke-width="1.5" stroke="currentColor" class="size-5 pl-0.5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/>
-                                </svg>
-                                <span class="text-sm">Login in</span>
-                            </button>
-                            <p class="text-[#603912]">|</p>
-                            <button class="text-sm text-white font-inclusive underline">Register</button>
+                <x-login-modal>
+                    {{-- Name & email--}}
+                    <li class="mb-4 border-none">
+                        <div class="flex items-center gap-2 py-2">
+                            <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile" class="size-14 rounded-full object-cover ring-2 ring-[#603912]"/>
+                            <div class="flex flex-row gap-4 ml-2">
+                                <button @click="modelOpen =!modelOpen" class="text-sm text-white font-inclusive rounded-lg p-1 flex items-center justify-center space-x-1 dark:text-white bg-gourmania hover:gourmania-hover transition-colors duration-200 ring-2 ring-[#603912]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="size-5 pl-0.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/>
+                                    </svg>
+                                    <span class="text-sm">Log in</span>
+                                </button>
+                                <p class="text-[#603912]">|</p>
+                                <button class="text-sm text-white font-inclusive underline">Register</button>
+                            </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
+                </x-login-modal>
             @endguest
             {{-- Links --}}
             <li class="p-2"><a href="#" class="mobile-menu-link">Recipes</a></li>
