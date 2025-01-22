@@ -89,9 +89,8 @@
                         @endauth
 
                         <!-- Unauthenticated user logo -->
-                        @guest()
-                            <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile" rel="preload"
-                                 class="size-10 rounded-full object-cover"/>
+                        @guest
+                            <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile" rel="preload" class="size-10 rounded-full object-cover"/>
                         @endguest
                     </button>
                 </div>
@@ -179,10 +178,9 @@
 
                     <!-- Unauthenticated -->
                     @guest
-                        <x-login-modal>
-                            <li class>
-                                <div class="flex flex-col px-4 py-2">
-                                    <button @click="modelOpen =!modelOpen" class="text-sm text-white font-inclusive rounded-lg p-1 flex flex-row items-center space-x-9 dark:text-white bg-gourmania hover:gourmania-hover transition-colors duration-200">
+                        <li class>
+                            <div class="flex flex-col px-4 py-2">
+                                <button class="text-sm text-white font-inclusive rounded-lg p-1 flex flex-row items-center space-x-9 dark:text-white bg-gourmania hover:gourmania-hover transition-colors duration-200">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="size-5 pl-1">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -190,12 +188,11 @@
                                         </svg>
                                         <span class="text-sm">Log in</span>
                                     </button>
-                                    <button class="text-sm text-black w-full font-inclusive rounded-lg p-1 flex justify-center hover:text-[#4F4F4F] transition-colors duration-200">
+                                <button class="text-sm text-black w-full font-inclusive rounded-lg p-1 flex justify-center hover:text-[#4F4F4F] transition-colors duration-200">
                                         <span class="text-sm">Register</span>
                                     </button>
-                                </div>
-                            </li>
-                        </x-login-modal>
+                            </div>
+                        </li>
                     @endguest
                 </ul>
             </li>
@@ -255,26 +252,24 @@
             @endauth
 
             @guest
-                <x-login-modal>
-                    {{-- Name & email--}}
-                    <li class="mb-4 border-none">
-                        <div class="flex items-center gap-2 py-2">
-                            <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile" class="size-14 rounded-full object-cover ring-2 ring-[#603912]"/>
-                            <div class="flex flex-row gap-4 ml-2">
-                                <button @click="modelOpen =!modelOpen" class="text-sm text-white font-inclusive rounded-lg p-1 flex items-center justify-center space-x-1 dark:text-white bg-gourmania hover:gourmania-hover transition-colors duration-200 ring-2 ring-[#603912]">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                         stroke-width="1.5" stroke="currentColor" class="size-5 pl-0.5">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/>
-                                    </svg>
-                                    <span class="text-sm">Log in</span>
-                                </button>
-                                <p class="text-[#603912]">|</p>
-                                <button class="text-sm text-white font-inclusive underline">Register</button>
-                            </div>
+                {{-- Name & email--}}
+                <li class="mb-4 border-none">
+                    <div class="flex items-center gap-2 py-2">
+                        <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile" class="size-14 rounded-full object-cover ring-2 ring-[#603912]"/>
+                        <div class="flex flex-row gap-4 ml-2">
+                            <button class="text-sm text-white font-inclusive rounded-lg p-1 flex items-center justify-center space-x-1 dark:text-white bg-gourmania hover:gourmania-hover transition-colors duration-200 ring-2 ring-[#603912]">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     stroke-width="1.5" stroke="currentColor" class="size-5 pl-0.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/>
+                                </svg>
+                                <span class="text-sm">Log in</span>
+                            </button>
+                            <p class="text-[#603912]">|</p>
+                            <button class="text-sm text-white font-inclusive underline hover:text-gray-200 transition-colors duration-200">Register</button>
                         </div>
-                    </li>
-                </x-login-modal>
+                    </div>
+                </li>
             @endguest
             {{-- Links --}}
             <li class="p-2"><a href="#" class="mobile-menu-link">Recipes</a></li>
