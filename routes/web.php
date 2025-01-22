@@ -12,5 +12,7 @@ Route::get('/recipes', [FilterController::class, 'filter'])->name('filter');
 Route::view('/recipes/name', 'recipe-guide');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login-page');
-Route::get('/register', [RegisterController::class, 'index'])->name('register-page');
 
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register-page');
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
