@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/vPsLc1c/gourmania-favicon.png">
-    <title>Gourmania | Register</title>
+    <title>Gourmania | Login</title>
 
     {{-- Inknut Antiqua --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,19 +33,10 @@
 <body>
 
 <div class="min-h-screen bg-gray-100 flex items-center justify-center p-4 font-inclusive">
-    <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-6">
-        <h2 class="text-2xl font-bold text-gray-900 mb-10 text-center">Sign Up</h2>
+    <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Log In</h2>
 
         <form class="space-y-4">
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                <input
-                    type="text"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E]"
-                    placeholder="Gordon"
-                />
-            </div>
-
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
                 <input
@@ -64,13 +55,12 @@
                 />
             </div>
 
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1 ">Password Confirmation</label>
-                <input
-                    type="password"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E]"
-                    placeholder="••••••••"
-                />
+            <div class="flex items-center justify-between">
+                <label class="flex items-center">
+                    <input type="checkbox" class="rounded border-gray-300 text-[#AE763E] focus:ring-[#AE763E]"/>
+                    <span class="ml-2 text-[12px] text-gray-600">Remember me</span>
+                </label>
+                <a href="#" class="text-[13px] text-[#AE763E] hover:underline">Forgot password?</a>
             </div>
 
             <button class="w-full bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
@@ -79,15 +69,14 @@
         </form>
 
         <div class="mt-6 text-center text-sm text-gray-600 sm:flex sm:justify-center sm:gap-2">
-            <p>Already have an account?</p>
-            <a href="#" class="text-[#AE763E] hover:underline">Log In here</a>
+            <p>Don't have an account?</p>
+            <a href="{{ route('register-page') }}" class="text-[#AE763E] hover:underline">Create Account </a>
         </div>
 
         <div class="flex justify-center mt-5">
-            <img class="size-14" src="{{ asset('storage/objects/unopened-dish.svg') }}" alt="">
+            <img class="size-14" src="{{ asset('storage/objects/chicken-dish.svg') }}" alt="">
         </div>
     </div>
-
 </div>
 
 {{--<script src="../path/to/flowbite/dist/flowbite.min.js"></script>--}}
@@ -96,3 +85,4 @@
 @livewireScripts
 </body>
 </html>
+
