@@ -112,7 +112,7 @@
                         <li class="border-b border-neutral-300 dark:border-neutral-700">
                             <div class="flex flex-col px-4 py-2">
                                 <span
-                                    class="text-sm font-inclusive text-neutral-900 dark:text-white">{{ auth()->user()->username }}</span>
+                                    class="text-sm font-inclusive text-neutral-900 dark:text-white">{{ auth()->user()->name }}</span>
                                 <p class="text-xs font-inclusive text-neutral-600 dark:text-neutral-300">{{ auth()->user()->email }}</p>
                             </div>
                         </li>
@@ -250,7 +250,7 @@
                         <img src="{{ asset('storage/user_logo/default-user-logo.svg') }}" alt="User Profile"
                              class="size-14 rounded-full object-cover ring-2 ring-[#603912]"/>
                         <div>
-                            <span class="font-medium text-white font-inclusive">{{ auth()->user()->username}}</span>
+                            <span class="font-medium text-white font-inclusive">{{ auth()->user()->name}}</span>
                             <p class="text-sm text-white font-inclusive">{{ auth()->user()->email }}</p>
                         </div>
                     </div>
