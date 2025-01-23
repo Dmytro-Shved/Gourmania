@@ -12,10 +12,16 @@ Route::get('/recipes', [FilterController::class, 'filter'])->name('filter');
 
 Route::view('/recipes/name', 'recipe-guide');
 
-Route::get('/login', [LoginController::class, 'index'])->name('login-page');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::middleware('guest')->group(function (){
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register-page');
-Route::post('/register', [RegisterController::class, 'register'])->name('register');
+    Route::get('/login', [LoginController::class, 'index'])->name('login-page');
+    Route::post('/login', [LoginController::class, 'login'])->name('login');
 
-Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+    Route::get('/register', [RegisterController::class, 'index'])->name('register-page');
+    Route::post('/register', [RegisterController::class, 'register'])->name('register');
+});
+
+Route::middleware('auth')->group(function (){
+
+    Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+});
