@@ -112,9 +112,8 @@
                         <li class="border-b border-neutral-300 dark:border-neutral-700">
                             <div class="flex flex-col px-4 py-2">
                                 <span
-                                    class="text-sm font-inclusive text-neutral-900 dark:text-white">Gordon Ramsey</span>
-                                <p class="text-xs font-inclusive text-neutral-600 dark:text-neutral-300">
-                                    gordon.ramsey@gmail.com</p>
+                                    class="text-sm font-inclusive text-neutral-900 dark:text-white">{{ auth()->user()->username }}</span>
+                                <p class="text-xs font-inclusive text-neutral-600 dark:text-neutral-300">{{ auth()->user()->email }}</p>
                             </div>
                         </li>
 
@@ -164,16 +163,18 @@
 
                         <!-- Sign out button-->
                         <li>
-                            <a href="#"
-                               class="bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white flex items-center space-x-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                     stroke-width="1.5"
-                                     stroke="red" class="size-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"/>
-                                </svg>
-                                <span class="text-red-600">Log Out</span>
-                            </a>
+                            <form action="{{ route('logout') }}" method="POST" class="bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
+                                @csrf
+                                <button type="submit" class="flex flex-row items-center space-x-1 w-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5"
+                                         stroke="red" class="size-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"/>
+                                    </svg>
+                                    <span class="text-red-600">Log Out</span>
+                                </button>
+                            </form>
                         </li>
                     @endauth
 
@@ -249,8 +250,8 @@
                         <img src="{{ asset('storage/user_logo/default-user-logo.svg') }}" alt="User Profile"
                              class="size-14 rounded-full object-cover ring-2 ring-[#603912]"/>
                         <div>
-                            <span class="font-medium text-white font-inclusive">Gordon Ramsay</span>
-                            <p class="text-sm text-white font-inclusive">gordon.ramsay@gmail.com</p>
+                            <span class="font-medium text-white font-inclusive">{{ auth()->user()->username}}</span>
+                            <p class="text-sm text-white font-inclusive">{{ auth()->user()->email }}</p>
                         </div>
                     </div>
                 </li>
@@ -330,10 +331,10 @@
 
                 {{-- Sign Out --}}
                 <li class="mt-4 w-full border-none">
-                    <a href="#"
-                       class="rounded-md bg-red-500 px-4 py-2 block text-center font-medium tracking-wide text-neutral-100 hover:bg-red-700 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 dark:bg-white dark:text-black dark:focus-visible:outline-white font-inclusive">
-                        <span>Sign Out</span>
-                    </a>
+                    <form action="{{ route('logout') }}" method="POST" class="rounded-md bg-red-500 px-4 py-2 block text-center font-medium tracking-wide text-neutral-100 hover:bg-red-700 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 dark:bg-white dark:text-black dark:focus-visible:outline-white font-inclusive">
+                        @csrf
+                        <button type="submit" class="w-full">Sign Out</button>
+                    </form>
                 </li>
             @endauth
         </ul>

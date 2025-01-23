@@ -75,7 +75,7 @@
                 </label>
                 <a href="#" class="text-[13px] text-[#AE763E] hover:underline">Forgot password?</a>
             </div>
-            
+
             @error('login-failed')
             <p class="text-red-500 break-words">{{ $message }}</p>
             @enderror
