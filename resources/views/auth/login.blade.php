@@ -36,34 +36,50 @@
     <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Log In</h2>
 
-        <form class="space-y-4">
+        <form action="{{ route('login') }}" method="POST" class="space-y-4">
+            @csrf
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
                 <input
-                    type="email"
+                    name="email"
+                    type="text"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E]"
                     placeholder="your@email.com"
+                    value="{{ old('email') }}"
                 />
+                @error('email')
+                <p class="text-red-500">{{ $message }}</p>
+                @enderror
             </div>
 
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1 ">Password</label>
                 <input
+                    name="password"
                     type="password"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E]"
+                    class="@error('password') border-red-500 @enderror w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E]"
                     placeholder="••••••••"
                 />
+                @error('password')
+                <p class="text-red-500">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="flex items-center justify-between">
                 <label class="flex items-center">
-                    <input type="checkbox" class="rounded border-gray-300 text-[#AE763E] focus:ring-[#AE763E]"/>
+                    <input name="remember"
+                           id="remember"
+                           type="checkbox"
+                           class="rounded border-gray-300 text-[#AE763E] focus:ring-[#AE763E]"/>
                     <span class="ml-2 text-[12px] text-gray-600">Remember me</span>
                 </label>
                 <a href="#" class="text-[13px] text-[#AE763E] hover:underline">Forgot password?</a>
             </div>
-
-            <button class="w-full bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
+            
+            @error('login-failed')
+            <p class="text-red-500 break-words">{{ $message }}</p>
+            @enderror
+            <button type="submit" class="w-full bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
                 Continue
             </button>
         </form>
