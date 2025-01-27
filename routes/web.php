@@ -32,3 +32,4 @@ Route::get('/logout', function () {
 });
 
 Route::get('/send-email', [WelcomeEmailController::class, 'sendWelcomeEmail']);
+Route::view('/mail', 'mail.welcome-mail');
