@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserRegisteredEvent;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -23,6 +23,8 @@ class RegisterController extends Controller
         ]);
 
         Auth::login($user);
+
+        event(new UserRegisteredEvent($request->name, $request->email));
 
         return redirect()->route('home');
     }

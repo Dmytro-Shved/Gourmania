@@ -14,16 +14,14 @@ class WelcomeEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $mailMessage;
-    public $subject;
+    public $name;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($message, $subject)
+    public function __construct($name)
     {
-        $this->mailMessage = $message ;
-        $this->subject = $subject;
+        $this->name = $name ;
     }
 
     /**
@@ -33,7 +31,7 @@ class WelcomeEmail extends Mailable
     {
         return new Envelope(
             from: new Address('', 'Gourmania'),
-            subject: $this->subject,
+            subject: 'Welcome to Gourmania!',
         );
     }
 

@@ -4,7 +4,6 @@ use App\Http\Controllers\FilterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\WelcomeEmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'index')->name('home');
@@ -30,6 +29,3 @@ Route::middleware('auth')->group(function (){
 Route::get('/logout', function () {
     return redirect()->route('login-page');
 });
-
-Route::get('/send-email', [WelcomeEmailController::class, 'sendWelcomeEmail']);
-Route::view('/mail', 'mail.welcome-mail');

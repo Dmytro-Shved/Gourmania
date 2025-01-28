@@ -105,15 +105,15 @@
                     @keydown.down.prevent="$focus.wrap().next()"
                     @keydown.up.prevent="$focus.wrap().previous()"
                     id="userMenu"
+                    {{--class="absolute right-0 top-12 z-50 flex w-full @auth min-w-[16rem] @endauth @guest min-w-[12rem] @endguest flex-col overflow-hidden rounded-md border border-neutral-300 bg-neutral-50 py-1.5 dark:border-neutral-700 dark:bg-neutral-900"--}}
                     class="absolute right-0 top-12 z-50 flex w-full min-w-[12rem] flex-col overflow-hidden rounded-md border border-neutral-300 bg-neutral-50 py-1.5 dark:border-neutral-700 dark:bg-neutral-900"
                 >
                     @auth
                         <!-- Name & Email-->
                         <li class="border-b border-neutral-300 dark:border-neutral-700">
                             <div class="flex flex-col px-4 py-2">
-                                <span
-                                    class="text-sm font-inclusive text-neutral-900 dark:text-white">{{ auth()->user()->name }}</span>
-                                <p class="text-xs font-inclusive text-neutral-600 dark:text-neutral-300">{{ auth()->user()->email }}</p>
+                                <span class="text-sm font-inclusive text-neutral-900 dark:text-white">{{ auth()->user()->name }}</span>
+                                <p class="text-xs font-inclusive text-neutral-600 dark:text-neutral-300 overflow-x-auto whitespace-nowrap scrollbar-thin">{{ auth()->user()->email }}</p>
                             </div>
                         </li>
 
