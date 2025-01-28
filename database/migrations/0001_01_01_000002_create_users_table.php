@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-//            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->foreignId('role_id')->default(1)->constrained('roles', 'id')->cascadeOnDelete();
+            $table->string('photo')->default('storage/user_logo/default.svg');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
