@@ -20,7 +20,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->foreignId('role_id')->default(1)->constrained('roles', 'id')->cascadeOnDelete();
-            $table->string('photo')->default('storage/user_logo/default.svg');
+            $table->string('photo')->default('storage/user_logo/default-user-logo.svg');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
