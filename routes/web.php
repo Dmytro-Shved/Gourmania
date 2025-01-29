@@ -29,3 +29,5 @@ Route::middleware('auth')->group(function (){
 Route::get('/logout', function () {
     return redirect()->route('login-page');
 });
+
+Route::view('/profile', 'user-profile');

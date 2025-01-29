@@ -31,7 +31,7 @@
             </button>
             <div class="flex items-center gap-1.5 text-left text-sm sm:text-[15px] lg:text-[16px]">
                 <img class="w-5 h-5" src="{{ asset('storage/objects/plate.svg') }}" alt="plate">
-                <span class="whitespace-nowrap">3 servings</span>
+                <span class="whitespace-nowrap">4 servings</span>
             </div>
             <div class="flex items-center md:px-3 gap-1.5 text-left text-sm sm:text-[15px] lg:text-[16px]">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
@@ -42,8 +42,7 @@
         </div>
     </div>
 
-
-    {{-- Recipe stats --}}
+    <!-- Recipe stats -->
     <div class="absolute self-end end-1 mb-1 text-sm flex flex-row gap-2">
         <!-- Saved -->
         <div class="flex flex-row items-center gap-1">
