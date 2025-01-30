@@ -26,14 +26,10 @@
 
     <br>
 
-    <div class="grid-cols-1">
-        <x-recipe-card/>
-        <x-recipe-card/>
+    <div class="grid-cols-1 px-2">
         <x-recipe-card/>
     </div>
 
-
     <br>
-    <hr class="border-8 border-black">
 
 </x-layout>
