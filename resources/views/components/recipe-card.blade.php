@@ -1,6 +1,5 @@
 {{-- New Recipe Card --}}
-<div
-    class="relative w-full max-w-[350px] sm:max-w-[550px] bg-white border border-black rounded-lg p-4 flex flex-row sm:flex-row font-inclusive min-h-[200px] sm:min-h-[205px]">
+<div x-data="{ open: false }" class="relative w-full max-w-[350px] sm:max-w-[550px] bg-white border border-black rounded-lg p-4 flex flex-row sm:flex-row font-inclusive min-h-[200px] sm:min-h-[205px]">
     <!-- Image -->
     <img class="w-[128px] h-[128px] object-cover border border-black" src="https://i.ibb.co/VYB1T7M4/chicken-broth.webp"
          alt="logo">
@@ -17,11 +16,9 @@
         </h4>
 
         <!-- recipe info -->
-        <div x-data="{ open: false }"
-             class="mt-2 flex flex-col gap-0.5 sm:flex-row sm:gap-3 text-sm sm:text-[15px] lg:text-[16px]">
+        <div class="mt-2 flex flex-col gap-1 text-sm sm:text-[15px] lg:text-[16px] lg:flex-row">
             <div class="flex items-center gap-1 relative">
                 10 ingredients
-
                 <!-- Open mini ingredients list -->
                 <button x-on:click="open = true">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
@@ -29,41 +26,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
                     </svg>
                 </button>
-
-                <!-- mini ingredients list -->
-                <div x-cloak x-show="open" x-on:click.away="open = false"
-                     class="bg-white w-full -left-36 xs:-left-[110px] min-w-[285px] md:min-w-[380px] text-gray-700  rounded-lg shadow-lg border border-black absolute py-3 sm:-left-0 top-full mt-2 z-50">
-                    <div class="flex items-center px-2 text-[15px] md:text-[17px]">
-                        <span class="mr-auto">Bay leaf</span>
-                        <div class="flex-grow border-b border-black mx-2"></div>
-                        <span class="ml-auto">1 piece</span>
-                    </div>
-                    <div class="flex items-center px-2 text-[15px] md:text-[17px]">
-                        <span class="mr-auto">Carrot</span>
-                        <div class="flex-grow border-b border-black mx-2"></div>
-                        <span class="ml-auto">2 pieces</span>
-                    </div>
-                    <div class="flex items-center px-2 text-[15px] md:text-[17px]">
-                        <span class="mr-auto">Chicken meat</span>
-                        <div class="flex-grow border-b border-black mx-2"></div>
-                        <span class="ml-auto">2 pieces</span>
-                    </div>
-                    <div class="flex items-center px-2 text-[15px] md:text-[17px]">
-                        <span class="mr-auto">Species</span>
-                        <div class="flex-grow border-b border-black mx-2"></div>
-                        <span class="ml-auto">1 piece</span>
-                    </div>
-                    <div class="flex items-center px-2 text-[15px] md:text-[17px]">
-                        <span class="mr-auto">Green</span>
-                        <div class="flex-grow border-b border-black mx-2"></div>
-                        <span class="ml-auto">3 pieces</span>
-                    </div>
-                    <div class="flex items-center px-2 text-[15px] md:text-[17px]">
-                        <span class="mr-auto">Pepper</span>
-                        <div class="flex-grow border-b border-black mx-2"></div>
-                        <span class="ml-auto">4 pieces</span>
-                    </div>
-                </div>
             </div>
 
             <p class="flex items-center gap-1">
@@ -130,5 +92,40 @@
                       d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"/>
             </svg>
         </button>
+    </div>
+
+    <!-- mini ingredients list -->
+    <div x-cloak x-show="open" x-on:click.away="open = false"
+         class="bg-white w-[290px] left-1.5 xs:w-[320px] xs:left-2 min-w-[250px] text-gray-700 rounded-lg shadow-lg border border-black absolute mt-24 lg:mt-[105px] z-50">
+        <div class="flex items-center px-2 text-[15px] md:text-[17px]">
+            <span class="mr-auto">Bay leaf</span>
+            <div class="flex-grow border-b border-black mx-2"></div>
+            <span class="ml-auto">1 piece</span>
+        </div>
+        <div class="flex items-center px-2 text-[15px] md:text-[17px]">
+            <span class="mr-auto">Carrot</span>
+            <div class="flex-grow border-b border-black mx-2"></div>
+            <span class="ml-auto">2 pieces</span>
+        </div>
+        <div class="flex items-center px-2 text-[15px] md:text-[17px]">
+            <span class="mr-auto">Chicken meat</span>
+            <div class="flex-grow border-b border-black mx-2"></div>
+            <span class="ml-auto">2 pieces</span>
+        </div>
+        <div class="flex items-center px-2 text-[15px] md:text-[17px]">
+            <span class="mr-auto">Species</span>
+            <div class="flex-grow border-b border-black mx-2"></div>
+            <span class="ml-auto">1 piece</span>
+        </div>
+        <div class="flex items-center px-2 text-[15px] md:text-[17px]">
+            <span class="mr-auto">Green</span>
+            <div class="flex-grow border-b border-black mx-2"></div>
+            <span class="ml-auto">3 pieces</span>
+        </div>
+        <div class="flex items-center px-2 text-[15px] md:text-[17px]">
+            <span class="mr-auto">Pepper</span>
+            <div class="flex-grow border-b border-black mx-2"></div>
+            <span class="ml-auto">4 pieces</span>
+        </div>
     </div>
 </div>
