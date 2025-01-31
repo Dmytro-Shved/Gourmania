@@ -40,9 +40,9 @@
                                 <span class="flex-1 border-s border-4 border-[#AE763E]"></span>
                             </div>
                             <ul class="list-disc pl-5 marker:text-[#AE763E]">
-                                <li class="mb-2">Joined: {{ $user->created_at }}</li>
-                                <li class="mb-2">Gender: {{ $user->profile->gender }}</li>
-                                <li class="mb-2">Birth: {{ $user->profile->birth_date}}</li>
+                                <li class="mb-2">Joined: {{ date_format($user->created_at, 'Y M') }}</li>
+                                <li class="mb-2">Gender: {{ $user->profile->gender ?? '-' }}</li>
+                                <li class="mb-2">Birth: {{ $user->profile->birth_date ?? '-'}}</li>
                             </ul>
                         </div>
                         <!-- Bio -->
@@ -53,7 +53,7 @@
                                 <span class="flex-1 border-s border-4 border-[#AE763E]"></span>
                             </div>
                             <p class="text-gray-700 text-sm">
-                                {{ $user->profile->description }}
+                                {{ $user->profile->description ?? 'No bio yet...' }}
                             </p>
                         </div>
                     </div>
