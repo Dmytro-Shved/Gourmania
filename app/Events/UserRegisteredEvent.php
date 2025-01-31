@@ -12,14 +12,15 @@ class UserRegisteredEvent
 
     public string $name;
     public string $email;
+    public int $id;
 
     /**
      * Create a new event instance.
      */
-    public function __construct($name, $email)
+    public function __construct($name, $email, $id)
     {
         $this->name = $name;
         $this->email = $email;
+        $this->id = $id;
     }
-
 }

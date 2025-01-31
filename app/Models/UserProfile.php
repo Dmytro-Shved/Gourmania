@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class UserProfiles extends Model
+class UserProfile extends Model
 {
     protected $fillable = [
+        'user_id',
         'gender',
         'birth_date',
         'description',
