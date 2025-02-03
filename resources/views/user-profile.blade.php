@@ -19,16 +19,12 @@
                                     </button>
                                 </div>
                                 <!-- image -->
-                                <img src="{{ asset($user->photo) }}" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0">
+                                <img src="{{ asset($user->photo) }}" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0" alt="User photo">
                             </div>
                             <!-- name -->
                             <h1 class="text-xl font-bold">{{ $user->name }}</h1>
                             <!-- under name text -->
                             <p class="text-gray-700">Role: {{ $user->role_id }}</p>
-                            <!-- subscribe -->
-                            {{--<div class="mt-6 flex flex-wrap gap-4 justify-center">--}}
-                            {{--    <a href="#" class="bg-gourmania hover:gourmania-hover transition-colors duration-200 text-white py-2 px-4 rounded">Subscribe</a>--}}
-                            {{--</div>--}}
                         </div>
                         <!-- line -->
                         <hr class="my-6 border-t border-gray-300">
@@ -44,25 +40,27 @@
                                 <li class="mb-2">Gender: {{ $user->profile->gender ?? '-' }}</li>
                                 <li class="mb-2">Birth: {{ $user->profile->birth_date ?? '-'}}</li>
 
-                                <!-- Not Verified Email -->
-                                <li class="mb-2">
-                                    <div class="flex items-center gap-1">
-                                        <p>Email Verified:</p>
-                                        <!-- Verify Email -->
-                                        <button class="text-white px-1 py-0.5 text-sm transition-colors duration-300 focus:outline-none bg-[#592D00] rounded-lg hover:bg-[#C58F5C]">Verify Email</button>
-                                    </div>
-                                </li>
-
-                                <!-- Verified Email -->
-                                <li class="mb-2">
-                                    <div class="flex items-center gap-1">
-                                        <p>Email Verified:</p>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="green" class="size-4">
-                                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm3.844-8.791a.75.75 0 0 0-1.188-.918l-3.7 4.79-1.649-1.833a.75.75 0 1 0-1.114 1.004l2.25 2.5a.75.75 0 0 0 1.15-.043l4.25-5.5Z" clip-rule="evenodd" />
-                                        </svg>
-                                        <p class="text-gray-700 px-1 py-0.5 bg-gray-300 rounded-lg">2025-02-03</p>
-                                    </div>
-                                </li>
+                                @if($user->email_verified_at)
+                                    <!-- Verified Email -->
+                                    <li class="mb-2">
+                                        <div class="flex items-center gap-1">
+                                            <p>Email Verified:</p>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="green" class="size-4">
+                                                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm3.844-8.791a.75.75 0 0 0-1.188-.918l-3.7 4.79-1.649-1.833a.75.75 0 1 0-1.114 1.004l2.25 2.5a.75.75 0 0 0 1.15-.043l4.25-5.5Z" clip-rule="evenodd" />
+                                            </svg>
+                                            <p class="text-gray-700 px-1 py-0.5 bg-gray-300 rounded-lg">{{ date_format($user->email_verified_at, 'Y M D') }}</p>
+                                        </div>
+                                    </li>
+                                @else
+                                    <!-- Not Verified Email -->
+                                    <li class="mb-2">
+                                        <div class="flex items-center gap-1">
+                                            <p>Email Verified:</p>
+                                            <!-- Verify Email -->
+                                            <button class="text-white px-1 py-0.5 text-sm transition-colors duration-300 focus:outline-none bg-[#592D00] rounded-lg hover:bg-[#C58F5C]">Verify Email</button>
+                                        </div>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                         <!-- Bio -->
