@@ -32,3 +32,7 @@ Route::get('/logout', function () {
 });
 
 Route::get('/user/profile/{id}', [ShowProfileController::class, 'show_profile'])->name('show-profile');
+
+
+Route::view('/verify', 'mail.verify-email');
+Route::view('/welcome', 'mail.welcome-email');
