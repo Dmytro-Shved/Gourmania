@@ -15,6 +15,6 @@ class ShowProfileController extends Controller
         // Find the user with related profile
         $user = User::with('profile')->findOrFail($id);
 
-        return view('user-profile', compact('user'));
+        return view('user.user-profile', compact('user'));
     }
 }

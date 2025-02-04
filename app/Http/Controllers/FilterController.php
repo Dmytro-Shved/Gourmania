@@ -16,6 +16,6 @@ class FilterController extends Controller
 
         // ALSO TRY TO CREATE A LOGIC TO GENERATE A TITLE FOR recipes.blade.php
 
-        return view('recipes');
+        return view('recipes.recipes');
     }
 }

@@ -6,15 +6,13 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ShowProfileController;
 use App\Http\Controllers\VerifyEmailController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'index')->name('home');
 
 Route::get('/recipes', [FilterController::class, 'filter'])->name('filter');
 
-Route::view('/recipes/name', 'recipe-guide');
+Route::view('/recipes/name', 'recipes.recipe-guide');
 
 Route::middleware('guest')->group(function (){
 
@@ -50,4 +48,4 @@ Route::view('/verify', 'mail.email-verification-message');
 Route::view('/again', 'mail.verify-email');
 Route::view('/welcome', 'mail.welcome-email');
 
-Route::view('/edit', 'edit')->middleware('verified')->name('edit-profile');
+Route::view('/edit', 'user.edit-user-profile')->middleware('verified')->name('edit-profile');
