@@ -107,7 +107,7 @@
     <div class="main-content">
         <h1>Welcome to Gourmania!</h1>
         <img src="https://i.ibb.co/wSvVv93/chief-hat-changed-color.png" alt="Chef Hat" style="max-width: 200px; margin: 20px 0;">
-        <p style="color: #253858;font-weight: bold">Wear that chief's hat with pleasure, {name}</p>
+        <p style="color: #253858;font-weight: bold">Wear that chief's hat with pleasure, {{ $name }}</p>
         <p>We're so glad you're here. Now you're able to rate recipes, save the recipes you like and create yours! <a href="#" style="color: #AE763E;">Visit site</a> to see more.</p>
         <a href="#" class="button" style="color: #ffffff">Get Started</a>
     </div>

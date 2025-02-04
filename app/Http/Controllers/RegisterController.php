@@ -26,7 +26,6 @@ class RegisterController extends Controller
         Auth::login($user);
 
         event(new UserRegisteredEvent($request->name, $request->email, $user->id));
-        event(new Registered($user));
 
         return redirect()->route('home');
     }

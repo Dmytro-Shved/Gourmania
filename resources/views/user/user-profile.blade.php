@@ -1,5 +1,12 @@
 <x-layout>
     <div class="bg-gray-100 font-inclusive">
+
+        @if(session()->has('message'))
+            <div class="text-green-500">
+                {{ session('message') }}
+            </div>
+        @endif
+
         <div class="container mx-auto py-8">
             <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 px-2">
                 {{-- Profile info section --}}
@@ -18,7 +25,6 @@
                                     </svg>
                                 </button>
                             </form>
-
                             <div>
                                 <!-- image -->
                                 <img src="{{ asset($user->photo) }}" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0" alt="User photo">
@@ -35,8 +41,11 @@
                                 </div>
                             @else
                                 <p class="text-gray-700 text-center">{{ $user->email }}</p>
+                                <form action="{{ route('verification.send') }}" method="POST">
+                                    @csrf
+                                    <button class="bg-[#592D00] text-white hover:gourmania-hover transition-colors duration-200 px-1 py-0.5 rounded-lg">Verify email</button>
+                                </form>
                             @endif
-
                         </div>
                         <!-- line -->
                         <hr class="my-6 border-t border-gray-300">

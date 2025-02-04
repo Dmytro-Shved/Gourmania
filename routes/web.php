@@ -43,9 +43,4 @@ Route::get('/logout', function () {
 
 Route::get('/user/profile/{id}', [ShowProfileController::class, 'show_profile'])->name('show-profile');
 
-
-Route::view('/verify', 'mail.email-verification-message');
-Route::view('/again', 'mail.verify-email');
-Route::view('/welcome', 'mail.welcome-email');
-
 Route::view('/edit', 'user.edit-user-profile')->middleware('verified')->name('edit-profile');
