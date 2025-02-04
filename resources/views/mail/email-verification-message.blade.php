@@ -25,6 +25,7 @@
             max-width: 300px;
         }
         .main-content {
+            margin-top: 20px;
             padding: 20px;
             text-align: center;
         }
@@ -45,37 +46,6 @@
             background-color: #AE763E;
             text-decoration: none;
             border-radius: 4px;
-            margin-bottom: 30px;
-        }
-        .section {
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .section img {
-            width: 150px;
-            height: 110px;
-            margin-right: 10px;
-            display: block;
-        }
-        .section h2 {
-            font-size: 18px;
-            max-width: 230px;
-            color: #ffffff;
-            margin-bottom: 10px;
-            background-color: #AE763E;
-            border-radius: 10px;
-            text-align: center;
-            padding: 5px;
-        }
-        .section p {
-            font-size: 14px;
-            max-width: 320px;
-            color: #5e6c84;
-            line-height: 1.3;
-            margin-bottom: 10px;
         }
         .footer {
             text-align: center;
@@ -90,7 +60,7 @@
         }
         .info{
             text-align: center;
-            font-size: 24px;
+            font-size: 18px;
             color: #253858;
             margin-bottom: 10px;
         }
@@ -105,43 +75,17 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <h1>Welcome to Gourmania!</h1>
-        <img src="https://i.ibb.co/wSvVv93/chief-hat-changed-color.png" alt="Chef Hat" style="max-width: 200px; margin: 20px 0;">
-        <p style="color: #253858;font-weight: bold">Wear that chief's hat with pleasure, {name}</p>
-        <p>We're so glad you're here. Now you're able to rate recipes, save the recipes you like and create yours! <a href="#" style="color: #AE763E;">Visit site</a> to see more.</p>
-        <a href="#" class="button" style="color: #ffffff">Get Started</a>
+        <h1>Verify your email</h1>
+        <p>Please verify your email address by clicking the link below</p>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="{{ $url }}" class="button" style="color: #ffffff">Verify my account</a>
     </div>
 
     <div class="info">
-        <p>By verifying your email, you will have access to</p>
-    </div>
-
-    <!-- Sections -->
-    <!-- section 1 -->
-    <div class="section">
-        <img src="https://i.ibb.co/mF48bsx/Component-3.png" alt="Rate the recipes">
-        <div>
-            <h2>Rate the recipes</h2>
-            <p>If you liked the recipe you can show your reaction by rating the recipe!</p>
-        </div>
-    </div>
-
-    <!-- section 2 -->
-    <div class="section">
-        <img src="https://i.ibb.co/sQbLRWQ/Component-4.png" alt="Save the recipes">
-        <div>
-            <h2>Save the recipes</h2>
-            <p>If there is a recipe you like and don't want to lose it, you can always save it for yourself and use it whenever you like.</p>
-        </div>
-    </div>
-
-    <!-- section 3 -->
-    <div class="section">
-        <img src="https://i.ibb.co/ggwrNDT/Component-5.png" alt="Create your own recipes">
-        <div>
-            <h2>Create your own recipes</h2>
-            <p>If you feel like sharing your findings, you can create your own recipe.</p>
-        </div>
+        <img src="https://i.ibb.co/ycYyc0xy/hand-with-dish.png" alt="Chef Hat" style="max-width: 200px; margin-top: 15px">
+        <p>Thanks, <br>The Gourmania Team</p>
     </div>
 
     <!-- Footer -->

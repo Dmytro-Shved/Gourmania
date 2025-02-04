@@ -10,7 +10,7 @@ class VerifyEmailController extends Controller
     // Verify Email Notice Handler
     public function verifyNotice()
     {
-        return view('auth.verify-email');
+        return view('mail.verify-email');
     }
 
     // Email Verification Handler

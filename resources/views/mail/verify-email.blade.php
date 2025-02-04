@@ -1,115 +1,60 @@
-{{--normal --}}
-
-    <!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f5f7;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            border: 1px solid #5e6c84;
-        }
-        .header {
-            text-align: center;
-            padding: 20px 0;
-            background-color: #AE763E;
-        }
-        .header img {
-            max-width: 300px;
-        }
-        .main-content {
-            margin-top: 20px;
-            padding: 20px;
-            text-align: center;
-        }
-        .main-content h1 {
-            font-size: 24px;
-            color: #253858;
-            margin-bottom: 20px;
-        }
-        .main-content p {
-            font-size: 16px;
-            color: #5e6c84;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #AE763E;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-        .footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 12px;
-            color: #ffffff;
-            background-color: #AE763E;
-        }
-        .footer a {
-            color: #0052cc;
-            text-decoration: none;
-        }
-        .info{
-            text-align: center;
-            font-size: 18px;
-            color: #253858;
-            margin-bottom: 10px;
-        }
-    </style>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/vPsLc1c/gourmania-favicon.png">
+    <title>Gourmania | Verify Email</title>
+
+    {{-- Inknut Antiqua --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    {{-- Inclusive Sans --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital@0;1&display=swap" rel="stylesheet">
+
+    {{-- Inria Serif --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    @vite('resources/css/app.css')
+    @livewireStyles
 </head>
 <body>
-<div class="container">
-    <!-- Header -->
-    <div class="header">
-        <img src="https://i.ibb.co/C98yFvx/Component-1.png" alt="Gourmania Logo">
-    </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <h1>Verify your email</h1>
-        <p>Please verify your email address by clicking the link below</p>
-    </div>
+<div class="min-h-screen bg-gray-100 flex items-center justify-center p-4 font-inclusive">
+    <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
+        <h2 class="text-2xl mt-12 font-bold text-gray-900 mb-6 text-center">Verify your email through the email we've sent you</h2>
 
-    <div style="text-align: center;">
-        <a href="#" class="button" style="color: #ffffff">Verify my account</a>
-    </div>
-
-    <div class="info">
-        <img src="https://i.ibb.co/ycYyc0xy/hand-with-dish.png" alt="Chef Hat" style="max-width: 200px; margin-top: 15px">
-        <p>Thanks, <br>The Gourmania Team</p>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-        <p>If you would prefer to no longer receive messages like this, you can <a style="text-decoration: underline;color: #ffffff" href="#">unsubscribe</a>.</p>
-        <p><a style="text-decoration: underline;color: #ffffff" href="#">Privacy policy</a></p>
-
-        <div>
-            <a href="https://github.com/Dmytro-Shved" alt="Facebook">
-                <img src="https://img.icons8.com/?size=100&id=hbVaJ5lgpaax&format=png&color=ffffff" width="35" height="35" alt="Facebook">
-            </a>
-            <a href="https://github.com/Dmytro-Shved" alt="Instagram">
-                <img src="https://img.icons8.com/?size=100&id=Iatym1CIDVkh&format=png&color=ffffff" width="35" height="35" alt="Instagram">
-            </a>
-            <a href="https://github.com/Dmytro-Shved" alt="GitHub">
-                <img src="https://img.icons8.com/?size=100&id=WCL5hPLvhUjQ&format=png&color=ffffff" width="35" height="35" alt="GitHub">
-            </a>
+        <div class="mt-10 text-center text-sm text-gray-600 sm:flex sm:justify-center sm:gap-2">
+            <p>Didn't get the message?</p>
         </div>
+        <form action="{{ route('verification.send') }}" method="POST" class="space-y-4">
+            @csrf
+            <button type="submit" class="w-full bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
+                Send again
+            </button>
+        </form>
 
-        <p>© 2025 Gourmania. All rights reserved.<br>
-            by <a href="https://github.com/Dmytro-Shved" style="text-decoration: underline; color: #ffffff">Dmytro Shved</a></p>
+        <div class="flex justify-center mt-[30.5px]">
+            <img class="size-48" src="{{ asset('storage/objects/bread.svg') }}" alt="">
+        </div>
     </div>
 </div>
+
+{{--<script src="../path/to/flowbite/dist/flowbite.min.js"></script>--}}
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+@livewireScripts
 </body>
 </html>
