@@ -7,25 +7,36 @@
                     <!-- Profile card -->
                     <div class="bg-white shadow rounded-lg p-6">
                         <!-- Users info -->
-                        <div class="flex flex-col items-center">
-                            <div class="relative">
-                                <!-- change image -->
-                                <form action="{{ route('edit-profile') }}" class="absolute end-1">
-                                    @csrf
-                                    <button class="bg-white rounded-full p-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                             stroke-width="1.5" stroke="currentColor" class="size-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/>
-                                        </svg>
-                                    </button>
-                                </form>
+                        <div class="flex flex-col items-center relative">
+                            <!-- Edit profile button -->
+                            <form action="{{ route('edit-profile') }}" class="absolute end-0">
+                                @csrf
+                                <button class="rounded-lg p-1 bg-gourmania hover:gourmania-hover transition-colors duration-200">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="white" class="size-5">
+                                        <path d="M13.488 2.513a1.75 1.75 0 0 0-2.475 0L6.75 6.774a2.75 2.75 0 0 0-.596.892l-.848 2.047a.75.75 0 0 0 .98.98l2.047-.848a2.75 2.75 0 0 0 .892-.596l4.261-4.262a1.75 1.75 0 0 0 0-2.474Z" />
+                                        <path d="M4.75 3.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h6.5c.69 0 1.25-.56 1.25-1.25V9A.75.75 0 0 1 14 9v2.25A2.75 2.75 0 0 1 11.25 14h-6.5A2.75 2.75 0 0 1 2 11.25v-6.5A2.75 2.75 0 0 1 4.75 2H7a.75.75 0 0 1 0 1.5H4.75Z" />
+                                    </svg>
+                                </button>
+                            </form>
+
+                            <div>
                                 <!-- image -->
                                 <img src="{{ asset($user->photo) }}" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0" alt="User photo">
                             </div>
                             <!-- name -->
                             <h1 class="text-xl font-bold">{{ $user->name }}</h1>
                             <!-- under name text -->
-                            <p class="text-gray-700">Role: {{ $user->role_id }}</p>
+                            @if($user->email_verified_at)
+                                <div class="w-full overflow-x-auto flex items-center gap-1 justify-center">
+                                    <p class="text-gray-700 text-center">{{ $user->email }}</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="green" class="size-4">
+                                        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm3.844-8.791a.75.75 0 0 0-1.188-.918l-3.7 4.79-1.649-1.833a.75.75 0 1 0-1.114 1.004l2.25 2.5a.75.75 0 0 0 1.15-.043l4.25-5.5Z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                            @else
+                                <p class="text-gray-700 text-center">{{ $user->email }}</p>
+                            @endif
+
                         </div>
                         <!-- line -->
                         <hr class="my-6 border-t border-gray-300">
@@ -40,28 +51,6 @@
                                 <li class="mb-2">Joined: {{ date_format($user->created_at, 'Y M') }}</li>
                                 <li class="mb-2">Gender: {{ $user->profile->gender ?? '-' }}</li>
                                 <li class="mb-2">Birth: {{ $user->profile->birth_date ?? '-'}}</li>
-
-                                @if($user->email_verified_at)
-                                    <!-- Verified Email -->
-                                    <li class="mb-2">
-                                        <div class="flex items-center gap-1">
-                                            <p>Email Verified:</p>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="green" class="size-4">
-                                                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm3.844-8.791a.75.75 0 0 0-1.188-.918l-3.7 4.79-1.649-1.833a.75.75 0 1 0-1.114 1.004l2.25 2.5a.75.75 0 0 0 1.15-.043l4.25-5.5Z" clip-rule="evenodd" />
-                                            </svg>
-                                            <p class="text-gray-700 px-1 py-0.5 bg-gray-300 rounded-lg">{{ date_format($user->email_verified_at, 'Y M D') }}</p>
-                                        </div>
-                                    </li>
-                                @else
-                                    <!-- Not Verified Email -->
-                                    <li class="mb-2">
-                                        <div class="flex items-center gap-1">
-                                            <p>Email Verified:</p>
-                                            <!-- Verify Email -->
-                                            <button class="text-white px-1 py-0.5 text-sm transition-colors duration-300 focus:outline-none bg-[#592D00] rounded-lg hover:bg-[#C58F5C]">Verify Email</button>
-                                        </div>
-                                    </li>
-                                @endif
                             </ul>
                         </div>
                         <!-- Bio -->
