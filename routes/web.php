@@ -5,7 +5,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ShowProfileController;
-use App\Http\Controllers\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'index')->name('home');
@@ -26,15 +25,6 @@ Route::middleware('guest')->group(function (){
 Route::middleware('auth')->group(function (){
 
     Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
-
-    // The Email Verification Notice
-    Route::get('/email/verify', [VerifyEmailController::class, 'verifyNotice'])->name('verification.notice');
-
-    // The Email Verification Handler
-    Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, 'verifyEmail'])->middleware(['signed'])->name('verification.verify');
-
-    // Resending the Verification Email
-    Route::post('/email/verification-notification', [VerifyEmailController::class, 'verifyHandler'])->middleware(['throttle:6,1'])->name('verification.send');
 });
 
 Route::get('/logout', function () {
@@ -42,5 +32,3 @@ Route::get('/logout', function () {
 });
 
 Route::get('/user/profile/{id}', [ShowProfileController::class, 'show_profile'])->name('show-profile');
-
-Route::view('/edit', 'user.edit-user-profile')->middleware('verified')->name('edit-profile');

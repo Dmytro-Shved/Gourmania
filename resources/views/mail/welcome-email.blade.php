@@ -113,7 +113,7 @@
     </div>
 
     <div class="info">
-        <p>By verifying your email, you will have access to</p>
+        <p>Your capabilities have increased!</p>
     </div>
 
     <!-- Sections -->

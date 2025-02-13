@@ -1,12 +1,5 @@
 <x-layout>
     <div class="bg-gray-100 font-inclusive">
-
-        @if(session()->has('message'))
-            <div class="text-green-500">
-                {{ session('message') }}
-            </div>
-        @endif
-
         <div class="container mx-auto py-8">
             <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 px-2">
                 {{-- Profile info section --}}
@@ -16,7 +9,7 @@
                         <!-- Users info -->
                         <div class="flex flex-col items-center relative">
                             <!-- Edit profile button -->
-                            <form action="{{ route('edit-profile') }}" class="absolute end-0">
+                            <form action="#edit-profile" class="absolute end-0">
                                 @csrf
                                 <button class="rounded-lg p-1 bg-gourmania hover:gourmania-hover transition-colors duration-200">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="white" class="size-5">
@@ -32,20 +25,9 @@
                             <!-- name -->
                             <h1 class="text-xl font-bold">{{ $user->name }}</h1>
                             <!-- under name text -->
-                            @if($user->email_verified_at)
-                                <div class="w-full overflow-x-auto flex items-center gap-1 justify-center">
-                                    <p class="text-gray-700 text-center">{{ $user->email }}</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="green" class="size-4">
-                                        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm3.844-8.791a.75.75 0 0 0-1.188-.918l-3.7 4.79-1.649-1.833a.75.75 0 1 0-1.114 1.004l2.25 2.5a.75.75 0 0 0 1.15-.043l4.25-5.5Z" clip-rule="evenodd"/>
-                                    </svg>
-                                </div>
-                            @else
+                            <div class="w-full overflow-x-auto flex items-center gap-1 justify-center">
                                 <p class="text-gray-700 text-center">{{ $user->email }}</p>
-                                <form action="{{ route('verification.send') }}" method="POST">
-                                    @csrf
-                                    <button class="bg-[#592D00] text-white hover:gourmania-hover transition-colors duration-200 px-1 py-0.5 rounded-lg">Verify email</button>
-                                </form>
-                            @endif
+                            </div>
                         </div>
                         <!-- line -->
                         <hr class="my-6 border-t border-gray-300">

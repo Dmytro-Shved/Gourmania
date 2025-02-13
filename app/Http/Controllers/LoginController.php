@@ -22,8 +22,7 @@ class LoginController extends Controller
         if (Auth::attempt($request->validated(), $request->remember)){
             $request->session()->regenerate();
 
-//            return redirect()->intended();  почему то переносит на подтверждения почты после логина
-             return redirect()->route('home');
+            return redirect()->route('home')->with('logged_in', "Welcome back!");
         }else{
             return redirect()->back()->withErrors([
                 'login-failed' => 'The provided credentials do not match our records'
