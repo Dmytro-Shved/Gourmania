@@ -32,3 +32,4 @@ Route::get('/logout', function () {
 });
 
 Route::get('/user/profile/{id}', [ShowProfileController::class, 'show_profile'])->name('show-profile');
+Route::view('/edit', 'user.edit-profile');
