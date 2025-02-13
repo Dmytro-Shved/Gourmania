@@ -177,7 +177,7 @@
                     <div
                         class="flex flex-col mt-6 space-y-3 md:space-y-0 md:flex-row px-3 my-3 bg-[#DDB892] rounded p-3">
                         <input id="sub-email" type="text"
-                               class="px-4 py-2 text-gray-700 font-serif border border-white bg-white rounded-lg dark:bg-gray-900 dark:text-gray-300 focus:outline-none focus:ring-0"
+                               class="px-4 py-2 text-gray-700 font-serif border border-white bg-white rounded-lg focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E]"
                                placeholder="email"/>
 
                         <button
