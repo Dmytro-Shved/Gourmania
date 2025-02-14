@@ -36,5 +36,3 @@ Route::get('/user/profiles/{user}', [ProfileController::class, 'show_profile'])-
 
 Route::get('/user/profiles/{user}/edit', [ProfileController::class, 'edit_profile'])->name('profiles.edit');
 Route::put('/user/profiles/{user}', [ProfileController::class, 'update_profile'])->name('profiles.update');
-
-Route::view('/edit', 'user.edit-profile');

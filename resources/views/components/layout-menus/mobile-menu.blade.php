@@ -43,7 +43,7 @@
         {{-- Name & email--}}
         <li class="mb-4 border-none">
             <div class="flex items-center gap-2 py-2">
-                <img src="{{ asset(auth()->user()->photo) }}" alt="User Profile" class="size-14 rounded-full object-cover ring-2 ring-[#603912]"/>
+                <img src="{{ asset('./storage/' . auth()->user()->photo) }}" alt="User Profile" class="size-14 rounded-full object-cover ring-2 ring-[#603912]"/>
                 <div>
                     <span class="font-medium text-white font-inclusive">{{ auth()->user()->name}}</span>
                     <p class="text-sm text-white font-inclusive">{{ auth()->user()->email }}</p>

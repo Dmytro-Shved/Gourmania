@@ -19,7 +19,7 @@
                     aria-controls="userMenu">
                 <!-- Authenticated user logo -->
                 @auth
-                    <img src="{{ asset(auth()->user()->photo) }}" alt="User Profile"
+                    <img src="{{ asset('./storage/' . auth()->user()->photo) }}" alt="User Profile"
                          rel="preload" class="size-10 rounded-full object-cover"/>
                 @endauth
 

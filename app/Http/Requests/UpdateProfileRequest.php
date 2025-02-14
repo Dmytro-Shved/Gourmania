@@ -27,7 +27,7 @@ class UpdateProfileRequest extends FormRequest
             'email' => ['required', 'email', 'min:2', 'max:45'],
             'gender' => ['nullable'],
             'birth_date' => ['nullable', 'date'],
-            'bio' => ['nullable', 'string', 'max:150'],
+            'description' => ['nullable', 'string', 'max:150'],
             'photo' => ['nullable', 'image']
         ];
     }
