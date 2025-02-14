@@ -6,22 +6,28 @@
                 <div class="col-span-1 sm:col-span-5">
                     <!-- Profile card -->
                     <div class="bg-white shadow rounded-lg p-6">
-                        <form action="#" method="#">
+                        <form action="{{ route('profiles.update', $user) }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <!-- Users info -->
                             <div class="flex flex-col items-center relative">
                                 <div class="text-center">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Current photo:</label>
-                                    <!-- image -->
-                                    <img src="#" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0" alt="User photo">
+                                    <!-- Current Photo -->
+                                    <img src="{{ asset($user->photo) }}" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0" alt="User photo">
                                 </div>
-                                <!-- Choose new file -->
+
+                                <!-- Choose new photo -->
                                 <div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null }">
-                                    <label class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap" for="customFile2">
-                                        <input type="file" class="sr-only" id="customFile2" x-on:change="files = Object.values($event.target.files)">
+                                    <label for="photo" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
+                                        <input name="photo" type="file" class="sr-only" id="photo" x-on:change="files = Object.values($event.target.files)">
                                         <span x-text="files ? files.map(file => file.name).join(', ') : 'New photo...'"></span>
                                     </label>
                                     <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg">Reset</button>
+
+                                    @error('photo')
+                                    <p class="text-red-500">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <!-- under name text -->
@@ -34,9 +40,29 @@
                                             type="text"
                                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E]"
                                             placeholder="Gordon"
-                                            value="{{ 'dima' }}"
+                                            value="{{ $user->name }}"
                                         />
+
+                                        @error('name')
+                                        <p class="text-red-500">{{ $message }}</p>
+                                        @enderror
                                     </div>
+                                </div>
+
+                                <!-- Current Email -->
+                                <div class="p-1">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Current email:</label>
+                                    <input
+                                        name="email"
+                                        type="email"
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E]"
+                                        placeholder="your@email.com"
+                                        value="{{ $user->email }}"
+                                    />
+
+                                    @error('email')
+                                    <p class="text-red-500">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <!-- line -->
@@ -53,9 +79,9 @@
                                     <li class="mb-2">Gender:
                                         <div class="relative flex w-full max-w-xs flex-col gap-1 text-on-surface dark:text-on-surface-dark">
                                             <select id="gender" name="gender" class="w-full appearance-none rounded-radius border border-gray-300 bg-surface-alt px-4 py-2 text-sm focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] disabled:cursor-not-allowed disabled:opacity-75 rounded-lg">
-                                                <option selected>Please Select</option>
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
+                                                <option value="{{ null }}">Please Select</option>
+                                                <option value="male" {{ old('gender', $user->profile->gender) == 'male' ? 'selected' : '' }}>Male</option>
+                                                <option value="female" {{ old('gender', $user->profile->gender) == 'female' ? 'selected' : '' }}>Female</option>
                                             </select>
                                         </div>
                                     </li>
@@ -67,7 +93,11 @@
                                                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                                 </svg>
                                             </div>
-                                            <input datepicker id="default-datepicker" datepicker-format="dd-mm-yyyy" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] block w-full ps-10 p-2.5 font-inclusive" placeholder="Select date">
+                                            <input datepicker value="{{ $user->profile->birth_date }}" name="birth_date" id="default-datepicker" datepicker-format="dd-mm-yyyy" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] block w-full ps-10 p-2.5 font-inclusive" placeholder="Select date">
+
+                                            @error('birth_date')
+                                            <p class="text-red-500">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </li>
                                 </ul>
@@ -81,7 +111,11 @@
                                 </div>
                                 <p class="text-gray-700 text-sm">
                                     <div class="flex w-full max-w-md flex-col gap-1 text-on-surface dark:text-on-surface-dark">
-                                        <textarea id="textArea" class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:focus-visible:outline-primary-dark" rows="3" placeholder="Say something about yourself"></textarea>
+                                        <textarea id="textArea" name="bio" class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:focus-visible:outline-primary-dark" rows="3" placeholder="Say something about yourself"></textarea>
+
+                                        @error('bio')
+                                        <p class="text-red-500">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </p>
                             </div>

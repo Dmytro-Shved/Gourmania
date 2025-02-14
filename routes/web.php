@@ -3,6 +3,7 @@
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ShowProfileController;
 use Illuminate\Support\Facades\Route;
@@ -31,5 +32,9 @@ Route::get('/logout', function () {
     return redirect()->route('login-page');
 });
 
-Route::get('/user/profile/{id}', [ShowProfileController::class, 'show_profile'])->name('show-profile');
+Route::get('/user/profiles/{user}', [ProfileController::class, 'show_profile'])->name('profiles.show');
+
+Route::get('/user/profiles/{user}/edit', [ProfileController::class, 'edit_profile'])->name('profiles.edit');
+Route::put('/user/profiles/{user}', [ProfileController::class, 'update_profile'])->name('profiles.update');
+
 Route::view('/edit', 'user.edit-profile');

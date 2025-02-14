@@ -87,7 +87,7 @@
 
         {{-- Profile --}}
         <li class="mobile-menu-btn">
-            <a href="{{ route('show-profile', auth()->user()->id) }}" class="mobile-menu-btn-style">
+            <a href="{{ route('profiles.show', auth()->user()->id) }}" class="mobile-menu-btn-style">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="#342B22" class="size-7 mx-1">
                     <path stroke-linecap="round" stroke-linejoin="round"
