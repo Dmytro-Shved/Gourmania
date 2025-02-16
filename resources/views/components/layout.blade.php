@@ -46,7 +46,7 @@
 
         {{-- Search --}}
         <div
-            class="hidden relative sm:flex mr-auto w-full max-w-64 flex-col gap-1 font-inclusive text-neutral-600 dark:text-neutral-300">
+            class="hidden relative sm:flex mr-auto w-full max-w-64 flex-col gap-1 font-inclusive text-neutral-600">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                  stroke="currentColor"
                  aria-hidden="true"
@@ -55,7 +55,7 @@
                       d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
             </svg>
             <input type="text" name="search" placeholder="" aria-label="search"
-                   class="w-full rounded-full border-none bg-neutral-50 py-2.5 pl-10 pr-2 text-sm disabled:cursor-not-allowed disabled:opacity-75 dark:bg-neutral-900/50"/>
+                   class="w-full rounded-full border-none bg-neutral-50 py-2.5 pl-10 pr-2 text-sm disabled:cursor-not-allowed disabled:opacity-75 dark:bg-neutral-900/50 gourmania-focus"/>
         </div>
 
 
@@ -71,7 +71,7 @@
         <!-- Sidebar Overlay -->
         <div x-cloak x-show="open"
 
-             class="fixed inset-0 z-50 overflow-hidden">
+             class="fixed inset-0 z-50 overflow-hidden font-inclusive">
             <div @click="open = false"
                  x-show="open"
                  x-transition:enter="transition-opacity ease-out duration-300"
@@ -107,7 +107,7 @@
                         <!-- Search Input -->
                         <div class="mt-4 px-4">
                             <input type="text" placeholder="Search for recipes..."
-                                   class="w-full p-2 border border-gray-300 rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
+                                   class="w-full p-2 border border-gray-300 rounded-md gourmania-focus">
                         </div>
                         <div class="mt-4 px-4">
                             <p class="ml-2 text-gray-400">Results</p>

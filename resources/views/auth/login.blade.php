@@ -43,7 +43,7 @@
                 <input
                     name="email"
                     type="text"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E]"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus"
                     placeholder="your@email.com"
                     value="{{ old('email') }}"
                 />
@@ -57,7 +57,7 @@
                 <input
                     name="password"
                     type="password"
-                    class="@error('password') border-red-500 @enderror w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E]"
+                    class="@error('password') border-red-500 @enderror w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus"
                     placeholder="••••••••"
                 />
                 @error('password')

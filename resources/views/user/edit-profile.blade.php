@@ -53,7 +53,7 @@
                                         <input
                                             name="name"
                                             type="text"
-                                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E]"
+                                            class="w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus"
                                             placeholder="Gordon"
                                             value="{{ $user->name }}"
                                         />
@@ -70,7 +70,7 @@
                                     <input
                                         name="email"
                                         type="email"
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E]"
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus"
                                         placeholder="your@email.com"
                                         value="{{ $user->email }}"
                                     />
@@ -93,7 +93,7 @@
                                     <!-- Gender Select -->
                                     <li class="mb-2">Gender:
                                         <div class="relative flex w-full max-w-xs flex-col gap-1 text-on-surface dark:text-on-surface-dark">
-                                            <select id="gender" name="gender" class="w-full appearance-none rounded-radius border border-gray-300 bg-surface-alt px-4 py-2 text-sm focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] disabled:cursor-not-allowed disabled:opacity-75 rounded-lg">
+                                            <select id="gender" name="gender" class="w-full appearance-none rounded-radius border border-gray-300 bg-surface-alt px-4 py-2 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 rounded-lg">
                                                 <option value="{{ null }}">Please Select</option>
                                                 <option value="male" {{ old('gender', $user->profile->gender) == 'male' ? 'selected' : '' }}>Male</option>
                                                 <option value="female" {{ old('gender', $user->profile->gender) == 'female' ? 'selected' : '' }}>Female</option>
@@ -108,7 +108,7 @@
                                                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                                 </svg>
                                             </div>
-                                            <input datepicker value="{{ $user->profile->birth_date }}" name="birth_date" id="default-datepicker" datepicker-format="yyyy-mm-dd" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] block w-full ps-10 p-2.5 font-inclusive" placeholder="Select date">
+                                            <input datepicker value="{{ $user->profile->birth_date }}" name="birth_date" id="default-datepicker" datepicker-format="yyyy-mm-dd" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg gourmania-focus block w-full ps-10 p-2.5 font-inclusive" placeholder="Select date">
 
                                             @error('birth_date')
                                             <p class="text-red-500">{{ $message }}</p>

@@ -24,7 +24,7 @@
             <div class="relative w-full">
                 <select id="modelName"
                         name="modelName"
-                        class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm"
+                        class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm"
                         x-model="firstValue"
                         @change="secondValue = ''"
                 >
@@ -41,7 +41,7 @@
         {{-- Dish type --}}
         <div class="flex flex-col w-full max-w-xs items-center gap-2 md:w-1/4 md:px-2 md:py-2">
             <div class="relative w-full">
-                <select id="dish-type" name="dish-type" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm" x-model="secondValue" :disabled="!firstValue">
+                <select id="dish-type" name="dish-type" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 gourmania-focus px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm" x-model="secondValue" :disabled="!firstValue">
                     <option value="" :selected="!firstValue" x-text="firstValue ? 'Any type' : 'Any type'"></option>
                     <option value="-">Type 1</option>
                     <option value="-">Type 2</option>
@@ -53,7 +53,7 @@
 
         {{-- Select cuisine --}}
         <div class="w-full max-w-xs md:w-1/4  md:py-2">
-            <select id="country" name="country" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white md:px-4 md:py-2 md:text-sm">
+            <select id="country" name="country" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 gourmania-focus md:px-4 md:py-2 md:text-sm">
                 <option value="Any" selected>Any cuisine</option>
                 <option value="Australia">Australian</option>
                 <option value="Belgium">Belgian</option>
@@ -75,7 +75,7 @@
         {{-- Select menu --}}
         <div class="w-full max-w-xs md:w-1/4 md:px-1 md:py-2">
             <select id="country" name="country"
-                    class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white md:px-4 md:py-2 md:text-sm">
+                    class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 gourmania-focus md:px-4 md:py-2 md:text-sm">
                 <option value="Any" selected>Any menu</option>
                 <option value="Ketogenic">Ketogenic</option>
                 <option value="Gluten-free">Gluten-free</option>

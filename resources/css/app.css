@@ -17,6 +17,10 @@
         background: rgb(174, 118, 62);
     }
 
+    .gourmania-focus{
+        @apply focus:outline-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E];
+    }
+
     .desktop-menu-btn{
         @apply font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1 lg:text-lg;
     }

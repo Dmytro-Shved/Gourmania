@@ -27,7 +27,9 @@
                                 <img src="{{ asset('./storage/' . $user->photo) }}" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0" alt="User photo">
                             </div>
                             <!-- name -->
-                            <h1 class="text-xl font-bold">{{ $user->name }}</h1>
+                            <div class="w-full overflow-x-auto flex items-center gap-1 justify-center">
+                                <h1 class="text-xl font-bold overflow-x-auto">{{ $user->name }}</h1>
+                            </div>
                             <!-- under name text -->
                             <div class="w-full overflow-x-auto flex items-center gap-1 justify-center">
                                 <p class="text-gray-700 text-center">{{ $user->email }}</p>
