@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
@@ -18,12 +18,18 @@ class ProfileController extends Controller
     // Show Edit Profile Page
     public function edit_profile(User $user)
     {
+        // Authorizing the action
+        Gate::authorize('modify', $user->profile);
+
         return view('user.edit-profile', compact('user'));
     }
 
     // Update Profile Data
     public function update_profile(UpdateProfileRequest $request, User $user)
     {
+        // Authorizing the action
+        Gate::authorize('modify', $user->profile);
+
         // Old photo
         $path = $user->photo;
 

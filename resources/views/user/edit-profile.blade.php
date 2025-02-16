@@ -126,7 +126,7 @@
                                 </div>
                                 <p class="text-gray-700 text-sm">
                                     <div class="flex w-full max-w-md flex-col gap-1 text-on-surface dark:text-on-surface-dark">
-                                        <textarea id="textArea" name="description" class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt/50 dark:focus-visible:outline-primary-dark" rows="3" placeholder="Say something about yourself"></textarea>
+                                        <textarea id="textArea" name="description" class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75" rows="3" placeholder="Say something about yourself">{{ $user->profile->description }}</textarea>
 
                                         @error('description')
                                         <p class="text-red-500">{{ $message }}</p>
