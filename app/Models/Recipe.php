@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Recipe extends Model
 {
     protected $fillable = [
-      'name',
-      'description',
-      'image',
+        'name',
+        'description',
+        'image',
+        'user_id',
+        'cuisine_id',
+        'menu_id'
     ];
 
     public function menu(): HasOne
