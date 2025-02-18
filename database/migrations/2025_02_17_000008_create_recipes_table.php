@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('image')->default('recipes-images/default/default_photo.png');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('cuisine_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('menu_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('menu_id')->constrained('menus')->cascadeOnDelete();
             $table->integer('likes')->default(0);
             $table->integer('dislikes')->default(0);
             $table->integer('saved_count')->default(0);
