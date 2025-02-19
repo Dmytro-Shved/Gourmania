@@ -18,14 +18,14 @@ class Recipe extends Model
         'menu_id'
     ];
 
-    public function menu(): HasOne
+    public function menu(): BelongsTo
     {
-        return $this->hasOne(Menu::class);
+        return $this->belongsTo(Menu::class);
     }
 
-    public function cuisine(): HasOne
+    public function cuisine(): BelongsTo
     {
-        return $this->hasOne(Cuisine::class);
+        return $this->belongsTo(Cuisine::class);
     }
 
     public function user(): BelongsTo

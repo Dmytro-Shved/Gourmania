@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Menu extends Model
 {
@@ -12,8 +13,8 @@ class Menu extends Model
 
     protected $fillable = ['name'];
 
-    public function recipes(): BelongsTo
+    public function recipes(): HasMany
     {
-        return $this->belongsTo(Recipe::class);
+        return $this->hasMany(Recipe::class);
     }
 }
