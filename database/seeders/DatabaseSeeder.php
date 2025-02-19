@@ -12,8 +12,6 @@ use App\Models\Recipe;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserProfile;
-use App\View\Components\date;
-use Database\Factories\IngredientRecipeFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
