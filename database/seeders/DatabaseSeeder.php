@@ -3,10 +3,15 @@
 namespace Database\Seeders;
 
 use App\Models\Cuisine;
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Ingredient;
+use App\Models\IngredientRecipe;
 use App\Models\Menu;
+use App\Models\Recipe;
 use App\Models\Role;
+use App\Models\User;
+use Database\Factories\IngredientRecipeFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -60,24 +65,58 @@ class DatabaseSeeder extends Seeder
             'name' => 'user'
         ]);
 
+        // seed users table
+        User::factory(1)->create();
+
         // seed cuisines table
-        foreach ($this->countries as $country){
+        foreach ($this->countries as $country) {
             Cuisine::factory(1)->create([
-               'name' => $country
+                'name' => $country
             ]);
         }
 
         // seed menus table
-        foreach ($this->menus as $menu){
+        foreach ($this->menus as $menu) {
             Menu::factory(1)->create([
                 'name' => $menu
             ]);
         }
 
         // seed ingredients table
-        foreach ($this->ingredients as $ingredient){
+        foreach ($this->ingredients as $ingredient) {
             Ingredient::factory(1)->create([
                 'name' => $ingredient
+            ]);
+        }
+
+        // seed recipes table
+        Recipe::factory()->create([
+            'name' => 'Chicken Broth',
+            'description' => 'Chicken broth is usually made from a stock of chicken pieces and bones as well as vegetables that are boiled down and then removed.',
+            'image' => 'recipes-images/default/chicken-broth.webp',
+            'user_id' => 1,
+            'cuisine_id' => 13,
+            'menu_id' => 1,
+        ]);
+
+        // array for the ingredient_recipe (pivot) table
+        $broth_ingredients = [
+            ['id' => 1, 'quantity' => 1, 'unit' => 'kg'],
+            ['id' => 2, 'quantity' => 3, 'unit' => 'pieces'],
+            ['id' => 3, 'quantity' => 2, 'unit' => 'pieces'],
+            ['id' => 5, 'quantity' => 2, 'unit' => 'heads'],
+            ['id' => 8, 'quantity' => 1, 'unit' => 'to taste'],
+            ['id' => 6, 'quantity' => 2, 'unit' => 'pieces'],
+            ['id' => 11, 'quantity' => 2, 'unit' => 'liters'],
+        ];
+
+        // seed ingredient_recipe (pivot) table
+        foreach ($broth_ingredients as $ingredient) {
+            IngredientRecipe::factory()->create([
+                'recipe_id' => 1,
+                'ingredient_id' => $ingredient['id'],
+                'quantity' => $ingredient['quantity'],
+                'unit' => $ingredient['unit'],
             ]);
         }
     }
