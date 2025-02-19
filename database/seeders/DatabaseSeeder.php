@@ -11,6 +11,8 @@ use App\Models\Menu;
 use App\Models\Recipe;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\UserProfile;
+use App\View\Components\date;
 use Database\Factories\IngredientRecipeFactory;
 use Illuminate\Database\Seeder;
 
@@ -67,6 +69,14 @@ class DatabaseSeeder extends Seeder
 
         // seed users table
         User::factory(1)->create();
+
+        // seed user_profiles table
+        UserProfile::factory(1)->create([
+            'user_id' => 1,
+            'gender' => 'male',
+            'birth_date' => now(),
+            'description' => "Hi everyone! I'm not a human, I was created from database seeder and I like to eat muffins",
+        ]);
 
         // seed cuisines table
         foreach ($this->countries as $country) {
