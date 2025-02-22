@@ -6,6 +6,7 @@ use App\Models\Cuisine;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\DishType;
+use App\Models\GuideStep;
 use App\Models\Ingredient;
 use App\Models\IngredientRecipe;
 use App\Models\Menu;
@@ -150,6 +151,21 @@ class DatabaseSeeder extends Seeder
                 'ingredient_id' => $ingredient['id'],
                 'quantity' => $ingredient['quantity'],
                 'unit' => $ingredient['unit'],
+            ]);
+        }
+
+        // array of the guide steps
+        $step_texts = [
+            'Place the chicken bones on a baking tray and send to an oven preheated to 240 degrees for 20 minutes.',
+            'Pour cold water into a saucepan, put the baked bones in it and bring to a boil.',
+            'Когда вода закипит, убавить огонь и снять образовавшуюся пену. Варить бульон без крышки на небольшом огне 1 час.'
+        ];
+        
+        // seed guide_steps table
+        foreach ($step_texts as $step_text){
+            GuideStep::factory(1)->create([
+               'recipe_id' => 1,
+               'step_text' => $step_text,
             ]);
         }
     }
