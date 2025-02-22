@@ -154,18 +154,19 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // array of the guide steps
-        $step_texts = [
-            'Place the chicken bones on a baking tray and send to an oven preheated to 240 degrees for 20 minutes.',
-            'Pour cold water into a saucepan, put the baked bones in it and bring to a boil.',
-            'Когда вода закипит, убавить огонь и снять образовавшуюся пену. Варить бульон без крышки на небольшом огне 1 час.'
+        // array of the guide data
+        $guide = [
+            [ 'step_number' => 1, 'step_text' => 'Place the chicken bones on a baking tray and send to an oven preheated to 240 degrees for 20 minutes.'],
+            [ 'step_number' => 2, 'step_text' => 'Pour cold water into a saucepan, put the baked bones in it and bring to a boil.'],
+            [ 'step_number' => 3, 'step_text' => 'When the water comes to a boil, reduce the heat and skim off any foam. Cook the broth without a lid over a low heat for 1 hour.'],
         ];
 
         // seed guide_steps table
-        foreach ($step_texts as $step_text){
+        foreach ($guide as $step){
             GuideStep::factory(1)->create([
-               'recipe_id' => 1,
-               'step_text' => $step_text,
+                'recipe_id' => 1,
+                'step_number' => $step['step_number'],
+                'step_text' => $step['step_text'],
             ]);
         }
     }

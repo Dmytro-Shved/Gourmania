@@ -8,17 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class GuideStep extends Model
 {
-    /** @use HasFactory<\Database\Factories\GuideStepFactory> */
     use HasFactory;
 
     protected $fillable = [
         'recipe_id',
+        'step_number',
         'step_text',
-        'image'
+        'step_image'
     ];
-
-    public function recipe(): BelongsTo
-    {
-        return $this->belongsTo(Recipe::class);
-    }
 }

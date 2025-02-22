@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('guide_steps', function (Blueprint $table) {
             $table->id();
             $table->foreignId('recipe_id')->constrained()->cascadeOnDelete();
+            $table->integer('step_number')->unique();
             $table->text('step_text');
-            $table->string('image')->default('recipes-images/default/default_photo.png');
+            $table->string('step_image')->default('recipes-images/default/default_photo.png');
             $table->timestamps();
         });
     }
