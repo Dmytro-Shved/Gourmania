@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->text('description');
             $table->string('image')->default('recipes-images/default/default_photo.png');
+            $table->foreignId('dish_type_id')->constrained('dish_types')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('cuisine_id')->constrained()->cascadeOnDelete();
             $table->foreignId('menu_id')->constrained('menus')->cascadeOnDelete();
