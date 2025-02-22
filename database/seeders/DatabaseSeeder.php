@@ -160,7 +160,7 @@ class DatabaseSeeder extends Seeder
             'Pour cold water into a saucepan, put the baked bones in it and bring to a boil.',
             'Когда вода закипит, убавить огонь и снять образовавшуюся пену. Варить бульон без крышки на небольшом огне 1 час.'
         ];
-        
+
         // seed guide_steps table
         foreach ($step_texts as $step_text){
             GuideStep::factory(1)->create([
