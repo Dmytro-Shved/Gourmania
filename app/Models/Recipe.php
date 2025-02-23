@@ -16,6 +16,7 @@ class Recipe extends Model
         'name',
         'description',
         'image',
+        'dish_category_id',
         'user_id',
         'cuisine_id',
         'menu_id'
@@ -42,9 +43,9 @@ class Recipe extends Model
             ->withPivot(['quantity', 'unit']);
     }
 
-    public function dishType(): BelongsTo
+    public function dishCategory(): BelongsTo
     {
-        return $this->belongsTo(DishType::class);
+        return $this->belongsTo(DishCategory::class);
     }
 
     public function guideSteps(): HasMany

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Cuisine;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\DishType;
+use App\Models\DishCategory;
 use App\Models\GuideStep;
 use App\Models\Ingredient;
 use App\Models\IngredientRecipe;
@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
         "Water"
     ];
 
-    public array $dish_types = [
+    public array $dish_categories = [
         'Breakfasts',
         'Broths',
         'Appetizers',
@@ -108,10 +108,10 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // seed dish_types table
-        foreach ($this->dish_types as $dish_type){
-            DishType::factory(1)->create([
-               'name' => $dish_type
+        // seed dish_categories table
+        foreach ($this->dish_categories as $dish_category){
+            DishCategory::factory(1)->create([
+               'name' => $dish_category
             ]);
         }
 
@@ -127,7 +127,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Chicken Broth',
             'description' => 'Chicken broth is usually made from a stock of chicken pieces and bones as well as vegetables that are boiled down and then removed.',
             'image' => 'recipes-images/default/chicken-broth.webp',
-            'dish_type_id' => 2,
+            'dish_category_id' => 2,
             'user_id' => 1,
             'cuisine_id' => 13,
             'menu_id' => 1,
