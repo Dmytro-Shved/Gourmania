@@ -1,3 +1,4 @@
+
 <div class="title-container">
     <span class="flex-grow border-b border-black"></span>
     <small
@@ -20,17 +21,15 @@
 
         {{-- Double select --}}
         <div class="flex flex-col w-full max-w-xs items-center gap-1 md:w-1/4 md:px-2 md:py-2">
-            {{-- Dish --}}
+            {{-- Dish Categories --}}
             <div class="relative w-full">
-                <select id="dish"
-                        name="dish"
+                <select id="dishCategory"
+                        name="dishCategory"
                         class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm"
                         x-model="firstValue"
                         @change="secondValue = ''"
                 >
                     <option value="" selected>Any dish</option>
-                    <option value="Broth">Broth</option>
-                    <option value="Cookies">Cookies</option>
                     <option value="Steak">Steak</option>
                     <option value="Cheeseburger">Cheeseburger</option>
                     <option value="Mohito">Mohito</option>
@@ -38,10 +37,10 @@
             </div>
         </div>
 
-        {{-- Dish type --}}
+        {{-- Dish --}}
         <div class="flex flex-col w-full max-w-xs items-center gap-2 md:w-1/4 md:px-2 md:py-2">
             <div class="relative w-full">
-                <select id="dishType" name="dishType" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 gourmania-focus px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm" x-model="secondValue" :disabled="!firstValue">
+                <select id="dish" name="dish" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 gourmania-focus px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm" x-model="secondValue" :disabled="!firstValue">
                     <option value="" :selected="!firstValue" x-text="firstValue ? 'Any type' : 'Any type'"></option>
                     <option value="type_1">Type 1</option>
                     <option value="type_2">Type 2</option>
