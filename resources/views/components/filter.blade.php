@@ -22,13 +22,13 @@
         <div class="flex flex-col w-full max-w-xs items-center gap-1 md:w-1/4 md:px-2 md:py-2">
             {{-- Dish --}}
             <div class="relative w-full">
-                <select id="modelName"
-                        name="modelName"
+                <select id="dish"
+                        name="dish"
                         class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm"
                         x-model="firstValue"
                         @change="secondValue = ''"
                 >
-                    <option value="Any dish" selected>Any dish</option>
+                    <option value="" selected>Any dish</option>
                     <option value="Broth">Broth</option>
                     <option value="Cookies">Cookies</option>
                     <option value="Steak">Steak</option>
@@ -41,20 +41,20 @@
         {{-- Dish type --}}
         <div class="flex flex-col w-full max-w-xs items-center gap-2 md:w-1/4 md:px-2 md:py-2">
             <div class="relative w-full">
-                <select id="dish-type" name="dish-type" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 gourmania-focus px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm" x-model="secondValue" :disabled="!firstValue">
+                <select id="dishType" name="dishType" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 gourmania-focus px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm" x-model="secondValue" :disabled="!firstValue">
                     <option value="" :selected="!firstValue" x-text="firstValue ? 'Any type' : 'Any type'"></option>
-                    <option value="-">Type 1</option>
-                    <option value="-">Type 2</option>
-                    <option value="-">Type 3</option>
-                    <option value="-">Type 4</option>
+                    <option value="type_1">Type 1</option>
+                    <option value="type_2">Type 2</option>
+                    <option value="type_3">Type 3</option>
+                    <option value="type_4">Type 4</option>
                 </select>
             </div>
         </div>
 
         {{-- Select cuisine --}}
         <div class="w-full max-w-xs md:w-1/4  md:py-2">
-            <select id="country" name="country" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 gourmania-focus md:px-4 md:py-2 md:text-sm">
-                <option value="Any" selected>Any cuisine</option>
+            <select id="cuisine" name="cuisine" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 gourmania-focus md:px-4 md:py-2 md:text-sm">
+                <option value="" selected>Any cuisine</option>
                 <option value="Australia">Australian</option>
                 <option value="Belgium">Belgian</option>
                 <option value="China">Chinese</option>
@@ -74,9 +74,8 @@
 
         {{-- Select menu --}}
         <div class="w-full max-w-xs md:w-1/4 md:px-1 md:py-2">
-            <select id="country" name="country"
-                    class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 gourmania-focus md:px-4 md:py-2 md:text-sm">
-                <option value="Any" selected>Any menu</option>
+            <select id="menu" name="menu" class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 gourmania-focus md:px-4 md:py-2 md:text-sm">
+                <option value="" selected>Any menu</option>
                 <option value="Ketogenic">Ketogenic</option>
                 <option value="Gluten-free">Gluten-free</option>
                 <option value="Vegetarian">Vegetarian</option>

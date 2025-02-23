@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 
 class FilterController extends Controller
 {
-    public  function filter()
+    public  function filter(Request $request)
     {
+
+        dd($request);
+
+
+
         // logic with searching for a recipes
 
         // if there is no parameters in filter, then give 20 last recipes + pagination
