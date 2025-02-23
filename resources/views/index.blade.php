@@ -88,7 +88,8 @@
         </div>
 
         {{-- Filter --}}
-        <x-filter/>
+        {{--<x-filter/>--}}
+        <livewire:filter/>
 
         <br>
 

@@ -40,7 +40,11 @@ class DatabaseSeeder extends Seeder
         "Gluten-free",
         "Vegetarian",
         "Vegan",
-        "Paleo"
+        "Lactose-free",
+        "Kids menu",
+        "Low-calorie",
+        "Lenten",
+        "Diabetic-friendly"
     ];
 
     public array $ingredients = [
