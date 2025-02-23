@@ -1,3 +1,4 @@
+@section('title', 'Profile')
 <x-layout>
     <div class="bg-gray-100 font-inclusive">
         <div class="container mx-auto py-8">

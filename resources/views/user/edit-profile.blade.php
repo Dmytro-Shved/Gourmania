@@ -1,3 +1,4 @@
+@section('title', 'Edit Profile')
 <x-layout>
 
     @if(session()->has('profile_updated'))
