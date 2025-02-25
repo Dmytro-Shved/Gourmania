@@ -6,47 +6,36 @@ use App\Models\Cuisine;
 use App\Models\DishCategory;
 use App\Models\Menu;
 use App\Models\Recipe;
-use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class Filter extends Component
 {
-    public $dishCategoryID;
-    public $recipeID;
-    public $cuisineID;
-    public $menuID;
+    public $dishCategories;
+    public $dishes;
 
-    public function updatedDishCategoryID()
-    {
-        $this->recipeID = null;
-    }
+    public $dishCategory;
+    public $dish;
 
-    #[Computed()]
-    public function dishCategories()
-    {
-        return DishCategory::all();
-    }
+    public $cuisines;
+    public $menus;
 
-    #[Computed()]
-    public function dishes()
-    {
-        return Recipe::where('dish_category_id', $this->dishCategoryID)->get();
-    }
 
-    #[Computed()]
-    public function cuisines()
+    public function mount()
     {
-        return Cuisine::all();
-    }
+        $this->dishCategories = DishCategory::all();
+        $this->dishes = collect();
 
-    #[Computed()]
-    public function menus()
-    {
-        return Menu::all();
+        $this->cuisines = Cuisine::get();
+        $this->menus = Menu::get();
     }
 
     public function render()
     {
         return view('livewire.filter');
+    }
+
+    public function updatedDishCategory($value)
+    {
+        return $this->dishes = Recipe::where('dish_category_id', $value)->get();
     }
 }

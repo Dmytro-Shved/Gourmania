@@ -1,6 +1,7 @@
 <x-layout>
     @section('title', 'Recipes')
-    <x-filter/>
+    {{--<x-filter/>--}}
+    <livewire:filter/>
 
     {{-- All recipes --}}
     <div class="title-container">
