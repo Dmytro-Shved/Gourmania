@@ -1,5 +1,15 @@
 <!-- Filter -->
 <form action="{{ route('filter') }}" method="GET">
+
+    <div class="title-container">
+        <span class="flex-grow border-b border-black"></span>
+        <small
+            class="font-inclusive text-xs xs:text-[14px] sm:text-[16px] md:text-[18px] lg:text-xl xl:text-2xl text-black px-4">
+            Filter recipes
+        </small>
+        <span class="flex-grow border-t border-black"></span>
+    </div>
+    
     <div class="flex flex-col items-center px-2 gap-2 md:flex-row md:justify-center md:gap-0.5 md:items-center font-inclusive">
         <!--Icon -->
         <img class="size-10 sm:size-12 md:size-24 md:rotate-45" src="{{ asset('storage/objects/piper.svg') }}" alt="Pepper" rel="preload">
@@ -29,7 +39,7 @@
                         class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 gourmania-focus px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm">
 
                     @if($dishes->count() == 0)
-                        <option value="">Any dish</option>
+                        <option value="{{ old('dish') }}">Any dish</option>
                     @endif
 
                     @foreach($dishes as $dish)
