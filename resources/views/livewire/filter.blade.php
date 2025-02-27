@@ -31,7 +31,7 @@
                     <option value="">Any category</option>
 
                     @foreach($dishCategories as $dishCategory)
-                        <option value="{{$dishCategory->id ?? null}}">{{ $dishCategory->name ?? null }}</option>
+                        <option value="{{$dishCategory->id }}">{{ $dishCategory->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -43,13 +43,15 @@
                         name="dish"
                         class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 gourmania-focus px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm">
 
-                    @if($dishes->count() == 0)
-                       <option value="">Any dish</option>
-                    @endif
+                    <div>
+                        @if($dishes->count() == 0)
+                           <option value="">Any dish</option>
+                        @endif
+                    </div>
 
                     @foreach($dishes as $dish)
                         <option value="" selected>Any dish</option>
-                        <option value="{{ $dish->id ?? null }}">{{ $dish->name ?? null }}</option>
+                        <option value="{{ $dish->id }}">{{ $dish->name }}</option>
                     @endforeach
                 </select>
             </div>
