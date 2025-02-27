@@ -18,7 +18,7 @@
             <span class="bg-gourmania rounded-full p-1 text-white">999</span>
             <span>recipes found</span>
         </div>
-        <select class="block w-sm text-sm  transition duration-75 border border-gray-800 rounded-lg shadow-sm h-9 focus:border-blue-600 focus:ring-1 focus:ring-inset focus:ring-blue-600 bg-none">
+        <select class="block w-sm text-sm   transition duration-75 border border-gray-800 rounded-lg shadow-sm h-9 gourmania-focus bg-none">
             <option value="week">Last week</option>
             <option value="month">Last month</option>
             <option value="year">Last year</option>

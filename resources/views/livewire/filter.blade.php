@@ -1,9 +1,5 @@
 <!-- Filter -->
 <form action="{{ route('filter') }}" method="GET">
-
-{{--    @dump(request())--}}
-
-
     <div class="title-container">
         <span class="flex-grow border-b border-black"></span>
         <small
@@ -13,8 +9,12 @@
         <span class="flex-grow border-t border-black"></span>
     </div>
 
-
-
+    @dump([
+            'dish_category' => $dishCategory,
+            'dish' => $dish,
+            'cuisine' => $cuisine,
+            'menu' => $menu,
+            ])
 
     <div class="flex flex-col items-center px-2 gap-2 md:flex-row md:justify-center md:gap-0.5 md:items-center font-inclusive">
         <!--Icon -->
@@ -36,12 +36,6 @@
                 </select>
             </div>
         </div>
-        @dump([
-            'dish_category' => $dishCategory,
-            'dish' => $dish,
-            'cuisine' => $cuisine,
-            'menu' => $menu,
-            ])
         <!--Dish -->
         <div class="flex flex-col w-full max-w-xs items-center gap-2 md:w-1/4 md:px-2 md:py-2">
             <div class="relative w-full">
