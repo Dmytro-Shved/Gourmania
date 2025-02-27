@@ -19,15 +19,31 @@ class Filter extends Component
     public $cuisines;
     public $menus;
 
+    public $cuisine;
+    public $menu;
+
+
+
+//    public function mount()
+//    {
+//        $this->dishCategories = DishCategory::all();
+//        $this->dishes = collect();
+//
+//        $this->cuisines = Cuisine::get();
+//        $this->menus = Menu::get();
+//    }
 
     public function mount()
     {
+        $this->dishCategory = null;
+        $this->dish = null;
         $this->dishCategories = DishCategory::all();
         $this->dishes = collect();
 
         $this->cuisines = Cuisine::get();
         $this->menus = Menu::get();
     }
+
 
     public function render()
     {

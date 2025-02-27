@@ -1,6 +1,9 @@
 <!-- Filter -->
 <form action="{{ route('filter') }}" method="GET">
 
+{{--    @dump(request())--}}
+
+
     <div class="title-container">
         <span class="flex-grow border-b border-black"></span>
         <small
@@ -9,7 +12,10 @@
         </small>
         <span class="flex-grow border-t border-black"></span>
     </div>
-    
+
+
+
+
     <div class="flex flex-col items-center px-2 gap-2 md:flex-row md:justify-center md:gap-0.5 md:items-center font-inclusive">
         <!--Icon -->
         <img class="size-10 sm:size-12 md:size-24 md:rotate-45" src="{{ asset('storage/objects/piper.svg') }}" alt="Pepper" rel="preload">
@@ -25,12 +31,17 @@
                     <option value="">Any category</option>
 
                     @foreach($dishCategories as $dishCategory)
-                        <option value="{{$dishCategory->id}}">{{ $dishCategory->name }}</option>
+                        <option value="{{$dishCategory->id ?? null}}">{{ $dishCategory->name ?? null }}</option>
                     @endforeach
                 </select>
             </div>
         </div>
-
+        @dump([
+            'dish_category' => $dishCategory,
+            'dish' => $dish,
+            'cuisine' => $cuisine,
+            'menu' => $menu,
+            ])
         <!--Dish -->
         <div class="flex flex-col w-full max-w-xs items-center gap-2 md:w-1/4 md:px-2 md:py-2">
             <div class="relative w-full">
@@ -39,12 +50,12 @@
                         class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 gourmania-focus px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm">
 
                     @if($dishes->count() == 0)
-                        <option value="{{ old('dish') }}">Any dish</option>
+                       <option value="">Any dish</option>
                     @endif
 
                     @foreach($dishes as $dish)
                         <option value="" selected>Any dish</option>
-                        <option value="{{ $dish->id }}">{{ $dish->name }}</option>
+                        <option value="{{ $dish->id ?? null }}">{{ $dish->name ?? null }}</option>
                     @endforeach
                 </select>
             </div>
@@ -52,7 +63,7 @@
 
         <!-- Select cuisine -->
         <div class="w-full max-w-xs md:w-1/4  md:py-2">
-            <select
+            <select wire:model.live="cuisine"
                 id="cuisine"
                 name="cuisine"
                 class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 gourmania-focus md:px-4 md:py-2 md:text-sm">
@@ -67,7 +78,7 @@
 
         <!-- Select menu -->
         <div class="w-full max-w-xs md:w-1/4 md:px-1 md:py-2">
-            <select
+            <select wire:model.live="menu"
                 id="menu"
                 name="menu"
                 class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 gourmania-focus md:px-4 md:py-2 md:text-sm">

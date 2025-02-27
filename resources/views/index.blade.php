@@ -89,7 +89,7 @@
 
         {{-- Filter --}}
         {{--<x-filter/>--}}
-        <livewire:filter/>
+        <livewire:filter :key="now()->timestamp"/>
 
         <br>
 
