@@ -10,7 +10,7 @@ class FilterController extends Controller
 {
     public function filter(Request $request)
     {
-        dump($request);
+//        dump($request);
 
         return view('recipes.recipes');
     }

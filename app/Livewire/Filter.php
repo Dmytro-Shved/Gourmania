@@ -22,26 +22,6 @@ class Filter extends Component
     public $cuisine;
     public $menu;
 
-//    public function mount()
-//    {
-//        $this->dishCategories = DishCategory::all();
-//        $this->dishes = collect();
-//
-//        $this->cuisines = Cuisine::get();
-//        $this->menus = Menu::get();
-//    }
-
-//    public function mount()
-//    {
-//        $this->dishCategory = null;
-//        $this->dish = null;
-//        $this->dishCategories = DishCategory::all();
-//        $this->dishes = collect();
-//
-//        $this->cuisines = Cuisine::get();
-//        $this->menus = Menu::get();
-//    }
-
     public function mount()
     {
         $this->dishCategory = request()->get('dish_category', null);
@@ -60,14 +40,21 @@ class Filter extends Component
         $this->menus = Menu::get();
     }
 
-
     public function render()
     {
         return view('livewire.filter');
     }
 
+//    public function updatedDishCategory($value)
+//    {
+//        return $this->dishes = Recipe::where('dish_category_id', $value)->get();
+//    }
+
     public function updatedDishCategory($value)
     {
-        return $this->dishes = Recipe::where('dish_category_id', $value)->get();
+        $this->dishes = Recipe::where('dish_category_id', $value)->get();
+
+        $this->cuisine = request()->get('cuisine', $this->cuisine);
+        $this->menu = request()->get('menu', $this->menu);
     }
 }
