@@ -20,13 +20,13 @@
                 <!-- Authenticated user logo -->
                 @auth
                     <img src="{{ asset('./storage/' . auth()->user()->photo) }}" alt="User Profile"
-                         rel="preload" class="size-10 rounded-full object-cover"/>
+                         rel="preload" class="size-10 rounded-full object-cover select-none"/>
                 @endauth
 
                 <!-- Unauthenticated user logo -->
                 @guest
                     <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile" rel="preload"
-                         class="size-10 rounded-full object-cover"/>
+                         class="size-10 rounded-full object-cover select-none"/>
                 @endguest
             </button>
         </div>

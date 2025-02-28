@@ -1,8 +1,8 @@
 <!-- Filter -->
 <form action="{{ route('filter') }}" method="GET">
-    
+
     <!-- title -->
-    <div class="title-container">
+    <div class="title-container select-none">
         <span class="flex-grow border-b border-black"></span>
         <small
             class="font-inclusive text-xs xs:text-[14px] sm:text-[16px] md:text-[18px] lg:text-xl xl:text-2xl text-black px-4">
@@ -13,7 +13,7 @@
 
     <div class="flex flex-col items-center px-2 gap-2 md:flex-row md:justify-center md:gap-0.5 md:items-center font-inclusive">
         <!--Icon -->
-        <img class="size-10 sm:size-12 md:size-24 md:rotate-45" src="{{ asset('storage/objects/piper.svg') }}" alt="Pepper" rel="preload">
+        <img class="size-10 sm:size-12 md:size-24 md:rotate-45 select-none" src="{{ asset('storage/objects/piper.svg') }}" alt="Pepper" rel="preload">
 
         <!-- Double select -->
         <div class="flex flex-col w-full max-w-xs items-center gap-1 md:w-1/4 md:px-2 md:py-2">

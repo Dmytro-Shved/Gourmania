@@ -39,7 +39,7 @@
         aria-label="penguin ui menu"
     >
         {{-- Logo --}}
-        <a href="/" class="flex items-center max-w-[150px] sm:max-w-[180px] ">
+        <a href="/" class="flex items-center max-w-[150px] sm:max-w-[180px] select-none">
             <img src="{{ asset('storage/logo/full-logo-nobg.svg') }}" alt="Gourmania"
                  class="w-full h-full sm:w-full sm:h-full object-contain"/>
         </a>
@@ -324,7 +324,7 @@
             {{-- Footer logo --}}
             <div class="text-center my-5">
                 <img src="{{ asset('storage/logo/logo.svg') }}"
-                     class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mx-auto" alt="Logo">
+                     class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mx-auto select-none" alt="Logo">
                 <div class="see-more-container">
                     <span class="flex-grow border-t border-neutral-200"></span>
                     <small class="font-inclusive text-sm text-neutral-100 px-4 italic">

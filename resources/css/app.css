@@ -22,7 +22,7 @@
     }
 
     .desktop-menu-btn{
-        @apply font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1 lg:text-lg;
+        @apply font-inclusive text-white hover:gourmania-hover transition rounded-3xl sm:text-sm p-1 lg:text-lg select-none;
     }
 
     .mobile-menu-link{

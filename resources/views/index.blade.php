@@ -42,7 +42,7 @@
     {{-- Main page--}}
     <div class="font-inclusive text-xl">
         {{-- Slogan --}}
-        <div class="title-container">
+        <div class="title-container select-none">
             <span class="flex-grow border-t border-black"></span>
             <small class="font-inknut text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
                 BEST CHOICE FOR GOURMETS
@@ -52,9 +52,9 @@
 
         {{-- Stats --}}
         <div class="flex justify-between items-center">
-            <img class="max-sm:size-10 max-sm:hidden sm:size-14 md:size-16 lg:size-20"
+            <img class="max-sm:size-10 max-sm:hidden sm:size-14 md:size-16 lg:size-20 select-none"
                  src="{{ asset('storage/objects/leaf.svg')  }}" alt="" rel="preload">
-            <img class="max-sm:size-4 xs:size-5 sm:hidden"
+            <img class="max-sm:size-4 xs:size-5 sm:hidden select-none"
                  src="{{ asset('storage/objects/leave_right_mobile.svg')  }}" alt="" rel="preload">
 
             <div class="stats-text">
@@ -81,9 +81,9 @@
                 <span>Explore 50+ world cuisines</span>
             </div>
 
-            <img class="max-sm:size-10 max-sm:hidden sm:size-14 md:size-16 lg:size-20 transform scale-x-[-1]"
+            <img class="max-sm:size-10 max-sm:hidden sm:size-14 md:size-16 lg:size-20 transform scale-x-[-1] select-none"
                  src="{{ asset('storage/objects/leaf.svg')  }}" alt="" rel="preload">
-            <img class="max-sm:size-4 xs:size-5 sm:hidden transform scale-x-[-1]"
+            <img class="max-sm:size-4 xs:size-5 sm:hidden transform scale-x-[-1] select-none"
                  src="{{ asset('storage/objects/leave_right_mobile.svg')  }}" alt="" rel="preload">
         </div>
 
