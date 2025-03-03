@@ -45,16 +45,8 @@ class Filter extends Component
         return view('livewire.filter');
     }
 
-//    public function updatedDishCategory($value)
-//    {
-//        return $this->dishes = Recipe::where('dish_category_id', $value)->get();
-//    }
-
     public function updatedDishCategory($value)
     {
-        $this->dishes = Recipe::where('dish_category_id', $value)->get();
-
-        $this->cuisine = request()->get('cuisine', $this->cuisine);
-        $this->menu = request()->get('menu', $this->menu);
+        return $this->dishes = Recipe::where('dish_category_id', $value)->get();
     }
 }
