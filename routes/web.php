@@ -34,3 +34,6 @@ Route::get('/logout', function () {
 Route::get('/user/profiles/{user}', [ProfileController::class, 'show_profile'])->name('profiles.show');
 Route::get('/user/profiles/{user}/edit', [ProfileController::class, 'edit_profile'])->name('profiles.edit')->middleware('auth');
 Route::put('/user/profiles/{user}', [ProfileController::class, 'update_profile'])->name('profiles.update');
+
+
+Route::view('/form', 'multi-form')->name('multi-form');
