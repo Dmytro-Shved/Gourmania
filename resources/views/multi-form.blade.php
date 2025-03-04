@@ -17,7 +17,7 @@
                 <!-- step 1 (current) -->
                 <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-label="recipe">
                     <span class="text-white bg-gourmania flex items-center justify-center size-6 rounded-full">1</span>
-                    <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Recipe</span>
+                    <span class="absolute top-8 text-xs font-bold sm:static sm:top-0 sm:text-base">Recipe</span>
                 </li>
 
                 <span class="h-0.5 w-full bg-gourmania" aria-hidden="true"></span>
@@ -161,9 +161,9 @@
 
     @php
         $units = [
-            'kg(s)', 'g(s)', 'piece(s)',
-            'head(s)', 'liter(s)', 'to taste',
-            'bunche(s)', 'twig(s)', 'stem(s)'
+            'kg', 'g', 'piece',
+            'head', 'liter', 'to taste',
+            'bunche', 'twig', 'stem'
             ]
     @endphp
 
@@ -187,7 +187,7 @@
                 <!-- step 2  (current) -->
                 <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-current="step" aria-label="ingredients">
                     <span class="text-white bg-gourmania flex items-center justify-center size-6 rounded-full">2</span>
-                    <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Ingredients</span>
+                    <span class="absolute top-8 text-xs font-bold sm:static sm:top-0 sm:text-base">Ingredients</span>
                 </li>
 
                 <span class="h-0.5 w-full bg-gourmania" aria-hidden="true"></span>
@@ -228,7 +228,7 @@
                                 <input
                                     placeholder="1"
                                     type="number"
-                                    class="w-full px-3 py-1.5 border border-gray-300 rounded-lg gourmania-focus"
+                                    class="w-full text-[15px] px-2 py-1.5 border border-gray-300 rounded-lg gourmania-focus"
                                     min="1"
                                 />
                             </div>
@@ -238,13 +238,24 @@
                         <td class="py-2 pl-1 w-1/3">
                             <select
                                 name="menu"
-                                class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-2 py-2"
+                                class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-[14px] gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-2 py-1.5"
                                 autocomplete="off"
                             >
                                 @foreach($units as $unit)
                                     <option value="{{ $unit }}">{{ $unit }}</option>
                                 @endforeach
                             </select>
+                        </td>
+
+                        <!-- Remove block button -->
+                        <td class="relative">
+                            <div class="absolute bottom-3.5">
+                                <button type="button" class="w-[30px] bg-[#603912] hover:bg-red-500 text-white font-medium py-1 rounded-lg transition-colors flex justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+                                        <path d="M3.75 7.25a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z" />
+                                    </svg>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                     </tbody>
@@ -313,7 +324,7 @@
                 <!-- step 3 (current) -->
                 <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-label="guide">
                     <span class="text-white bg-gourmania flex items-center justify-center size-6 rounded-full">3</span>
-                    <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Guide</span>
+                    <span class="absolute top-8 text-xs font-bold sm:static sm:top-0 sm:text-base">Guide</span>
                 </li>
             </ol>
 
