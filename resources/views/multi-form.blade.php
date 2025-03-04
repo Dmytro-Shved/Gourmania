@@ -52,6 +52,7 @@
             <!-- Select Image -->
 
             <!-- Select Image -->
+            <label class="block text-sm font-medium text-gray-700 mb-1">Recipe image</label>
             <div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null }">
                 <label for="photo" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
                     <input name="photo" type="file" class="sr-only" id="photo" x-on:change="files = Object.values($event.target.files)" accept="image/jpeg, image/png, image/webp">
@@ -87,8 +88,7 @@
                         <textarea id="textArea"
                                   name="description"
                                   class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75" rows="3"
-                                  placeholder="This recipe is about...">
-                        </textarea>
+                                  placeholder="This recipe is about..."></textarea>
                     </div>
                 </div>
 
@@ -316,72 +316,68 @@
             <br>
             <br>
 
-            <div class="space-y-4">
-                <table class="w-full text-left table-auto">
-                    <thead>
-                    <tr>
-                        <th class="text-sm font-medium text-gray-700 pt-2 text-center">Ingredient</th>
-                        <th class="text-sm font-medium text-gray-700 pt-2 text-center">Quantity</th>
-                        <th class="text-sm font-medium text-gray-700 pt-2 text-center">Unit</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <!-- Ingredient Name -->
-                        <td class="py-2 pr-1 w-1/3">
-                            <input
-                                type="text"
-                                class="w-full px-2 py-2 border border-gray-300 rounded-lg gourmania-focus text-sm"
-                                placeholder="Chicken"
-                            />
-                        </td>
+            <div class="p-2 border border-gray-400 rounded-lg">
 
-                        <!-- Quantity -->
-                        <td class="py-2 w-1/3">
-                            <div class="flex justify-center">
-                                <input
-                                    placeholder="1"
-                                    type="number"
-                                    class="w-full px-3 py-1.5 border border-gray-300 rounded-lg gourmania-focus"
-                                    min="1"
-                                />
-                            </div>
-                        </td>
+                <!-- Step Number -->
+                <div class="flex justify-center mb-2">
+                    <span class="text-black border border-black flex items-center justify-center size-6 rounded-full">1</span>
+                </div>
 
-                        <!-- Unit -->
-                        <td class="py-2 pl-1 w-1/3">
-                            <select
-                                name="menu"
-                                class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-2 py-2"
-                                autocomplete="off"
-                            >
-                                @foreach($units as $unit)
-                                    <option value="{{ $unit }}">{{ $unit }}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <!-- Select Image -->
+                <div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null, inputId: 'photo-' + Math.random().toString(36).substring(2, 9) }">
+                    <label :for="inputId" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
+                        <input :id="inputId" name="photo" type="file" class="sr-only" x-on:change="files = Object.values($event.target.files)" accept="image/jpeg, image/png, image/webp">
+                        <span x-text="files ? files.map(file => file.name).join(', ') : 'New photo...'"></span>
+                    </label>
 
-                <br>
+                    <!-- mini photo -->
+                    <template x-if="files && files.length > 0">
+                        <div class="mt-2 w-full h-32 flex justify-center items-center overflow-hidden">
+                            <img :src="URL.createObjectURL(files[0])" alt="Thumbnail" class="w-full h-full object-cover" />
+                        </div>
+                    </template>
 
-                <div class="flex justify-between">
-                    <!-- Previous step button -->
-                    <div class="flex justify-start">
-                        <button type="button"
-                                class="w-[100px] bg-gray-500 hover:bg-gray-400 text-white font-medium py-2.5 rounded-lg transition-colors">
-                            Previous
-                        </button>
+                    <!-- reset button -->
+                    <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">Reset</button>
+                </div>
+
+                <!-- Step text -->
+                <div class="w-full">
+                    <div class="flex w-full max-w-md flex-col gap-1 text-on-surface dark:text-on-surface-dark">
+                        <label class="block text-sm font-medium text-gray-700 mb-1"></label>
+                        <textarea id="textArea"
+                                  name="description"
+                                  class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75" rows="3"
+                                  placeholder="This recipe is about..."></textarea>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Next step button -->
-                    <div class="flex justify-end">
-                        <button type="button"
-                                class="w-[100px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
-                            Next
-                        </button>
-                    </div>
+            <div class="flex justify-end mt-3">
+                <button type="button" class="w-[35px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors flex justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4 ">
+                        <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
+                    </svg>
+                </button>
+            </div>
+
+            <br>
+
+            <div class="flex justify-between">
+                <!-- Previous step button -->
+                <div class="flex justify-start">
+                    <button type="button"
+                            class="w-[100px] bg-gray-500 hover:bg-gray-400 text-white font-medium py-2.5 rounded-lg transition-colors">
+                        Previous
+                    </button>
+                </div>
+
+                <!-- Next step button -->
+                <div class="flex justify-end">
+                    <button type="button"
+                            class="w-[100px] bg-green-400 hover:bg-green-300 text-white font-medium py-2.5 rounded-lg transition-colors">
+                        Submit
+                    </button>
                 </div>
             </div>
         </div>
@@ -393,7 +389,6 @@
     </div>
 
     <br>
-
 
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi aperiam blanditiis consectetur, culpa delectus dolore eveniet fugiat iure magni minus omnis quam reiciendis saepe sint soluta totam ut voluptas. Autem dolore impedit repellendus unde velit. Ab atque culpa est excepturi quaerat quidem vero. Accusamus delectus harum quos sapiente vel?
 </x-layout>
