@@ -3,90 +3,156 @@
     {{-- All recipes --}}
     <div class="title-container">
         <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
-        <small class="font-inknut text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
+        <small class="font-inknut text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
             CREATE NEW RECIPE
         </small>
         <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
     </div>
 
-    <br>
-
     {{--STEP 1--}}
     <div class="bg-gray-100 flex items-center justify-center p-4 font-inclusive">
         <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
+            <!-- Stepper -->
+            <ol class="flex w-full items-center justify-between gap-2 sm:gap-4 relative" aria-label="registration progress">
+                <!-- step 1 (current) -->
+                <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-label="recipe">
+                    <span class="text-white bg-gourmania flex items-center justify-center size-6 rounded-full">1</span>
+                    <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Recipe</span>
+                </li>
 
-            {{--<ol class="flex w-full items-center gap-2" aria-label="registration progress">--}}
-            {{--    <!-- completed step -->--}}
-            {{--    <li class="text-sm" aria-label="recipe">--}}
-            {{--        <div class="flex items-center gap-2">--}}
-            {{--            <span class="flex size-6 items-center justify-center rounded-full border border-[#AE763E] text-on-primary">--}}
-            {{--                1--}}
-            {{--            </span>--}}
-            {{--            <span class="hidden w-max sm:inline">Recipe</span>--}}
-            {{--        </div>--}}
-            {{--    </li>--}}
+                <span class="h-0.5 w-full bg-gourmania" aria-hidden="true"></span>
 
-            {{--    <span class="h-0.5 w-full bg-[#AE763E]" aria-hidden="true"></span>--}}
+                <!-- step 2 -->
+                <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-current="step" aria-label="ingredients">
+                    <span class="flex size-6 items-center justify-center rounded-full border border-[#AE763E] text-on-primary">2</span>
+                    <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Ingredients</span>
+                </li>
 
-            {{--    <!-- current step -->--}}
-            {{--    <li class="flex w-full items-center text-sm" aria-current="step" aria-label="ingredients">--}}
-            {{--        <span class="h-0.5 w-full bg-[#AE763E]" aria-hidden="true"></span>--}}
-            {{--        <div class="flex items-center gap-2 pl-2">--}}
-            {{--            <span class="flex size-6 items-center justify-center rounded-full border border-[#AE763E] text-on-primary">--}}
-            {{--                2--}}
-            {{--            </span>--}}
-            {{--            <span class="hidden w-max sm:inline">Ingredients</span>--}}
-            {{--        </div>--}}
-            {{--    </li>--}}
+                <span class="h-0.5 w-full bg-gourmania" aria-hidden="true"></span>
 
-            {{--    <span class="h-0.5 w-full bg-[#AE763E]" aria-hidden="true"></span>--}}
+                <!-- step 3 -->
+                <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-label="guide">
+                    <span class="flex size-6 items-center justify-center rounded-full border border-[#AE763E] text-on-primary">3</span>
+                    <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Guide</span>
+                </li>
+            </ol>
 
-            {{--    <!-- next step -->--}}
-            {{--    <li class="flex w-full items-center text-sm" aria-label="guide">--}}
-            {{--        <span class="h-0.5 w-full bg-outline dark:bg-outline-dark" aria-hidden="true"></span>--}}
-            {{--        <div class="flex items-center gap-2 pl-2">--}}
-            {{--            <span class="flex size-6 items-center justify-center rounded-full border border-[#AE763E] text-on-primary">--}}
-            {{--                3--}}
-            {{--            </span>--}}
-            {{--            <span class="hidden w-max sm:inline">Guide</span>--}}
-            {{--        </div>--}}
-            {{--    </li>--}}
-            {{--</ol>--}}
-            {{--<br>--}}
+            <br>
+            <br>
 
-            <!-- step counter -->
-            <h2 class="text-xl font-bold text-gray-900 mb-6 text-center">Step <span class="text-white px-3 py-1 bg-gourmania rounded-full">1</span> / 3</h2>
+            <!-- Select Image (Old Version) -->
+            {{--<div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null }">--}}
+            {{--    <label for="photo" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">--}}
+            {{--        <input name="photo" type="file" class="sr-only" id="photo" x-on:change="files = Object.values($event.target.files)">--}}
+            {{--        <span x-text="files ? files.map(file => file.name).join(', ') : 'New photo...'"></span>--}}
+            {{--    </label>--}}
+            {{--    <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg">Reset</button>--}}
+            {{--</div>--}}
 
-            <!-- Image -->
+            <!-- Select Image -->
+
+            <!-- Select Image -->
             <div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null }">
                 <label for="photo" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
-                    <input name="photo" type="file" class="sr-only" id="photo" x-on:change="files = Object.values($event.target.files)">
+                    <input name="photo" type="file" class="sr-only" id="photo" x-on:change="files = Object.values($event.target.files)" accept="image/jpeg, image/png, image/webp">
                     <span x-text="files ? files.map(file => file.name).join(', ') : 'New photo...'"></span>
                 </label>
-                <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg">Reset</button>
+
+                <!-- mini photo -->
+                <template x-if="files && files.length > 0">
+                    <div class="mt-2">
+                        <img :src="URL.createObjectURL(files[0])" alt="Thumbnail" class="w-32 h-32 object-cover rounded-md" />
+                    </div>
+                </template>
+
+                <!-- reset button -->
+                <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">Reset</button>
             </div>
 
+            <!-- Recipe name -->
             <div class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Recipe name</label>
-                    <input
-                        name="email"
-                        type="text"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus"
-                        placeholder="Chicken Broth"
-                        value="{{ old('email') }}"
+                    <input name="email"
+                           type="text"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus"
+                           placeholder="Chicken Broth"
                     />
                 </div>
 
+                <!-- Recipe description -->
                 <div class="w-full">
                     <div class="flex w-full max-w-md flex-col gap-1 text-on-surface dark:text-on-surface-dark">
-                        <textarea id="textArea" name="description" class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75" rows="3" placeholder="This recipe is about..."></textarea>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                        <textarea id="textArea"
+                                  name="description"
+                                  class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75" rows="3"
+                                  placeholder="This recipe is about...">
+                        </textarea>
                     </div>
                 </div>
 
-                <button type="button" class="w-full bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
-                    Next
-                </button>
+                <!-- temp data -->
+                @php
+                    $dishCategories = \App\Models\DishCategory::get();
+                    $cuisines = \App\Models\Cuisine::get();
+                    $menus = \App\Models\Menu::get();
+                @endphp
+
+
+                <!-- Select Category, Cuisine Menu -->
+                <div class="relative w-full">
+
+                    <!-- category -->
+                    <label class="block text-sm font-medium text-gray-700 mb-1 mt-2">Category</label>
+                    <select name="dish_category"
+                            class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-4 py-2"
+                            autocomplete="off"
+                    >
+                        <option value="">Select Category</option>
+
+                        @foreach($dishCategories as $dishCategory)
+                            <option value="{{$dishCategory->id }}">{{ $dishCategory->name }}</option>
+                        @endforeach
+                    </select>
+
+                    <!-- cuisine -->
+                    <label class="block text-sm font-medium text-gray-700 mb-1 mt-2">Cuisine</label>
+                    <select
+                        name="cuisine"
+                        class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-4 py-2"
+                        autocomplete="off"
+                    >
+
+                        <option value="" selected>Select Cuisine</option>
+
+                        @foreach($cuisines as $cuisine)
+                            <option value="{{ $cuisine->id }}">{{ $cuisine->name }}</option>
+                        @endforeach
+                    </select>
+
+                    <!-- menu -->
+                    <label class="block text-sm font-medium text-gray-700 mb-1 mt-2">Menu</label>
+                    <select
+                        name="menu"
+                        class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-4 py-2"
+                        autocomplete="off"
+                    >
+
+                        <option value="" selected>Select menu</option>
+                        @foreach($menus as $menu)
+                            <option value="{{ $menu->id }}">{{ $menu->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Next step button -->
+                <div class="flex justify-end">
+                    <button type="button"
+                            class="w-[100px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
+                        Next
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -94,7 +160,33 @@
     {{--STEP 2--}}
     <div class="bg-gray-100 flex items-center justify-center p-4 font-inclusive">
         <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
-            <h2 class="text-xl font-bold text-gray-900 mb-6 text-center">Step <span class="text-white px-3 py-1 bg-gourmania rounded-full">2</span> / 3</h2>
+            <!-- Stepper -->
+            <ol class="flex w-full items-center justify-between gap-2 sm:gap-4 relative" aria-label="registration progress">
+                <!-- step 1 (current) -->
+                <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-label="recipe">
+                    <span class="text-white bg-gourmania flex items-center justify-center size-6 rounded-full">1</span>
+                    <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Recipe</span>
+                </li>
+
+                <span class="h-0.5 w-full bg-gourmania" aria-hidden="true"></span>
+
+                <!-- step 2 -->
+                <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-current="step" aria-label="ingredients">
+                    <span class="flex size-6 items-center justify-center rounded-full border border-[#AE763E] text-on-primary">2</span>
+                    <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Ingredients</span>
+                </li>
+
+                <span class="h-0.5 w-full bg-gourmania" aria-hidden="true"></span>
+
+                <!-- step 3 -->
+                <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-label="guide">
+                    <span class="flex size-6 items-center justify-center rounded-full border border-[#AE763E] text-on-primary">3</span>
+                    <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Guide</span>
+                </li>
+            </ol>
+
+            <br>
+            <br>
 
             <div class="space-y-4">
                 <div>

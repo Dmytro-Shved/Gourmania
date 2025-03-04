@@ -33,17 +33,36 @@
                                     <img src="{{ asset('./storage/'. $user->photo) }}" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0" alt="User photo">
                                 </div>
 
+                                <!-- Choose new photo (Old Version) -->
+                                {{--<div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null }">--}}
+                                {{--    <label for="photo" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">--}}
+                                {{--        <input name="photo" type="file" class="sr-only" id="photo" x-on:change="files = Object.values($event.target.files)">--}}
+                                {{--        <span x-text="files ? files.map(file => file.name).join(', ') : 'New photo...'"></span>--}}
+                                {{--    </label>--}}
+                                {{--    <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg">Reset</button>--}}
+
+                                {{--    @error('photo')--}}
+                                {{--    <p class="text-red-500">{{ $message }}</p>--}}
+                                {{--    @enderror--}}
+                                {{--</div>--}}
+
                                 <!-- Choose new photo -->
                                 <div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null }">
                                     <label for="photo" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
                                         <input name="photo" type="file" class="sr-only" id="photo" x-on:change="files = Object.values($event.target.files)">
                                         <span x-text="files ? files.map(file => file.name).join(', ') : 'New photo...'"></span>
                                     </label>
-                                    <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg">Reset</button>
 
-                                    @error('photo')
-                                    <p class="text-red-500">{{ $message }}</p>
-                                    @enderror
+                                    <!-- mini photo -->
+                                    <template x-if="files && files.length > 0">
+                                        <div class="mt-2">
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">New photo:</label>
+                                            <img :src="URL.createObjectURL(files[0])" alt="Thumbnail" class="w-32 h-32 object-cover rounded-md" />
+                                        </div>
+                                    </template>
+
+                                    <!-- reset button -->
+                                    <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">Reset</button>
                                 </div>
 
                                 <!-- under name text -->
