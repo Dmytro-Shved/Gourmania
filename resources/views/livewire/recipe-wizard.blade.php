@@ -1,14 +1,14 @@
 <form action="" method="POST">
-    @if($form_step == 1)
-        {{--STEP 1--}}
-        <div class="bg-gray-100 flex items-center justify-center p-4 font-inclusive">
-            <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
-                <!-- Stepper -->
-                <ol class="flex w-full items-center justify-between gap-2 sm:gap-4 relative" aria-label="registration progress">
+    {{--Form Card--}}
+    <div class="bg-gray-100 flex items-center justify-center p-4 font-inclusive">
+        <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
+            {{--Stepper--}}
+            <ol class="flex w-full items-center justify-between gap-2 sm:gap-4 relative" aria-label="registration progress">
+                @if($form_step == 1)
                     <!-- step 1 (current) -->
                     <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-label="recipe">
                         <span class="text-white bg-gourmania flex items-center justify-center size-6 rounded-full">1</span>
-                        <span class="absolute top-8 text-xs font-bold sm:static sm:top-0 sm:text-base">Recipe</span>
+                        <span class="absolute top-8 text-xs font-bold sm:static sm:top-0 sm:text-base">Info</span>
                     </li>
 
                     <span class="h-0.5 w-full bg-gourmania" aria-hidden="true"></span>
@@ -26,41 +26,98 @@
                         <span class="flex size-6 items-center justify-center rounded-full border border-[#AE763E] text-on-primary">3</span>
                         <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Guide</span>
                     </li>
-                </ol>
+                @endif
 
-                <br>
-                <br>
+                @if($form_step == 2)
+                        <!-- step 1 (completed) -->
+                        <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-label="recipe">
+                            <span class="text-white bg-gourmania flex items-center justify-center size-6 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+                                   <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                            <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Info</span>
+                        </li>
 
-                <!-- Select Image (Old Version) -->
-                {{--<div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null }">--}}
-                {{--    <label for="photo" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">--}}
-                {{--        <input name="photo" type="file" class="sr-only" id="photo" x-on:change="files = Object.values($event.target.files)">--}}
-                {{--        <span x-text="files ? files.map(file => file.name).join(', ') : 'New photo...'"></span>--}}
-                {{--    </label>--}}
-                {{--    <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg">Reset</button>--}}
-                {{--</div>--}}
+                        <span class="h-0.5 w-full bg-gourmania" aria-hidden="true"></span>
 
-                <!-- Select Image -->
-                <label class="block text-sm font-medium text-gray-700 mb-1">Recipe image</label>
-                <div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null }">
-                    <label for="photo" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
-                        <input name="photo" type="file" class="sr-only" id="photo" x-on:change="files = Object.values($event.target.files)" accept="image/jpeg, image/png, image/webp">
-                        <span x-text="files ? files.map(file => file.name).join(', ') : 'New photo...'"></span>
-                    </label>
+                        <!-- step 2  (current) -->
+                        <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-current="step" aria-label="ingredients">
+                            <span class="text-white bg-gourmania flex items-center justify-center size-6 rounded-full">2</span>
+                            <span class="absolute top-8 text-xs font-bold sm:static sm:top-0 sm:text-base">Ingredients</span>
+                        </li>
 
-                    <!-- mini photo -->
-                    <template x-if="files && files.length > 0">
-                        <div class="mt-2">
-                            <img :src="URL.createObjectURL(files[0])" alt="Thumbnail" class="w-32 h-32 object-cover rounded-md"/>
-                        </div>
-                    </template>
+                        <span class="h-0.5 w-full bg-gourmania" aria-hidden="true"></span>
 
-                    <!-- reset button -->
-                    <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">Reset</button>
-                </div>
+                        <!-- step 3 -->
+                        <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-label="guide">
+                            <span class="flex size-6 items-center justify-center rounded-full border border-[#AE763E] text-on-primary">3</span>
+                            <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Guide</span>
+                        </li>
+                @endif
 
-                <!-- Recipe name -->
-                <div class="space-y-4">
+                @if($form_step == 3)
+                        <!-- step 1 (completed) -->
+                        <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-label="recipe">
+                            <span class="text-white bg-gourmania flex items-center justify-center size-6 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+                                   <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                            <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Info</span>
+                        </li>
+
+                        <span class="h-0.5 w-full bg-gourmania" aria-hidden="true"></span>
+
+                        <!-- step 2 (completed) -->
+                        <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-current="step" aria-label="ingredients">
+                            <span class="text-white bg-gourmania flex items-center justify-center size-6 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+                                  <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                            <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Ingredients</span>
+                        </li>
+
+                        <span class="h-0.5 w-full bg-gourmania" aria-hidden="true"></span>
+
+                        <!-- step 3 (current) -->
+                        <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-label="guide">
+                            <span class="text-white bg-gourmania flex items-center justify-center size-6 rounded-full">3</span>
+                            <span class="absolute top-8 text-xs font-bold sm:static sm:top-0 sm:text-base">Guide</span>
+                        </li>
+                @endif
+            </ol>
+            {{--END Stepper--}}
+
+            <br>
+            <br>
+
+            {{--STEPS--}}
+            <div class="space-y-4">
+
+                {{--STEP 1--}}
+                @if($form_step == 1)
+                    <!-- Select Image -->
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Recipe image</label>
+                    <div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null }">
+                        <label for="photo" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
+                            <input name="photo" type="file" class="sr-only" id="photo" x-on:change="files = Object.values($event.target.files)" accept="image/jpeg, image/png, image/webp">
+                            <span x-text="files ? files.map(file => file.name).join(', ') : 'New photo...'"></span>
+                        </label>
+
+                        <!-- mini photo -->
+                        <template x-if="files && files.length > 0">
+                            <div class="mt-2">
+                                <img :src="URL.createObjectURL(files[0])" alt="Thumbnail" class="w-32 h-32 object-cover rounded-md"/>
+                            </div>
+                        </template>
+
+                        <!-- reset button -->
+                        <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">Reset</button>
+                    </div>
+
+                    <!-- Recipe name -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Recipe name</label>
                         <input name="email"
@@ -81,15 +138,7 @@
                         </div>
                     </div>
 
-                    <!-- temp data -->
-                    @php
-                        $dishCategories = \App\Models\DishCategory::get();
-                        $cuisines = \App\Models\Cuisine::get();
-                        $menus = \App\Models\Menu::get();
-                    @endphp
-
-
-                        <!-- Select Category, Cuisine Menu -->
+                    <!-- Select Category, Cuisine Menu -->
                     <div class="relative w-full">
 
                         <!-- category -->
@@ -134,67 +183,11 @@
                             @endforeach
                         </select>
                     </div>
+                @endif
+                {{--END STEP 1--}}
 
-                    <br>
-
-                    <!-- Next step button -->
-                    <div class="flex justify-end">
-                        <button wire:click="next_step()"
-                                type="button"
-                                class="w-[100px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
-                            Next
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
-    @if($form_step == 2)
-
-        @php
-            $units = [
-                'kg', 'g', 'piece',
-                'head', 'liter', 'to taste',
-                'bunche', 'twig', 'stem'
-                ]
-        @endphp
-
-        {{--STEP 2--}}
-        <div class="bg-gray-100 flex items-center justify-center p-4 font-inclusive">
-            <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
-                <!-- Stepper -->
-                <ol class="flex w-full items-center justify-between gap-2 sm:gap-4 relative" aria-label="registration progress">
-                    <!-- step 1 (completed) -->
-                    <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-label="recipe">
-                        <span class="text-white bg-gourmania flex items-center justify-center size-6 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-                              <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
-                            </svg>
-                        </span>
-                        <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Recipe</span>
-                    </li>
-
-                    <span class="h-0.5 w-full bg-gourmania" aria-hidden="true"></span>
-
-                    <!-- step 2  (current) -->
-                    <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-current="step" aria-label="ingredients">
-                        <span class="text-white bg-gourmania flex items-center justify-center size-6 rounded-full">2</span>
-                        <span class="absolute top-8 text-xs font-bold sm:static sm:top-0 sm:text-base">Ingredients</span>
-                    </li>
-
-                    <span class="h-0.5 w-full bg-gourmania" aria-hidden="true"></span>
-
-                    <!-- step 3 -->
-                    <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-label="guide">
-                        <span class="flex size-6 items-center justify-center rounded-full border border-[#AE763E] text-on-primary">3</span>
-                        <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Guide</span>
-                    </li>
-                </ol>
-
-                <br>
-                <br>
-
-                <div class="space-y-4">
+                {{--STEP 2--}}
+                @if($form_step == 2)
                     <table class="w-full text-left table-auto">
                         <thead>
                         <tr>
@@ -261,9 +254,72 @@
                         </button>
                     </div>
 
-                    <br>
+                @endif
+                {{--END STEP 2--}}
 
-                    <div class="flex justify-between">
+                {{--STEP 3--}}
+                @if($form_step == 3)
+                    <div class="p-2 border border-gray-400 rounded-lg">
+                        <!-- Step Number -->
+                        <div class="flex justify-center mb-2">
+                            <span class="text-black border border-black flex items-center justify-center size-6 rounded-full">1</span>
+                        </div>
+
+                        <!-- Select Image -->
+                        <div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null, inputId: 'photo-' + Math.random().toString(36).substring(2, 9) }">
+                            <label :for="inputId" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
+                                <input :id="inputId" name="photo" type="file" class="sr-only" x-on:change="files = Object.values($event.target.files)" accept="image/jpeg, image/png, image/webp">
+                                <span x-text="files ? files.map(file => file.name).join(', ') : 'New photo...'"></span>
+                            </label>
+
+                            <!-- mini photo -->
+                            <template x-if="files && files.length > 0">
+                                <div class="mt-2 w-full h-32 flex justify-center items-center overflow-hidden">
+                                    <img :src="URL.createObjectURL(files[0])" alt="Thumbnail" class="w-full h-full object-cover" />
+                                </div>
+                            </template>
+
+                            <!-- reset button -->
+                            <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">Reset</button>
+                        </div>
+
+                        <!-- Step text -->
+                        <div class="w-full">
+                            <div class="flex w-full max-w-md flex-col gap-1 text-on-surface dark:text-on-surface-dark">
+                                <label class="block text-sm font-medium text-gray-700 mb-1"></label>
+                                <textarea id="textArea"
+                                          name="description"
+                                          class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75" rows="3"
+                                          placeholder="This recipe is about..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Add new block -->
+                        <div class="flex justify-end mt-3">
+                            <button type="button" class="w-[35px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors flex justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+                                    <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                @endif
+                {{--END STEP 3--}}
+
+                {{--Navigation buttons--}}
+                <div class="flex justify-between">
+                    @if($form_step == 1)
+                        <!-- Next step button -->
+                        <div class="ml-auto">
+                            <button wire:click="next_step()"
+                                    type="button"
+                                    class="w-[100px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
+                                Next
+                            </button>
+                        </div>
+                    @endif
+
+                    @if($form_step == 2)
                         <!-- Previous step button -->
                         <div class="flex justify-start">
                             <button wire:click="prev_step()"
@@ -278,122 +334,33 @@
                             <button wire:click="next_step()"
                                     type="button"
                                     class="w-[100px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
-
                                 Next
                             </button>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
-    @if($form_step == 3)
-        {{--STEP 3--}}
-        <div class="bg-gray-100 flex items-center justify-center p-4 font-inclusive">
-            <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
-                <!-- Stepper -->
-                <ol class="flex w-full items-center justify-between gap-2 sm:gap-4 relative" aria-label="registration progress">
-                    <!-- step 1 (completed) -->
-                    <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-label="recipe">
-                        <span class="text-white bg-gourmania flex items-center justify-center size-6 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-                              <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
-                            </svg>
-                        </span>
-                        <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Recipe</span>
-                    </li>
+                    @endif
 
-                    <span class="h-0.5 w-full bg-gourmania" aria-hidden="true"></span>
-
-                    <!-- step 2 (completed) -->
-                    <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-current="step" aria-label="ingredients">
-                        <span class="text-white bg-gourmania flex items-center justify-center size-6 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-                              <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
-                            </svg>
-                        </span>
-                        <span class="absolute top-8 text-xs sm:static sm:top-0 sm:text-base">Ingredients</span>
-                    </li>
-
-                    <span class="h-0.5 w-full bg-gourmania" aria-hidden="true"></span>
-
-                    <!-- step 3 (current) -->
-                    <li class="flex items-center sm:gap-2 text-sm relative w-full justify-center sm:justify-start" aria-label="guide">
-                        <span class="text-white bg-gourmania flex items-center justify-center size-6 rounded-full">3</span>
-                        <span class="absolute top-8 text-xs font-bold sm:static sm:top-0 sm:text-base">Guide</span>
-                    </li>
-                </ol>
-
-                <br>
-                <br>
-
-                <div class="p-2 border border-gray-400 rounded-lg">
-
-                    <!-- Step Number -->
-                    <div class="flex justify-center mb-2">
-                        <span class="text-black border border-black flex items-center justify-center size-6 rounded-full">1</span>
-                    </div>
-
-                    <!-- Select Image -->
-                    <div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null, inputId: 'photo-' + Math.random().toString(36).substring(2, 9) }">
-                        <label :for="inputId" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
-                            <input :id="inputId" name="photo" type="file" class="sr-only" x-on:change="files = Object.values($event.target.files)" accept="image/jpeg, image/png, image/webp">
-                            <span x-text="files ? files.map(file => file.name).join(', ') : 'New photo...'"></span>
-                        </label>
-
-                        <!-- mini photo -->
-                        <template x-if="files && files.length > 0">
-                            <div class="mt-2 w-full h-32 flex justify-center items-center overflow-hidden">
-                                <img :src="URL.createObjectURL(files[0])" alt="Thumbnail" class="w-full h-full object-cover" />
-                            </div>
-                        </template>
-
-                        <!-- reset button -->
-                        <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">Reset</button>
-                    </div>
-
-                    <!-- Step text -->
-                    <div class="w-full">
-                        <div class="flex w-full max-w-md flex-col gap-1 text-on-surface dark:text-on-surface-dark">
-                            <label class="block text-sm font-medium text-gray-700 mb-1"></label>
-                            <textarea id="textArea"
-                                      name="description"
-                                      class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75" rows="3"
-                                      placeholder="This recipe is about..."></textarea>
+                    @if($form_step == 3)
+                        <!-- Previous step button -->
+                        <div class="flex justify-start">
+                            <button wire:click="prev_step()"
+                                    type="button"
+                                    class="w-[100px] bg-gray-500 hover:bg-gray-400 text-white font-medium py-2.5 rounded-lg transition-colors">
+                                    Previous
+                            </button>
                         </div>
-                    </div>
+
+                            <!-- Submit button -->
+                            <div class="flex justify-end">
+                                <button type="button"
+                                        class="w-[100px] bg-green-400 hover:bg-green-300 text-white font-medium py-2.5 rounded-lg transition-colors">
+                                    Submit
+                                </button>
+                            </div>
+                    @endif
                 </div>
-
-                <!-- Add new block -->
-                <div class="flex justify-end mt-3">
-                    <button type="button" class="w-[35px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors flex justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-                            <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
-                        </svg>
-                    </button>
-                </div>
-
-                <br>
-
-                <div class="flex justify-between">
-                    <!-- Previous step button -->
-                    <div class="flex justify-start">
-                        <button wire:click="prev_step()"
-                                type="button"
-                                class="w-[100px] bg-gray-500 hover:bg-gray-400 text-white font-medium py-2.5 rounded-lg transition-colors">
-                            Previous
-                        </button>
-                    </div>
-
-                    <!-- Next step button -->
-                    <div class="flex justify-end">
-                        <button type="button"
-                                class="w-[100px] bg-green-400 hover:bg-green-300 text-white font-medium py-2.5 rounded-lg transition-colors">
-                            Submit
-                        </button>
-                    </div>
-                </div>
+                {{--END Navigation buttons--}}
             </div>
+            {{--END STEPS--}}
         </div>
-    @endif
+    </div>
 </form>
