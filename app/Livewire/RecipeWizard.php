@@ -10,7 +10,6 @@ use Livewire\Component;
 class RecipeWizard extends Component
 {
     public $form_step = 1;
-    public $total_steps = 3;
 
     public $dishCategories;
     public $cuisines;
