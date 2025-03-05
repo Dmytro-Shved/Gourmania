@@ -12,6 +12,7 @@ use App\Models\IngredientRecipe;
 use App\Models\Menu;
 use App\Models\Recipe;
 use App\Models\Role;
+use App\Models\Unit;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Database\Seeder;
@@ -77,6 +78,18 @@ class DatabaseSeeder extends Seeder
         'Preparations'
     ];
 
+     public array $units = [
+         'kg',
+         'g',
+         'piece',
+         'head',
+         'liter',
+         'to taste',
+         'bunche',
+         'twig',
+         'stem'
+    ];
+
     /**
      * Seed the application's database.
      */
@@ -126,6 +139,13 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        // seed units table
+        foreach ($this->units as $unit) {
+            Unit::factory(1)->create([
+                'name' => $unit
+            ]);
+        }
+
         // seed recipes table
         Recipe::factory()->create([
             'name' => 'Chicken Broth',
@@ -139,13 +159,13 @@ class DatabaseSeeder extends Seeder
 
         // array for the ingredient_recipe (pivot) table
         $broth_ingredients = [
-            ['id' => 1, 'quantity' => 1, 'unit' => 'kg'],
-            ['id' => 2, 'quantity' => 3, 'unit' => 'pieces'],
-            ['id' => 3, 'quantity' => 2, 'unit' => 'pieces'],
-            ['id' => 5, 'quantity' => 2, 'unit' => 'heads'],
-            ['id' => 8, 'quantity' => 1, 'unit' => 'to taste'],
-            ['id' => 6, 'quantity' => 2, 'unit' => 'pieces'],
-            ['id' => 11, 'quantity' => 2, 'unit' => 'liters'],
+            ['id' => 1, 'quantity' => 1, 'unit' => '1'],
+            ['id' => 2, 'quantity' => 3, 'unit' => '3'],
+            ['id' => 3, 'quantity' => 2, 'unit' => '3'],
+            ['id' => 5, 'quantity' => 2, 'unit' => '4'],
+            ['id' => 8, 'quantity' => 1, 'unit' => '6'],
+            ['id' => 6, 'quantity' => 2, 'unit' => '3'],
+            ['id' => 11, 'quantity' => 2, 'unit' => '5'],
         ];
 
         // seed ingredient_recipe (pivot) table
@@ -154,7 +174,7 @@ class DatabaseSeeder extends Seeder
                 'recipe_id' => 1,
                 'ingredient_id' => $ingredient['id'],
                 'quantity' => $ingredient['quantity'],
-                'unit' => $ingredient['unit'],
+                'unit_id' => $ingredient['unit'],
             ]);
         }
 

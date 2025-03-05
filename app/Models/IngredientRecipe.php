@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class IngredientRecipe extends Pivot
@@ -15,6 +17,11 @@ class IngredientRecipe extends Pivot
         'recipe_id',
         'ingredient_id',
         'quantity',
-        'unit'
+        'unit_id'
     ];
+
+    public function unit(): BelongsTo
+    {
+        return $this->belongsTo(Unit::class);
+    }
 }

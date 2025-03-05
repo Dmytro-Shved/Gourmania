@@ -226,7 +226,7 @@
                                     autocomplete="off"
                                 >
                                     @foreach($units as $unit)
-                                        <option value="{{ $unit }}">{{ $unit }}</option>
+                                        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                                     @endforeach
                                 </select>
                             </td>
