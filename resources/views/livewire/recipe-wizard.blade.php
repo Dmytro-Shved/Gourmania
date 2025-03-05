@@ -95,15 +95,14 @@
 
             {{--STEPS--}}
             <div class="space-y-4">
-
                 {{--STEP 1--}}
                 @if($form_step == 1)
                     <!-- Select Image -->
                     <label class="block text-sm font-medium text-gray-700 mb-1">Recipe image</label>
                     <div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null }">
-                        <label for="photo" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
-                            <input name="photo" type="file" class="sr-only" id="photo" x-on:change="files = Object.values($event.target.files)" accept="image/jpeg, image/png, image/webp">
-                            <span x-text="files ? files.map(file => file.name).join(', ') : 'New photo...'"></span>
+                        <label for="recipe_image" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
+                            <input wire:modl name="recipe_image" type="file" class="sr-only" id="recipe_image" x-on:change="files = Object.values($event.target.files)" accept="image/jpeg, image/png, image/webp">
+                            <span x-text="files ? files.map(file => file.name).join(', ') : 'Select photo...'"></span>
                         </label>
 
                         <!-- mini photo -->
@@ -253,7 +252,6 @@
                             </svg>
                         </button>
                     </div>
-
                 @endif
                 {{--END STEP 2--}}
 
