@@ -13,7 +13,8 @@ class RecipeWizard extends Component
 {
     use WithFileUploads;
 
-    public $form_step = 1;
+    // CHANGE TO 1 LATER
+    public $form_step = 2;
 
     public $dishCategories;
     public $cuisines;
@@ -27,6 +28,12 @@ class RecipeWizard extends Component
     public $recipe_category;
     public $recipe_cuisine;
     public $recipe_menu;
+
+    // Fields Step 2
+    public $ingredients = [
+        ['ingredient_name' => 'Chicken', 'ingredient_quantity' => 1, 'ingredient_unit' => 1]
+    ];
+    public $ingredient = [];
 
     public function mount()
     {

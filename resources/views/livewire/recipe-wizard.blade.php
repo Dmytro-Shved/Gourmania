@@ -29,7 +29,6 @@
                             @else
                                 <span>{{ $recipe_image->getClientOriginalName() }}</span>
                             @endif
-
                         </label>
 
                         <!-- mini photo -->
@@ -45,7 +44,7 @@
                         @enderror
 
                         <!-- reset button -->
-                        <button wire:click="reset_recipe_image()" type="button" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">
+                        <button wire:click="reset_recipe_image" type="button" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">
                             Reset
                         </button>
                     </div>
@@ -141,6 +140,18 @@
 
                 {{--STEP 2--}}
                 @if($form_step == 2)
+
+                    {{--$ingredient['ingredient_name']--}}
+{{--                    @php--}}
+{{--                        $ingredients = [--}}
+{{--                            ['ingredient_name' => 'Chicken', 'ingredient_quantity' => 1, 'ingredient_unit' => 1],--}}
+{{--                            ['ingredient_name' => 'Cheese', 'ingredient_quantity' => 3, 'ingredient_unit' => 4],--}}
+{{--                            ['ingredient_name' => 'Water', 'ingredient_quantity' => 2, 'ingredient_unit' => 2],--}}
+{{--                        ];--}}
+
+{{--                        dump($ingredients[0]['ingredient_name']);--}}
+{{--                    @endphp--}}
+
                     <table class="w-full text-left table-auto">
                         <thead>
                         <tr>
@@ -150,52 +161,59 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <!-- Ingredient Name -->
-                            <td class="py-2 pr-1 w-1/3">
-                                <input
-                                    type="text"
-                                    class="w-full px-2 py-2 border border-gray-300 rounded-lg gourmania-focus text-sm"
-                                    placeholder="Chicken"
-                                />
-                            </td>
 
-                            <!-- Quantity -->
-                            <td class="py-2 w-1/3">
-                                <div class="flex justify-center">
+                        @foreach($ingredients as $index => $ingredient)
+
+                            <tr>
+                                <!-- Ingredient Name -->
+                                <td class="py-2 pr-1 w-1/3">
                                     <input
-                                        placeholder="1"
-                                        type="number"
-                                        class="w-full text-[15px] px-2 py-1.5 border border-gray-300 rounded-lg gourmania-focus"
-                                        min="1"
+                                        wire:model="ingredients.{{$index}}.ingredient_name"
+                                        type="text"
+                                        class="w-full px-2 py-2 border border-gray-300 rounded-lg gourmania-focus text-sm"
+                                        placeholder="Chicken"
                                     />
-                                </div>
-                            </td>
+                                </td>
 
-                            <!-- Unit -->
-                            <td class="py-2 pl-1 w-1/3">
-                                <select
-                                    name="menu"
-                                    class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-[14px] gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-2 py-1.5"
-                                    autocomplete="off"
-                                >
-                                    @foreach($units as $unit)
-                                        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
+                                <!-- Quantity -->
+                                <td class="py-2 w-1/3">
+                                    <div class="flex justify-center">
+                                        <input
+                                            wire:model="ingredients.{{$index}}.ingredient_quantity"
+                                            placeholder="1"
+                                            type="number"
+                                            class="w-full text-[15px] px-2 py-1.5 border border-gray-300 rounded-lg gourmania-focus"
+                                            min="1"
+                                        />
+                                    </div>
+                                </td>
 
-                            <!-- Remove block button -->
-                            <td class="relative">
-                                <div class="absolute bottom-3.5">
-                                    <button type="button" class="w-[30px] bg-[#603912] hover:bg-red-500 text-white font-medium py-1 rounded-lg transition-colors flex justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-                                            <path d="M3.75 7.25a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                                <!-- Unit -->
+                                <td class="py-2 pl-1 w-1/3">
+                                    <select
+                                        wire:model="ingredients.{{$index}}.ingredient_unit"
+                                        name="menu"
+                                        class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-[14px] gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-2 py-1.5"
+                                        autocomplete="off"
+                                    >
+                                        @foreach($units as $unit)
+                                            <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+
+                                <!-- Remove block button -->
+                                <td class="relative">
+                                    <div class="absolute bottom-3.5">
+                                        <button type="button" class="w-[30px] bg-[#603912] hover:bg-red-500 text-white font-medium py-1 rounded-lg transition-colors flex justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+                                                <path d="M3.75 7.25a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                     <!-- Add new block -->
