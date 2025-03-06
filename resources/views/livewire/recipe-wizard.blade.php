@@ -14,41 +14,67 @@
                 @if($form_step == 1)
                     <!-- Select Image -->
                     <label class="block text-sm font-medium text-gray-700 mb-1">Recipe image</label>
-                    <div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null }">
+                    <div class="mt-1 mb-4 max-w-[201px]">
                         <label for="recipe_image" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
-                            <input wire:modl name="recipe_image" type="file" class="sr-only" id="recipe_image" x-on:change="files = Object.values($event.target.files)" accept="image/jpeg, image/png, image/webp">
-                            <span x-text="files ? files.map(file => file.name).join(', ') : 'Select photo...'"></span>
+                            <input
+                                wire:model="recipe_image"
+                                name="recipe_image"
+                                type="file"
+                                class="sr-only"
+                                id="recipe_image"
+                                accept="image/jpeg, image/png, image/webp">
+
+                            @if(!$recipe_image)
+                                <span>Choose file...</span>
+                            @else
+                                <span>{{ $recipe_image->getClientOriginalName() }}</span>
+                            @endif
+
                         </label>
 
                         <!-- mini photo -->
-                        <template x-if="files && files.length > 0">
+                        @if($recipe_image && $recipe_image->getClientOriginalExtension() != null)
+                            <label class="block text-xs font-medium text-gray-700 mb-1">Selected image</label>
                             <div class="mt-2">
-                                <img :src="URL.createObjectURL(files[0])" alt="Thumbnail" class="w-32 h-32 object-cover rounded-md"/>
+                                <img src="{{ $recipe_image->temporaryUrl() }}" class="w-32 h-32 object-contain rounded-md bg-gray-100" alt="Thumbnail">
                             </div>
-                        </template>
+                        @endif
+
+                        @error('recipe_image')
+                        <span class="flex text-red-500">{{ $message }}</span>
+                        @enderror
 
                         <!-- reset button -->
-                        <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">Reset</button>
+                        <button wire:click="reset_recipe_image()" type="button" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">
+                            Reset
+                        </button>
                     </div>
 
                     <!-- Recipe name -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Recipe name</label>
-                        <input name="email"
+                        <input wire:model="recipe_name"
+                               name="recipe_name"
                                type="text"
                                class="w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus"
                                placeholder="Chicken Broth"
                         />
+                        @error('recipe_name')
+                        <span class="flex text-red-500">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <!-- Recipe description -->
                     <div class="w-full">
                         <div class="flex w-full max-w-md flex-col gap-1 text-on-surface dark:text-on-surface-dark">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                            <textarea id="textArea"
-                                      name="description"
+                            <textarea wire:model="recipe_description"
+                                      name="recipe_description"
                                       class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75" rows="3"
                                       placeholder="This recipe is about..."></textarea>
+                            @error('recipe_description')
+                            <span class="flex text-red-500">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 
@@ -57,9 +83,11 @@
 
                         <!-- category -->
                         <label class="block text-sm font-medium text-gray-700 mb-1 mt-2">Category</label>
-                        <select name="dish_category"
-                                class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-4 py-2"
-                                autocomplete="off"
+                        <select
+                            wire:model="recipe_category"
+                            name="dish_category"
+                            class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-4 py-2"
+                            autocomplete="off"
                         >
                             <option value="">Select Category</option>
 
@@ -67,10 +95,14 @@
                                 <option value="{{$dishCategory->id }}">{{ $dishCategory->name }}</option>
                             @endforeach
                         </select>
+                        @error('recipe_category')
+                        <span class="flex text-red-500">{{ $message }}</span>
+                        @enderror
 
                         <!-- cuisine -->
                         <label class="block text-sm font-medium text-gray-700 mb-1 mt-2">Cuisine</label>
                         <select
+                            wire:model="recipe_cuisine"
                             name="cuisine"
                             class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-4 py-2"
                             autocomplete="off"
@@ -82,10 +114,14 @@
                                 <option value="{{ $cuisine->id }}">{{ $cuisine->name }}</option>
                             @endforeach
                         </select>
+                        @error('recipe_cuisine')
+                        <span class="flex text-red-500">{{ $message }}</span>
+                        @enderror
 
                         <!-- menu -->
                         <label class="block text-sm font-medium text-gray-700 mb-1 mt-2">Menu</label>
                         <select
+                            wire:model="recipe_menu"
                             name="menu"
                             class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-4 py-2"
                             autocomplete="off"
@@ -96,6 +132,9 @@
                                 <option value="{{ $menu->id }}">{{ $menu->name }}</option>
                             @endforeach
                         </select>
+                        @error('recipe_menu')
+                        <span class="flex text-red-500">{{ $message }}</span>
+                        @enderror
                     </div>
                 @endif
                 {{--END STEP 1--}}
