@@ -161,12 +161,14 @@
                         </tr>
                         </thead>
                         <tbody>
-
                         @foreach($ingredients as $index => $ingredient)
-
                             <tr>
                                 <!-- Ingredient Name -->
-                                <td class="py-2 pr-1 w-1/3">
+                                <td class="py-2 pr-1 w-1/3 relative">
+
+                                    <!--Ingredient counter-->
+                                    <span class="absolute -left-4 top-4">{{ $index + 1 }}.</span>
+
                                     <input
                                         wire:model="ingredients.{{$index}}.ingredient_name"
                                         type="text"
@@ -205,7 +207,10 @@
                                 <!-- Remove block button -->
                                 <td class="relative">
                                     <div class="absolute bottom-3.5">
-                                        <button type="button" class="w-[30px] bg-[#603912] hover:bg-red-500 text-white font-medium py-1 rounded-lg transition-colors flex justify-center">
+                                        <button
+                                            wire:click="remove_ingredient({{$index}})"
+                                            type="button"
+                                            class="w-[30px] bg-[#603912] hover:bg-red-500 text-white font-medium py-1 rounded-lg transition-colors flex justify-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
                                                 <path d="M3.75 7.25a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z" />
                                             </svg>
@@ -218,7 +223,10 @@
                     </table>
                     <!-- Add new block -->
                     <div class="flex justify-end mt-3">
-                        <button type="button" class="w-[35px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors flex justify-center">
+                        <button
+                            wire:click="add_ingredient"
+                            type="button"
+                            class="w-[35px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors flex justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4 ">
                                 <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
                             </svg>

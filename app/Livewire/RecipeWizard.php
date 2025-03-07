@@ -31,7 +31,7 @@ class RecipeWizard extends Component
 
     // Fields Step 2
     public $ingredients = [
-        ['ingredient_name' => 'Chicken', 'ingredient_quantity' => 1, 'ingredient_unit' => 1]
+        ['ingredient_name' => null, 'ingredient_quantity' => null, 'ingredient_unit' => null],
     ];
     public $ingredient = [];
 
@@ -52,7 +52,6 @@ class RecipeWizard extends Component
         $this->form_step++;
     }
 
-
     public function reset_recipe_image()
     {
         $this->recipe_image = null;
@@ -66,6 +65,19 @@ class RecipeWizard extends Component
     public function render()
     {
         return view('livewire.recipe-wizard');
+    }
+
+    public function add_ingredient()
+    {
+        $this->ingredients[] = $this->ingredient;
+    }
+
+    public function remove_ingredient($index)
+    {
+        unset($this->ingredients[$index]);
+
+        // reshuffle indexes after deleting
+        $this->ingredients = array_values($this->ingredients);
     }
 
     protected function rules()
