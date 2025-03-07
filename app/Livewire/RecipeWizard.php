@@ -24,9 +24,7 @@ class RecipeWizard extends Component
     public $units;
 
     // Fields Step 1
-
-    // real-time validation
-    #[Validate]
+    #[Validate] // real-time validation
     #[Rule(['nullable','mimes:jpeg,png,webp'])]
     public $recipe_image;
     public $recipe_name;

@@ -282,18 +282,7 @@
 
                 {{--Navigation buttons--}}
                 <div class="flex justify-between">
-                    @if($form_step == 1)
-                        <!-- Next step button -->
-                        <div class="ml-auto">
-                            <button wire:click="next_step"
-                                    type="button"
-                                    class="w-[100px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
-                                Next
-                            </button>
-                        </div>
-                    @endif
-
-                    @if($form_step == 2)
+                    @if($form_step == 2 || $form_step == 3)
                         <!-- Previous step button -->
                         <div class="flex justify-start">
                             <button wire:click="prev_step"
@@ -302,9 +291,11 @@
                                 Previous
                             </button>
                         </div>
-
+                    @endif
+                    @if($form_step == 1 || $form_step == 2)
                         <!-- Next step button -->
-                        <div class="flex justify-end">
+                        <div class="ml-auto"
+                            @class(['flex', 'justify-end ' => $form_step == 2])>
                             <button wire:click="next_step"
                                     type="button"
                                     class="w-[100px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
@@ -312,24 +303,14 @@
                             </button>
                         </div>
                     @endif
-
                     @if($form_step == 3)
-                        <!-- Previous step button -->
-                        <div class="flex justify-start">
-                            <button wire:click="prev_step"
-                                    type="button"
-                                    class="w-[100px] bg-gray-500 hover:bg-gray-400 text-white font-medium py-2.5 rounded-lg transition-colors">
-                                    Previous
+                        <!-- Submit button -->
+                        <div class="flex justify-end">
+                            <button type="button"
+                                    class="w-[100px] bg-green-400 hover:bg-green-300 text-white font-medium py-2.5 rounded-lg transition-colors">
+                                Submit
                             </button>
                         </div>
-
-                            <!-- Submit button -->
-                            <div class="flex justify-end">
-                                <button type="button"
-                                        class="w-[100px] bg-green-400 hover:bg-green-300 text-white font-medium py-2.5 rounded-lg transition-colors">
-                                    Submit
-                                </button>
-                            </div>
                     @endif
                 </div>
                 {{--END Navigation buttons--}}
