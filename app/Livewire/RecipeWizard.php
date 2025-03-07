@@ -6,6 +6,8 @@ use App\Models\Cuisine;
 use App\Models\DishCategory;
 use App\Models\Menu;
 use App\Models\Unit;
+use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate; // extra
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -14,7 +16,7 @@ class RecipeWizard extends Component
     use WithFileUploads;
 
     // CHANGE TO 1 LATER
-    public $form_step = 2;
+    public $form_step = 1;
 
     public $dishCategories;
     public $cuisines;
@@ -22,6 +24,10 @@ class RecipeWizard extends Component
     public $units;
 
     // Fields Step 1
+
+    // real-time validation
+    #[Validate]
+    #[Rule(['nullable','mimes:jpeg,png,webp'])]
     public $recipe_image;
     public $recipe_name;
     public $recipe_description;
@@ -31,9 +37,9 @@ class RecipeWizard extends Component
 
     // Fields Step 2
     public $ingredients = [
-        ['ingredient_name' => null, 'ingredient_quantity' => null, 'ingredient_unit' => null],
+        []
     ];
-    public $ingredient = [];
+    public $ingredient = ['ingredient_name' => null, 'ingredient_quantity' => null, 'ingredient_unit' => null];
 
     public function mount()
     {
@@ -45,9 +51,9 @@ class RecipeWizard extends Component
 
     public function next_step()
     {
-//        $this->resetErrorBag();
+        $this->resetErrorBag();
 
-        $this->validate();
+        $this->validateFields();
 
         $this->form_step++;
     }
@@ -80,23 +86,33 @@ class RecipeWizard extends Component
         $this->ingredients = array_values($this->ingredients);
     }
 
-    protected function rules()
-    {
-        return [
-            'recipe_image'=> [ 'nullable','mimes:jpeg,png,webp'],
-            'recipe_name' => ['required', 'string', 'unique:recipes,name', 'max:255'],
-            'recipe_description' => ['required', 'string', 'max:255'],
-            'recipe_category' => ['required'],
-            'recipe_cuisine' => ['required'],
-            'recipe_menu' => ['required']
-        ];
-    }
+     public function validateFields(){
+        if ($this->form_step == 1){
+            $this->validate([
+                // Step 1 rules
+                'recipe_name' => ['required', 'string', 'unique:recipes,name', 'max:255'],
+                'recipe_description' => ['required', 'string', 'max:255'],
+                'recipe_category' => ['required'],
+                'recipe_cuisine' => ['required'],
+                'recipe_menu' => ['required'],
+            ]);
+        }else if ($this->form_step == 2){
+            $this->validate([
+                // Step 2 rules
+                'ingredients.*.ingredient_name' => ['required', 'string', 'max:255'],
+                'ingredients.*.ingredient_quantity' => ['required', 'integer', 'max:999'],
+                'ingredients.*.ingredient_unit' => ['required'],
+            ]);
+        }else if($this->form_step == 3){
+            // Step 3 rules
+        }
+     }
 
     protected function messages()
     {
         return [
+            // Step 1 messages
             'recipe_image.mimes' => 'The recipe image must be a file of type: jpeg, png, webp',
-
             'recipe_name.required' => 'Recipe name is required',
             'recipe_name.string' => 'Recipe name must be a string',
             'recipe_name.unique:App\Models\Recipe, name' => 'This recipe name has already been taken',
@@ -109,6 +125,20 @@ class RecipeWizard extends Component
             'recipe_category.required' => 'Required',
             'recipe_cuisine.required' => 'Required',
             'recipe_menu.required' => 'Required',
+            // END Step 1 messages
+
+            // Step 2 rules
+            'ingredients.*.ingredient_name.required' => 'Required',
+            'ingredients.*.ingredient_name.string' => 'Invalid type',
+            'ingredients.*.ingredient_name.max' => 'Too long',
+
+            'ingredients.*.ingredient_quantity.required' => 'Required',
+            'ingredients.*.ingredient_quantity.integer' => 'Invalid type',
+            'ingredients.*.ingredient_quantity.max' => 'Too big',
+
+            'ingredients.*.ingredient_unit.required' => 'Required',
+            // END Step 2 rules
         ];
     }
 }
+

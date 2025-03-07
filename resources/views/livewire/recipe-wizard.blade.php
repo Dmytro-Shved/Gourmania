@@ -17,7 +17,7 @@
                     <div class="mt-1 mb-4 max-w-[201px]">
                         <label for="recipe_image" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
                             <input
-                                wire:model="recipe_image"
+                                wire:model.live="recipe_image"
                                 name="recipe_image"
                                 type="file"
                                 class="sr-only"
@@ -140,18 +140,6 @@
 
                 {{--STEP 2--}}
                 @if($form_step == 2)
-
-                    {{--$ingredient['ingredient_name']--}}
-{{--                    @php--}}
-{{--                        $ingredients = [--}}
-{{--                            ['ingredient_name' => 'Chicken', 'ingredient_quantity' => 1, 'ingredient_unit' => 1],--}}
-{{--                            ['ingredient_name' => 'Cheese', 'ingredient_quantity' => 3, 'ingredient_unit' => 4],--}}
-{{--                            ['ingredient_name' => 'Water', 'ingredient_quantity' => 2, 'ingredient_unit' => 2],--}}
-{{--                        ];--}}
-
-{{--                        dump($ingredients[0]['ingredient_name']);--}}
-{{--                    @endphp--}}
-
                     <table class="w-full text-left table-auto">
                         <thead>
                         <tr>
@@ -164,21 +152,22 @@
                         @foreach($ingredients as $index => $ingredient)
                             <tr>
                                 <!-- Ingredient Name -->
-                                <td class="py-2 pr-1 w-1/3 relative">
-
+                                <td class="py-3 pr-1 w-1/3 relative">
                                     <!--Ingredient counter-->
-                                    <span class="absolute -left-4 top-4">{{ $index + 1 }}.</span>
-
+                                    <span class="absolute -left-5 top-6 text-sm">{{ $index + 1 }}.</span>
                                     <input
                                         wire:model="ingredients.{{$index}}.ingredient_name"
                                         type="text"
                                         class="w-full px-2 py-2 border border-gray-300 rounded-lg gourmania-focus text-sm"
                                         placeholder="Chicken"
                                     />
+                                    @error('ingredients.'.$index.'.ingredient_name')
+                                    <span class="flex text-red-500 absolute">{{ $message }}</span>
+                                    @enderror
                                 </td>
 
                                 <!-- Quantity -->
-                                <td class="py-2 w-1/3">
+                                <td class="py-3 w-1/3 relative">
                                     <div class="flex justify-center">
                                         <input
                                             wire:model="ingredients.{{$index}}.ingredient_quantity"
@@ -188,25 +177,32 @@
                                             min="1"
                                         />
                                     </div>
+                                    @error('ingredients.'.$index.'.ingredient_quantity')
+                                    <span class="flex text-red-500 absolute">{{ $message }}</span>
+                                    @enderror
                                 </td>
 
                                 <!-- Unit -->
-                                <td class="py-2 pl-1 w-1/3">
+                                <td class="py-3 pl-1 w-1/3">
                                     <select
                                         wire:model="ingredients.{{$index}}.ingredient_unit"
                                         name="menu"
                                         class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-[14px] gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-2 py-1.5"
                                         autocomplete="off"
                                     >
+                                        <option value="" selected>-</option>
                                         @foreach($units as $unit)
                                             <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('ingredients.'.$index.'.ingredient_unit')
+                                    <span class="flex text-red-500 absolute">{{ $message }}</span>
+                                    @enderror
                                 </td>
 
                                 <!-- Remove block button -->
                                 <td class="relative">
-                                    <div class="absolute bottom-3.5">
+                                    <div class="absolute bottom-5">
                                         <button
                                             wire:click="remove_ingredient({{$index}})"
                                             type="button"
@@ -289,7 +285,7 @@
                     @if($form_step == 1)
                         <!-- Next step button -->
                         <div class="ml-auto">
-                            <button wire:click="next_step()"
+                            <button wire:click="next_step"
                                     type="button"
                                     class="w-[100px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
                                 Next
@@ -300,7 +296,7 @@
                     @if($form_step == 2)
                         <!-- Previous step button -->
                         <div class="flex justify-start">
-                            <button wire:click="prev_step()"
+                            <button wire:click="prev_step"
                                     type="button"
                                     class="w-[100px] bg-gray-500 hover:bg-gray-400 text-white font-medium py-2.5 rounded-lg transition-colors">
                                 Previous
@@ -309,7 +305,7 @@
 
                         <!-- Next step button -->
                         <div class="flex justify-end">
-                            <button wire:click="next_step()"
+                            <button wire:click="next_step"
                                     type="button"
                                     class="w-[100px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
                                 Next
@@ -320,7 +316,7 @@
                     @if($form_step == 3)
                         <!-- Previous step button -->
                         <div class="flex justify-start">
-                            <button wire:click="prev_step()"
+                            <button wire:click="prev_step"
                                     type="button"
                                     class="w-[100px] bg-gray-500 hover:bg-gray-400 text-white font-medium py-2.5 rounded-lg transition-colors">
                                     Previous
