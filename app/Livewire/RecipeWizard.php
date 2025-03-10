@@ -15,7 +15,7 @@ class RecipeWizard extends Component
 {
     use WithFileUploads;
 
-    public $form_step = 3;
+    public $form_step = 1;
 
     public $dishCategories;
     public $cuisines;
@@ -108,7 +108,7 @@ class RecipeWizard extends Component
 
         // reshuffle indexes after deleting
         $this->guide_steps = array_values($this->guide_steps);
-        
+
         if (empty($this->guide_steps)){
             $this->guide_steps[] = $this->guide_step;
         }
@@ -119,8 +119,6 @@ class RecipeWizard extends Component
         $this->resetErrorBag();
 
         $this->validateFields();
-
-        dump('ok');
     }
 
      public function validateFields(){
