@@ -144,7 +144,6 @@ class RecipeWizard extends Component
         }
      }
 
-
     protected function messages()
     {
         return [

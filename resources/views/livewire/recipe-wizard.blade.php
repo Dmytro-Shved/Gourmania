@@ -44,9 +44,33 @@
                         @enderror
 
                         <!-- reset button -->
-                        <button wire:click="reset_recipe_image" type="button" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">
+                        <button wire:click.throttle.3000ms="reset_recipe_image" type="button" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">
                             Reset
                         </button>
+
+                        <!--loading indication-->
+                        <div wire:loading
+                             wire:target="recipe_image"
+                             class="flex text-sm text-gray-700 ml-2">
+                            <div class="flex">
+                                <span class="font-bold">Loading...</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#AE763E" class="size-5 animate-bounce">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v4.59L7.3 9.24a.75.75 0 0 0-1.1 1.02l3.25 3.5a.75.75 0 0 0 1.1 0l3.25-3.5a.75.75 0 1 0-1.1-1.02l-1.95 2.1V6.75Z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!--resetting indication-->
+                        <div wire:loading
+                             wire:target="reset_recipe_image"
+                             class="flex text-sm text-gray-700 ml-2">
+                            <div class="flex">
+                                <span class="font-bold">Resetting...</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#AE763E" class="size-5 animate-bounce">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm-.75-4.75a.75.75 0 0 0 1.5 0V8.66l1.95 2.1a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0L6.2 9.74a.75.75 0 1 0 1.1 1.02l1.95-2.1v4.59Z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Recipe name -->
@@ -204,7 +228,9 @@
                                 <td class="relative">
                                     <div class="absolute bottom-5">
                                         <button
-                                            wire:click="remove_ingredient({{$index}})"
+                                            wire:click.throttle.2000ms="remove_ingredient({{$index}})"
+                                            wire:target="remove_ingredient({{$index}})"
+                                            wire:loading.class="bg-red-500 animate-bounce"
                                             type="button"
                                             class="w-[30px] bg-[#603912] hover:bg-red-500 text-white font-medium py-1 rounded-lg transition-colors flex justify-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
@@ -217,10 +243,12 @@
                         @endforeach
                         </tbody>
                     </table>
+
                     <!-- Add new block -->
                     <div class="flex justify-end mt-3">
                         <button
-                            wire:click="add_ingredient"
+                            wire:click.throttle.500ms="add_ingredient"
+                            wire:loading.class="animate-bounce"
                             type="button"
                             class="w-[35px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors flex justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4 ">
@@ -273,9 +301,35 @@
                                 @enderror
 
                                 <!-- reset button -->
-                                <button wire:click="reset_step_image({{$index}})" type="button" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">
+                                <button
+                                    wire:click.throttle.3000ms="reset_step_image({{$index}})"
+                                    type="button" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">
                                     Reset
                                 </button>
+
+                                <!--loading indication-->
+                                <div wire:loading
+                                     wire:target="guide_steps.{{$index}}.step_image"
+                                     class="flex text-sm text-gray-700 ml-2">
+                                    <div class="flex">
+                                        <span class="font-bold">Loading...</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#AE763E" class="size-5 animate-bounce">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v4.59L7.3 9.24a.75.75 0 0 0-1.1 1.02l3.25 3.5a.75.75 0 0 0 1.1 0l3.25-3.5a.75.75 0 1 0-1.1-1.02l-1.95 2.1V6.75Z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <!--resetting indication-->
+                                <div wire:loading
+                                     wire:target="reset_step_image({{$index}})"
+                                     class="flex text-sm text-gray-700 ml-2">
+                                    <div class="flex">
+                                        <span class="font-bold">Resetting...</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#AE763E" class="size-5 animate-bounce">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm-.75-4.75a.75.75 0 0 0 1.5 0V8.66l1.95 2.1a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0L6.2 9.74a.75.75 0 1 0 1.1 1.02l1.95-2.1v4.59Z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Step text -->
@@ -292,12 +346,14 @@
                                     <span class="flex text-red-500 ml-1">{{ $message }}</span>
                                     @enderror
                                 </div>
-
                             </div>
+
                             <!-- remove step button -->
                             <div class="flex justify-end mt-3">
                                 <button
-                                    wire:click="remove_step({{$index}})"
+                                    wire:click.throttle.3000ms="remove_step({{$index}})"
+                                    wire:target="remove_step({{$index}})"
+                                    wire:loading.class="bg-red-500 animate-bounce"
                                     type="button"
                                     class="w-[35px] bg-[#603912] hover:bg-red-500 text-white font-medium py-1.5 rounded-lg transition-colors flex justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
@@ -306,12 +362,12 @@
                                 </button>
                             </div>
                         </div>
-
                     @endforeach
                     <!-- Add new block -->
                     <div class="flex justify-end mt-3">
                         <button
-                            wire:click="add_step"
+                            wire:click.throttle.1000ms="add_step"
+                            wire:loading.class="animate-bounce"
                             type="button"
                             class="w-[35px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors flex justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
@@ -327,7 +383,7 @@
                     @if($form_step == 2 || $form_step == 3)
                         <!-- Previous step button -->
                         <div class="flex justify-start">
-                            <button wire:click="prev_step"
+                            <button wire:click.throttle.2000ms="prev_step"
                                     type="button"
                                     class="w-[100px] bg-gray-500 hover:bg-gray-400 text-white font-medium py-2.5 rounded-lg transition-colors">
                                 Previous
@@ -338,7 +394,7 @@
                         <!-- Next step button -->
                         <div class="ml-auto"
                             @class(['flex', 'justify-end ' => $form_step == 2])>
-                            <button wire:click="next_step"
+                            <button wire:click.throttle.2000ms="next_step"
                                     type="button"
                                     class="w-[100px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
                                 Next
