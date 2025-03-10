@@ -7,7 +7,7 @@ use App\Models\DishCategory;
 use App\Models\Menu;
 use App\Models\Unit;
 use Livewire\Attributes\Rule;
-use Livewire\Attributes\Validate; // extra
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -15,8 +15,7 @@ class RecipeWizard extends Component
 {
     use WithFileUploads;
 
-    // CHANGE TO 1 LATER
-    public $form_step = 1;
+    public $form_step = 3;
 
     public $dishCategories;
     public $cuisines;
@@ -24,7 +23,7 @@ class RecipeWizard extends Component
     public $units;
 
     // Fields Step 1
-    #[Validate] // real-time validation
+    #[Validate]
     #[Rule(['nullable','mimes:jpeg,png,webp'])]
     public $recipe_image;
     public $recipe_name;
@@ -61,6 +60,10 @@ class RecipeWizard extends Component
 
         $this->form_step++;
     }
+    public function prev_step()
+    {
+         $this->form_step--;
+    }
 
     public function reset_recipe_image()
     {
@@ -70,11 +73,6 @@ class RecipeWizard extends Component
     public function reset_step_image($index)
     {
         $this->guide_steps[$index]['step_image'] = null;
-    }
-
-    public function prev_step()
-    {
-         $this->form_step--;
     }
 
     public function render()
@@ -87,13 +85,16 @@ class RecipeWizard extends Component
         $this->ingredients[] = $this->ingredient;
     }
 
-
     public function remove_ingredient($index)
     {
         unset($this->ingredients[$index]);
 
         // reshuffle indexes after deleting
         $this->ingredients = array_values($this->ingredients);
+
+       if (empty($this->ingredients)){
+           $this->ingredients[] = $this->ingredient;
+       }
     }
 
     public function add_step()
@@ -107,6 +108,10 @@ class RecipeWizard extends Component
 
         // reshuffle indexes after deleting
         $this->guide_steps = array_values($this->guide_steps);
+        
+        if (empty($this->guide_steps)){
+            $this->guide_steps[] = $this->guide_step;
+        }
     }
 
     public function store()
