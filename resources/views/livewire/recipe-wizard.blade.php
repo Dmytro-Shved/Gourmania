@@ -1,4 +1,4 @@
-<form action="" method="POST">
+<form wire:submit.prevent="store" method="POST">
     {{--Form Card--}}
     <div class="bg-gray-100 flex items-center justify-center p-4 font-inclusive">
         <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
@@ -233,49 +233,91 @@
 
                 {{--STEP 3--}}
                 @if($form_step == 3)
-                    <div class="p-2 border border-gray-400 rounded-lg">
-                        <!-- Step Number -->
-                        <div class="flex justify-center mb-2">
-                            <span class="text-black border border-black flex items-center justify-center size-6 rounded-full">1</span>
-                        </div>
+                    @foreach($guide_steps as $index => $guide_step)
+                        <div class="p-2 border border-gray-400 rounded-lg">
+                            <!-- Step Number -->
+                            <div class="flex justify-center mb-2">
+                                <span class="text-black border border-black flex items-center justify-center size-6 rounded-full">
+                                    {{  $index + 1 }}
+                                </span>
+                            </div>
 
-                        <!-- Select Image -->
-                        <div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null, inputId: 'photo-' + Math.random().toString(36).substring(2, 9) }">
-                            <label :for="inputId" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
-                                <input :id="inputId" name="photo" type="file" class="sr-only" x-on:change="files = Object.values($event.target.files)" accept="image/jpeg, image/png, image/webp">
-                                <span x-text="files ? files.map(file => file.name).join(', ') : 'New photo...'"></span>
-                            </label>
+                            <!-- Step Image -->
+                            <div class="mt-1 mb-4 max-w-[201px]">
+                                <label for="guide_steps.{{$index}}.step_image" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
+                                    <input
+                                        wire:model="guide_steps.{{$index}}.step_image"
+                                        name="guide_steps.{{$index}}.step_image"
+                                        type="file"
+                                        class="sr-only"
+                                        id="guide_steps.{{$index}}.step_image"
+                                        accept="image/jpeg, image/png, image/webp">
 
-                            <!-- mini photo -->
-                            <template x-if="files && files.length > 0">
-                                <div class="mt-2 w-full h-32 flex justify-center items-center overflow-hidden">
-                                    <img :src="URL.createObjectURL(files[0])" alt="Thumbnail" class="w-full h-full object-cover" />
+                                    @if(!$guide_steps[$index]['step_image'])
+                                        <span>Choose file...</span>
+                                    @else
+                                        <span>{{ $guide_steps[$index]['step_image']->getClientOriginalName() }}</span>
+                                    @endif
+                                </label>
+
+                                <!-- Step mini photo -->
+                                @if($guide_steps[$index]['step_image'] && $guide_steps[$index]['step_image']->getClientOriginalExtension() != null)
+                                    <label class="block text-xs font-medium text-gray-700 mb-1">Selected image</label>
+                                    <div class="mt-2">
+                                        <img src="{{ $guide_steps[$index]['step_image']->temporaryUrl() }}" class="w-32 h-32 object-contain rounded-md bg-gray-100" alt="Step{{' '.$index.' '}}thumbnail">
+                                    </div>
+                                @endif
+
+                                @error('guide_steps.'.$index.'.step_image')
+                                <span class="flex text-red-500">{{ $message }}</span>
+                                @enderror
+
+                                <!-- reset button -->
+                                <button wire:click="reset_step_image({{$index}})" type="button" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">
+                                    Reset
+                                </button>
+                            </div>
+
+                            <!-- Step text -->
+                            <div class="w-full">
+                                <div class="flex w-full max-w-md flex-col gap-1 text-on-surface dark:text-on-surface-dark">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1"></label>
+                                    <textarea
+                                        wire:model="guide_steps.{{$index}}.step_text"
+                                        name="guide_steps.{{$index}}.step_text"
+                                        class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75" rows="3"
+                                        placeholder="This recipe is about..."></textarea>
+
+                                    @error('guide_steps.'.$index.'.step_text')
+                                    <span class="flex text-red-500 ml-1">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                            </template>
 
-                            <!-- reset button -->
-                            <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">Reset</button>
-                        </div>
-
-                        <!-- Step text -->
-                        <div class="w-full">
-                            <div class="flex w-full max-w-md flex-col gap-1 text-on-surface dark:text-on-surface-dark">
-                                <label class="block text-sm font-medium text-gray-700 mb-1"></label>
-                                <textarea id="textArea"
-                                          name="description"
-                                          class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75" rows="3"
-                                          placeholder="This recipe is about..."></textarea>
+                            </div>
+                            <!-- remove step button -->
+                            <div class="flex justify-end mt-3">
+                                <button
+                                    wire:click="remove_step({{$index}})"
+                                    type="button"
+                                    class="w-[35px] bg-[#603912] hover:bg-red-500 text-white font-medium py-1.5 rounded-lg transition-colors flex justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+                                        <path d="M3.75 7.25a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z" />
+                                    </svg>
+                                </button>
                             </div>
                         </div>
 
-                        <!-- Add new block -->
-                        <div class="flex justify-end mt-3">
-                            <button type="button" class="w-[35px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors flex justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-                                    <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
-                                </svg>
-                            </button>
-                        </div>
+                    @endforeach
+                    <!-- Add new block -->
+                    <div class="flex justify-end mt-3">
+                        <button
+                            wire:click="add_step"
+                            type="button"
+                            class="w-[35px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors flex justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+                                <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
+                            </svg>
+                        </button>
                     </div>
                 @endif
                 {{--END STEP 3--}}
@@ -306,8 +348,9 @@
                     @if($form_step == 3)
                         <!-- Submit button -->
                         <div class="flex justify-end">
-                            <button type="button"
-                                    class="w-[100px] bg-green-400 hover:bg-green-300 text-white font-medium py-2.5 rounded-lg transition-colors">
+                            <button
+                                type="submit"
+                                class="w-[100px] bg-green-400 hover:bg-green-300 text-white font-medium py-2.5 rounded-lg transition-colors">
                                 Submit
                             </button>
                         </div>
