@@ -168,6 +168,13 @@ class DatabaseSeeder extends Seeder
             ['id' => 11, 'quantity' => 2, 'unit' => '5'],
         ];
 
+        $ingredients = [
+            ["ingredient_name" => "Chicken ", "ingredient_quantity" => 2, "ingredient_unit" => 1],
+            ["ingredient_name" => "Potato", "ingredient_quantity" => 2, "ingredient_unit" => 1]
+        ];
+
+        // App\Models\Ingredient::whereIn('name', $ingredients[0]['ingredient_name'])->pluck('name', 'id');
+
         // seed ingredient_recipe (pivot) table
         foreach ($broth_ingredients as $ingredient) {
             IngredientRecipe::factory()->create([

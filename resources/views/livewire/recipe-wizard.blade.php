@@ -1,4 +1,4 @@
-<form wire:submit.prevent="store" method="POST">
+<form wire:submit.prevent="store">
     {{--Form Card--}}
     <div class="bg-gray-100 flex items-center justify-center p-4 font-inclusive">
         <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
@@ -185,6 +185,7 @@
                                         class="w-full px-2 py-2 border border-gray-300 rounded-lg gourmania-focus text-sm"
                                         placeholder="Chicken"
                                     />
+
                                     @error('ingredients.'.$index.'.ingredient_name')
                                     <span class="flex text-red-500 absolute">{{ $message }}</span>
                                     @enderror

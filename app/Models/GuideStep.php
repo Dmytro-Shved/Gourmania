@@ -14,6 +14,8 @@ class GuideStep extends Model
         'recipe_id',
         'step_number',
         'step_text',
-        'step_image'
+        'step_image',
+        'created_at',
+        'updated_at'
     ];
 }

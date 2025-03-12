@@ -4,8 +4,13 @@ namespace App\Livewire;
 
 use App\Models\Cuisine;
 use App\Models\DishCategory;
+use App\Models\GuideStep;
+use App\Models\Ingredient;
 use App\Models\Menu;
+use App\Models\Recipe;
 use App\Models\Unit;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -117,8 +122,85 @@ class RecipeWizard extends Component
     public function store()
     {
         $this->resetErrorBag();
+        if ($this->form_step == 3){
+            $this->validate([
+                'guide_steps.*.step_image' => ['nullable', 'mimes:jpeg,png,webp'],
+                'guide_steps.*.step_text' => ['required','string', 'max:255'],
+            ]);
+        }
 
-        $this->validateFields();
+        $ingredientsGrouped = collect($this->ingredients)
+            ->groupBy('ingredient_name') // Group by ingredient name
+            ->map(function ($group) {
+                return [
+                    'ingredient_name' => $group->first()['ingredient_name'], // Take the first name
+                    'ingredient_quantity' => $group->sum('ingredient_quantity'), // Sum quantities
+                    'ingredient_unit' => $group->first()['ingredient_unit'], // Take the first unit
+                ];
+            });
+
+        $finalIngredients = []; // Data to attach to pivot table
+
+        foreach ($ingredientsGrouped as $ingredientData){
+            // Check if the ingredient exists (get the existed one or create and save to database)
+            $ingredient = Ingredient::firstOrCreate(
+                ['name' => trim($ingredientData['ingredient_name'])], // Match by name
+            );
+
+            // Prepare data for pivot table
+            $finalIngredients[] = [
+              'id' => $ingredient->id,
+              'quantity' => $ingredientData['ingredient_quantity'],
+              'unit_id' => $ingredientData['ingredient_unit'],
+            ];
+        }
+
+        // Check if temp image exists then store
+        if ($this->recipe_image){
+            $recipe_image_path = $this->recipe_image->store('recipes-images', 'public');
+        }else{
+            $recipe_image_path = null;
+        }
+
+        // Create the recipe
+        $recipe = Auth::user()->recipes()->create([
+            'name' => $this->recipe_name,
+            'description' => $this->recipe_description,
+            'image' => $recipe_image_path,
+            'dish_category_id' => $this->recipe_category,
+            'cuisine_id' => $this->recipe_cuisine,
+            'menu_id' => $this->recipe_menu,
+        ]);
+
+        $recipe->ingredients()->attach(
+            collect($finalIngredients)->mapWithKeys(function ($ingredient){
+                return [$ingredient['id'] => [
+                    'quantity' => $ingredient['quantity'],
+                    'unit_id' => $ingredient['unit_id'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]];
+            })->toArray()
+        );
+
+        $groupedSteps = collect($this->guide_steps)->map(function ($step, $index) use ($recipe){
+            return [
+                'recipe_id' => $recipe->id,
+                'step_number' => $index + 1,
+                'step_text' => trim($step['step_text']),
+                'step_image' => $step['step_image']
+                    ? $step['step_image']->store('guides-images', 'public')
+                    : null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        })->toArray();
+
+        GuideStep::insert($groupedSteps);
+
+        dump('recipe created');
+
+        session()->flash('recipe_created', 'Recipe created successfully!');
     }
 
      public function validateFields(){
@@ -131,18 +213,15 @@ class RecipeWizard extends Component
                 'recipe_cuisine' => ['required'],
                 'recipe_menu' => ['required'],
             ]);
+
         }else if ($this->form_step == 2){
             $this->validate([
                 // Step 2 rules
+                'ingredients' => ['required', 'array'],
+
                 'ingredients.*.ingredient_name' => ['required', 'string', 'max:255'],
-                'ingredients.*.ingredient_quantity' => ['required', 'integer', 'max:999'],
+                'ingredients.*.ingredient_quantity' => ['required', 'integer', 'min:1', 'max:999'],
                 'ingredients.*.ingredient_unit' => ['required'],
-            ]);
-        }else if($this->form_step == 3){
-            // Step 3 rules
-            $this->validate([
-                'guide_steps.*.step_image' => ['nullable', 'mimes:jpeg,png,webp'],
-                'guide_steps.*.step_text' => ['required','string', 'max:255'],
             ]);
         }
      }
@@ -174,6 +253,7 @@ class RecipeWizard extends Component
             'ingredients.*.ingredient_quantity.required' => 'Required',
             'ingredients.*.ingredient_quantity.integer' => 'Invalid type',
             'ingredients.*.ingredient_quantity.max' => 'Too big',
+            'ingredients.*.ingredient_quantity.min' => 'Too small',
 
             'ingredients.*.ingredient_unit.required' => 'Required',
             // END Step 2 messages

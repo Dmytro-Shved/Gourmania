@@ -17,7 +17,9 @@ class IngredientRecipe extends Pivot
         'recipe_id',
         'ingredient_id',
         'quantity',
-        'unit_id'
+        'unit_id',
+        'created_at',
+        'updated_at',
     ];
 
     public function unit(): BelongsTo
