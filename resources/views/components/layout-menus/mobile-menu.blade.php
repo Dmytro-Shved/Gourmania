@@ -80,7 +80,8 @@
     <li class="p-2"><a href="#" class="mobile-menu-link">Recipes</a></li>
     <li class="p-2"><a href="#" class="mobile-menu-link">Authors</a></li>
     <li class="p-2"><a href="#" class="mobile-menu-link">Basics</a></li>
-    <li class="p-2"><a href="#" class="mobile-menu-link">Cuisines</a></li>
+    <li class="p-2"><a href="{{ route('recipes.create') }}" class="mobile-menu-link tracking-wider text-white transition-colors duration-300 transform p-2 md:w-auto focus:outline-none bg-[#592D00] rounded-lg hover:bg-[#C58F5C]">Add recipe</a></li>
+    {{--<li class="p-2"><a href="{{ route('recipes.create') }}" class="mobile-menu-link tracking-wider text-white transition-colors duration-300 transform p-2 md:w-auto focus:outline-none rounded-lg bg-gourmania hover:gourmania-hover">Add recipe</a></li>--}}
 
     @auth
         <hr role="none" class="my-2 border-outline border-[#603912]">
