@@ -78,16 +78,26 @@ class DatabaseSeeder extends Seeder
         'Preparations'
     ];
 
-     public array $units = [
-         'kg',
-         'g',
-         'piece',
-         'head',
-         'liter',
-         'to taste',
-         'bunche',
-         'twig',
-         'stem'
+    public array $units = [
+        'kg',
+        'g',
+        'mg',
+        'liter',
+        'milliliters',
+        'piece',
+        'head',
+        'clove',
+        'slice',
+        'drop',
+        'pinch',
+        'dash',
+        'to taste',
+        'bunche',
+        'twig',
+        'stem',
+        'pack',
+        'can',
+        'sheet',
     ];
 
     /**

@@ -75,7 +75,7 @@
 
                     <!-- Recipe name -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Recipe name</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1 after:content-['*'] after:text-red-500">Recipe name</label>
                         <input wire:model="recipe_name"
                                name="recipe_name"
                                type="text"
@@ -105,7 +105,7 @@
                     <div class="relative w-full">
 
                         <!-- category -->
-                        <label class="block text-sm font-medium text-gray-700 mb-1 mt-2">Category</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Category</label>
                         <select
                             wire:model="recipe_category"
                             name="dish_category"
@@ -123,7 +123,7 @@
                         @enderror
 
                         <!-- cuisine -->
-                        <label class="block text-sm font-medium text-gray-700 mb-1 mt-2">Cuisine</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Cuisine</label>
                         <select
                             wire:model="recipe_cuisine"
                             name="cuisine"
@@ -336,12 +336,12 @@
                             <!-- Step text -->
                             <div class="w-full">
                                 <div class="flex w-full max-w-md flex-col gap-1 text-on-surface dark:text-on-surface-dark">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1"></label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-0 mt-1 after:content-['*'] after:text-red-500"></label>
                                     <textarea
                                         wire:model="guide_steps.{{$index}}.step_text"
                                         name="guide_steps.{{$index}}.step_text"
                                         class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75" rows="3"
-                                        placeholder="This recipe is about..."></textarea>
+                                        placeholder="First there was an egg..."></textarea>
 
                                     @error('guide_steps.'.$index.'.step_text')
                                     <span class="flex text-red-500 ml-1">{{ $message }}</span>
