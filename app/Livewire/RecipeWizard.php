@@ -224,9 +224,8 @@ class RecipeWizard extends Component
             $this->validate([
                 // Step 2 rules
                 'ingredients' => ['required', 'array'],
-
                 'ingredients.*.ingredient_name' => ['required', 'string', 'max:255'],
-                'ingredients.*.ingredient_quantity' => ['required', 'integer', 'min:1', 'max:999'],
+                'ingredients.*.ingredient_quantity' => ['required', 'numeric', 'min:0.1', 'max:999.99', 'regex:/^\d{1,3}(\.\d{1,2})?$/'],
                 'ingredients.*.ingredient_unit' => ['required'],
             ]);
         }
@@ -258,6 +257,7 @@ class RecipeWizard extends Component
             'ingredients.*.ingredient_quantity.decimal' => 'Invalid type',
             'ingredients.*.ingredient_quantity.max' => 'Too big',
             'ingredients.*.ingredient_quantity.min' => 'Too small',
+            'ingredients.*.ingredient_quantity.regex' => 'Invalid format',
 
             'ingredients.*.ingredient_unit.required' => 'Required',
             // END Step 2 messages
