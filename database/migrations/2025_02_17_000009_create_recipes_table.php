@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('image')->default('recipes-images/default/default_photo.png');
             $table->foreignId('dish_category_id')->constrained('dish_categories')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('cuisine_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('menu_id')->constrained('menus')->cascadeOnDelete();
+            $table->foreignId('menu_id')->nullable()->constrained('menus')->cascadeOnDelete();
             $table->integer('likes')->default(0);
             $table->integer('dislikes')->default(0);
             $table->integer('saved_count')->default(0);

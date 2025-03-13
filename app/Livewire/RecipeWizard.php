@@ -163,14 +163,20 @@ class RecipeWizard extends Component
         }
 
         // Create the recipe
-        $recipe = Auth::user()->recipes()->create([
+        $recipe_data = [
             'name' => $this->recipe_name,
             'description' => $this->recipe_description,
             'image' => $recipe_image_path,
             'dish_category_id' => $this->recipe_category,
             'cuisine_id' => $this->recipe_cuisine,
             'menu_id' => $this->recipe_menu,
-        ]);
+        ];
+
+        if ($recipe_data['image'] === null){
+           unset($recipe_data['image']);
+        }
+
+        $recipe = Auth::user()->recipes()->create($recipe_data);
 
         $recipe->ingredients()->attach(
             collect($finalIngredients)->mapWithKeys(function ($ingredient){
@@ -190,7 +196,7 @@ class RecipeWizard extends Component
                 'step_text' => trim($step['step_text']),
                 'step_image' => $step['step_image']
                     ? $step['step_image']->store('guides-images', 'public')
-                    : null,
+                    : 'recipes-images/default/default_photo.png',
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
@@ -198,9 +204,9 @@ class RecipeWizard extends Component
 
         GuideStep::insert($groupedSteps);
 
-        dump('recipe created');
-
         session()->flash('recipe_created', 'Recipe created successfully!');
+
+        $this->redirect('/recipes/create');
     }
 
      public function validateFields(){
@@ -208,10 +214,10 @@ class RecipeWizard extends Component
             $this->validate([
                 // Step 1 rules
                 'recipe_name' => ['required', 'string', 'unique:recipes,name', 'max:255'],
-                'recipe_description' => ['required', 'string', 'max:255'],
+                'recipe_description' => ['nullable', 'string', 'max:255'],
                 'recipe_category' => ['required'],
                 'recipe_cuisine' => ['required'],
-                'recipe_menu' => ['required'],
+                'recipe_menu' => ['nullable'],
             ]);
 
         }else if ($this->form_step == 2){
@@ -236,13 +242,11 @@ class RecipeWizard extends Component
             'recipe_name.unique:App\Models\Recipe, name' => 'This recipe name has already been taken',
             'recipe_name.max' => 'This recipe name is too long',
 
-            'recipe_description.required' => 'Description is required',
             'recipe_description.string' => 'Description must be a string',
             'recipe_description.max' => 'Description is too long',
 
             'recipe_category.required' => 'Required',
             'recipe_cuisine.required' => 'Required',
-            'recipe_menu.required' => 'Required',
             // END Step 1 messages
 
             // Step 2 messages
@@ -251,7 +255,7 @@ class RecipeWizard extends Component
             'ingredients.*.ingredient_name.max' => 'Too long',
 
             'ingredients.*.ingredient_quantity.required' => 'Required',
-            'ingredients.*.ingredient_quantity.integer' => 'Invalid type',
+            'ingredients.*.ingredient_quantity.decimal' => 'Invalid type',
             'ingredients.*.ingredient_quantity.max' => 'Too big',
             'ingredients.*.ingredient_quantity.min' => 'Too small',
 

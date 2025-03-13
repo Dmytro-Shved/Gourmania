@@ -11,7 +11,7 @@ Route::view('/', 'index')->name('home');
 
 Route::get('/recipes', [FilterController::class, 'filter'])->name('filter');
 
-Route::view('/recipes/name', 'recipes.recipe-guide');
+Route::view('/recipes/guide/name', 'recipes.recipe-guide');
 
 Route::middleware('guest')->group(function (){
 
@@ -25,6 +25,8 @@ Route::middleware('guest')->group(function (){
 Route::middleware('auth')->group(function (){
 
     Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+    Route::view('/recipes/create', 'recipes.recipe-create')->name('recipes.create');
 });
 
 Route::get('/logout', function () {
@@ -34,6 +36,3 @@ Route::get('/logout', function () {
 Route::get('/user/profiles/{user}', [ProfileController::class, 'show_profile'])->name('profiles.show');
 Route::get('/user/profiles/{user}/edit', [ProfileController::class, 'edit_profile'])->name('profiles.edit')->middleware('auth');
 Route::put('/user/profiles/{user}', [ProfileController::class, 'update_profile'])->name('profiles.update');
-
-
-Route::view('/form', 'multi-form')->name('multi-form');
