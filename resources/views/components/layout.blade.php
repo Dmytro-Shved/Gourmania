@@ -199,13 +199,13 @@
                         <p class="quick-link">
                             Basics</p>
                         <p class="quick-link">
-                            Cuisines</p>
+                            FAQ</p>
                     </div>
                 </div>
 
                 {{-- FAQ --}}
                 <div>
-                    <p class="font-inclusive font-semibold text-white text-xl text-center">FAQ</p>
+                    <p class="font-inclusive font-semibold text-white text-xl text-center">Info</p>
 
                     <div class="w-full max-w-md mx-auto sm:w-44">
                         <div x-data="{selected:null}">

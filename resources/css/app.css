@@ -96,4 +96,8 @@
     .author-name{
         @apply text-xs font-semibold mb-2 sm:mb-3 sm:text-sm md:text-lg break-words;
     }
+
+    .faq-question{
+        @apply flex cursor-pointer list-none items-center justify-between font-medium;
+    }
 }

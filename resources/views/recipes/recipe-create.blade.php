@@ -1,4 +1,6 @@
 <x-layout>
+    @section('title',  'Add new recipe')
+
     @if (session('recipe_created'))
         <div x-data="{ show : true }" class="absolute self-end end-1 z-30">
             <div x-show="show" x-transition
