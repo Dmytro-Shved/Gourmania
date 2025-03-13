@@ -1,5 +1,14 @@
-@section('title', 'Edit Profile')
+@section('title', 'Profile settings')
 <x-layout>
+
+    {{-- Profile settings --}}
+    <div class="title-container text-center uppercase">
+        <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
+        <small class="font-inknut text-xl md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
+            PROFILE SETTINGS
+        </small>
+        <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
+    </div>
 
     @if(session()->has('profile_updated'))
         <!-- User Profile Updated -->
@@ -32,19 +41,6 @@
                                     <!-- Current Photo -->
                                     <img src="{{ asset('./storage/'. $user->photo) }}" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0" alt="User photo">
                                 </div>
-
-                                <!-- Choose new photo (Old Version) -->
-                                {{--<div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null }">--}}
-                                {{--    <label for="photo" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">--}}
-                                {{--        <input name="photo" type="file" class="sr-only" id="photo" x-on:change="files = Object.values($event.target.files)">--}}
-                                {{--        <span x-text="files ? files.map(file => file.name).join(', ') : 'New photo...'"></span>--}}
-                                {{--    </label>--}}
-                                {{--    <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg">Reset</button>--}}
-
-                                {{--    @error('photo')--}}
-                                {{--    <p class="text-red-500">{{ $message }}</p>--}}
-                                {{--    @enderror--}}
-                                {{--</div>--}}
 
                                 <!-- Choose new photo -->
                                 <div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null }">

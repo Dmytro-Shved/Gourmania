@@ -14,7 +14,6 @@
                             @auth
                                 @if(auth()->user()->id == $user->id )
                                     <a href="{{ route('profiles.edit', $user) }}" class="absolute end-0">
-                                        @csrf
                                         <button class="rounded-lg p-1 bg-gourmania hover:gourmania-hover transition-colors duration-200">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="white" class="size-5">
                                                 <path d="M13.488 2.513a1.75 1.75 0 0 0-2.475 0L6.75 6.774a2.75 2.75 0 0 0-.596.892l-.848 2.047a.75.75 0 0 0 .98.98l2.047-.848a2.75 2.75 0 0 0 .892-.596l4.261-4.262a1.75 1.75 0 0 0 0-2.474Z" />
