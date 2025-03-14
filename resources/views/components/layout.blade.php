@@ -192,18 +192,14 @@
                     <p class="font-inclusive font-semibold text-white text-xl text-center">Quick Links</p>
 
                     <div class="flex flex-col items-center mt-5 space-y-2">
-                        <p class="quick-link">
-                            Recipes</p>
-                        <p class="quick-link">
-                            Authors</p>
-                        <p class="quick-link">
-                            Basics</p>
-                        <p class="quick-link">
-                            FAQ</p>
+                        <p class="quick-link">Recipes</p>
+                        <p class="quick-link">Authors</p>
+                        <p class="quick-link">Basics</p>
+                        <a href="{{ route('faq') }}" class="quick-link">FAQ</a>
                     </div>
                 </div>
 
-                {{-- FAQ --}}
+                {{-- Info --}}
                 <div>
                     <p class="font-inclusive font-semibold text-white text-xl text-center">Info</p>
 
@@ -256,7 +252,7 @@
                                     </div>
                                 </li>
 
-                                {{-- FAQ --}}
+                                {{-- Info --}}
                                 <li class="relative border-b border-gray-200">
                                     <button type="button" class="w-full py-6 text-left"
                                             @click="selected !== 3 ? selected = 3 : selected = null">

@@ -27,7 +27,7 @@
 
     <div class="mt-6 text-center text-sm text-gray-600 sm:flex sm:justify-center sm:gap-2 font-inclusive">
         <p>Don't know how to create a recipe properly?</p>
-        <a href="#" class="text-[#AE763E] hover:underline">View guide</a>
+        <a href="{{ route('faq') }}" class="text-[#AE763E] hover:underline">View guide</a>
     </div>
 
     <br>
