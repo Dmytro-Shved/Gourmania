@@ -35,6 +35,9 @@ class RecipeWizard extends Component
     public $recipe_cuisine;
     public $recipe_menu;
 
+    public $recipe_time;
+    public $recipe_servings;
+
     // Fields Step 2
     public $ingredients = [
         []
@@ -165,6 +168,8 @@ class RecipeWizard extends Component
             'name' => $this->recipe_name,
             'description' => $this->recipe_description,
             'image' => $recipe_image_path,
+            'cook_time' => $this->recipe_time,
+            'servings' => $this->recipe_servings,
             'dish_category_id' => $this->recipe_category,
             'cuisine_id' => $this->recipe_cuisine,
             'menu_id' => $this->recipe_menu,
@@ -209,14 +214,18 @@ class RecipeWizard extends Component
 
      public function validateFields(){
         if ($this->form_step == 1){
-            $this->validate([
+            $step_1  = $this->validate([
                 // Step 1 rules
                 'recipe_name' => ['required', 'string', 'unique:recipes,name', 'max:255'],
                 'recipe_description' => ['nullable', 'string', 'max:255'],
                 'recipe_category' => ['required'],
                 'recipe_cuisine' => ['required'],
                 'recipe_menu' => ['nullable'],
+                'recipe_time' => ['required', 'date_format:H:i'],
+                'recipe_servings' => ['required', 'integer', 'min:1', 'max:99'],
             ]);
+
+            dump($step_1);
 
         }else if ($this->form_step == 2){
             $this->validate([
@@ -244,6 +253,9 @@ class RecipeWizard extends Component
 
             'recipe_category.required' => 'Required',
             'recipe_cuisine.required' => 'Required',
+
+            'recipe_time.required' => 'Required',
+            'recipe_servings.required' => 'Required',
             // END Step 1 messages
 
             // Step 2 messages

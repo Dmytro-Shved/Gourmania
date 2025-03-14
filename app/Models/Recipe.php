@@ -16,6 +16,8 @@ class Recipe extends Model
         'name',
         'description',
         'image',
+        'cook_time',
+        'servings',
         'dish_category_id',
         'user_id',
         'cuisine_id',

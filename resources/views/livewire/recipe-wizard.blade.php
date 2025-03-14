@@ -15,7 +15,8 @@
                     <!-- Select Image -->
                     <label class="block text-sm font-medium text-gray-700 mb-1">Recipe image</label>
                     <div class="mt-1 mb-4 max-w-[201px]">
-                        <label for="recipe_image" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
+                        <label for="recipe_image"
+                               class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
                             <input
                                 wire:model.live="recipe_image"
                                 name="recipe_image"
@@ -35,7 +36,8 @@
                         @if($recipe_image && $recipe_image->getClientOriginalExtension() != null)
                             <label class="block text-xs font-medium text-gray-700 mb-1">Selected image</label>
                             <div class="mt-2">
-                                <img src="{{ $recipe_image->temporaryUrl() }}" class="w-32 h-32 object-contain rounded-md bg-gray-100" alt="Thumbnail">
+                                <img src="{{ $recipe_image->temporaryUrl() }}"
+                                     class="w-32 h-32 object-contain rounded-md bg-gray-100" alt="Thumbnail">
                             </div>
                         @endif
 
@@ -44,7 +46,8 @@
                         @enderror
 
                         <!-- reset button -->
-                        <button wire:click.throttle.3000ms="reset_recipe_image" type="button" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">
+                        <button wire:click.throttle.3000ms="reset_recipe_image" type="button"
+                                class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">
                             Reset
                         </button>
 
@@ -54,8 +57,11 @@
                              class="flex text-sm text-gray-700 ml-2">
                             <div class="flex">
                                 <span class="font-bold">Loading...</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#AE763E" class="size-5 animate-bounce">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v4.59L7.3 9.24a.75.75 0 0 0-1.1 1.02l3.25 3.5a.75.75 0 0 0 1.1 0l3.25-3.5a.75.75 0 1 0-1.1-1.02l-1.95 2.1V6.75Z" clip-rule="evenodd" />
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#AE763E"
+                                     class="size-5 animate-bounce">
+                                    <path fill-rule="evenodd"
+                                          d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v4.59L7.3 9.24a.75.75 0 0 0-1.1 1.02l3.25 3.5a.75.75 0 0 0 1.1 0l3.25-3.5a.75.75 0 1 0-1.1-1.02l-1.95 2.1V6.75Z"
+                                          clip-rule="evenodd"/>
                                 </svg>
                             </div>
                         </div>
@@ -66,8 +72,11 @@
                              class="flex text-sm text-gray-700 ml-2">
                             <div class="flex">
                                 <span class="font-bold">Resetting...</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#AE763E" class="size-5 animate-bounce">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm-.75-4.75a.75.75 0 0 0 1.5 0V8.66l1.95 2.1a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0L6.2 9.74a.75.75 0 1 0 1.1 1.02l1.95-2.1v4.59Z" clip-rule="evenodd" />
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#AE763E"
+                                     class="size-5 animate-bounce">
+                                    <path fill-rule="evenodd"
+                                          d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm-.75-4.75a.75.75 0 0 0 1.5 0V8.66l1.95 2.1a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0L6.2 9.74a.75.75 0 1 0 1.1 1.02l1.95-2.1v4.59Z"
+                                          clip-rule="evenodd"/>
                                 </svg>
                             </div>
                         </div>
@@ -75,7 +84,9 @@
 
                     <!-- Recipe name -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1 after:content-['*'] after:text-red-500">Recipe name</label>
+                        <label
+                            class="block text-sm font-medium text-gray-700 mb-1 after:content-['*'] after:text-red-500">Recipe
+                            name</label>
                         <input wire:model="recipe_name"
                                name="recipe_name"
                                type="text"
@@ -93,7 +104,8 @@
                             <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
                             <textarea wire:model="recipe_description"
                                       name="recipe_description"
-                                      class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75" rows="3"
+                                      class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75"
+                                      rows="3"
                                       placeholder="This recipe is about..."></textarea>
                             @error('recipe_description')
                             <span class="flex text-red-500">{{ $message }}</span>
@@ -105,7 +117,8 @@
                     <div class="relative w-full">
 
                         <!-- category -->
-                        <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Category</label>
+                        <label
+                            class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Category</label>
                         <select
                             wire:model="recipe_category"
                             name="dish_category"
@@ -123,7 +136,8 @@
                         @enderror
 
                         <!-- cuisine -->
-                        <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Cuisine</label>
+                        <label
+                            class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Cuisine</label>
                         <select
                             wire:model="recipe_cuisine"
                             name="cuisine"
@@ -158,6 +172,50 @@
                         @error('recipe_menu')
                         <span class="flex text-red-500">{{ $message }}</span>
                         @enderror
+
+                        <div class="flex justify-between w-full gap-4 mt-1.5 mb-6">
+                            <!-- Time cook -->
+                            <div class="flex flex-col w-[120px]">
+                                <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Time cook</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 end-0 top-0 flex items-center pe-2 pointer-events-none">
+                                        <svg class="w-6 h-6 text-[#AE763E]" aria-hidden="true"
+                                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                            <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </div>
+                                    <input
+                                        wire:model="recipe_time"
+                                        type="time"
+                                        id="time"
+                                        class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg gourmania-focus block w-32 px-2 py-[7.5px]"
+                                        min="00:05"
+                                        max="24:00"
+                                        value="00:00"
+                                        autocomplete="off"
+                                    />
+                                </div>
+                                @error('recipe_time')
+                                <span class="flex text-red-500">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <!-- Servings -->
+                            <div class="flex flex-col flex-grow max-w-[120px]">
+                                <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Servings</label>
+                                <input
+                                    wire:model="recipe_servings"
+                                    placeholder="1"
+                                    type="number"
+                                    class="w-full text-[15px] px-2 py-1.5 border border-gray-300 rounded-lg gourmania-focus"
+                                    min="1"
+                                    autocomplete="off"
+                                />
+                                @error('recipe_servings')
+                                <span class="flex text-red-500">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                 @endif
                 {{--END STEP 1--}}
@@ -234,8 +292,9 @@
                                             wire:loading.class="bg-red-500 animate-bounce"
                                             type="button"
                                             class="w-[30px] bg-[#603912] hover:bg-red-500 text-white font-medium py-1 rounded-lg transition-colors flex justify-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-                                                <path d="M3.75 7.25a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+                                                 fill="currentColor" class="size-4">
+                                                <path d="M3.75 7.25a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z"/>
                                             </svg>
                                         </button>
                                     </div>
@@ -252,8 +311,10 @@
                             wire:loading.class="animate-bounce"
                             type="button"
                             class="w-[35px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors flex justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4 ">
-                                <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                 class="size-4 ">
+                                <path
+                                    d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z"/>
                             </svg>
                         </button>
                     </div>
@@ -266,14 +327,16 @@
                         <div class="p-2 border border-gray-400 rounded-lg">
                             <!-- Step Number -->
                             <div class="flex justify-center mb-2">
-                                <span class="text-black border border-black flex items-center justify-center size-6 rounded-full">
+                                <span
+                                    class="text-black border border-black flex items-center justify-center size-6 rounded-full">
                                     {{  $index + 1 }}
                                 </span>
                             </div>
 
                             <!-- Step Image -->
                             <div class="mt-1 mb-4 max-w-[201px]">
-                                <label for="guide_steps.{{$index}}.step_image" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
+                                <label for="guide_steps.{{$index}}.step_image"
+                                       class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
                                     <input
                                         wire:model="guide_steps.{{$index}}.step_image"
                                         name="guide_steps.{{$index}}.step_image"
@@ -293,7 +356,9 @@
                                 @if($guide_steps[$index]['step_image'] && $guide_steps[$index]['step_image']->getClientOriginalExtension() != null)
                                     <label class="block text-xs font-medium text-gray-700 mb-1">Selected image</label>
                                     <div class="mt-2">
-                                        <img src="{{ $guide_steps[$index]['step_image']->temporaryUrl() }}" class="w-32 h-32 object-contain rounded-md bg-gray-100" alt="Step{{' '.$index.' '}}thumbnail">
+                                        <img src="{{ $guide_steps[$index]['step_image']->temporaryUrl() }}"
+                                             class="w-32 h-32 object-contain rounded-md bg-gray-100"
+                                             alt="Step{{' '.$index.' '}}thumbnail">
                                     </div>
                                 @endif
 
@@ -314,8 +379,11 @@
                                      class="flex text-sm text-gray-700 ml-2">
                                     <div class="flex">
                                         <span class="font-bold">Loading...</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#AE763E" class="size-5 animate-bounce">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v4.59L7.3 9.24a.75.75 0 0 0-1.1 1.02l3.25 3.5a.75.75 0 0 0 1.1 0l3.25-3.5a.75.75 0 1 0-1.1-1.02l-1.95 2.1V6.75Z" clip-rule="evenodd" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#AE763E"
+                                             class="size-5 animate-bounce">
+                                            <path fill-rule="evenodd"
+                                                  d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v4.59L7.3 9.24a.75.75 0 0 0-1.1 1.02l3.25 3.5a.75.75 0 0 0 1.1 0l3.25-3.5a.75.75 0 1 0-1.1-1.02l-1.95 2.1V6.75Z"
+                                                  clip-rule="evenodd"/>
                                         </svg>
                                     </div>
                                 </div>
@@ -326,8 +394,11 @@
                                      class="flex text-sm text-gray-700 ml-2">
                                     <div class="flex">
                                         <span class="font-bold">Resetting...</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#AE763E" class="size-5 animate-bounce">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm-.75-4.75a.75.75 0 0 0 1.5 0V8.66l1.95 2.1a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0L6.2 9.74a.75.75 0 1 0 1.1 1.02l1.95-2.1v4.59Z" clip-rule="evenodd" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#AE763E"
+                                             class="size-5 animate-bounce">
+                                            <path fill-rule="evenodd"
+                                                  d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm-.75-4.75a.75.75 0 0 0 1.5 0V8.66l1.95 2.1a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0L6.2 9.74a.75.75 0 1 0 1.1 1.02l1.95-2.1v4.59Z"
+                                                  clip-rule="evenodd"/>
                                         </svg>
                                     </div>
                                 </div>
@@ -335,12 +406,15 @@
 
                             <!-- Step text -->
                             <div class="w-full">
-                                <div class="flex w-full max-w-md flex-col gap-1 text-on-surface dark:text-on-surface-dark">
-                                    <label class="block text-sm font-medium text-gray-700 mb-0 mt-1 after:content-['*'] after:text-red-500"></label>
+                                <div
+                                    class="flex w-full max-w-md flex-col gap-1 text-on-surface dark:text-on-surface-dark">
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 mb-0 mt-1 after:content-['*'] after:text-red-500"></label>
                                     <textarea
                                         wire:model="guide_steps.{{$index}}.step_text"
                                         name="guide_steps.{{$index}}.step_text"
-                                        class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75" rows="3"
+                                        class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75"
+                                        rows="3"
                                         placeholder="First there was an egg..."></textarea>
 
                                     @error('guide_steps.'.$index.'.step_text')
@@ -357,8 +431,9 @@
                                     wire:loading.class="bg-red-500 animate-bounce"
                                     type="button"
                                     class="w-[35px] bg-[#603912] hover:bg-red-500 text-white font-medium py-1.5 rounded-lg transition-colors flex justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-                                        <path d="M3.75 7.25a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                         class="size-4">
+                                        <path d="M3.75 7.25a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z"/>
                                     </svg>
                                 </button>
                             </div>
@@ -371,8 +446,10 @@
                             wire:loading.class="animate-bounce"
                             type="button"
                             class="w-[35px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors flex justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-                                <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                 class="size-4">
+                                <path
+                                    d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z"/>
                             </svg>
                         </button>
                     </div>
