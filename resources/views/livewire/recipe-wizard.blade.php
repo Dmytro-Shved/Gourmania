@@ -483,6 +483,8 @@
                         <!-- Submit button -->
                         <div class="flex justify-end">
                             <button
+                                wire:loading.delay.class="animate-bounce"
+                                wire:target="store"
                                 type="submit"
                                 class="w-[100px] bg-green-400 hover:bg-green-300 text-white font-medium py-2.5 rounded-lg transition-colors">
                                 Submit
