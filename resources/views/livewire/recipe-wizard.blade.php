@@ -15,33 +15,32 @@
                     <!-- Select Image -->
                     <label class="block text-sm font-medium text-gray-700 mb-1">Recipe image</label>
                     <div class="mt-1 mb-4 max-w-[201px]">
-                        <label for="recipe_image"
-                               class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
+                        <label for="recipeForm.image" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
                             <input
-                                wire:model.live="recipe_image"
-                                name="recipe_image"
+                                wire:model.live="recipeForm.image"
+                                name="recipeForm.image"
                                 type="file"
                                 class="sr-only"
-                                id="recipe_image"
+                                id="recipeForm.image"
                                 accept="image/jpeg, image/png, image/webp">
 
-                            @if(!$recipe_image)
+                            @if(!$recipeForm->image)
                                 <span>Choose file...</span>
                             @else
-                                <span>{{ $recipe_image->getClientOriginalName() }}</span>
+                                <span>{{ $recipeForm->image->getClientOriginalName() }}</span>
                             @endif
                         </label>
 
                         <!-- mini photo -->
-                        @if($recipe_image && $recipe_image->getClientOriginalExtension() != null)
+                        @if($recipeForm->image && $recipeForm->image->getClientOriginalExtension() != null)
                             <label class="block text-xs font-medium text-gray-700 mb-1">Selected image</label>
                             <div class="mt-2">
-                                <img src="{{ $recipe_image->temporaryUrl() }}"
+                                <img src="{{ $recipeForm->image->temporaryUrl() }}"
                                      class="w-32 h-32 object-contain rounded-md bg-gray-100" alt="Thumbnail">
                             </div>
                         @endif
 
-                        @error('recipe_image')
+                        @error('recipeForm.image')
                         <span class="flex text-red-500">{{ $message }}</span>
                         @enderror
 
@@ -53,7 +52,7 @@
 
                         <!--loading indication-->
                         <div wire:loading
-                             wire:target="recipe_image"
+                             wire:target="recipeForm.image"
                              class="flex text-sm text-gray-700 ml-2">
                             <div class="flex">
                                 <span class="font-bold">Loading...</span>
@@ -84,16 +83,14 @@
 
                     <!-- Recipe name -->
                     <div>
-                        <label
-                            class="block text-sm font-medium text-gray-700 mb-1 after:content-['*'] after:text-red-500">Recipe
-                            name</label>
-                        <input wire:model="recipe_name"
-                               name="recipe_name"
+                        <label class="block text-sm font-medium text-gray-700 mb-1 after:content-['*'] after:text-red-500">Recipe name</label>
+                        <input wire:model="recipeForm.name"
+                               name="recipeForm.name"
                                type="text"
                                class="w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus"
                                placeholder="Chicken Broth"
                         />
-                        @error('recipe_name')
+                        @error('recipeForm.name')
                         <span class="flex text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
@@ -102,12 +99,12 @@
                     <div class="w-full">
                         <div class="flex w-full max-w-md flex-col gap-1 text-on-surface dark:text-on-surface-dark">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                            <textarea wire:model="recipe_description"
-                                      name="recipe_description"
+                            <textarea wire:model="recipeForm.description"
+                                      name="recipeForm.description"
                                       class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75"
                                       rows="3"
                                       placeholder="This recipe is about..."></textarea>
-                            @error('recipe_description')
+                            @error('recipeForm.description')
                             <span class="flex text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
@@ -115,13 +112,11 @@
 
                     <!-- Select Category, Cuisine Menu -->
                     <div class="relative w-full">
-
                         <!-- category -->
-                        <label
-                            class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Category</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Category</label>
                         <select
-                            wire:model="recipe_category"
-                            name="dish_category"
+                            wire:model="recipeForm.category"
+                            name="recipeForm.category"
                             class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-4 py-2"
                             autocomplete="off"
                         >
@@ -131,35 +126,33 @@
                                 <option value="{{$dishCategory->id }}">{{ $dishCategory->name }}</option>
                             @endforeach
                         </select>
-                        @error('recipe_category')
+                        @error('recipeForm.category')
                         <span class="flex text-red-500">{{ $message }}</span>
                         @enderror
 
                         <!-- cuisine -->
-                        <label
-                            class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Cuisine</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Cuisine</label>
                         <select
-                            wire:model="recipe_cuisine"
-                            name="cuisine"
+                            wire:model="recipeForm.cuisine"
+                            name="recipeForm.cuisine"
                             class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-4 py-2"
                             autocomplete="off"
                         >
-
                             <option value="" selected>Select Cuisine</option>
 
                             @foreach($cuisines as $cuisine)
                                 <option value="{{ $cuisine->id }}">{{ $cuisine->name }}</option>
                             @endforeach
                         </select>
-                        @error('recipe_cuisine')
+                        @error('recipeForm.cuisine')
                         <span class="flex text-red-500">{{ $message }}</span>
                         @enderror
 
                         <!-- menu -->
                         <label class="block text-sm font-medium text-gray-700 mb-1 mt-2">Menu</label>
                         <select
-                            wire:model="recipe_menu"
-                            name="menu"
+                            wire:model="recipeForm.menu"
+                            name="recipeForm.menu"
                             class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-4 py-2"
                             autocomplete="off"
                         >
@@ -169,7 +162,7 @@
                                 <option value="{{ $menu->id }}">{{ $menu->name }}</option>
                             @endforeach
                         </select>
-                        @error('recipe_menu')
+                        @error('recipeForm.menu')
                         <span class="flex text-red-500">{{ $message }}</span>
                         @enderror
 
@@ -185,7 +178,7 @@
                                         </svg>
                                     </div>
                                     <input
-                                        wire:model="recipe_time"
+                                        wire:model="recipeForm.cook_time"
                                         type="time"
                                         id="time"
                                         class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg gourmania-focus block w-32 px-2 py-[7.5px]"
@@ -195,7 +188,7 @@
                                         autocomplete="off"
                                     />
                                 </div>
-                                @error('recipe_time')
+                                @error('recipeForm.cook_time')
                                 <span class="flex text-red-500">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -204,14 +197,14 @@
                             <div class="flex flex-col flex-grow max-w-[120px]">
                                 <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Servings</label>
                                 <input
-                                    wire:model="recipe_servings"
+                                    wire:model="recipeForm.servings"
                                     placeholder="1"
                                     type="number"
                                     class="w-full text-[15px] px-2 py-1.5 border border-gray-300 rounded-lg gourmania-focus"
                                     min="1"
                                     autocomplete="off"
                                 />
-                                @error('recipe_servings')
+                                @error('recipeForm.servings')
                                 <span class="flex text-red-500">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -231,20 +224,20 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($ingredients as $index => $ingredient)
+                        @foreach($ingredientsForm->ingredients as $index => $ingredient)
                             <tr>
                                 <!-- Ingredient Name -->
                                 <td class="py-3 pr-1 w-1/3 relative">
                                     <!--Ingredient counter-->
                                     <span class="absolute -left-5 top-6 text-sm">{{ $index + 1 }}.</span>
                                     <input
-                                        wire:model="ingredients.{{$index}}.ingredient_name"
+                                        wire:model="ingredientsForm.ingredients.{{$index}}.name"
                                         type="text"
                                         class="w-full px-2 py-2 border border-gray-300 rounded-lg gourmania-focus text-sm"
                                         placeholder="Chicken"
                                     />
 
-                                    @error('ingredients.'.$index.'.ingredient_name')
+                                    @error('ingredientsForm.ingredients.'.$index.'.name')
                                     <span class="flex text-red-500 absolute">{{ $message }}</span>
                                     @enderror
                                 </td>
@@ -253,14 +246,15 @@
                                 <td class="py-3 w-1/3 relative">
                                     <div class="flex justify-center">
                                         <input
-                                            wire:model="ingredients.{{$index}}.ingredient_quantity"
+                                            wire:model="ingredientsForm.ingredients.{{$index}}.quantity"
                                             placeholder="1"
                                             type="number"
                                             class="w-full text-[15px] px-2 py-1.5 border border-gray-300 rounded-lg gourmania-focus"
                                             min="1"
                                         />
                                     </div>
-                                    @error('ingredients.'.$index.'.ingredient_quantity')
+
+                                    @error('ingredientsForm.ingredients.'.$index.'.quantity')
                                     <span class="flex text-red-500 absolute">{{ $message }}</span>
                                     @enderror
                                 </td>
@@ -268,7 +262,7 @@
                                 <!-- Unit -->
                                 <td class="py-3 pl-1 w-1/3">
                                     <select
-                                        wire:model="ingredients.{{$index}}.ingredient_unit"
+                                        wire:model="ingredientsForm.ingredients.{{$index}}.unit"
                                         name="menu"
                                         class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-[14px] gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-2 py-1.5"
                                         autocomplete="off"
@@ -278,7 +272,8 @@
                                             <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('ingredients.'.$index.'.ingredient_unit')
+
+                                    @error('ingredientsForm.ingredients.'.$index.'.unit')
                                     <span class="flex text-red-500 absolute">{{ $message }}</span>
                                     @enderror
                                 </td>
@@ -323,7 +318,7 @@
 
                 {{--STEP 3--}}
                 @if($form_step == 3)
-                    @foreach($guide_steps as $index => $guide_step)
+                    @foreach($guideForm->steps as $index => $guide_step)
                         <div class="p-2 border border-gray-400 rounded-lg">
                             <!-- Step Number -->
                             <div class="flex justify-center mb-2">
@@ -335,34 +330,34 @@
 
                             <!-- Step Image -->
                             <div class="mt-1 mb-4 max-w-[201px]">
-                                <label for="guide_steps.{{$index}}.step_image"
+                                <label for="guideForm.steps.{{$index}}.image"
                                        class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
                                     <input
-                                        wire:model="guide_steps.{{$index}}.step_image"
-                                        name="guide_steps.{{$index}}.step_image"
+                                        wire:model="guideForm.steps.{{$index}}.image"
+                                        name="guideForm.steps.{{$index}}.image"
                                         type="file"
                                         class="sr-only"
-                                        id="guide_steps.{{$index}}.step_image"
+                                        id="guideForm.steps.{{$index}}.image"
                                         accept="image/jpeg, image/png, image/webp">
 
-                                    @if(!$guide_steps[$index]['step_image'])
+                                    @if(!$guideForm->steps[$index]['image'])
                                         <span>Choose file...</span>
                                     @else
-                                        <span>{{ $guide_steps[$index]['step_image']->getClientOriginalName() }}</span>
+                                        <span>{{ $guideForm->steps[$index]['image']->getClientOriginalName() }}</span>
                                     @endif
                                 </label>
 
                                 <!-- Step mini photo -->
-                                @if($guide_steps[$index]['step_image'] && $guide_steps[$index]['step_image']->getClientOriginalExtension() != null)
+                                @if($guideForm->steps[$index]['image'] && $guideForm->steps[$index]['image']->getClientOriginalExtension() != null)
                                     <label class="block text-xs font-medium text-gray-700 mb-1">Selected image</label>
                                     <div class="mt-2">
-                                        <img src="{{ $guide_steps[$index]['step_image']->temporaryUrl() }}"
+                                        <img src="{{ $guideForm->steps[$index]['image']->temporaryUrl() }}"
                                              class="w-32 h-32 object-contain rounded-md bg-gray-100"
                                              alt="Step{{' '.$index.' '}}thumbnail">
                                     </div>
                                 @endif
 
-                                @error('guide_steps.'.$index.'.step_image')
+                                @error('guideForm.steps.'.$index.'.image')
                                 <span class="flex text-red-500">{{ $message }}</span>
                                 @enderror
 
@@ -375,7 +370,7 @@
 
                                 <!--loading indication-->
                                 <div wire:loading
-                                     wire:target="guide_steps.{{$index}}.step_image"
+                                     wire:target="guideForm.steps.{{$index}}.image"
                                      class="flex text-sm text-gray-700 ml-2">
                                     <div class="flex">
                                         <span class="font-bold">Loading...</span>
@@ -411,13 +406,13 @@
                                     <label
                                         class="block text-sm font-medium text-gray-700 mb-0 mt-1 after:content-['*'] after:text-red-500"></label>
                                     <textarea
-                                        wire:model="guide_steps.{{$index}}.step_text"
-                                        name="guide_steps.{{$index}}.step_text"
+                                        wire:model="guideForm.steps.{{$index}}.text"
+                                        name="guideForm.steps.{{$index}}.text"
                                         class="w-full rounded-radius font-inclusive border border-gray-300 bg-surface-alt px-2.5 py-2 text-sm ocus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E] rounded-lg disabled:cursor-not-allowed disabled:opacity-75"
                                         rows="3"
                                         placeholder="First there was an egg..."></textarea>
 
-                                    @error('guide_steps.'.$index.'.step_text')
+                                    @error('guideForm.steps.'.$index.'.text')
                                     <span class="flex text-red-500 ml-1">{{ $message }}</span>
                                     @enderror
                                 </div>
