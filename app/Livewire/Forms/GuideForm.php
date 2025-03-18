@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Validate;
+use App\Models\GuideStep;
 use Livewire\Form;
 
 class GuideForm extends Form
@@ -18,12 +18,12 @@ class GuideForm extends Form
         $this->steps[$index]['image'] = null;
     }
 
-    public function addStep()
+    public function addStep(): void
     {
         $this->steps[] = $this->step;
     }
 
-    public function removeStep($index)
+    public function removeStep($index): void
     {
         unset($this->steps[$index]);
 
@@ -35,7 +35,25 @@ class GuideForm extends Form
         }
     }
 
-    public function rules()
+    public function insertGroupedSteps($recipeId): void
+    {
+        $groupedSteps = collect($this->steps)->map(function ($step, $index) use ($recipeId){
+            return [
+                'recipe_id' => $recipeId,
+                'step_number' => $index + 1,
+                'step_text' => trim($step['text']),
+                'step_image' => $step['image']
+                    ? $step['image']->store('guides-images', 'public')
+                    : 'recipes-images/default/default_photo.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        })->toArray();
+
+        GuideStep::insert($groupedSteps);
+    }
+
+    public function rules(): array
     {
         return [
             'steps.*.image' => ['nullable', 'mimes:jpeg,png,webp'],
@@ -43,7 +61,7 @@ class GuideForm extends Form
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'steps.*.image.mimes' => 'The image must be a file of type: jpeg, png, webp',
