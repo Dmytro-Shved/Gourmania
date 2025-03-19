@@ -4,6 +4,7 @@ use App\Http\Controllers\FilterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RegisterController;
 use App\Livewire\RecipeWizard;
 use Illuminate\Support\Facades\Route;
@@ -27,8 +28,8 @@ Route::middleware('auth')->group(function (){
 
     Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-    Route::get('/recipes/create', RecipeWizard::class)->name('recipes.create');
-    Route::get('/recipes/{recipe}/edit', RecipeWizard::class)->name('recipes.edit');
+    Route::get('/recipes/create', [RecipeController::class, 'showCreateForm'] )->name('recipes.create');
+    Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'showEditForm'])->name('recipes.edit');
 });
 
 Route::get('/logout', function () {
