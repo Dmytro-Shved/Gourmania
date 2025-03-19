@@ -15,7 +15,9 @@
                     <!-- Select Image -->
                     <label class="block text-sm font-medium text-gray-700 mb-1">Recipe image</label>
                     <div class="mt-1 mb-4 max-w-[201px]">
-                        <label for="recipeForm.image" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
+                        <label
+                            for="recipeForm.image"
+                            class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
                             <input
                                 wire:model.live="recipeForm.image"
                                 name="recipeForm.image"
@@ -26,17 +28,23 @@
 
                             @if(!$recipeForm->image)
                                 <span>Choose file...</span>
+                            @elseif(is_string($recipeForm->image))
+                                <span>Current photo</span>
                             @else
                                 <span>{{ $recipeForm->image->getClientOriginalName() }}</span>
                             @endif
                         </label>
 
                         <!-- mini photo -->
-                        @if($recipeForm->image && $recipeForm->image->getClientOriginalExtension() != null)
+                        @if($recipeForm->image && !is_string($recipeForm->image) && $recipeForm->image->getClientOriginalExtension() != null)
                             <label class="block text-xs font-medium text-gray-700 mb-1">Selected image</label>
                             <div class="mt-2">
                                 <img src="{{ $recipeForm->image->temporaryUrl() }}"
                                      class="w-32 h-32 object-contain rounded-md bg-gray-100" alt="Thumbnail">
+                            </div>
+                        @elseif(is_string($recipeForm->image))
+                            <div class="mt-2">
+                                <img src="{{ asset('storage/'. $recipeForm->image) }}" class="w-32 h-32 object-contain rounded-md bg-gray-100" alt="Thumbnail">
                             </div>
                         @endif
 
@@ -342,18 +350,26 @@
 
                                     @if(!$guideForm->steps[$index]['image'])
                                         <span>Choose file...</span>
+                                    @elseif(is_string($guideForm->steps[$index]['image']))
+                                        <span>Current photo</span>
                                     @else
                                         <span>{{ $guideForm->steps[$index]['image']->getClientOriginalName() }}</span>
                                     @endif
                                 </label>
 
                                 <!-- Step mini photo -->
-                                @if($guideForm->steps[$index]['image'] && $guideForm->steps[$index]['image']->getClientOriginalExtension() != null)
+                                @if($guideForm->steps[$index]['image'] && !is_string($guideForm->steps[$index]['image']) &&  $guideForm->steps[$index]['image']->getClientOriginalExtension() != null)
                                     <label class="block text-xs font-medium text-gray-700 mb-1">Selected image</label>
                                     <div class="mt-2">
                                         <img src="{{ $guideForm->steps[$index]['image']->temporaryUrl() }}"
                                              class="w-32 h-32 object-contain rounded-md bg-gray-100"
-                                             alt="Step{{' '.$index.' '}}thumbnail">
+                                             alt="Step{{' '.($index + 1).' '}}thumbnail">
+                                    </div>
+                                @elseif(is_string($guideForm->steps[$index]['image']))
+                                    <div class="mt-2">
+                                        <img src="{{ asset('storage/'. $guideForm->steps[$index]['image']) }}"
+                                             class="w-32 h-32 object-contain rounded-md bg-gray-100"
+                                             alt="Step{{' '.($index + 1).' '}}thumbnail">
                                     </div>
                                 @endif
 

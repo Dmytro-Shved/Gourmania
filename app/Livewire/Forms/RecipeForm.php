@@ -4,12 +4,16 @@ namespace App\Livewire\Forms;
 
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class RecipeForm extends Form
 {
+    #[Locked]
+    public int $id = 0;
+
     #[Validate]
     #[Rule(['nullable','mimes:jpeg,png,webp'])]
     public $image;
@@ -20,6 +24,20 @@ class RecipeForm extends Form
     public $menu;
     public $cook_time;
     public $servings;
+
+    public function setRecipe(Recipe $recipe): void
+    {
+        $this->id = $recipe->id;
+        $this->name = $recipe->name;
+        $this->description = $recipe->description;
+        $this->image = $recipe->image;
+        $this->cook_time = $recipe->cook_time;
+        $this->servings = $recipe->servings;
+
+        $this->category = $recipe->dish_category_id;
+        $this->cuisine = $recipe->cuisine_id;
+        $this->menu = $recipe->menu_id;
+    }
 
     public function resetRecipeImage(): void
     {

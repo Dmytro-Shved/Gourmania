@@ -13,6 +13,15 @@ class GuideForm extends Form
 
     public $step = ['image' => null, 'text' => null];
 
+    public function setGuide($guideSteps): void
+    {
+        // Consider the step_number for the correct order in the array
+        foreach ($guideSteps as $step){
+            $this->steps[$step->step_number - 1]['image'] = $step->step_image;
+            $this->steps[$step->step_number - 1]['text'] = $step->step_text;
+        }
+    }
+
     public function resetStepImage($index): void
     {
         $this->steps[$index]['image'] = null;

@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Cuisine;
 use App\Models\DishCategory;
 use App\Models\Menu;
+use App\Models\Recipe;
 use App\Models\Unit;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -25,12 +26,18 @@ class RecipeWizard extends Component
     public $menus;
     public $units;
 
-    public function mount(): void
+    public function mount(Recipe $recipe): void
     {
         $this->dishCategories = DishCategory::get();
         $this->cuisines = Cuisine::get();
         $this->menus = Menu::get();
         $this->units = Unit::get();
+
+        if (isset($recipe->id)){
+            $this->recipeForm->setRecipe($recipe);
+            $this->ingredientsForm->setIngredients($recipe->ingredients);
+            $this->guideForm->setGuide($recipe->guideSteps);
+        }
     }
 
     public function render(): View

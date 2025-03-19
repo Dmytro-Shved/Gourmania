@@ -13,6 +13,15 @@ class IngredientsForm extends Form
 
     public $ingredient = ['name' => null, 'quantity' => null, 'unit' => null];
 
+    public function setIngredients($ingredients): void
+    {
+        foreach ($ingredients as $index => $ingredient){
+            $this->ingredients[$index]['name'] = $ingredient->name;
+            $this->ingredients[$index]['quantity'] = $ingredient->pivot->quantity;
+            $this->ingredients[$index]['unit'] = $ingredient->pivot->unit_id;
+        }
+    }
+
     public function addIngredient(): void
     {
         $this->ingredients[] = $this->ingredient;
