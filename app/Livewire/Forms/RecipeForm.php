@@ -26,7 +26,7 @@ class RecipeForm extends Form
         $this->image = null;
     }
 
-    public function storeRecipeImage(): string
+    public function storeRecipeImage(): ?string
     {
         // Check if temp image exists then store
         if ($this->image){

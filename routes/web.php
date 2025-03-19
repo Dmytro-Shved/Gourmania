@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Livewire\RecipeWizard;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'index')->name('home');
@@ -26,7 +27,8 @@ Route::middleware('auth')->group(function (){
 
     Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-    Route::view('/recipes/create', 'recipes.recipe-create')->name('recipes.create');
+    Route::get('/recipes/create', RecipeWizard::class)->name('recipes.create');
+    Route::get('/recipes/{recipe}/edit', RecipeWizard::class)->name('recipes.edit');
 });
 
 Route::get('/logout', function () {
@@ -36,6 +38,5 @@ Route::get('/logout', function () {
 Route::get('/user/profiles/{user}', [ProfileController::class, 'show_profile'])->name('profiles.show');
 Route::get('/user/profiles/{user}/edit', [ProfileController::class, 'edit_profile'])->name('profiles.edit')->middleware('auth');
 Route::put('/user/profiles/{user}', [ProfileController::class, 'update_profile'])->name('profiles.update');
-
 
 Route::view('/faq', 'faq')->name('faq');
