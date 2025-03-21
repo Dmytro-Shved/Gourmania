@@ -28,23 +28,26 @@
 
                             @if(!$recipeForm->image)
                                 <span>Choose file...</span>
-                            @elseif(is_string($recipeForm->image))
-                                <span>Current photo</span>
                             @else
                                 <span>{{ $recipeForm->image->getClientOriginalName() }}</span>
                             @endif
                         </label>
 
-                        <!-- mini photo -->
-                        @if($recipeForm->image && !is_string($recipeForm->image) && $recipeForm->image->getClientOriginalExtension() != null)
+                        <!-- current photo -->
+                        @if($recipeForm->id)
+                            <label class="block text-xs font-medium text-gray-700 mb-1">Current image</label>
+                            <div class="mt-2">
+                                <img src="{{ asset('storage/'. $recipeForm->current_image) }}"
+                                     class="w-32 h-32 object-contain rounded-md bg-gray-100" alt="Thumbnail">
+                            </div>
+                        @endif
+
+                        <!-- selected image -->
+                        @if($recipeForm->image && $recipeForm->image->getClientOriginalExtension() != null)
                             <label class="block text-xs font-medium text-gray-700 mb-1">Selected image</label>
                             <div class="mt-2">
                                 <img src="{{ $recipeForm->image->temporaryUrl() }}"
                                      class="w-32 h-32 object-contain rounded-md bg-gray-100" alt="Thumbnail">
-                            </div>
-                        @elseif(is_string($recipeForm->image))
-                            <div class="mt-2">
-                                <img src="{{ asset('storage/'. $recipeForm->image) }}" class="w-32 h-32 object-contain rounded-md bg-gray-100" alt="Thumbnail">
                             </div>
                         @endif
 

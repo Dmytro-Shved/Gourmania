@@ -15,7 +15,7 @@ class RecipeForm extends Form
     public int $id = 0;
 
     #[Validate]
-    #[Rule(['nullable', 'mimes:jpeg,png,webp'])]
+    #[Rule(['nullable', 'mimetypes:image/jpeg,image/png,image/webp'])]
     public $image;
     public $name;
     public $description;
@@ -25,12 +25,15 @@ class RecipeForm extends Form
     public $cook_time;
     public $servings;
 
+    #[Locked]
+    public $current_image;
+
     public function setRecipe(Recipe $recipe): void
     {
         $this->id = $recipe->id;
         $this->name = $recipe->name;
         $this->description = $recipe->description;
-        $this->image = $recipe->image;
+        $this->current_image = $recipe->image;
         $this->cook_time = $recipe->cook_time;
         $this->servings = $recipe->servings;
 
@@ -89,23 +92,10 @@ class RecipeForm extends Form
         return $recipe;
     }
 
-    public function getRules()
-    {
-        $rules = [
-            'name' => ['required', 'string', 'max:255', \Illuminate\Validation\Rule::unique('recipes')->ignore($this->id)],
-        ];
-
-        if ($this->image instanceof \Illuminate\Http\UploadedFile) {
-            $rules['image'] = 'nullable|mimes:jpeg,png,webp|max:2048';
-        }
-
-        return $rules;
-    }
-
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'unique:recipes,name', 'max:255'],
+            'name' => ['required', 'string', \Illuminate\Validation\Rule::unique('recipes')->ignore($this->id), 'max:255',],
             'description' => ['nullable', 'string', 'max:255'],
             'category' => ['required'],
             'cuisine' => ['required'],
@@ -118,7 +108,7 @@ class RecipeForm extends Form
     public function messages(): array
     {
         return [
-            'image.mimes' => 'The recipe image must be a file of type: jpeg, png, webp',
+            'image.mimes' => 'Image must be a file of type: jpeg, png, webp',
             'image.image' => 'Invalid type',
             'image.max' => 'Too big image',
 
