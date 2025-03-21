@@ -4,8 +4,8 @@ namespace App\Livewire\Forms;
 
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\Locked;
 use Livewire\Attributes\Rule;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
@@ -15,7 +15,7 @@ class RecipeForm extends Form
     public int $id = 0;
 
     #[Validate]
-    #[Rule(['nullable','mimes:jpeg,png,webp'])]
+    #[Rule(['nullable', 'mimes:jpeg,png,webp'])]
     public $image;
     public $name;
     public $description;
@@ -89,6 +89,19 @@ class RecipeForm extends Form
         return $recipe;
     }
 
+    public function getRules()
+    {
+        $rules = [
+            'name' => ['required', 'string', 'max:255', \Illuminate\Validation\Rule::unique('recipes')->ignore($this->id)],
+        ];
+
+        if ($this->image instanceof \Illuminate\Http\UploadedFile) {
+            $rules['image'] = 'nullable|mimes:jpeg,png,webp|max:2048';
+        }
+
+        return $rules;
+    }
+
     public function rules(): array
     {
         return [
@@ -106,6 +119,9 @@ class RecipeForm extends Form
     {
         return [
             'image.mimes' => 'The recipe image must be a file of type: jpeg, png, webp',
+            'image.image' => 'Invalid type',
+            'image.max' => 'Too big image',
+
             'name.required' => 'Required',
             'name.string' => 'Recipe name must be a string',
             'name.unique:App\Models\Recipe, name' => 'This recipe name has already been taken',
