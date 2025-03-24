@@ -37,6 +37,7 @@ class RecipeWizard extends Component
             $this->recipeForm->setRecipe($recipe);
             $this->ingredientsForm->setIngredients($recipe->ingredients);
             $this->guideForm->setGuide($recipe->guideSteps);
+            $this->guideForm->setRecipeForm($this->recipeForm);
         }
     }
 
@@ -102,6 +103,8 @@ class RecipeWizard extends Component
         if ($this->form_step == 3){
             $this->guideForm->validate();
         }
+
+        dd('create or update?');
 
         $finalIngredients = $this->ingredientsForm->prepareFinalIngredients();
 

@@ -14,6 +14,9 @@ class RecipeForm extends Form
     #[Locked]
     public int $id = 0;
 
+    #[Locked]
+    public $current_image;
+
     #[Validate]
     #[Rule(['nullable', 'mimetypes:image/jpeg,image/png,image/webp'])]
     public $image;
@@ -24,9 +27,6 @@ class RecipeForm extends Form
     public $menu;
     public $cook_time;
     public $servings;
-
-    #[Locked]
-    public $current_image;
 
     public function setRecipe(Recipe $recipe): void
     {

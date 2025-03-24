@@ -7,18 +7,33 @@ use Livewire\Form;
 
 class GuideForm extends Form
 {
+    public $recipeId;
+
     public $steps = [
         ['image' => null, 'text' => null],
     ];
 
     public $step = ['image' => null, 'text' => null];
 
+    public $current_step_image = [];
+
+    public function setRecipeForm(RecipeForm $recipeForm): void
+    {
+        $this->recipeId = $recipeForm->id;
+    }
+
     public function setGuide($guideSteps): void
     {
-        // Consider the step_number for the correct order in the array
         foreach ($guideSteps as $step){
-            $this->steps[$step->step_number - 1]['image'] = $step->step_image;
-            $this->steps[$step->step_number - 1]['text'] = $step->step_text;
+            // Consider the step_number for the correct order in the array
+            $index = $step->step_number - 1;
+
+            if (!isset($this->steps[$index])){
+                $this->steps[$index] = $this->step;
+            }
+
+            $this->steps[$index]['text'] = $step->step_text;
+            $this->current_step_image[$index] = $step->step_image;
         }
     }
 
@@ -30,17 +45,28 @@ class GuideForm extends Form
     public function addStep(): void
     {
         $this->steps[] = $this->step;
+
+        if ($this->recipeId){
+            $this->current_step_image[] = null;
+        }
     }
 
     public function removeStep($index): void
     {
         unset($this->steps[$index]);
-
         // reshuffle indexes after deleting
         $this->steps = array_values($this->steps);
 
-        if (empty($this->steps)){
+        if ($this->recipeId){
+            unset($this->current_step_image[$index]);
+            $this->current_step_image = array_values($this->current_step_image);
+        }
+
+        if (empty($this->steps)) {
             $this->steps[] = $this->step;
+
+        }elseif($this->recipeId) {
+            $this->current_step_image[] = null;
         }
     }
 

@@ -353,24 +353,25 @@
 
                                     @if(!$guideForm->steps[$index]['image'])
                                         <span>Choose file...</span>
-                                    @elseif(is_string($guideForm->steps[$index]['image']))
-                                        <span>Current photo</span>
                                     @else
                                         <span>{{ $guideForm->steps[$index]['image']->getClientOriginalName() }}</span>
                                     @endif
                                 </label>
 
+                                <!-- current photo -->
+                                @if($recipeForm->id && $guideForm->current_step_image[$index])
+                                    <label class="block text-xs font-medium text-gray-700 mb-1">Current image</label>
+                                    <div class="mt-2">
+                                        <img src="{{ asset('storage/'. $guideForm->current_step_image[$index]) }}"
+                                             class="w-32 h-32 object-contain rounded-md bg-gray-100" alt="Thumbnail">
+                                    </div>
+                                @endif
+
                                 <!-- Step mini photo -->
-                                @if($guideForm->steps[$index]['image'] && !is_string($guideForm->steps[$index]['image']) &&  $guideForm->steps[$index]['image']->getClientOriginalExtension() != null)
+                                @if($guideForm->steps[$index]['image'] && $guideForm->steps[$index]['image']->getClientOriginalExtension() != null)
                                     <label class="block text-xs font-medium text-gray-700 mb-1">Selected image</label>
                                     <div class="mt-2">
                                         <img src="{{ $guideForm->steps[$index]['image']->temporaryUrl() }}"
-                                             class="w-32 h-32 object-contain rounded-md bg-gray-100"
-                                             alt="Step{{' '.($index + 1).' '}}thumbnail">
-                                    </div>
-                                @elseif(is_string($guideForm->steps[$index]['image']))
-                                    <div class="mt-2">
-                                        <img src="{{ asset('storage/'. $guideForm->steps[$index]['image']) }}"
                                              class="w-32 h-32 object-contain rounded-md bg-gray-100"
                                              alt="Step{{' '.($index + 1).' '}}thumbnail">
                                     </div>
@@ -451,6 +452,7 @@
                                     </svg>
                                 </button>
                             </div>
+
                         </div>
                     @endforeach
                     <!-- Add new block -->
@@ -467,6 +469,17 @@
                             </svg>
                         </button>
                     </div>
+
+                    @foreach($guideForm->steps as $index => $guide_step)
+                        @if($errors->has("guideForm.steps.$index.image") || $errors->has("guideForm.steps.$index.text"))
+                            <div class="px-3 bg-red-500 bg-opacity-80 rounded-md p-1 flex items-center justify-between">
+                                <span class="text-white">Mistake in step {{ $index + 1 }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="white" class="size-6">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-4.5A.75.75 0 0 1 10 5Zm0 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        @endif
+                    @endforeach
                 @endif
                 {{--END STEP 3--}}
 
