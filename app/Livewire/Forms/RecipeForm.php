@@ -4,6 +4,7 @@ namespace App\Livewire\Forms;
 
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Rule;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
@@ -47,24 +48,34 @@ class RecipeForm extends Form
         $this->image = null;
     }
 
-    public function storeRecipeImage(): ?string
+    public function updateOrStoreRecipeImage(): ?string
     {
-        // Check if temp image exists then store
-        if ($this->image){
-            $recipe_image_path = $this->image->store('recipes-images', 'public');
+        if ($this->id == 0){
+            // Check if temp image exists then store
+            if ($this->image){
+                $recipe_image_path = $this->image->store('recipes-images', 'public');
+            }else{
+                $recipe_image_path = null;
+            }
         }else{
-            $recipe_image_path = null;
+            $recipe_image_path = $this->current_image; // current path
+            if ($this->image){
+                if ($this->current_image != 'recipes-images/default/default_photo.png'){
+                    Storage::disk('public')->delete($this->current_image);
+                }
+                $recipe_image_path = $this->image->store('recipes-images', 'public');
+            }
         }
-
         return $recipe_image_path;
     }
 
-    public function createRecipe($finalIngredients): Recipe
+    public function updateOrCreateRecipe($finalIngredients): Recipe
     {
+        // except?
         $recipe_data = [
             'name' => $this->name,
             'description' => $this->description,
-            'image' => $this->storeRecipeImage(),
+            'image' => $this->updateOrStoreRecipeImage(),
             'cook_time' => $this->cook_time,
             'servings' => $this->servings,
             'dish_category_id' => $this->category,
@@ -76,15 +87,18 @@ class RecipeForm extends Form
             unset($recipe_data['image']);
         }
 
-        $recipe = Auth::user()->recipes()->create($recipe_data);
+        if ($this->id == 0){
+            $recipe = Auth::user()->recipes()->create($recipe_data);
+        }else{
+            $recipe = Recipe::find($this->id);
+            $recipe->update($recipe_data);
+        }
 
-        $recipe->ingredients()->attach(
+        $recipe->ingredients()->sync(
             collect($finalIngredients)->mapWithKeys(function ($ingredient){
                 return [$ingredient['id'] => [
                     'quantity' => $ingredient['quantity'],
                     'unit_id' => $ingredient['unit_id'],
-                    'created_at' => now(),
-                    'updated_at' => now(),
                 ]];
             })->toArray()
         );

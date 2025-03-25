@@ -180,7 +180,7 @@
                         <div class="flex justify-between w-full gap-4 mt-1.5 mb-6">
                             <!-- Time cook -->
                             <div class="flex flex-col w-[120px]">
-                                <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Time cook</label>
+                                <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Cooking time</label>
                                 <div class="relative">
                                     <div class="absolute inset-y-0 end-0 top-0 flex items-center pe-2 pointer-events-none">
                                         <svg class="w-6 h-6 text-[#AE763E]" aria-hidden="true"

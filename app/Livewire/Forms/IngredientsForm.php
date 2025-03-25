@@ -40,7 +40,6 @@ class IngredientsForm extends Form
         }
     }
 
-
     // check that there are no repetitions, if there are, we sum up the quantity
     public function groupIngredients(): \Illuminate\Support\Collection
     {

@@ -63,7 +63,8 @@ class RecipeWizard extends Component
         if ($this->form_step == 1){
             $this->recipeForm->validate();
         }else if ($this->form_step == 2){
-            $this->ingredientsForm->validate();
+            $ingredients = $this->ingredientsForm->validate();
+            dump($ingredients);
         }
     }
 
@@ -104,11 +105,9 @@ class RecipeWizard extends Component
             $this->guideForm->validate();
         }
 
-        dd('create or update?');
-
         $finalIngredients = $this->ingredientsForm->prepareFinalIngredients();
 
-        $recipe = $this->recipeForm->createRecipe($finalIngredients);
+        $recipe = $this->recipeForm->updateOrCreateRecipe($finalIngredients);
 
         $this->guideForm->insertGroupedSteps($recipe->id);
 
