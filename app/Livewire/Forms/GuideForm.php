@@ -85,7 +85,10 @@ class GuideForm extends Form
             ];
         })->toArray();
 
-        GuideStep::insert($groupedSteps);
+       if ($this->recipeId != 0) {
+           GuideStep::where('recipe_id', $recipeId)->delete();
+       }
+       GuideStep::insert($groupedSteps);
     }
 
     public function rules(): array

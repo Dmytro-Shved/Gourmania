@@ -63,8 +63,7 @@ class RecipeWizard extends Component
         if ($this->form_step == 1){
             $this->recipeForm->validate();
         }else if ($this->form_step == 2){
-            $ingredients = $this->ingredientsForm->validate();
-            dump($ingredients);
+            $this->ingredientsForm->validate();
         }
     }
 
