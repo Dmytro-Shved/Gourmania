@@ -160,7 +160,7 @@ class DatabaseSeeder extends Seeder
         Recipe::factory()->create([
             'name' => 'Chicken Broth',
             'description' => 'Chicken broth is usually made from a stock of chicken pieces and bones as well as vegetables that are boiled down and then removed.',
-            'image' => 'recipes-images/default/chicken-broth.webp',
+            'image' => 'recipes-images/default/default_photo.png',
             'cook_time' => '01:55',
             'servings' => 3,
             'dish_category_id' => 2,

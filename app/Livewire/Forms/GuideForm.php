@@ -85,10 +85,19 @@ class GuideForm extends Form
             ];
         })->toArray();
 
-       if ($this->recipeId != 0) {
-           GuideStep::where('recipe_id', $recipeId)->delete();
-       }
-       GuideStep::insert($groupedSteps);
+        if ($this->recipeId == 0){
+            GuideStep::insert($groupedSteps);
+        }else{
+            $newStepsNumbers = collect($groupedSteps)->pluck('step_number')->toArray();
+
+            GuideStep::where('recipe_id', $recipeId)
+                ->whereNotIn('step_number', $newStepsNumbers)
+                ->delete();
+
+            GuideStep::upsert(
+                $groupedSteps, ['recipe_id', 'step_number'], ['step_text', 'step_image']
+            );
+        }
     }
 
     public function rules(): array
