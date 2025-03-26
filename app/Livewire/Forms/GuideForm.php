@@ -70,7 +70,7 @@ class GuideForm extends Form
         }
     }
 
-    public function insertGroupedSteps($recipeId): void
+    public function upsertGroupedSteps($recipeId): void
     {
         $groupedSteps = collect($this->steps)->map(function ($step, $index) use ($recipeId){
             return [
@@ -85,19 +85,18 @@ class GuideForm extends Form
             ];
         })->toArray();
 
-        if ($this->recipeId == 0){
-            GuideStep::insert($groupedSteps);
-        }else{
+        if ($this->recipeId != 0){
             $newStepsNumbers = collect($groupedSteps)->pluck('step_number')->toArray();
 
             GuideStep::where('recipe_id', $recipeId)
                 ->whereNotIn('step_number', $newStepsNumbers)
                 ->delete();
 
-            GuideStep::upsert(
-                $groupedSteps, ['recipe_id', 'step_number'], ['step_text', 'step_image']
-            );
         }
+
+        GuideStep::upsert(
+            $groupedSteps, ['recipe_id', 'step_number'], ['step_text', 'step_image']
+        );
     }
 
     public function rules(): array
