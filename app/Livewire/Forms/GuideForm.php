@@ -5,6 +5,8 @@ namespace App\Livewire\Forms;
 use App\Models\GuideStep;
 use Livewire\Form;
 
+use Illuminate\Support\Facades\DB;
+
 class GuideForm extends Form
 {
     public $recipeId;
@@ -70,7 +72,7 @@ class GuideForm extends Form
         }
     }
 
-    public function upsertGroupedSteps($recipeId): void
+    public function updateGroupedSteps($recipeId): void
     {
         $groupedSteps = collect($this->steps)->map(function ($step, $index) use ($recipeId){
             return [
@@ -85,18 +87,80 @@ class GuideForm extends Form
             ];
         })->toArray();
 
+        // edit steps
         if ($this->recipeId != 0){
-            $newStepsNumbers = collect($groupedSteps)->pluck('step_number')->toArray();
+            // Fetch existing steps
+            $existingSteps = GuideStep::where('recipe_id', $recipeId)
+                ->pluck('id', 'step_number')
+                ->toArray();
 
+            $newStepNumbers = [];
+            $insertData = [];
+            $updateData = [];
+
+            foreach ($groupedSteps as $step) {
+                $stepNumber = $step['step_number'];
+                $newStepNumbers[] = $stepNumber;
+
+                if (isset($existingSteps[$stepNumber])) {
+                    // Prepare update data
+                    $updateData[] = [
+                        'id' => $existingSteps[$stepNumber],
+                        'step_text' => $step['step_text'],
+                        'step_image' => $step['step_image'],
+                        'updated_at' => now(),
+                    ];
+                } else {
+                    // Prepare insert data
+                    $insertData[] = [
+                        'recipe_id' => $recipeId,
+                        'step_number' => $stepNumber,
+                        'step_text' => $step['step_text'],
+                        'step_image' => $step['step_image'],
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }
+            }
+
+            // Perform batch insert
+            if (!empty($insertData)) {
+                GuideStep::insert($insertData);
+            }
+
+            // Perform batch update
+            if (!empty($updateData)) {
+                $table = (new GuideStep)->getTable();
+                $cases = [];
+                $ids = [];
+                $bindings = [];
+
+                foreach ($updateData as $data) {
+                    $id = (int) $data['id'];
+                    $ids[] = $id;
+                    $cases[] = "WHEN id = ? THEN ?";
+                    $bindings[] = $id;
+                    $bindings[] = $data['step_text'];
+                }
+
+                $sql = "UPDATE {$table} SET step_text = CASE " . implode(" ", $cases) . " END WHERE id IN (" . implode(',', $ids) . ")";
+                DB::update($sql, $bindings);
+            }
+
+            // Delete steps that are not in the new set
             GuideStep::where('recipe_id', $recipeId)
-                ->whereNotIn('step_number', $newStepsNumbers)
+                ->whereNotIn('step_number', $newStepNumbers)
                 ->delete();
-
         }
 
-        GuideStep::upsert(
-            $groupedSteps, ['recipe_id', 'step_number'], ['step_text', 'step_image']
-        );
+        // create steps
+        if ($this->recipeId == 0){
+            GuideStep::upsert(
+                $groupedSteps,
+                ['recipe_id', 'step_number'],
+                ['step_text', 'step_image']
+            );
+        }
     }
 
     public function rules(): array

@@ -499,7 +499,7 @@
                         <!-- Next step button -->
                         <div class="ml-auto"
                             @class(['flex', 'justify-end ' => $form_step == 2])>
-                            <button wire:click.throttle.2000ms="next_step"
+                            <button wire:click.throttle.1000ms="next_step"
                                     type="button"
                                     class="w-[100px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
                                 Next

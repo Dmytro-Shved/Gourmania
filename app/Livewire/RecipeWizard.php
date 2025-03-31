@@ -108,7 +108,8 @@ class RecipeWizard extends Component
 
         $recipe = $this->recipeForm->updateOrCreateRecipe($finalIngredients);
 
-        $this->guideForm->upsertGroupedSteps($recipe->id);
+//        $this->guideForm->upsertGroupedSteps($recipe->id);
+        $this->guideForm->updateGroupedSteps($recipe->id);
 
         session()->flash('recipe_created', 'Recipe created successfully!');
 
