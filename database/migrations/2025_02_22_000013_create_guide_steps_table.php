@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('step_text');
             $table->string('step_image')->default('recipes-images/default/default_photo.png');
             $table->timestamps();
-            $table->unique(['recipe_id', 'step_number']);
         });
     }
 
