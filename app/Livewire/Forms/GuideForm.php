@@ -3,6 +3,7 @@
 namespace App\Livewire\Forms;
 
 use App\Models\GuideStep;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Form;
 
 use Illuminate\Support\Facades\DB;
@@ -79,9 +80,7 @@ class GuideForm extends Form
                 'recipe_id' => $recipeId,
                 'step_number' => $index + 1,
                 'step_text' => trim($step['text']),
-                'step_image' => $step['image']
-                    ? $step['image']->store('guides-images', 'public')
-                    : 'recipes-images/default/default_photo.png',
+                'step_image' => $step['image'] ?? 'recipes-images/default/default_photo.png',
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
@@ -98,16 +97,25 @@ class GuideForm extends Form
             $insertData = [];
             $updateData = [];
 
-            foreach ($groupedSteps as $step) {
+            foreach ($groupedSteps as $index => $step) {
                 $stepNumber = $step['step_number'];
                 $newStepNumbers[] = $stepNumber;
 
                 if (isset($existingSteps[$stepNumber])) {
+                    $step_image_path = $this->current_step_image[$index]; // current step image path
+
+                    if ($step['step_image'] && $step['step_image'] != 'recipes-images/default/default_photo.png'){
+                        if ($this->current_step_image[$index] != 'recipes-images/default/default_photo.png'){
+                            Storage::disk('public')->delete($this->current_step_image[$index]);
+                        }
+                        $step_image_path = $step['step_image']->store('guides-images', 'public');
+                    }
+
                     // Prepare update data
                     $updateData[] = [
                         'id' => $existingSteps[$stepNumber],
                         'step_text' => $step['step_text'],
-                        'step_image' => $step['step_image'],
+                        'step_image' => $step_image_path ?? 'recipes-images/default/default_photo.png',
                         'updated_at' => now(),
                     ];
                 } else {
@@ -128,23 +136,40 @@ class GuideForm extends Form
                 GuideStep::insert($insertData);
             }
 
-            // Perform batch update
+
             if (!empty($updateData)) {
                 $table = (new GuideStep)->getTable();
-                $cases = [];
+                $casesText = [];
+                $casesImage = [];
                 $ids = [];
-                $bindings = [];
+                $bindingsText = [];
+                $bindingsImage = [];
 
                 foreach ($updateData as $data) {
                     $id = (int) $data['id'];
                     $ids[] = $id;
-                    $cases[] = "WHEN id = ? THEN ?";
-                    $bindings[] = $id;
-                    $bindings[] = $data['step_text'];
+
+                    $casesText[] = "WHEN id = ? THEN ?";
+                    $bindingsText[] = $id;
+                    $bindingsText[] = $data['step_text'];
+
+                    if (!empty($data['step_image'])) {
+                        $casesImage[] = "WHEN id = ? THEN ?";
+                        $bindingsImage[] = $id;
+                        $bindingsImage[] = $data['step_image'];
+                    }
                 }
 
-                $sql = "UPDATE {$table} SET step_text = CASE " . implode(" ", $cases) . " END WHERE id IN (" . implode(',', $ids) . ")";
-                DB::update($sql, $bindings);
+                $sql = "UPDATE {$table} SET step_text = CASE " . implode(" ", $casesText) . " END";
+
+                if (!empty($casesImage)) {
+                    $sql .= ", step_image = CASE " . implode(" ", $casesImage) . " END";
+                    $bindingsText = array_merge($bindingsText, $bindingsImage);
+                }
+
+                $sql .= " WHERE id IN (" . implode(',', $ids) . ")";
+
+                DB::update($sql, $bindingsText);
             }
 
             // Delete steps that are not in the new set
