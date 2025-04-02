@@ -60,9 +60,8 @@ class GuideForm extends Form
         // reshuffle indexes after deleting
         $this->steps = array_values($this->steps);
 
-        if ($this->recipeId){
+        if ($this->recipeId && $index != 0){
             unset($this->current_step_image[$index]);
-            $this->current_step_image = array_values($this->current_step_image);
         }
 
         if (empty($this->steps)) {

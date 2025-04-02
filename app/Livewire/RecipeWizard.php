@@ -110,7 +110,11 @@ class RecipeWizard extends Component
 
         $this->guideForm->storeGroupedSteps($recipe->id);
 
-        session()->flash('recipe_created', 'Recipe created successfully!');
+        if ($this->recipeForm->id == 0){
+            session()->flash('recipe_created', 'Recipe created successfully!');
+        }else{
+            session()->flash('recipe_updated', 'Recipe updated successfully!');
+        }
 
         $this->redirect('/recipes/create');
     }
