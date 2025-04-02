@@ -102,13 +102,12 @@ class GuideForm extends Form
                 $newStepNumbers[] = $stepNumber;
 
                 if (isset($existingSteps[$stepNumber])) {
-
                     // current step image path
                     $step_image_path = $this->current_step_image[$index];
 
                     // if new image exists delete the old one and store new image
-                    if (!empty($step['step_image'])){
-                        if ($this->current_step_image[$index] != 'recipes-images/default/default_photo.png'){
+                    if (!empty($step['step_image'])) {
+                        if (isset($this->current_step_image[$index]) && $this->current_step_image[$index] !== 'recipes-images/default/default_photo.png') {
                             Storage::disk('public')->delete($this->current_step_image[$index]);
                         }
                         $step_image_path = $step['step_image']->store('guides-images', 'public');
@@ -121,16 +120,45 @@ class GuideForm extends Form
                         'step_image' => $step_image_path ?? 'recipes-images/default/default_photo.png',
                         'updated_at' => now(),
                     ];
+                }else{
+                    // Prepare insert data
+                    $insertData[] = [
+                        'recipe_id' => $recipeId,
+                        'step_number' => $stepNumber,
+                        'step_text' => $step['step_text'],
+                        'step_image' => $step['step_image']
+                            ? $step['step_image']->store('guides-images', 'public')
+                            : 'recipes-images/default/default_photo.png',
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
                 }
+            }
+
+            // Perform batch insert
+            if (!empty($insertData)) {
+                GuideStep::insert($insertData);
             }
 
             // Perform batch update
             $this->batchUpdate($updateData);
 
+            // delete images for deleted steps
+            $deleteSteps = GuideStep::where('recipe_id', $recipeId)
+                ->whereNotIn('step_number', $newStepNumbers)
+                ->get();
+
+            foreach ($deleteSteps as $deleteStep) {
+                if ($deleteStep['step_image'] && $deleteStep['step_image'] !== 'recipes-images/default/default_photo.png') {
+                    Storage::disk('public')->delete($deleteStep['step_image']);
+                }
+            }
+
             // Delete steps that are not in the new set
             GuideStep::where('recipe_id', $recipeId)
                 ->whereNotIn('step_number', $newStepNumbers)
                 ->delete();
+
         }else{ // save steps
             $groupedSteps = collect($this->steps)->map(function ($step, $index) use ($recipeId){
                 return [
