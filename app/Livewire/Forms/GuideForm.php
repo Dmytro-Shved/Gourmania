@@ -56,19 +56,11 @@ class GuideForm extends Form
 
     public function removeStep($index): void
     {
-        unset($this->steps[$index]);
-        // reshuffle indexes after deleting
-        $this->steps = array_values($this->steps);
-
-        if ($this->recipeId && $index != 0){
-            unset($this->current_step_image[$index]);
-        }
+        unset($this->steps[$index]); // delete step
+        $this->steps = array_values($this->steps); // reshuffle indexes after deleting
 
         if (empty($this->steps)) {
             $this->steps[] = $this->step;
-
-        }elseif($this->recipeId) {
-            $this->current_step_image[] = null;
         }
     }
 

@@ -313,7 +313,7 @@
                     <!-- Add new block -->
                     <div class="flex justify-end mt-3">
                         <button
-                            wire:click.throttle.500ms="add_ingredient"
+                            wire:click.throttle="add_ingredient"
                             wire:loading.class="animate-bounce"
                             type="button"
                             class="w-[35px] bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors flex justify-center">
@@ -363,7 +363,8 @@
                                     <label class="block text-xs font-medium text-gray-700 mb-1">Current image</label>
                                     <div class="mt-2">
                                         <img src="{{ asset('storage/'. $guideForm->current_step_image[$index]) }}"
-                                             class="w-32 h-32 object-contain rounded-md bg-gray-100" alt="Thumbnail">
+                                             class="w-32 h-32 object-contain rounded-md bg-gray-100"
+                                             alt="Step{{' '.($index + 1).' '}}thumbnail">
                                     </div>
                                 @endif
 
@@ -441,7 +442,7 @@
                             <!-- remove step button -->
                             <div class="flex justify-end mt-3">
                                 <button
-                                    wire:click.throttle.3000ms="remove_step({{$index}})"
+                                    wire:click.throttle="remove_step({{$index}})"
                                     wire:target="remove_step({{$index}})"
                                     wire:loading.class="bg-red-500 animate-bounce"
                                     type="button"
