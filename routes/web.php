@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'showEditForm'])->name('recipes.edit');
 });
 
-Route::get('/logout', function () {
+Route::get('/logout', function (){
     return redirect()->route('login-page');
 });
 
