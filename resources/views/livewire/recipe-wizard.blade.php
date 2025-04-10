@@ -1,8 +1,8 @@
 <form wire:submit.prevent="store">
-    {{--Form Card--}}
+    {{-- Form Card --}}
     <div class="bg-gray-100 flex items-center justify-center p-4 font-inclusive">
         <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
-            {{--Stepper--}}
+            {{-- Stepper --}}
             <x-wizard-stepper :form_step="$form_step"/>
 
             <br>
@@ -33,7 +33,7 @@
                             @endif
                         </label>
 
-                        <!-- current photo -->
+                        <!-- Current photo -->
                         @if($recipeForm->id)
                             <label class="block text-xs font-medium text-gray-700 mb-1">Current image</label>
                             <div class="mt-2">
@@ -42,7 +42,7 @@
                             </div>
                         @endif
 
-                        <!-- selected image -->
+                        <!-- Selected image -->
                         @if($recipeForm->image && $recipeForm->image->getClientOriginalExtension() != null)
                             <label class="block text-xs font-medium text-gray-700 mb-1">Selected image</label>
                             <div class="mt-2">
@@ -55,13 +55,13 @@
                         <span class="flex text-red-500">{{ $message }}</span>
                         @enderror
 
-                        <!-- reset button -->
+                        <!-- Reset button -->
                         <button wire:click.throttle.3000ms="reset_recipe_image" type="button"
                                 class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">
                             Reset
                         </button>
 
-                        <!--loading indication-->
+                        <!-- Loading indication -->
                         <div wire:loading
                              wire:target="recipeForm.image"
                              class="flex text-sm text-gray-700 ml-2">
@@ -76,7 +76,7 @@
                             </div>
                         </div>
 
-                        <!--resetting indication-->
+                        <!-- Resetting indication -->
                         <div wire:loading
                              wire:target="reset_recipe_image"
                              class="flex text-sm text-gray-700 ml-2">
@@ -123,7 +123,7 @@
 
                     <!-- Select Category, Cuisine Menu -->
                     <div class="relative w-full">
-                        <!-- category -->
+                        <!-- Category -->
                         <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Category</label>
                         <select
                             wire:model="recipeForm.category"
@@ -141,7 +141,7 @@
                         <span class="flex text-red-500">{{ $message }}</span>
                         @enderror
 
-                        <!-- cuisine -->
+                        <!-- Cuisine -->
                         <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Cuisine</label>
                         <select
                             wire:model="recipeForm.cuisine"
@@ -159,7 +159,7 @@
                         <span class="flex text-red-500">{{ $message }}</span>
                         @enderror
 
-                        <!-- menu -->
+                        <!-- Menu -->
                         <label class="block text-sm font-medium text-gray-700 mb-1 mt-2">Menu</label>
                         <select
                             wire:model="recipeForm.menu"
@@ -178,7 +178,7 @@
                         @enderror
 
                         <div class="flex justify-between w-full gap-4 mt-1.5 mb-6">
-                            <!-- Time cook -->
+                            <!-- Cook time -->
                             <div class="flex flex-col w-[120px]">
                                 <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Cooking time</label>
                                 <div class="relative">
@@ -358,7 +358,7 @@
                                     @endif
                                 </label>
 
-                                <!-- current photo -->
+                                <!-- Current Photo -->
                                 @if($recipeForm->id && $guideForm->current_step_image[$index])
                                     <label class="block text-xs font-medium text-gray-700 mb-1">Current image</label>
                                     <div class="mt-2">
@@ -382,14 +382,14 @@
                                 <span class="flex text-red-500">{{ $message }}</span>
                                 @enderror
 
-                                <!-- reset button -->
+                                <!-- Reset button -->
                                 <button
                                     wire:click.throttle.3000ms="reset_step_image({{$index}})"
                                     type="button" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">
                                     Reset
                                 </button>
 
-                                <!--loading indication-->
+                                <!-- Loading indication -->
                                 <div wire:loading
                                      wire:target="guideForm.steps.{{$index}}.image"
                                      class="flex text-sm text-gray-700 ml-2">
@@ -404,7 +404,7 @@
                                     </div>
                                 </div>
 
-                                <!--resetting indication-->
+                                <!-- Resetting indication -->
                                 <div wire:loading
                                      wire:target="reset_step_image({{$index}})"
                                      class="flex text-sm text-gray-700 ml-2">
@@ -439,7 +439,7 @@
                                 </div>
                             </div>
 
-                            <!-- remove step button -->
+                            <!-- Remove step button -->
                             <div class="flex justify-end mt-3">
                                 <button
                                     wire:click.throttle="remove_step({{$index}})"
@@ -453,7 +453,6 @@
                                     </svg>
                                 </button>
                             </div>
-
                         </div>
                     @endforeach
                     <!-- Add new block -->
@@ -484,7 +483,7 @@
                 @endif
                 {{--END STEP 3--}}
 
-                {{--Navigation buttons--}}
+                {{-- Navigation buttons --}}
                 <div class="flex justify-between">
                     @if($form_step == 2 || $form_step == 3)
                         <!-- Previous step button -->

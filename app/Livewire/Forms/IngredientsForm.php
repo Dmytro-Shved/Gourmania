@@ -40,7 +40,7 @@ class IngredientsForm extends Form
         }
     }
 
-    // check that there are no repetitions, if there are, we sum up the quantity
+    // Check that there are no repetitions, if there are, we sum up the quantity
     public function groupIngredients(): \Illuminate\Support\Collection
     {
         return collect($this->ingredients)
@@ -54,13 +54,6 @@ class IngredientsForm extends Form
             });
     }
 
-    public function getOrCreateIngredients($ingredientData): Ingredient
-    {
-        return Ingredient::firstOrCreate(
-            ['name' => trim($ingredientData['name'])], // Match by name
-        );
-    }
-
     public function prepareFinalIngredients(): array
     {
         $finalIngredients = [];
@@ -68,7 +61,9 @@ class IngredientsForm extends Form
 
         foreach ($ingredientsGrouped as $ingredientData){
             // Check if the ingredient exists (get the existed one or create and save to database)
-            $ingredient = $this->getOrCreateIngredients($ingredientData);
+            $ingredient = Ingredient::firstOrCreate([
+                'name' => trim($ingredientData['name']) // Match by name
+            ]);
 
             // Prepare data for pivot table
             $finalIngredients[] = [

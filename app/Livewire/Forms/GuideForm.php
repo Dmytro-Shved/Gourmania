@@ -77,7 +77,7 @@ class GuideForm extends Form
             ];
         })->toArray();
 
-        // edit steps
+        // Edit steps
         if ($this->recipeId != 0){
 
             // Fetch existing steps
@@ -93,12 +93,12 @@ class GuideForm extends Form
                 $newStepNumbers[] = $stepNumber;
 
                 if (isset($existingSteps[$stepNumber])) {
-                    // current step image path
+                    // Current step image path
                     $step_image_path = $this->current_step_image[$index];
 
-                    // if new image exists delete the old one and store new image
+                    // If new image exists delete the old one and store new image
                     if (!empty($step['step_image'])) {
-                        if (isset($this->current_step_image[$index]) && $this->current_step_image[$index] !== 'recipes-images/default/default_photo.png') {
+                        if (isset($this->current_step_image[$index]) && $this->current_step_image[$index] != 'recipes-images/default/default_photo.png') {
                             Storage::disk('public')->delete($this->current_step_image[$index]);
                         }
                         $step_image_path = $step['step_image']->store('guides-images', 'public');
@@ -134,23 +134,21 @@ class GuideForm extends Form
             // Perform batch update
             $this->batchUpdate($updateData);
 
-            // delete images for deleted steps
+            // Get steps to delete
             $deleteSteps = GuideStep::where('recipe_id', $recipeId)
                 ->whereNotIn('step_number', $newStepNumbers)
                 ->get();
 
+            // Delete steps and images that are not in the new set
             foreach ($deleteSteps as $deleteStep) {
                 if ($deleteStep['step_image'] && $deleteStep['step_image'] !== 'recipes-images/default/default_photo.png') {
                     Storage::disk('public')->delete($deleteStep['step_image']);
                 }
+
+                $deleteStep->delete();
             }
 
-            // Delete steps that are not in the new set
-            GuideStep::where('recipe_id', $recipeId)
-                ->whereNotIn('step_number', $newStepNumbers)
-                ->delete();
-
-        }else{ // save steps
+        }else{ // Save steps
             $groupedSteps = collect($this->steps)->map(function ($step, $index) use ($recipeId){
                 return [
                     'recipe_id' => $recipeId,
@@ -164,7 +162,7 @@ class GuideForm extends Form
                 ];
             })->toArray();
 
-            // insert steps
+            // Insert steps
             GuideStep::insert($groupedSteps);
         }
     }

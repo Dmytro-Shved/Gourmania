@@ -18,6 +18,7 @@ class RecipeForm extends Form
     #[Locked]
     public $current_image;
 
+    // Real time validation for image
     #[Validate]
     #[Rule(['nullable', 'mimetypes:image/jpeg,image/png,image/webp'])]
     public $image;
@@ -71,7 +72,6 @@ class RecipeForm extends Form
 
     public function updateOrCreateRecipe($finalIngredients): Recipe
     {
-        // except?
         $recipe_data = [
             'name' => $this->name,
             'description' => $this->description,
@@ -87,6 +87,9 @@ class RecipeForm extends Form
             unset($recipe_data['image']);
         }
 
+        // If recipe doesn't exist create recipe
+        // through auth user
+        // otherwise update recipe using id and recipe_data
         if ($this->id == 0){
             $recipe = Auth::user()->recipes()->create($recipe_data);
         }else{
@@ -94,6 +97,7 @@ class RecipeForm extends Form
             $recipe->update($recipe_data);
         }
 
+        // Sync ingredients in pivot table
         $recipe->ingredients()->sync(
             collect($finalIngredients)->mapWithKeys(function ($ingredient){
                 return [$ingredient['id'] => [
