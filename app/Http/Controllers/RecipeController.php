@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Gate;
 
 class RecipeController extends Controller
 {
-    public function showCreateForm()
-    {
-        return view('recipes.recipe-create');
-    }
-
     public function showEditForm(Recipe $recipe)
     {
         Gate::authorize('editRecipe', $recipe);

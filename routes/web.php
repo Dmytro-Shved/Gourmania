@@ -25,7 +25,7 @@ Route::middleware('guest')->group(function (){
 Route::middleware('auth')->group(function (){
     Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-    Route::get('/recipes/create', [RecipeController::class, 'showCreateForm'] )->name('recipes.create');
+    Route::view('/recipes/create','recipes.recipe-create')->name('recipes.create');
     Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'showEditForm'])->name('recipes.edit');
 });
 
