@@ -12,7 +12,7 @@ Route::view('/', 'index')->name('home');
 
 Route::get('/recipes', [FilterController::class, 'filter'])->name('filter');
 
-Route::view('/recipes/guide/name', 'recipes.recipe-guide');
+Route::get('/recipes/{recipe}/guide', [RecipeController::class, 'guide']);
 
 Route::middleware('guest')->group(function (){
     Route::get('/login', [LoginController::class, 'index'])->name('login-page');
