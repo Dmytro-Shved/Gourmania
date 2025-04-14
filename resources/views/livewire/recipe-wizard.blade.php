@@ -359,10 +359,10 @@
                                 </label>
 
                                 <!-- Current Photo -->
-                                @if($recipeForm->id && $guideForm->current_step_image[$index])
+                                @if($recipeForm->id && $guideForm->currentStepImages[$index])
                                     <label class="block text-xs font-medium text-gray-700 mb-1">Current image</label>
                                     <div class="mt-2">
-                                        <img src="{{ asset('storage/'. $guideForm->current_step_image[$index]) }}"
+                                        <img src="{{ asset('storage/'. $guideForm->currentStepImages[$index]) }}"
                                              class="w-32 h-32 object-contain rounded-md bg-gray-100"
                                              alt="Step{{' '.($index + 1).' '}}thumbnail">
                                     </div>

@@ -18,7 +18,9 @@ class GuideForm extends Form
 
     public $step = ['image' => null, 'text' => null];
 
-    public $current_step_image = [];
+    public $currentStepImages = [];
+
+    public $originalStepImages = [];
 
     public function setRecipeForm(RecipeForm $recipeForm): void
     {
@@ -36,7 +38,8 @@ class GuideForm extends Form
             }
 
             $this->steps[$index]['text'] = $step->step_text;
-            $this->current_step_image[$index] = $step->step_image;
+            $this->currentStepImages[$index] = $step->step_image;
+            $this->originalStepImages[$index] = $step->step_image;
         }
     }
 
@@ -50,17 +53,24 @@ class GuideForm extends Form
         $this->steps[] = $this->step;
 
         if ($this->recipeId){
-            $this->current_step_image[] = null;
+            $this->currentStepImages[] = null;
         }
     }
 
     public function removeStep($index): void
     {
-        unset($this->steps[$index]); // delete step
-        $this->steps = array_values($this->steps); // reshuffle indexes after deleting
+        // delete step & current image
+        unset($this->steps[$index]);
+        unset($this->currentStepImages[$index]);
+
+
+        // reshuffle indexes after deleting
+        $this->steps = array_values($this->steps);
+        $this->currentStepImages = array_values($this->currentStepImages);
 
         if (empty($this->steps)) {
             $this->steps[] = $this->step;
+            $this->currentStepImages[] = null;
         }
     }
 
@@ -94,12 +104,12 @@ class GuideForm extends Form
 
                 if (isset($existingSteps[$stepNumber])) {
                     // Current step image path
-                    $step_image_path = $this->current_step_image[$index];
+                    $step_image_path = $this->currentStepImages[$index];
 
                     // If new image exists delete the old one and store new image
                     if (!empty($step['step_image'])) {
-                        if (isset($this->current_step_image[$index]) && $this->current_step_image[$index] != 'recipes-images/default/default_photo.png') {
-                            Storage::disk('public')->delete($this->current_step_image[$index]);
+                        if (isset($this->currentStepImages[$index]) && $this->currentStepImages[$index] != 'recipes-images/default/default_photo.png') {
+                            Storage::disk('public')->delete($this->currentStepImages[$index]);
                         }
                         $step_image_path = $step['step_image']->store('guides-images', 'public');
                     }
@@ -134,18 +144,17 @@ class GuideForm extends Form
             // Perform batch update
             $this->batchUpdate($updateData);
 
-            // Get steps to delete
-            $deleteSteps = GuideStep::where('recipe_id', $recipeId)
+            // Delete steps that are not in new set
+            GuideStep::where('recipe_id', $recipeId)
                 ->whereNotIn('step_number', $newStepNumbers)
-                ->get();
+                ->delete();
 
-            // Delete steps and images that are not in the new set
-            foreach ($deleteSteps as $deleteStep) {
-                if ($deleteStep['step_image'] && $deleteStep['step_image'] !== 'recipes-images/default/default_photo.png') {
-                    Storage::disk('public')->delete($deleteStep['step_image']);
+            // Delete images that are not in new set
+            $delete_images = array_diff($this->originalStepImages, $this->currentStepImages);
+            foreach ($delete_images as $delete_image){
+                if ($delete_image != 'recipes-images/default/default_photo.png'){
+                    Storage::disk('public')->delete($delete_image);
                 }
-
-                $deleteStep->delete();
             }
 
         }else{ // Save steps
