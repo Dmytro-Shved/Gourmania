@@ -92,7 +92,7 @@
                                     />
 
                                     @error('email')
-                                    <p class="text-red-500">{{ $message }}</p>
+                                    <p class="text-red-500 w-48 break-words">{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>

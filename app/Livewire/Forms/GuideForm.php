@@ -20,7 +20,7 @@ class GuideForm extends Form
 
     public $currentStepImages = [];
 
-    public $originalStepImages = [];
+    public $initialStepImages = [];
 
     public function setRecipeForm(RecipeForm $recipeForm): void
     {
@@ -39,7 +39,7 @@ class GuideForm extends Form
 
             $this->steps[$index]['text'] = $step->step_text;
             $this->currentStepImages[$index] = $step->step_image;
-            $this->originalStepImages[$index] = $step->step_image;
+            $this->initialStepImages[$index] = $step->step_image;
         }
     }
 
@@ -150,7 +150,7 @@ class GuideForm extends Form
                 ->delete();
 
             // Delete images that are not in new set
-            $delete_images = array_diff($this->originalStepImages, $this->currentStepImages);
+            $delete_images = array_diff($this->initialStepImages, $this->currentStepImages);
             foreach ($delete_images as $delete_image){
                 if ($delete_image != 'recipes-images/default/default_photo.png'){
                     Storage::disk('public')->delete($delete_image);

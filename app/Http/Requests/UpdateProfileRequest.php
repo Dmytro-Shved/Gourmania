@@ -24,11 +24,18 @@ class UpdateProfileRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'min:2', 'max:25'],
-            'email' => ['required', 'email', 'min:2', 'max:45'],
+            'email' => ['required', 'email', 'min:2', 'max:45',  Rule::unique('users')->ignore($this->user->id)],
             'gender' => ['nullable'],
             'birth_date' => ['nullable', 'date'],
             'description' => ['nullable', 'string', 'max:150'],
             'photo' => ['nullable', 'image']
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'email.unique' => 'This email address is already in use',
         ];
     }
 }
