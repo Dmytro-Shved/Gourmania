@@ -1,6 +1,5 @@
 <x-layout>
     @section('title', 'Recipes')
-    {{--<x-filter/>--}}
     <livewire:filter/>
 
     {{-- All recipes --}}

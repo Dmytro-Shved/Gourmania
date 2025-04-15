@@ -116,6 +116,6 @@ class RecipeWizard extends Component
             session()->flash('recipe_updated', 'Recipe updated successfully!');
         }
 
-        $this->redirect('/recipes/create');
+        $this->redirect(route('recipes.create'));
     }
 }
