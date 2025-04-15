@@ -111,13 +111,13 @@
                         <p>{{ $step->step_number }}</p>
                     </div>
                 </div>
-                <div class="md:flex md:items-center">
+                <div class="md:flex md:items-stretch w-full">
                     {{-- Image --}}
-                    <div class="md:p-5 flex-1">
-                        <img class="w-full md:w-auto md:max-w-[500px] h-auto object-cover" src="{{ asset('storage/'. $step->step_image ) }}" alt="Step {{ $step->step_number }}" />
+                    <div class="md:p-5 flex-1 flex items-center justify-center">
+                        <img class="w-full md:w-auto md:max-w-[500px] h-full object-cover" src="{{ asset('storage/'. $step->step_image ) }}" alt="Step {{ $step->step_number }}" />
                     </div>
                     {{-- Text --}}
-                    <div class="p-5 flex-1">
+                    <div class="p-5 flex-1 flex items-center justify-center">
                         <p class="mb-3 lg:text-[17px] text-gray-700 dark:text-gray-400">{{ $step->step_text }}</p>
                     </div>
                 </div>
