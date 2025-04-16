@@ -12,7 +12,7 @@ Route::view('/', 'index')->name('home');
 
 Route::get('/recipes', [FilterController::class, 'filter'])->name('filter');
 
-Route::get('/recipes/{recipe}/guide', [RecipeController::class, 'guide']);
+Route::get('/recipes/{recipe}/guide', [RecipeController::class, 'guide'])->name('recipes.guide');
 
 Route::middleware('guest')->group(function (){
     Route::get('/login', [LoginController::class, 'index'])->name('login-page');
@@ -33,9 +33,9 @@ Route::get('/logout', function (){
     return redirect()->route('login-page');
 });
 
-Route::get('/user/profiles/{user}', [ProfileController::class, 'show_profile'])->name('profiles.show');
-Route::get('/user/profiles/{user}/edit', [ProfileController::class, 'edit_profile'])->name('profiles.edit')
+Route::get('/users/profiles/{user}', [ProfileController::class, 'show_profile'])->name('profiles.show');
+Route::get('/users/profiles/{user}/edit', [ProfileController::class, 'edit_profile'])->name('profiles.edit')
     ->middleware('auth');
-Route::put('/user/profiles/{user}', [ProfileController::class, 'update_profile'])->name('profiles.update');
+Route::put('/users/profiles/{user}', [ProfileController::class, 'update_profile'])->name('profiles.update');
 
 Route::view('/faq', 'faq')->name('faq');

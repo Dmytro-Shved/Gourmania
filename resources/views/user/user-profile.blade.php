@@ -74,9 +74,18 @@
                         <span class="flex-1 border-s border-4 border-[#AE763E]"></span>
                     </div>
                     <div class="flex flex-wrap gap-3  w-full lg:flex justify-center">
-                        <x-recipe-card/>
-                        <x-recipe-card/>
-                        <x-recipe-card/>
+                        @forelse($userRecipes as $recipe)
+                            <x-recipe-card :recipe="$recipe"/>
+                        @empty
+                            <div class="pt-3 sm:pt-10  text-lg flex flex-col items-center justify-center text-center">
+                                <p class="w-72 break-words">
+                                    Haven't added your recipe yet?
+                                    <br>
+                                    <span class="block">Now's the time!</span>
+                                </p>
+                                <a href="{{ route('recipes.create') }}" class="mt-5 tracking-wider text-white transition-colors duration-300 transform p-1.5 focus:outline-none bg-gourmania rounded-lg hover:gourmania-hover">Add Recipe</a>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </div>

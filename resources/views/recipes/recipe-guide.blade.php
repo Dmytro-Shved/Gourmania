@@ -172,6 +172,7 @@
     </div>
 
     <br>
+    <br>
 
     {{-- Similar recipes title --}}
     <div class="title-container text-center">
@@ -182,7 +183,7 @@
 
     {{-- Similar recipes grid --}}
     <div class="grid-cols-1">
-        <x-recipe-card/>
+        {{--<x-recipe-card/>--}}
     </div>
 
     <br>

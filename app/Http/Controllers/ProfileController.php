@@ -12,7 +12,9 @@ class ProfileController extends Controller
     // Show Profile
     public function show_profile(User $user)
     {
-        return view('user.user-profile', compact('user'));
+        $userRecipes = $user->recipes()->with('ingredients', 'guideSteps')->get();
+
+        return view('user.user-profile', compact('user', 'userRecipes'));
     }
 
     // Show Edit Profile Page
