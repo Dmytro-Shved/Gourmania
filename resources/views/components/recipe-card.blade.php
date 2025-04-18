@@ -10,10 +10,12 @@
     <!-- info block -->
     <div class="flex-1 ml-3 flex flex-col min-w-0">
         <!-- recipe name -->
-        <div class="overflow-x-auto whitespace-nowrap">
-            <a href="{{ route('recipes.guide', $recipe->id) }}" class="text-lg md:text-xl lg:text-2xl font-bold block">
-                {{ $recipe->name }}
-            </a>
+        <div class="max-w-[350px]">
+            <div class="overflow-x-auto whitespace-nowrap">
+                <a href="{{ route('recipes.guide', $recipe->id) }}" class="text-lg md:text-xl lg:text-2xl font-bold block">
+                    {{ $recipe->name }}
+                </a>
+            </div>
         </div>
 
         <!-- user info -->
@@ -101,6 +103,12 @@
                       d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"/>
             </svg>
         </button>
+
+        <!-- Actions Dropdown -->
+        <!-- Show this block only if the user is the author of the recipe and if he is on the profile page -->
+        @if(auth()->user()->id == $recipe->user->id && request()->routeIs('profiles.show'))
+            <x-recipe-actions-dropdown :recipeId="$recipe->id"/>
+        @endif
     </div>
 
     <!-- mini ingredients list -->

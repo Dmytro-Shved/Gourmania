@@ -9,10 +9,9 @@
                     <div class="bg-white shadow rounded-lg p-6">
                         <!-- Users info -->
                         <div class="flex flex-col items-center relative">
-
                             <!-- Edit profile button -->
                             @auth
-                                @if(auth()->user()->id == $user->id )
+                                @if(auth()->user()->id == $user->id)
                                     <a href="{{ route('profiles.edit', $user) }}" class="absolute end-0">
                                         <button class="rounded-lg p-1 bg-gourmania hover:gourmania-hover transition-colors duration-200">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="white" class="size-5">
@@ -70,7 +69,12 @@
                 <div class="col-span-1 sm:col-span-7 flex flex-col sm:items-start w-full">
                     <div class="mb-2 text-center flex items-center w-full">
                         <span class="flex-1 border-s border-4 border-[#AE763E]"></span>
-                        <span class="text-black text-lg font-bold mx-2">Recipes</span>
+                        {{-- If the user is not the owner of the profile, he will see a heading with the owner's name and his recipes --}}
+                        @if(auth()->user()->id != $user->id)
+                            <span class="text-black text-lg font-bold mx-2 capitalize">{{ $user->name }}'s Recipes</span>
+                        @else
+                            <span class="text-black text-lg font-bold mx-2">Your recipes</span>
+                        @endif
                         <span class="flex-1 border-s border-4 border-[#AE763E]"></span>
                     </div>
                     <div class="flex flex-wrap gap-3  w-full lg:flex justify-center">
