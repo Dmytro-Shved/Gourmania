@@ -9,7 +9,7 @@ class RecipeController extends Controller
 {
     public function showEditForm(Recipe $recipe)
     {
-        Gate::authorize('editRecipe', $recipe);
+        Gate::authorize('modifyRecipe', $recipe);
 
         return view('recipes.recipe-edit', compact('recipe'));
     }
@@ -20,5 +20,14 @@ class RecipeController extends Controller
         $guideSteps = $recipe->guideSteps->sortBy('step_number'); // get steps sorted by step_number
 
         return view('recipes.recipe-guide', compact('recipe', 'ingredients', 'guideSteps'));
+    }
+
+    public function destroy(Recipe $recipe)
+    {
+        Gate::authorize('modifyRecipe', $recipe);
+
+        $recipe->delete();
+
+        return redirect()->back()->with('recipe_destroyed', 'Recipe was deleted successfully!');
     }
 }

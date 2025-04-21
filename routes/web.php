@@ -27,10 +27,15 @@ Route::middleware('auth')->group(function (){
 
     Route::view('/recipes/create','recipes.recipe-create')->name('recipes.create');
     Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'showEditForm'])->name('recipes.edit');
+    Route::delete('/recipes/{recipe}', [RecipeController::class, 'destroy'])->name('recipes.destroy');
 });
 
 Route::get('/logout', function (){
     return redirect()->route('login-page');
+});
+
+Route::get('/recipes/{recipe}', function (){
+     abort(404);
 });
 
 Route::get('/users/profiles/{user}', [ProfileController::class, 'show_profile'])->name('profiles.show');

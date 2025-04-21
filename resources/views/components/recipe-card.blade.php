@@ -108,6 +108,7 @@
         <!-- Show this block only if the user is the author of the recipe and if he is on the profile page -->
         @if(auth()->user()->id == $recipe->user->id && request()->routeIs('profiles.show'))
             <x-recipe-actions-dropdown :recipeId="$recipe->id"/>
+            <x-recipe-delete-modal :recipeId="$recipe->id" :recipeName="$recipe->name"/>
         @endif
     </div>
 
