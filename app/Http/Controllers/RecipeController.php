@@ -28,6 +28,6 @@ class RecipeController extends Controller
 
         $recipe->delete();
 
-        return redirect()->back()->with('recipe_destroyed', 'Recipe was deleted successfully!');
+        return redirect()->back()->with('recipe_destroyed', 'Recipe successfully deleted');
     }
 }
