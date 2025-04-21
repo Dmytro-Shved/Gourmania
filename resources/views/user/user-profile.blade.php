@@ -1,6 +1,6 @@
 @section('title', 'Profile')
 <x-layout>
-
+    {{-- Session messages --}}
     @if(session()->has('recipe_destroyed'))
         <div x-data="{ show : true }" class="absolute text-white self-end end-1 z-30">
             <div x-show="show" x-transition

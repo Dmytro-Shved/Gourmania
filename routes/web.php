@@ -34,7 +34,7 @@ Route::get('/logout', function (){
     return redirect()->route('login-page');
 });
 
-Route::get('/recipes/{recipe}', function (){
+Route::fallback(function (){
      abort(404);
 });
 
