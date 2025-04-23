@@ -41,14 +41,10 @@
                         autocomplete="off"
                 >
 
-                    <div>
-                        @if($dishes->count() == 0)
-                           <option value="">Any dish</option>
-                        @endif
-                    </div>
+
+                    <option value="" selected>Any dish</option>
 
                     @foreach($dishes as $dish)
-                        <option value="" selected>Any dish</option>
                         <option value="{{ $dish->id }}">{{ $dish->name }}</option>
                     @endforeach
                 </select>

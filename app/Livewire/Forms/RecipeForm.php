@@ -80,7 +80,7 @@ class RecipeForm extends Form
             'servings' => $this->servings,
             'dish_category_id' => $this->category,
             'cuisine_id' => $this->cuisine,
-            'menu_id' => $this->menu,
+            'menu_id' => $this->menu === "" ? null : $this->menu,
         ];
 
         if ($recipe_data['image'] === null){
