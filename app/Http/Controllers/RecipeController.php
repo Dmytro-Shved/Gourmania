@@ -16,8 +16,9 @@ class RecipeController extends Controller
 
     public function guide(Recipe $recipe)
     {
-        $ingredients = $recipe->ingredients; // get ingredients
-        $guideSteps = $recipe->guideSteps->sortBy('step_number'); // get steps sorted by step_number
+        $recipe->load(['user', 'ingredients.pivot.unit', 'guideSteps']);
+        $ingredients = $recipe->ingredients;
+        $guideSteps = $recipe->guideSteps->sortBy('step_number');
 
         return view('recipes.recipe-guide', compact('recipe', 'ingredients', 'guideSteps'));
     }
