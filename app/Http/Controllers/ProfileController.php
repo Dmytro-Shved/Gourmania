@@ -12,7 +12,10 @@ class ProfileController extends Controller
     // Show Profile
     public function show_profile(User $user)
     {
-        $userRecipes = $user->recipes()->with('ingredients', 'guideSteps')->get();
+        // requires package: composer require ajcastro/eager-load-pivot-relation
+        $userRecipes = $user->recipes()
+            ->with(['user','ingredients.pivot.unit', 'guideSteps'])
+            ->get();
 
         return view('user.user-profile', compact('user', 'userRecipes'));
     }

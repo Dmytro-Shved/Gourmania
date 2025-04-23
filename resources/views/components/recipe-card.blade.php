@@ -118,7 +118,7 @@
             <div class="flex items-center px-2 text-[15px] md:text-[17px]">
                 <span class="mr-auto">{{ $ingredient->name }}</span>
                 <div class="flex-grow border-b border-black mx-2"></div>
-                <span class="ml-auto">{{ $ingredient->pivot->quantity . ' '. $ingredient->pivot->unit->name}}</span>
+                <span class="ml-auto">{{ $ingredient->pivot->quantity . ' '. $ingredient->pivot->unit->name }}</span>
             </div>
         @endforeach
     </div>

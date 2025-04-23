@@ -28,9 +28,11 @@
 
     <div class="px-2">
         <div class="flex flex-col gap-3">
-            <x-recipe-card/>
-            <x-recipe-card/>
-            <x-recipe-card/>
+            {{--<x-recipe-card/>--}}
+            {{--<x-recipe-card/>--}}
+            {{--<x-recipe-card/>--}}
+
+            some recipes here
         </div>
     </div>
 
