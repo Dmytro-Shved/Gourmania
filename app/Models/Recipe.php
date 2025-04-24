@@ -52,6 +52,11 @@ class Recipe extends Model
         return $this->belongsTo(DishCategory::class);
     }
 
+    public function dishSubcategory(): BelongsTo
+    {
+        return $this->belongsTo(DishSubcategory::class);
+    }
+
     public function guideSteps(): HasMany
     {
         return $this->hasMany(GuideStep::class);

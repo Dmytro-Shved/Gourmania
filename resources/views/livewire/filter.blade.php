@@ -41,7 +41,6 @@
                         autocomplete="off"
                 >
 
-
                     <option value="" selected>Any dish</option>
 
                     @foreach($dishes as $dish)

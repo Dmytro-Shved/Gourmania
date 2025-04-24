@@ -18,10 +18,11 @@ return new class extends Migration
             $table->string('image')->default('recipes-images/default/default_photo.png');
             $table->string('cook_time');
             $table->integer('servings');
-            $table->foreignId('dish_category_id')->constrained('dish_categories')->cascadeOnDelete();
+            $table->foreignId('dish_category_id')->nullable()->constrained('dish_categories')->nullOnDelete();
+            $table->foreignId('dish_subcategory_id')->nullable()->constrained('dish_subcategories')->nullOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('cuisine_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('menu_id')->nullable()->constrained('menus')->cascadeOnDelete();
+            $table->foreignId('cuisine_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('menu_id')->nullable()->constrained('menus')->nullOnDelete();
             $table->integer('likes')->default(0);
             $table->integer('dislikes')->default(0);
             $table->integer('saved_count')->default(0);

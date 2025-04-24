@@ -212,5 +212,7 @@ class DatabaseSeeder extends Seeder
                 'step_text' => $step['step_text'],
             ]);
         }
+
+
     }
 }

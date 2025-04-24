@@ -4,14 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class DishCategory extends Model
+class DishSubcategory extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-      'name'
+      'dish_category_id',
+      'name',
     ];
 
     public function recipes(): HasMany
@@ -19,8 +21,8 @@ class DishCategory extends Model
         return $this->hasMany(Recipe::class);
     }
 
-    public function dishSubcategories(): HasMany
+    public function dishCategory(): BelongsTo
     {
-        return $this->hasMany(DishSubcategory::class);
+        return $this->belongsTo(DishCategory::class);
     }
 }
