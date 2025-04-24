@@ -167,6 +167,7 @@ class DatabaseSeeder extends Seeder
             'cook_time' => '01:55',
             'servings' => 3,
             'dish_category_id' => 2,
+            'dish_subcategory_id' => 37,
             'user_id' => 1,
             'cuisine_id' => 13,
             'menu_id' => 1,

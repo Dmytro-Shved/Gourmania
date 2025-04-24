@@ -141,8 +141,6 @@ class DishSubcategorySeeder extends Seeder
                 ];
             }
 
-            // 1000 => 891 ms
-            // 300 => 491 ms
             // change length in case there is too much data (1000)
             foreach (array_chunk($data, 300) as $chunk){
                 DishSubcategory::insert($chunk);

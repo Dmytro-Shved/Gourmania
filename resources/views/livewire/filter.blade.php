@@ -32,19 +32,18 @@
                 </select>
             </div>
         </div>
-        <!--Dish -->
+        <!--Dish Subcategories -->
         <div class="flex flex-col w-full max-w-xs items-center gap-2 md:w-1/4 md:px-2 md:py-2">
             <div class="relative w-full">
-                <select wire:model.live="dish"
-                        name="dish"
+                <select wire:model.live="dishSubcategory"
+                        name="dish_subcategory"
                         class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 gourmania-focus px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-75 md:px-4 md:py-2 md:text-sm"
-                        autocomplete="off"
-                >
+                        autocomplete="off">
 
                     <option value="" selected>Any dish</option>
 
-                    @foreach($dishes as $dish)
-                        <option value="{{ $dish->id }}">{{ $dish->name }}</option>
+                    @foreach($dishSubcategories as $dishSubcategory)
+                        <option value="{{ $dishSubcategory->id }}">{{ $dishSubcategory->name }}</option>
                     @endforeach
                 </select>
             </div>

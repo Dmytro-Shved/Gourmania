@@ -4,17 +4,17 @@ namespace App\Livewire;
 
 use App\Models\Cuisine;
 use App\Models\DishCategory;
+use App\Models\DishSubcategory;
 use App\Models\Menu;
-use App\Models\Recipe;
 use Livewire\Component;
 
 class Filter extends Component
 {
     public $dishCategories;
-    public $dishes;
+    public $dishSubcategories;
 
     public $dishCategory;
-    public $dish;
+    public $dishSubcategory;
 
     public $cuisines;
     public $menus;
@@ -25,15 +25,15 @@ class Filter extends Component
     public function mount()
     {
         $this->dishCategory = request()->get('dish_category', null);
-        $this->dish = request()->get('dish', null);
+        $this->dishSubcategory = request()->get('dish_subcategory', null);
 
         $this->cuisine = request()->get('cuisine', null);
         $this->menu = request()->get('menu', null);
 
         $this->dishCategories = DishCategory::all();
 
-        $this->dishes = $this->dishCategory
-            ? Recipe::where('dish_category_id', $this->dishCategory)->get()
+        $this->dishSubcategories = $this->dishCategory
+            ? DishSubcategory::where('dish_category_id', $this->dishCategory)->get()
             : collect();
 
         $this->cuisines = Cuisine::get();
@@ -47,6 +47,7 @@ class Filter extends Component
 
     public function updatedDishCategory($value)
     {
-        return $this->dishes = Recipe::where('dish_category_id', $value)->get();
+        $this->dishSubcategory = null;
+        return $this->dishSubcategories = DishSubcategory::where('dish_category_id', $value)->get();
     }
 }
