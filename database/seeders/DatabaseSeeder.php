@@ -142,6 +142,9 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        // seed dish_subcategories table
+        $this->call(DishSubcategorySeeder::class);
+
         // seed ingredients table
         foreach ($this->ingredients as $ingredient) {
             Ingredient::factory(1)->create([

@@ -4,10 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\DishCategory;
 use App\Models\DishSubcategory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DishCategorySeeder extends Seeder
+class DishSubcategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -127,14 +126,26 @@ class DishCategorySeeder extends Seeder
             ]
         ];
 
-        foreach ($categories as $categoryName => $subcategories) {
-            $category = DishCategory::firstOrCreate(['name' => $categoryName]);
+        foreach ($categories as $categoryName => $subcategories){
+            $data = [];
 
-            foreach ($subcategories as $subcategoryName) {
-                DishSubcategory::firstOrCreate([
-                    'dish_category_id' => $category->id,
-                    'name' => $subcategoryName
-                ]);
+            // get id of category by name
+            $categoryId = DishCategory::where('name', $categoryName)->first()->id;
+
+            foreach ($subcategories as $subcategoryName){
+                $data[] = [
+                    'dish_category_id' =>  $categoryId,
+                    'name' => $subcategoryName,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+
+            // 1000 => 891 ms
+            // 300 => 491 ms
+            // change length in case there is too much data (1000)
+            foreach (array_chunk($data, 300) as $chunk){
+                DishSubcategory::insert($chunk);
             }
         }
     }
