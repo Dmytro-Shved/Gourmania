@@ -6,7 +6,7 @@ use App\Models\DishCategory;
 use App\Models\DishSubcategory;
 use Illuminate\Database\Seeder;
 
-class DishSubcategorySeeder extends Seeder
+class DishSubcategoriesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
