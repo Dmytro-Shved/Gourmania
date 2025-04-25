@@ -25,6 +25,7 @@ class RecipeForm extends Form
     public $name;
     public $description;
     public $category;
+    public $subcategory;
     public $cuisine;
     public $menu;
     public $cook_time;
@@ -40,6 +41,7 @@ class RecipeForm extends Form
         $this->servings = $recipe->servings;
 
         $this->category = $recipe->dish_category_id;
+        $this->subcategory = $recipe->dish_subcategory_id ? $recipe->dish_subcategory_id : null;
         $this->cuisine = $recipe->cuisine_id;
         $this->menu = $recipe->menu_id;
     }
@@ -79,6 +81,7 @@ class RecipeForm extends Form
             'cook_time' => $this->cook_time,
             'servings' => $this->servings,
             'dish_category_id' => $this->category,
+            'dish_subcategory_id' => $this->subcategory === "" ? null : $this->subcategory,
             'cuisine_id' => $this->cuisine,
             'menu_id' => $this->menu === "" ? null : $this->menu,
         ];
@@ -116,6 +119,7 @@ class RecipeForm extends Form
             'name' => ['required', 'string', \Illuminate\Validation\Rule::unique('recipes')->ignore($this->id), 'max:255',],
             'description' => ['nullable', 'string', 'max:255'],
             'category' => ['required'],
+            'subcategory' => ['nullable'],
             'cuisine' => ['required'],
             'menu' => ['nullable'],
             'cook_time' => ['required', 'date_format:H:i', 'not_in:00:00'],

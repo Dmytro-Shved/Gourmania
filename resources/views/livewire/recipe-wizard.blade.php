@@ -108,7 +108,7 @@
 
                     <!-- Recipe description -->
                     <div class="w-full">
-                        <div class="flex w-full max-w-md flex-col gap-1 text-on-surface dark:text-on-surface-dark">
+                        <div class="flex w-full max-w-md flex-col gap-1 text-on-surface">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
                             <textarea wire:model="recipeForm.description"
                                       name="recipeForm.description"
@@ -121,25 +121,46 @@
                         </div>
                     </div>
 
-                    <!-- Select Category, Cuisine Menu -->
+                    <!-- Select Category, Subcategory, Cuisine, Menu -->
                     <div class="relative w-full">
-                        <!-- Category -->
-                        <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Category</label>
-                        <select
-                            wire:model="recipeForm.category"
-                            name="recipeForm.category"
-                            class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-4 py-2"
-                            autocomplete="off"
-                        >
-                            <option value="">Select Category</option>
+                        <label class="block text-sm font-medium text-gray-500 mb-1 mt-2">Category & Subcategory</label>
+                        <div class="px-2 py-3 border border-gray-300 rounded-lg">
+                            <!-- Category -->
+                            <label class="block text-sm font-medium text-gray-700 mb-1 after:content-['*'] after:text-red-500">Category</label>
+                            <select
+                                wire:model.live="recipeForm.category"
+                                name="recipeForm.category"
+                                class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-4 py-2"
+                                autocomplete="off"
+                            >
+                                <option value="">Select Category</option>
 
-                            @foreach($dishCategories as $dishCategory)
-                                <option value="{{$dishCategory->id }}">{{ $dishCategory->name }}</option>
-                            @endforeach
-                        </select>
-                        @error('recipeForm.category')
-                        <span class="flex text-red-500">{{ $message }}</span>
-                        @enderror
+                                @foreach($dishCategories as $dishCategory)
+                                    <option value="{{$dishCategory->id }}">{{ $dishCategory->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('recipeForm.category')
+                            <span class="flex text-red-500">{{ $message }}</span>
+                            @enderror
+
+                            <!-- Subcategory -->
+                            <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['optional'] after:text-[#AE763E]">Subcategory </label>
+                            <select
+                                wire:model.live="recipeForm.subcategory"
+                                name="recipeForm.subcategory"
+                                class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 px-4 py-2"
+                                autocomplete="off"
+                            >
+                                <option value="">Select Subcategory</option>
+
+                                @foreach($dishSubcategories as $dishSubcategory)
+                                    <option value="{{$dishSubcategory->id }}">{{ $dishSubcategory->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('recipeForm.subcategory')
+                            <span class="flex text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
 
                         <!-- Cuisine -->
                         <label class="block text-sm font-medium text-gray-700 mb-1 mt-2 after:content-['*'] after:text-red-500">Cuisine</label>
