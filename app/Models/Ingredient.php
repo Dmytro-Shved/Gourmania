@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use AjCastro\EagerLoadPivotRelations\EagerLoadPivotTrait;
 
 class Ingredient extends Model
 {
-    use HasFactory, EagerLoadPivotTrait;
+    use EagerLoadPivotTrait;
 
     protected $fillable = ['name'];
 
