@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
+
 
 class RecipeController extends Controller
 {
+    public function index(Request $request)
+    {
+        return view('recipes.recipes');
+    }
+
     public function showEditForm(Recipe $recipe)
     {
         Gate::authorize('modifyRecipe', $recipe);

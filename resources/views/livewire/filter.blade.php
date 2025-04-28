@@ -1,5 +1,5 @@
 <!-- Filter -->
-<form action="{{ route('filter') }}" method="GET">
+<form action="{{ route('recipes.index') }}" method="GET">
 
     <!-- title -->
     <div class="title-container select-none">

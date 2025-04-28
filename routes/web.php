@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\FilterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProfileController;
@@ -10,8 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'index')->name('home');
 
-Route::get('/recipes', [FilterController::class, 'filter'])->name('filter');
-
+Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
 Route::get('/recipes/{recipe}/guide', [RecipeController::class, 'guide'])->name('recipes.guide');
 
 Route::middleware('guest')->group(function (){
@@ -34,13 +32,13 @@ Route::get('/logout', function (){
     return redirect()->route('login-page');
 });
 
-Route::fallback(function (){
-     abort(404);
-});
-
 Route::get('/users/profiles/{user}', [ProfileController::class, 'show_profile'])->name('profiles.show');
 Route::get('/users/profiles/{user}/edit', [ProfileController::class, 'edit_profile'])->name('profiles.edit')
     ->middleware('auth');
 Route::put('/users/profiles/{user}', [ProfileController::class, 'update_profile'])->name('profiles.update');
 
 Route::view('/faq', 'faq')->name('faq');
+
+Route::fallback(function (){
+     abort(404);
+});
