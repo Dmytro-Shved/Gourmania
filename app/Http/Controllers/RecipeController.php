@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RecipeFilterRequest;
 use App\Models\Recipe;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 

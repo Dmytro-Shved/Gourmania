@@ -28,10 +28,17 @@
 
     <div class="px-2">
         <div class="flex flex-col gap-3">
-            {{--<x-recipe-card/>--}}
-            {{--<x-recipe-card/>--}}
-            {{--<x-recipe-card/>--}}
-            some recipes here
+            @forelse($recipes as $recipe)
+                <x-recipe-card :recipe="$recipe"/>
+            @empty
+                <div class="pt-3 sm:pt-10  text-lg flex flex-col items-center justify-center text-center">
+                    <p class="w-72 break-words">
+                        404
+                        <br>
+                        <span class="block">We didn't found recipes for your request</span>
+                    </p>
+                </div>
+            @endforelse
         </div>
     </div>
 
