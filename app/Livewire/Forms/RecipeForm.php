@@ -75,8 +75,8 @@ class RecipeForm extends Form
     public function updateOrCreateRecipe($finalIngredients): Recipe
     {
         $recipe_data = [
-            'name' => $this->name,
-            'description' => $this->description,
+            'name' => trim($this->name),
+            'description' => trim($this->description),
             'image' => $this->updateOrStoreRecipeImage(),
             'cook_time' => $this->cook_time,
             'servings' => $this->servings,

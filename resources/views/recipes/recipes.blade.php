@@ -31,7 +31,6 @@
             {{--<x-recipe-card/>--}}
             {{--<x-recipe-card/>--}}
             {{--<x-recipe-card/>--}}
-
             some recipes here
         </div>
     </div>

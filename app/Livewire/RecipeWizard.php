@@ -137,10 +137,10 @@ class RecipeWizard extends Component
             $this->guideForm->validate();
         }
 
-        // Recipe data
+        // Ingredients data
         $finalIngredients = $this->ingredientsForm->prepareFinalIngredients();
 
-        // Ingredients data
+        // Recipe data
         $recipe = $this->recipeForm->updateOrCreateRecipe($finalIngredients);
 
         // Guide data
