@@ -14,7 +14,7 @@ class ProfileController extends Controller
     {
         // requires package: composer require ajcastro/eager-load-pivot-relation
         $userRecipes = $user->recipes()
-            ->with(['user','ingredients.pivot.unit', 'guideSteps'])
+            ->with(['user','ingredients.pivot.unit', 'guideSteps', 'dishCategory', 'cuisine'])
             ->get();
 
         return view('user.user-profile', compact('user', 'userRecipes'));
