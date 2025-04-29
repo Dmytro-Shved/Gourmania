@@ -22,7 +22,7 @@ class RecipeController extends Controller
             abort(404);
         }
 
-        $recipes = Recipe::with('user', 'ingredients.pivot.unit')
+        $recipes = Recipe::with('user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory')
             ->when($dish_category, function ($query) use ($dish_category, $dish_subcategory){
                 $query
                     ->where('dish_category_id', $dish_category)

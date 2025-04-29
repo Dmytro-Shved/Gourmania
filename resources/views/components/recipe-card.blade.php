@@ -39,10 +39,13 @@
                 </button>
             </div>
 
+            <!-- Servings -->
             <p class="flex items-center gap-1">
                 <img class="w-5 h-5" src="{{ asset('storage/objects/plate.svg') }}" alt="plate">
                 {{ $recipe->servings }} servings
             </p>
+
+            <!-- Cook time -->
             <p class="flex items-center gap-1" title="{{ sprintf('%02d hour(s) | %02d minute(s)', ...explode(':', $recipe->cook_time)) }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1"
                      stroke="currentColor">
@@ -54,7 +57,19 @@
         </div>
 
         <!-- Recipe stats -->
-        <div class="absolute bottom-1 sm:bottom-2 right-1 text-sm flex items-center gap-2">
+        <div class="absolute bottom-1 sm:bottom-2 right-2 text-sm flex items-center gap-2">
+            <!-- Category & Cuisine -->
+            <div class="flex-col text-sm text-center">
+                <a class="hover:underline text-[#AE763E]" href="{{ route('recipes.index', ['dish_category' => $recipe->dishCategory->id]) }}">
+                    {{ $recipe->dishCategory->name }}
+                </a>
+                <span class="whitespace-nowrap">•
+                    <a class="hover:underline text-[#AE763E]" href="{{ route('recipes.index', ['cuisine' => $recipe->cuisine->id]) }}">
+                        {{ $recipe->cuisine->name }}
+                    </a>
+                </span>
+            </div>
+
             <!-- Saved -->
             <div class="flex items-center gap-1">
                 <button>
@@ -88,10 +103,6 @@
                 </button>
                 {{ $recipe->dislikes }}
             </p>
-            <!-- Cuisine flag -->
-            <img class="w-12 h-6 sm:w-13 border border-black rounded-sm"
-                 src="{{ asset('storage/flags/japan-flag.svg') }}"
-                 alt="flag">
         </div>
 
         <!-- Bookmark button -->
