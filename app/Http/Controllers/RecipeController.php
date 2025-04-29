@@ -23,8 +23,9 @@ class RecipeController extends Controller
         }
 
         $recipes = Recipe::with('user', 'ingredients.pivot.unit')
-            ->when($dish_category, function ($query, $dish_category) use ($dish_subcategory){
-                $query->where('dish_category_id', $dish_category)
+            ->when($dish_category, function ($query) use ($dish_category, $dish_subcategory){
+                $query
+                    ->where('dish_category_id', $dish_category)
                     ->when($dish_subcategory, function ($query, $dish_subcategory){
                         $query->where('dish_subcategory_id', $dish_subcategory);
                     });
@@ -37,7 +38,11 @@ class RecipeController extends Controller
             })
             ->get();
 
-        return view('recipes.recipes', compact('recipes'));
+        $title = collect($request->validated())->filter()->isEmpty()
+            ? 'ALL RECIPES'
+            : 'FILTERED RECIPES';
+
+        return view('recipes.recipes', compact('recipes', 'title'));
     }
 
     public function showEditForm(Recipe $recipe)
