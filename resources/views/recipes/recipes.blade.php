@@ -11,37 +11,7 @@
         <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
     </div>
 
-    {{-- Additional filter + Count of found recipes--}}
-    <div class="font-inclusive text-center text-sm flex items-center justify-center space-x-6">
-        <div class="flex gap-2 items-center">
-            <span class="bg-gourmania rounded-full px-2 py-0.5 text-white">{{ $recipes->count() }}</span>
-            <span>recipes found</span>
-        </div>
-        <select class="block w-sm text-sm   transition duration-75 border border-gray-800 rounded-lg shadow-sm h-9 gourmania-focus bg-none">
-            <option value="week">Last week</option>
-            <option value="month">Last month</option>
-            <option value="year">Last year</option>
-        </select>
-    </div>
+    <livewire:recipe-list/>
 
     <br>
-
-    <div class="px-2">
-        <div class="flex flex-col gap-3">
-            @forelse($recipes as $recipe)
-                <x-recipe-card :recipe="$recipe"/>
-            @empty
-                <div class="pt-3 sm:pt-10  text-lg flex flex-col items-center justify-center text-center">
-                    <p class="w-72 break-words">
-                        404
-                        <br>
-                        <span class="block">We didn't found recipes for your request</span>
-                    </p>
-                </div>
-            @endforelse
-        </div>
-    </div>
-
-    <br>
-
 </x-layout>
