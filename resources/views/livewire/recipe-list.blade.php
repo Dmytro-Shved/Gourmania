@@ -1,16 +1,20 @@
 <div>
     <div class="font-inclusive text-center text-sm flex items-center justify-center space-x-6">
-        {{-- Count of found recipes --}}
+         {{-- Count of found recipes --}}
         <div class="flex gap-2 items-center">
             <span class="bg-gourmania rounded-full px-2 py-0.5 text-white">{{ $recipes->count() }}</span>
             <span>recipes found</span>
         </div>
 
-        {{-- Dropdown filter --}}
-        <select class="block w-sm text-sm   transition duration-75 border border-gray-800 rounded-lg shadow-sm h-9 gourmania-focus bg-none">
-            <option value="week">Last week</option>
-            <option value="month">Last month</option>
-            <option value="year">Last year</option>
+         {{-- Dropdown filter --}}
+        <select
+            name="sorting"
+            wire:change="handleSort($event.target.value)"
+            class="block w-sm text-sm   transition duration-75 border border-gray-800 rounded-lg shadow-sm h-9 gourmania-focus bg-none">
+
+            <option value="latest">Latest</option>
+            <option value="popularity">By Popularity</option>
+            <option value="oldest">Oldest</option>
         </select>
     </div>
 
@@ -19,7 +23,7 @@
     <div class="px-2">
         <div class="flex flex-col gap-3">
             {{-- Pagination navigation --}}
-            <div class="mt-6 flex font-inclusive">
+            <div class="mt-3 flex font-inclusive">
                 {{ $recipes->links(data: ['scrollTo' => false]) }}
             </div>
 

@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Http\Requests\RecipeFilterRequest;
 use App\Models\Recipe;
+use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -11,29 +12,52 @@ class RecipeList extends Component
 {
     use WithPagination;
 
-    // don't forget function's return type declaration
+    public $dish_category = '';
+    public $dish_subcategory = '';
+    public $cuisine = '';
+    public $menu = '';
 
-    public function render(RecipeFilterRequest $request)
+    protected $queryString = [
+        'dish_category',
+        'dish_subcategory',
+        'cuisine',
+        'menu',
+    ];
+
+    public function mount(RecipeFilterRequest $request): void
     {
-        $recipes = $this->getFilteredRecipes($request);
+        $validatedRequest = $request->validated();
+
+        $this->dish_category = $validatedRequest['dish_category'] ?? '';
+        $this->dish_subcategory ??= $validatedRequest['dish_subcategory'] ?? '';
+        $this->cuisine ??= $validatedRequest['cuisine'] ?? '';
+        $this->menu ??= $validatedRequest['menu'] ?? '';
+
+        if (!$this->dish_category && $this->dish_subcategory) {
+            abort(404);
+        }
+    }
+
+    public function render(): View
+    {
+        $recipes = $this->getFilteredRecipes();
 
         return view('livewire.recipe-list', [
             'recipes' => $recipes
         ]);
     }
 
-    public function getFilteredRecipes($request)
+    public function handleSort($value)
     {
-        $request->validated();
+        // code for sorting
+    }
 
-        $dish_category = $request->query('dish_category');
-        $dish_subcategory = $request->query('dish_subcategory');
-        $cuisine = $request->query('cuisine');
-        $menu = $request->query('menu');
-
-        if (!$dish_category && $dish_subcategory) {
-            abort(404);
-        }
+    public function getFilteredRecipes(): \Illuminate\Pagination\LengthAwarePaginator
+    {
+        $dish_category = $this->dish_category;
+        $dish_subcategory = $this->dish_subcategory;
+        $cuisine = $this->cuisine;
+        $menu = $this->menu;
 
         $recipes = Recipe::with('user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory')
             ->when($dish_category, function ($query) use ($dish_category, $dish_subcategory){
