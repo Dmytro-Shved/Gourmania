@@ -12,6 +12,8 @@ class RecipeList extends Component
 {
     use WithPagination;
 
+    public $sort = 'popularity';
+
     public $dish_category = '';
     public $dish_subcategory = '';
     public $cuisine = '';
@@ -26,13 +28,17 @@ class RecipeList extends Component
 
     public function mount(RecipeFilterRequest $request): void
     {
+        // Validate URL params
         $validatedRequest = $request->validated();
 
+        // Assigning values to variables from $validatedRequest
+        // set '' if variable isn't valid
         $this->dish_category = $validatedRequest['dish_category'] ?? '';
-        $this->dish_subcategory ??= $validatedRequest['dish_subcategory'] ?? '';
-        $this->cuisine ??= $validatedRequest['cuisine'] ?? '';
-        $this->menu ??= $validatedRequest['menu'] ?? '';
+        $this->dish_subcategory = $validatedRequest['dish_subcategory'] ?? '';
+        $this->cuisine = $validatedRequest['cuisine'] ?? '';
+        $this->menu = $validatedRequest['menu'] ?? '';
 
+        // Return 404 if a dish_subcategory without a dish_category is passed
         if (!$this->dish_category && $this->dish_subcategory) {
             abort(404);
         }
@@ -47,19 +53,16 @@ class RecipeList extends Component
         ]);
     }
 
-    public function handleSort($value)
-    {
-        // code for sorting
-    }
-
     public function getFilteredRecipes(): \Illuminate\Pagination\LengthAwarePaginator
     {
+        // Initializing variables for query
         $dish_category = $this->dish_category;
         $dish_subcategory = $this->dish_subcategory;
         $cuisine = $this->cuisine;
         $menu = $this->menu;
 
-        $recipes = Recipe::with('user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory')
+        // Filter logic using URL parameters
+        $query = Recipe::with('user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory')
             ->when($dish_category, function ($query) use ($dish_category, $dish_subcategory){
                 $query
                     ->where('dish_category_id', $dish_category)
@@ -72,9 +75,17 @@ class RecipeList extends Component
             })
             ->when($menu, function ($query, $menu){
                 $query->where('menu_id', $menu);
-            })
-            ->paginate(2);
+            });
 
-        return $recipes;
+        // Sort filtered recipes using $this->sort
+        if ($this->sort == 'popularity') {
+            $query->orderByDesc('likes');
+        } elseif ($this->sort == 'newest') {
+            $query->orderByDesc('created_at');
+        } elseif ($this->sort == 'oldest') {
+            $query->orderBy('created_at');
+        }
+
+        return $query->paginate(10);
     }
 }
