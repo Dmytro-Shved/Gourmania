@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Http\Requests\RecipeFilterRequest;
 use App\Models\Recipe;
-use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -44,7 +43,7 @@ class RecipeList extends Component
         }
     }
 
-    public function render(): View
+    public function render()
     {
         $recipes = $this->getFilteredRecipes();
 
@@ -86,6 +85,6 @@ class RecipeList extends Component
             $query->orderBy('created_at');
         }
 
-        return $query->paginate(10);
+        return $query->paginate(2);
     }
 }
