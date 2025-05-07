@@ -77,13 +77,13 @@ class RecipeList extends Component
             });
 
         // Sort filtered recipes using $this->sort
-        if ($this->sort == 'popularity') {
-            $query->orderByDesc('likes');
-        } elseif ($this->sort == 'newest') {
-            $query->orderByDesc('created_at');
-        } elseif ($this->sort == 'oldest') {
-            $query->orderBy('created_at');
-        }
+//        if ($this->sort == 'popularity') {
+//            $query->orderByDesc('likes');
+//        } elseif ($this->sort == 'newest') {
+//            $query->orderByDesc('created_at');
+//        } elseif ($this->sort == 'oldest') {
+//            $query->orderBy('created_at');
+//        }
 
         return $query->paginate(2);
     }
