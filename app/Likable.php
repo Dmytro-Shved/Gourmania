@@ -24,20 +24,35 @@ trait Likable
         $this->like($user, false);
     }
 
-    public function isLikedBy(User $user)
+    public function unlike($user = null, $liked = true)
+    {
+        $this->likes()
+            ->where([
+                'user_id' => $user ? $user->id : auth()->id(),
+                'recipe_id' => $this->id,
+                'liked' => $liked
+            ])
+            ->delete();
+    }
+
+    public function undislike($user = null)
+    {
+        $this->unlike($user, false);
+    }
+
+    public function isLikedBy(User $user, $liked = true)
     {
         return (bool) $user->likes
-            ->where('recipe_id', $this->id)
-            ->where('liked', true)
+            ->where([
+                'recipe_id' => $this->id,
+                'liked' => $liked
+            ])
             ->count();
     }
 
     public function isDislikedBy(User $user)
     {
-        return (bool) $user->likes
-            ->where('recipe_id', $this->id)
-            ->where('liked', false)
-            ->count();
+        return $this->isLikedBy($user, false);
     }
 
     public function likes()
