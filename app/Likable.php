@@ -4,12 +4,13 @@ namespace App;
 
 use App\Models\Like;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait Likable
 {
-    public function like($user = null, $liked = true)
+    public function likeBy($user = null, $liked = true): bool
     {
-        $this->likes()->updateOrCreate(
+        return (bool) $this->likes()->updateOrCreate(
             [
                 'user_id' => $user ? $user->id : auth()->id()
             ],
@@ -19,14 +20,14 @@ trait Likable
         );
     }
 
-    public function dislike($user = null)
+    public function dislikeBy($user = null): bool
     {
-        $this->like($user, false);
+        return $this->likeBy($user, false);
     }
 
-    public function unlike($user = null, $liked = true)
+    public function unlikeBy($user = null, $liked = true): bool
     {
-        $this->likes()
+        return (bool) $this->likes()
             ->where([
                 'user_id' => $user ? $user->id : auth()->id(),
                 'recipe_id' => $this->id,
@@ -35,12 +36,12 @@ trait Likable
             ->delete();
     }
 
-    public function undislike($user = null)
+    public function undislikeBy($user = null): bool
     {
-        $this->unlike($user, false);
+        return $this->unlikeBy($user, false);
     }
 
-    public function isLikedBy(User $user, $liked = true)
+    public function isLikedBy(User $user, $liked = true): bool
     {
         return (bool) $user->likes
             ->where([
@@ -50,12 +51,12 @@ trait Likable
             ->count();
     }
 
-    public function isDislikedBy(User $user)
+    public function isDislikedBy(User $user): bool
     {
         return $this->isLikedBy($user, false);
     }
 
-    public function likes()
+    public function likes(): HasMany
     {
         return $this->hasMany(Like::class);
     }
