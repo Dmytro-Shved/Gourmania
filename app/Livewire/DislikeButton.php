@@ -3,17 +3,20 @@
 namespace App\Livewire;
 
 use App\Models\Recipe;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class DislikeButton extends Component
 {
     public Recipe $recipe;
 
-    public function toggleDislike(): bool
+    public function toggleDislike()
     {
+        $this->dispatch('refresh-likes');
+
         // Check if user is authenticated
         if (auth()->guest()){
-            $this->redirect(route('login-page'));
+            return $this->redirect(route('login-page'));
         }
 
         // Get authenticated user
@@ -30,10 +33,11 @@ class DislikeButton extends Component
             return $this->recipe->undislikeBy($user);
         }
 
-        // return like()
+        // return dislikeBy()
         return $this->recipe->dislikeBy($user);
     }
 
+    #[On('refresh-dislikes')]
     public function render()
     {
         return view('livewire.dislike-button');

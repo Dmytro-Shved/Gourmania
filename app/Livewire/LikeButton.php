@@ -3,21 +3,22 @@
 namespace App\Livewire;
 
 use App\Models\Recipe;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class LikeButton extends Component
 {
     public Recipe $recipe;
 
-    public function toggleLike(): bool
+    public function toggleLike()
     {
-        // Check if user is authenticated
-        if (auth()->guest()){
-            $this->redirect(route('login-page'));
-        }
+        $this->dispatch('refresh-dislikes');
 
-        // Get authenticated user
-        $user = auth()->user();
+        // Check if user is authenticated
+        // if so, get the user
+        if (! $user = auth()->user()){
+            return $this->redirect(route('login-page'));
+        }
 
         // Check if user has already liked recipe
         // if true, then return unlike()
@@ -34,6 +35,7 @@ class LikeButton extends Component
         return $this->recipe->likeBy($user);
     }
 
+    #[On('refresh-likes')]
     public function render()
     {
         return view('livewire.like-button');

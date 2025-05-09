@@ -56,6 +56,16 @@ trait Likable
         return $this->isLikedBy($user, false);
     }
 
+    public function countLikes(): int
+    {
+        return $this->likes()->where('liked', true)->count();
+    }
+
+    public function countDislikes(): int
+    {
+        return $this->likes()->where('liked', false)->count();
+    }
+
     public function likes(): HasMany
     {
         return $this->hasMany(Like::class);
