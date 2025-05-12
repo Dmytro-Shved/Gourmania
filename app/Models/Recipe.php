@@ -63,4 +63,3 @@ class Recipe extends Model
         return $this->hasMany(GuideStep::class);
     }
 }
-

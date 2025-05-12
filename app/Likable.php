@@ -43,12 +43,11 @@ trait Likable
 
     public function isLikedBy(User $user, $liked = true): bool
     {
-        return (bool) $user->likes
+        return $user->likes()
             ->where([
                 'recipe_id' => $this->id,
                 'liked' => $liked
-            ])
-            ->count();
+            ])->exists();
     }
 
     public function isDislikedBy(User $user): bool

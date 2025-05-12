@@ -12,29 +12,22 @@ class DislikeButton extends Component
 
     public function toggleDislike()
     {
-        $this->dispatch('refresh-likes');
-
         // Check if user is authenticated
-        if (auth()->guest()){
+        // if so, get the user
+        if (!$user = auth()->user()){
             return $this->redirect(route('login-page'));
         }
 
-        // Get authenticated user
-        $user = auth()->user();
-
         // Check if user has already disliked recipe
         // if true, then return undislike()
-        $hasDisliked = $user->likes()->where([
-           'recipe_id' => $this->recipe->id,
-           'liked' => false
-        ])->exists();
-
+        $hasDisliked = $this->recipe->isDislikedBy($user);
         if ($hasDisliked){
-            return $this->recipe->undislikeBy($user);
+            $this->recipe->undislikeBy($user);
+        }else{
+            $this->recipe->dislikeBy($user);
         }
 
-        // return dislikeBy()
-        return $this->recipe->dislikeBy($user);
+        return $this->dispatch('refresh-likes');
     }
 
     #[On('refresh-dislikes')]

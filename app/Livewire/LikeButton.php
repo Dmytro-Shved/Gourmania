@@ -12,27 +12,22 @@ class LikeButton extends Component
 
     public function toggleLike()
     {
-        $this->dispatch('refresh-dislikes');
-
         // Check if user is authenticated
         // if so, get the user
-        if (! $user = auth()->user()){
+        if (!$user = auth()->user()){
             return $this->redirect(route('login-page'));
         }
 
         // Check if user has already liked recipe
         // if true, then return unlike()
-        $hasLiked = $user->likes()->where([
-            'recipe_id' => $this->recipe->id,
-            'liked' => true
-        ])->exists();
-
+        $hasLiked = $this->recipe->isLikedBy($user);
         if ($hasLiked){
-            return $this->recipe->unlikeBy($user);
+            $this->recipe->unlikeBy($user);
+        }else{
+            $this->recipe->likeBy($user);
         }
 
-        // return like()
-        return $this->recipe->likeBy($user);
+        return $this->dispatch('refresh-dislikes');
     }
 
     #[On('refresh-likes')]
