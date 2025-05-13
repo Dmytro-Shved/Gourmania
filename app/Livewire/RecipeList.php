@@ -6,6 +6,7 @@ use App\Http\Requests\RecipeFilterRequest;
 use App\Models\Recipe;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Database\Eloquent\Builder;
 
 class RecipeList extends Component
 {
@@ -61,7 +62,9 @@ class RecipeList extends Component
         $menu = $this->menu;
 
         // Filter logic using URL parameters
-        $query = Recipe::with('user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory')
+        $query = Recipe::with('user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory', 'userVote')
+            ->withCount(['votes as likesCount' => fn (Builder $query) => $query->where('vote', '>', 0)], 'vote')
+            ->withCount(['votes as dislikesCount' => fn (Builder $query) => $query->where('vote', '<', 0)], 'vote')
             ->when($dish_category, function ($query) use ($dish_category, $dish_subcategory){
                 $query
                     ->where('dish_category_id', $dish_category)

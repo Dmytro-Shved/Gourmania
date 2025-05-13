@@ -23,7 +23,7 @@
     <br>
 
     <div class="px-2">
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-5">
             {{-- Pagination navigation --}}
             <div class="mt-3 flex font-inclusive">
                 {{ $recipes->links(data: ['scrollTo' => false]) }}

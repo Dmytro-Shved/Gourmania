@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
-use App\Likable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Recipe extends Model
 {
-    use Likable;
-
     protected $fillable = [
         'name',
         'description',
@@ -61,5 +59,15 @@ class Recipe extends Model
     public function guideSteps(): HasMany
     {
         return $this->hasMany(GuideStep::class);
+    }
+
+    public function votes(): HasMany
+    {
+        return $this->hasMany(Vote::class);
+    }
+
+    public function userVote(): HasOne
+    {
+        return $this->votes()->one()->where('user_id', auth()->id());
     }
 }
