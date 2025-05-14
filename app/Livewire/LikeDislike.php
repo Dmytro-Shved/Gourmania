@@ -24,7 +24,6 @@ class LikeDislike extends Component
         $this->lastUserVote =  $this->userVote->vote ?? 0;
     }
 
-    // Like
     public function like()
     {
         $this->validateAccess();
@@ -37,7 +36,6 @@ class LikeDislike extends Component
         $this->updateVote(1);
     }
 
-    // Dislike
     public function dislike()
     {
         $this->validateAccess();
@@ -57,11 +55,13 @@ class LikeDislike extends Component
 
     private function updateVote(int $val): void
     {
-        if ($this->userVote){
-            $this->recipe->votes()->update(['user_id' => auth()->id(), 'vote' => $val]);
-        }else{
-            $this->userVote = $this->recipe->votes()->create(['user_id' => auth()->id(), 'vote' => $val]);
-        }
+        // Update or create vote
+        $vote = $this->recipe->votes()->updateOrCreate(
+            ['user_id' => auth()->id()],
+            ['vote' => $val]
+        );
+
+        $this->userVote = $vote;
 
         $this->setLikesAndDislikesCount($val);
 
