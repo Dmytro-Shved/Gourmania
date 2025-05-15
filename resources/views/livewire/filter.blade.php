@@ -26,7 +26,7 @@
                 >
                     <option value="">Any category</option>
 
-                    @foreach($dishCategories as $dishCategory)
+                    @foreach($this->dishCategories as $dishCategory)
                         <option value="{{$dishCategory->id }}">{{ $dishCategory->name }}</option>
                     @endforeach
                 </select>
@@ -59,7 +59,7 @@
 
                 <option value="" selected>Any cuisine</option>
 
-                @foreach($cuisines as $cuisine)
+                @foreach($this->cuisines as $cuisine)
                     <option value="{{ $cuisine->id }}">{{ $cuisine->name }}</option>
                 @endforeach
             </select>
@@ -74,7 +74,7 @@
             >
 
                 <option value="" selected>Any menu</option>
-                @foreach($menus as $menu)
+                @foreach($this->menus as $menu)
                     <option value="{{ $menu->id }}">{{ $menu->name }}</option>
                 @endforeach
             </select>
