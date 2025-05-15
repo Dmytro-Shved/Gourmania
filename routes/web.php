@@ -13,23 +13,19 @@ Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index'
 Route::get('/recipes/{recipe}/guide', [RecipeController::class, 'guide'])->name('recipes.guide');
 
 Route::middleware('guest')->group(function (){
-    Route::get('/login', [LoginController::class, 'index'])->name('login-page');
-    Route::post('/login', [LoginController::class, 'login'])->name('login');
+    Route::view('/login', 'auth.login')->name('login-page');
+    Route::post('/login', LoginController::class)->name('login');
 
-    Route::get('/register', [RegisterController::class, 'index'])->name('register-page');
-    Route::post('/register', [RegisterController::class, 'register'])->name('register');
+    Route::view('/register', 'auth.register')->name('register-page');
+    Route::post('/register', RegisterController::class)->name('register');
 });
 
 Route::middleware('auth')->group(function (){
-    Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+    Route::post('/logout', LogoutController::class)->name('logout');
 
     Route::view('/recipes/create','recipes.recipe-create')->name('recipes.create');
     Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'showEditForm'])->name('recipes.edit');
     Route::delete('/recipes/{recipe}', [RecipeController::class, 'destroy'])->name('recipes.destroy');
-});
-
-Route::get('/logout', function (){
-    return redirect()->route('login-page');
 });
 
 Route::get('/users/profiles/{user}', [ProfileController::class, 'show_profile'])->name('profiles.show');

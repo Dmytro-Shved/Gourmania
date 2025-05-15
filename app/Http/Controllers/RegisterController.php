@@ -11,12 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-    public function index()
-    {
-        return view('auth.register');
-    }
-
-    public function register(RegisterRequest $request)
+    public function __invoke(RegisterRequest $request)
     {
         // Validation & Create User
         $user = User::create([

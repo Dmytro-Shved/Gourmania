@@ -12,12 +12,7 @@ use PhpParser\Node\Stmt\If_;
 
 class LoginController extends Controller
 {
-    public function index()
-    {
-        return view('auth.login');
-    }
-
-    public function login(LoginRequest $request)
+    public function __invoke(LoginRequest $request)
     {
         if (Auth::attempt($request->validated(), $request->remember)){
             $request->session()->regenerate();
