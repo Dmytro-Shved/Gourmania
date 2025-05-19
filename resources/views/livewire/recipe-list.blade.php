@@ -35,9 +35,9 @@
                     <x-recipe-card :recipe="$recipe" wire:key="{{ $recipe->id }}"/>
                 </div>
             @empty
-                <div class="pt-3 sm:pt-10  text-lg flex flex-col items-center justify-center text-center">
+                <div class="pb-10 text-lg flex flex-col items-center justify-center text-center font-inclusive">
                     <p class="w-72 break-words">
-                        404
+                        <span class="text-white bg-gourmania px-1.5 py-1 rounded-lg">404</span>
                         <br>
                         <span class="block">We didn't found recipes for your request</span>
                     </p>
