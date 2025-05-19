@@ -24,10 +24,12 @@
 
     <div class="px-2">
         <div class="flex flex-col gap-5">
-            {{-- Pagination navigation --}}
-            <div class="mt-3 flex font-inclusive">
-                {{ $recipes->links(data: ['scrollTo' => false]) }}
-            </div>
+            @if($recipes->currentPage() <= $recipes->lastPage())
+                {{-- Pagination navigation --}}
+                <div class="mt-3 flex font-inclusive">
+                    {{ $recipes->links(data: ['scrollTo' => false]) }}
+                </div>
+            @endif
 
             {{-- Recipes--}}
             @forelse($recipes as $recipe)
