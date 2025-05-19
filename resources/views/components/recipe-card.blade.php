@@ -81,7 +81,7 @@
                 {{ $recipe->saved_count }}
             </div>
             <!-- Likes & Dislikes -->
-            <livewire:like-dislike :recipe="$recipe"/>
+            <livewire:like-dislike :recipe="$recipe" :key="$recipe->id"/>
         </div>
 
         <!-- Bookmark button -->
