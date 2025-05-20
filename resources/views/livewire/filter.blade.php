@@ -1,6 +1,5 @@
 <!-- Filter -->
-<form action="{{ route('recipes.index') }}" method="GET">
-
+<form id="recipeFilterForm" action="{{ route('recipes.index') }}" method="GET">
     <!-- title -->
     <div class="title-container select-none">
         <span class="flex-grow border-b border-black"></span>
@@ -88,4 +87,25 @@
             </button>
         </div>
     </div>
+
+    <!-- set ID for form [id="recipeFilterForm"] -->
+    <script>
+        // wait full page load, run callback
+        document.addEventListener('DOMContentLoaded', function () {
+            // initialize const form
+            const form = document.getElementById('recipeFilterForm');
+
+            // listen for a form submit event, run callback
+            form.addEventListener('submit', function () {
+                // initialize const for all inputs in the form
+                const inputs = this.querySelectorAll('select, input');
+                // loop every input and disable it if its ''
+                inputs.forEach(input => {
+                    if (input.value === '') {
+                        input.disabled = true;
+                    }
+                });
+            });
+        });
+    </script>
 </form>

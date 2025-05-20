@@ -91,6 +91,6 @@ class RecipeList extends Component
             $query->orderBy('created_at');
         }
 
-        return $query->paginate(3);
+        return $query->paginate(1);
     }
 }
