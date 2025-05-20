@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,7 +15,9 @@ class ProfileController extends Controller
     {
         // requires package: composer require ajcastro/eager-load-pivot-relation
         $userRecipes = $user->recipes()
-            ->with(['user','ingredients.pivot.unit', 'guideSteps', 'dishCategory', 'cuisine'])
+            ->withCount(['votes as likesCount' => fn (Builder $query) => $query->where('vote', 1)])
+            ->withCount(['votes as dislikesCount' => fn (Builder $query) => $query->where('vote', -1)])
+            ->with(['user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory', 'userVote'])
             ->get();
 
         return view('user.user-profile', compact('user', 'userRecipes'));
