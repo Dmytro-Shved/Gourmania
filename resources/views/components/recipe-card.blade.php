@@ -79,11 +79,11 @@
                 {{ $recipe->savedByUsers->count() }}
             </div>
             <!-- Likes & Dislikes -->
-            <livewire:like-dislike :recipe="$recipe" :key="$recipe->id"/>
+            <livewire:like-dislike :recipe="$recipe" wire:key="likeable-{{$recipe->id}}"/>
         </div>
 
         <!-- Bookmark button -->
-        <livewire:bookmark :recipe="$recipe" :key="$recipe->id"/>
+        <livewire:bookmark :recipe="$recipe" wire:key="bookmarkable-{{$recipe->id}}"/>
 
         <!-- Actions Dropdown -->
         <!-- Show this block only if the user is the author of the recipe and if he is on the profile page -->

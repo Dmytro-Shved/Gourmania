@@ -1,4 +1,4 @@
-<!-- Bookmark button -->
+{{-- Bookmark button --}}
 <button
     wire:click.throttle="toggleSave()"
     class="absolute top-1 left-1"
