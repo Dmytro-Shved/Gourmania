@@ -71,9 +71,10 @@ class Recipe extends Model
         return $this->votes()->one()->where('user_id', auth()->id());
     }
 
-    public function savedRecipes(): BelongsToMany
+    public function savedByUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'saved_recipes')
-            ->withTimestamps();
+            ->withTimestamps()
+            ->as('saved_recipes');
     }
 }
