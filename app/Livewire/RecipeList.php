@@ -62,7 +62,7 @@ class RecipeList extends Component
         $menu = $this->menu;
 
         // Filter logic using URL parameters
-        $query = Recipe::with(['user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory', 'userVote'])
+        $query = Recipe::with(['user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory', 'userVote', 'savedByUsers'])
             ->withCount(['votes as likesCount' => fn (Builder $query) => $query->where('vote', 1)])
             ->withCount(['votes as dislikesCount' => fn (Builder $query) => $query->where('vote', -1)])
             ->when($dish_category, function ($query) use ($dish_category, $dish_subcategory){

@@ -17,7 +17,7 @@ class ProfileController extends Controller
         $userRecipes = $user->recipes()
             ->withCount(['votes as likesCount' => fn (Builder $query) => $query->where('vote', 1)])
             ->withCount(['votes as dislikesCount' => fn (Builder $query) => $query->where('vote', -1)])
-            ->with(['user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory', 'userVote'])
+            ->with(['user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory', 'userVote', 'savedByUsers'])
             ->get();
 
         return view('user.user-profile', compact('user', 'userRecipes'));
