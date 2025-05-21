@@ -23,7 +23,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('cuisine_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('menu_id')->nullable()->constrained('menus')->nullOnDelete();
-            $table->integer('saved_count')->default(0);
             $table->timestamps();
         });
     }
