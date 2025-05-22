@@ -99,7 +99,7 @@
 
         <!-- Bookmark button -->
         <div class="absolute top-1 left-1">
-            <livewire:bookmark :recipe="$recipe" wire:key="bookmarkable-{{$recipe->id}}"/>
+            <livewire:bookmark :recipe="$recipe" icon-size="w-10 h-10" wire:key="bookmarkable-{{$recipe->id}}"/>
         </div>
 
         <!-- Actions Dropdown -->
