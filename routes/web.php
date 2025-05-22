@@ -26,6 +26,8 @@ Route::middleware('auth')->group(function (){
     Route::view('/recipes/create','recipes.recipe-create')->name('recipes.create');
     Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'showEditForm'])->name('recipes.edit');
     Route::delete('/recipes/{recipe}', [RecipeController::class, 'destroy'])->name('recipes.destroy');
+
+    Route::get('/users/profiles/{user}/saved', [ProfileController::class, 'savedRecipes'])->name('profiles.saved');
 });
 
 Route::get('/users/profiles/{user}', [ProfileController::class, 'show_profile'])->name('profiles.show');

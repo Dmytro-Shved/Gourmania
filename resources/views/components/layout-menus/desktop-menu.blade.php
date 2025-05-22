@@ -1,6 +1,6 @@
 {{-- Desktop Menu --}}
 <ul class="hidden items-center gap-4 flex-shrink-0 sm:flex">
-    <li><a href="#" class="desktop-menu-btn">Recipes</a></li>
+    <li><a href="{{ route('recipes.index') }}" class="desktop-menu-btn">Recipes</a></li>
     <li><a href="#" class="desktop-menu-btn">Authors</a></li>
     <li><a href="#" class="desktop-menu-btn">Basics</a></li>
     <li><a href="{{ route('recipes.create') }}" class="desktop-menu-btn tracking-wider text-white transition-colors duration-300 transform p-2 md:w-auto focus:outline-none bg-[#592D00] rounded-lg hover:bg-[#C58F5C]">Add recipe</a></li>
@@ -67,7 +67,7 @@
                 </li>
 
                 <!-- My recipes button-->
-                <li><a href="" class="flex items-center space-x-1 bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
+                <li><a href="{{ route('profiles.saved', auth()->user()->id) }}" class="flex items-center space-x-1 bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="darkred" viewBox="0 0 24 24"
                              stroke-width="1.5"
                              stroke="darkred" class="size-4">

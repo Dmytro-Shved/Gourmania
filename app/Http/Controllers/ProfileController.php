@@ -65,4 +65,18 @@ class ProfileController extends Controller
         return redirect()->back()->with('profile_updated', 'Your profile was successfully updated!');
     }
 
+    public function savedRecipes(User $user)
+    {
+        Gate::authorize('viewSaved', $user->profile);
+
+        $recipes = $user->savedRecipes()->with(['user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory', 'savedByUsers'])
+            ->withCount([
+                'votes as likesCount' => fn (Builder $query) => $query->where('vote', 1),
+                'votes as dislikesCount' => fn (Builder $query) => $query->where('vote', -1),
+                'savedByUsers as savedCount'
+            ])
+            ->get();
+
+        return view('user.saved-recipes', compact('recipes'));
+    }
 }
