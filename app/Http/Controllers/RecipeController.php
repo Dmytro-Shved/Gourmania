@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RecipeFilterRequest;
 use App\Models\Recipe;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Gate;
 
 
@@ -27,11 +28,14 @@ class RecipeController extends Controller
 
     public function guide(Recipe $recipe)
     {
-        $recipe->load(['user', 'ingredients.pivot.unit', 'guideSteps']);
-        $ingredients = $recipe->ingredients;
-        $guideSteps = $recipe->guideSteps->sortBy('step_number');
+        $recipe->load(['user', 'ingredients.pivot.unit', 'userVote', 'savedByUsers'])
+            ->loadCount([
+                'votes as likesCount' => fn (Builder $query) => $query->where('vote', 1),
+                'votes as dislikesCount' => fn (Builder $query) => $query->where('vote', -1),
+                'savedByUsers as savedCount'
+            ]);
 
-        return view('recipes.recipe-guide', compact('recipe', 'ingredients', 'guideSteps'));
+        return view('recipes.recipe-guide', compact('recipe'));
     }
 
     public function destroy(Recipe $recipe)

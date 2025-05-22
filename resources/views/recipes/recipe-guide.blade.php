@@ -14,24 +14,40 @@
 
     <br>
 
-    {{-- Servings and Time --}}
-    <div class="flex justify-center items-center mx-auto font-inclusive text-sm space-x-3">
-        <div class="flex items-center gap-1">
-            <img class="w-5 h-5" src="{{ asset('storage/objects/plate.svg') }}" alt="plate">
-            <span class="whitespace-nowrap">{{ $recipe->servings }} servings</span>
+    {{-- Servings, Cook Time, Save Recipe --}}
+    <div class="w-full flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6 font-inclusive text-sm">
+        <div class="flex space-x-3">
+            {{-- Servings --}}
+            <div class="flex items-center gap-1">
+                <img class="w-5 h-5" src="{{ asset('storage/objects/plate.svg') }}" alt="plate">
+                <span class="whitespace-nowrap">{{ $recipe->servings }} servings</span>
+            </div>
+
+            {{-- Cook Time --}}
+            <div class="flex items-center gap-1" title="{{ sprintf('%02d hour(s) | %02d minute(s)', ...explode(':', $recipe->cook_time)) }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+                <span class="whitespace-nowrap">{{ sprintf('%02dh %02dmin', ...explode(':', $recipe->cook_time)) }}</span>
+            </div>
         </div>
-        <div class="flex items-center gap-1" title="{{ sprintf('%02d hour(s) | %02d minute(s)', ...explode(':', $recipe->cook_time)) }}">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-            </svg>
-            <span class="whitespace-nowrap">{{ $recipe->cook_time }}</span>
+
+        {{-- Separator, visible only after 640px --}}
+        <span class="hidden sm:inline">|</span>
+
+        <div class="flex items-center space-x-3">
+            {{-- Save Recipe --}}
+            <div class="flex items-center gap-1">
+                <livewire:bookmark :recipe="$recipe" icon-size="w-6 h-6"/>
+                <div class="flex items-center gap-2">
+                    <span class="text-[15px]">save recipe</span>
+                    <span class="text-sm">{{ $recipe->savedCount }}</span>
+                </div>
+            </div>
+
+            {{-- Likes & Dislikes --}}
+            <livewire:like-dislike :recipe="$recipe"/>
         </div>
-        <button class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="darkred" viewBox="0 0 24 24" stroke-width="1.5" stroke="darkred" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
-            </svg>
-            <span class="text-sm underline">save recipe</span>
-        </button>
     </div>
 
     {{-- Image --}}
@@ -78,7 +94,7 @@
         <div class="border border-black mx-4 justify-center p-1">
             {{-- Ingridients--}}
             <div class="flex flex-col p-2 gap-2 md:gap-3 lg:gap-4">
-                @foreach($ingredients as $ingredient)
+                @foreach($recipe->ingredients as $ingredient)
                     <!-- Ingredient block -->
                     <div class="flex items-center">
                         <span class="mr-auto">{{ $ingredient->name }}</span>
@@ -102,7 +118,7 @@
     </div>
 
     {{-- Instruction --}}
-    @foreach($guideSteps as $step)
+    @foreach($recipe->guideSteps as $step)
         <div class="px-4 relative">
             {{-- Step --}}
             <div class="bg-white max-w-[500px] md:max-w-[1000px] md:h-auto border border-black flex flex-col md:flex-row justify-center mx-auto my-4 font-inclusive">

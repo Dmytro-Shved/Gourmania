@@ -15,9 +15,12 @@ class ProfileController extends Controller
     {
         // requires package: composer require ajcastro/eager-load-pivot-relation
         $userRecipes = $user->recipes()
-            ->withCount(['votes as likesCount' => fn (Builder $query) => $query->where('vote', 1)])
-            ->withCount(['votes as dislikesCount' => fn (Builder $query) => $query->where('vote', -1)])
-            ->with(['user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory', 'userVote', 'savedByUsers'])
+            ->with(['user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory', 'savedByUsers'])
+            ->withCount([
+                'votes as likesCount' => fn (Builder $query) => $query->where('vote', 1),
+                'votes as dislikesCount' => fn (Builder $query) => $query->where('vote', -1),
+                'savedByUsers as savedCount'
+            ])
             ->get();
 
         return view('user.user-profile', compact('user', 'userRecipes'));

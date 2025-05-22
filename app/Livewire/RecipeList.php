@@ -62,9 +62,12 @@ class RecipeList extends Component
         $menu = $this->menu;
 
         // Filter logic using URL parameters
-        $query = Recipe::with(['user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory', 'userVote', 'savedByUsers'])
-            ->withCount(['votes as likesCount' => fn (Builder $query) => $query->where('vote', 1)])
-            ->withCount(['votes as dislikesCount' => fn (Builder $query) => $query->where('vote', -1)])
+        $query = Recipe::with(['user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory', 'savedByUsers'])
+            ->withCount([
+                'votes as likesCount' => fn (Builder $query) => $query->where('vote', 1),
+                'votes as dislikesCount' => fn (Builder $query) => $query->where('vote', -1),
+                'savedByUsers as savedCount',
+            ])
             ->when($dish_category, function ($query) use ($dish_category, $dish_subcategory){
                 $query
                     ->where('dish_category_id', $dish_category)
@@ -82,6 +85,7 @@ class RecipeList extends Component
         // Sort filtered recipes using $this->sort
         if ($this->sort == 'popularity') {
             $query
+                ->orderByDesc('savedCount')
                 ->orderByDesc('likesCount')
                 ->orderBy('dislikesCount')
                 ->orderByDesc('created_at');

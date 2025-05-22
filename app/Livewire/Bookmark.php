@@ -10,6 +10,7 @@ class Bookmark extends Component
 {
     public Recipe $recipe;
     public bool $isSaved = false;
+    public string $iconSize = 'w-10 h-10';
 
     public function mount(Recipe $recipe)
     {
