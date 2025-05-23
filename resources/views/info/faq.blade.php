@@ -116,7 +116,7 @@
                             </span>
                         </summary>
                         <p class="group-open:animate-fadeIn mt-3 text-neutral-600">Our site contains a wide variety of recipes from different cuisines and different categories, find out more in our
-                            <a class="underline text-[#AE763E]" href="{{ route('filter') }}">list of all recipes</a>
+                            <a class="underline text-[#AE763E]" href="{{ route('recipes.index') }}">catalog</a>
                         </p>
                     </details>
                 </div>

@@ -35,7 +35,8 @@ Route::get('/users/profiles/{user}/edit', [ProfileController::class, 'edit_profi
     ->middleware('auth');
 Route::put('/users/profiles/{user}', [ProfileController::class, 'update_profile'])->name('profiles.update');
 
-Route::view('/faq', 'faq')->name('faq');
+Route::view('/info/faq', 'info.faq')->name('faq');
+Route::view('/info/basics', 'info.basics')->name('basics');
 
 Route::fallback(function (){
      abort(404);
