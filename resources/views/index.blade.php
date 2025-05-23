@@ -750,7 +750,7 @@
         {{-- Basics section --}}
         <div class="w-full md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] mx-auto sm:px-5">
             <div class="relative block overflow-hidden group w-full">
-                <a href="#" class="block">
+                <a href="{{ route('basics') }}" class="block">
                     <img
                         class="w-full h-auto transform transition-transform duration-300 group-hover:scale-110"
                         src="{{ asset('storage/images/basics.webp') }}"
@@ -766,9 +766,9 @@
             </div>
         </div>
         <div class="see-more-container">
-            <button class="see-more-btn">
+            <a href="{{ route('basics') }}" class="see-more-btn cursor-pointer">
                 See more
-            </button>
+            </a>
         </div>
 
         <br>
