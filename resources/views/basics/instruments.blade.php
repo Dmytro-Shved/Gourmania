@@ -1,18 +1,18 @@
 <x-layout>
-    @section('title',  'Basics')
+    @section('title',  'Instruments')
 
     <livewire:filter/>
 
-    {{-- Basics --}}
+    {{-- Instruments --}}
     <div class="title-container">
         <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
         <small class="font-inknut text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
-            BASICS
+            INSTRUMENTS
         </small>
         <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
     </div>
 
-    {{-- Basics Card --}}
+    {{-- Instruments Card --}}
     <div class="relative w-full bg-white px-6 pt-10 pb-8 mt-8 shadow-lg ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-2xl sm:rounded-lg sm:px-10 font-inclusive text-lg">
         <div class="mx-auto px-0">
             <p class="mb-3 text-black">
@@ -25,7 +25,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="https://cdn.shortpixel.ai/spai2/w_617+q_glossy+ret_img+to_auto/www.hungryhuy.com/wp-content/uploads/best-kitchen-tools.jpg" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/main-instruments.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -34,7 +34,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="https://cdn.shortpixel.ai/spai2/w_617+q_glossy+ret_img+to_auto/www.hungryhuy.com/wp-content/uploads/kitchen-knives.jpg" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/instruments/high-quality-chefs-knife.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -43,7 +43,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="https://cdn.shortpixel.ai/spai2/w_617+q_glossy+ret_img+to_auto/www.hungryhuy.com/wp-content/uploads/paring-knives.jpg" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/instruments/paring-knives.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -52,7 +52,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="https://cdn.shortpixel.ai/spai2/w_617+q_glossy+ret_img+to_auto/www.hungryhuy.com/wp-content/uploads/epicurean-cutting-board-1.jpg" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/instruments/cutting-boards.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -61,7 +61,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="https://cdn.shortpixel.ai/spai2/w_617+q_glossy+ret_img+to_auto/www.hungryhuy.com/wp-content/uploads/digital-kitchen-scale.jpg" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/instruments/digital-kitchen-scale.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -70,7 +70,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="https://cdn.shortpixel.ai/spai2/w_617+q_glossy+ret_img+to_auto/www.hungryhuy.com/wp-content/uploads/measuring-cups-spoons.jpg" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/instruments/measuring-cups-spoons.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -79,7 +79,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="https://cdn.shortpixel.ai/spai2/w_617+q_glossy+ret_img+to_auto/www.hungryhuy.com/wp-content/uploads/instant-read-thermometer.jpg" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/instruments/instant-read-thermometer.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -88,7 +88,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="https://cdn.shortpixel.ai/spai2/w_617+q_glossy+ret_img+to_auto/www.hungryhuy.com/wp-content/uploads/spatulas.jpg" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/instruments/spatulas.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -97,7 +97,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="https://cdn.shortpixel.ai/spai2/w_617+q_glossy+ret_img+to_auto/www.hungryhuy.com/wp-content/uploads/food-turners.jpg" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/instruments/food-turners.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -106,7 +106,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="https://cdn.shortpixel.ai/spai2/w_617+q_glossy+ret_img+to_auto/www.hungryhuy.com/wp-content/uploads/stainless-steel-tongs.jpg" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/instruments/stainless-steel-tongs.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -115,13 +115,8 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="https://cdn.shortpixel.ai/spai2/w_617+q_glossy+ret_img+to_auto/www.hungryhuy.com/wp-content/uploads/garlic-press.jpg" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/instruments/garlic-press.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
-
-            <p class="mt-10 mb-3 text-black">
-                <strong class="text-xl">Sheet pans and wire racks</strong><br>
-                These are indispensable for roasting, baking, cooling, and draining. We recommend half-size and quarter-size aluminum sheet pans for home use, and matching wire racks for optimal performance. Avoid non-stick coatings for a safer cooking experience.
-            </p>
         </div>
     </div>
 

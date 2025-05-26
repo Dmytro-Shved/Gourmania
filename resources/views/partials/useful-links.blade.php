@@ -8,26 +8,26 @@
 {{-- Useful links section --}}
 <div class="w-[320px] sm:w-[400px] md:w-[500px] lg:md:w-[550px] xl:md:w-[600px] mx-auto px-5">
     <div class="flex flex-row">
-        {{-- BASICS --}}
+        {{-- Instruments --}}
         <div>
             <button class="relative block overflow-hidden group w-full">
-                <a href="{{ route('basics') }}" class="block">
+                <a href="{{ route('instruments') }}" class="block">
                     <img
                         class="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-105"
-                        src="{{ asset('storage/images/useful-link-basics-min-opt.webp') }}"
+                        src="{{ asset('storage/basics/useful-link-instruments-min-opt.webp') }}"
                         alt="Basics"
                     >
                 </a>
             </button>
-            <span class="flex justify-center pt-1 font-inclusive text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px]">BASICS</span>
+            <span class="flex justify-center pt-1 font-inclusive text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px]">INSTRUMENTS</span>
         </div>
         {{-- TECHNIQUES --}}
         <div>
             <button class="relative block overflow-hidden group w-full">
-                <a class="block">
+                <a href="{{ route('techniques') }}" class="block">
                     <img
                         class="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-105"
-                        src="{{ asset('storage/images/useful-link-techniques-min-opt.webp') }}"
+                        src="{{ asset('storage/basics/useful-link-techniques-min-opt.webp') }}"
                         alt="Techniques"
                     >
                 </a>

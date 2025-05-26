@@ -47,7 +47,7 @@
             <small class="font-inknut text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
                 BEST CHOICE FOR GOURMETS
             </small>
-            <span class="flex-grow border-t border- border-black"></span>
+            <span class="flex-grow border-t border-black"></span>
         </div>
 
         {{-- Stats --}}
@@ -738,22 +738,22 @@
 
         <br>
 
-        {{-- Basics title --}}
+        {{-- Instruments title --}}
         <div class="title-container">
             <span class="border-line"></span>
             <small class="section-title">
-                BASICS
+                INSTRUMENTS
             </small>
             <span class="border-line"></span>
         </div>
 
-        {{-- Basics section --}}
+        {{-- Instruments section --}}
         <div class="w-full md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] mx-auto sm:px-5">
             <div class="relative block overflow-hidden group w-full">
-                <a href="{{ route('basics') }}" class="block">
+                <a href="{{ route('instruments') }}" class="block">
                     <img
                         class="w-full h-auto transform transition-transform duration-300 group-hover:scale-110"
-                        src="{{ asset('storage/images/basics.webp') }}"
+                        src="{{ asset('storage/basics/main-instruments.webp') }}"
                         alt="Basics"
                     >
                     <div
@@ -766,7 +766,7 @@
             </div>
         </div>
         <div class="see-more-container">
-            <a href="{{ route('basics') }}" class="see-more-btn cursor-pointer">
+            <a href="{{ route('instruments') }}" class="see-more-btn cursor-pointer">
                 See more
             </a>
         </div>
@@ -790,9 +790,9 @@
             </video>
         </div>
         <div class="see-more-container">
-            <button class="see-more-btn">
+            <a href="{{ route('techniques') }}"  class="see-more-btn">
                 See more
-            </button>
+            </a>
         </div>
 
         <br>

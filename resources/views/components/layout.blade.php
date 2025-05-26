@@ -191,9 +191,9 @@
                     <p class="font-inclusive font-semibold text-white text-xl text-center">Quick Links</p>
 
                     <div class="flex flex-col items-center mt-5 space-y-2">
-                        <p class="quick-link">Recipes</p>
-                        <p class="quick-link">Authors</p>
-                        <p class="quick-link">Basics</p>
+                        <a href="{{ route('recipes.index') }}" class="quick-link">Recipes</a>
+                        <a href="#" class="quick-link">Authors</a>
+                        <a href="{{ route('basics') }}" class="quick-link">Basics</a>
                         <a href="{{ route('faq') }}" class="quick-link">FAQ</a>
                     </div>
                 </div>
