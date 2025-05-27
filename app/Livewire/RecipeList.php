@@ -7,12 +7,12 @@ use App\Models\Recipe;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Database\Eloquent\Builder;
+use App\HasSortingAndPagination;
 
 class RecipeList extends Component
 {
     use WithPagination;
-
-    public $sort = 'popularity';
+    use HasSortingAndPagination;
 
     public $dish_category = '';
     public $dish_subcategory = '';
@@ -83,18 +83,9 @@ class RecipeList extends Component
             });
 
         // Sort filtered recipes using $this->sort
-        if ($this->sort == 'popularity') {
-            $query
-                ->orderByDesc('savedCount')
-                ->orderByDesc('likesCount')
-                ->orderBy('dislikesCount')
-                ->orderByDesc('created_at');
-        } elseif ($this->sort == 'newest') {
-            $query->orderByDesc('created_at');
-        } elseif ($this->sort == 'oldest') {
-            $query->orderBy('created_at');
-        }
+        $this->applySorting($query);
 
-        return $query->paginate(3);
+        // Paginate
+        return $this->paginateQuery($query, 2);
     }
 }
