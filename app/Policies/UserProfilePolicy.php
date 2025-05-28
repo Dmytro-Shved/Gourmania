@@ -16,4 +16,9 @@ class UserProfilePolicy
     {
         return $user->id === $userProfile->user_id;
     }
+
+    public function viewLiked(User $user, UserProfile $userProfile): bool
+    {
+        return $user->id === $userProfile->user_id;
+    }
 }

@@ -69,14 +69,13 @@ class ProfileController extends Controller
     {
         Gate::authorize('viewSaved', $user->profile);
 
-        $recipes = $user->savedRecipes()->with(['user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory', 'savedByUsers'])
-            ->withCount([
-                'votes as likesCount' => fn (Builder $query) => $query->where('vote', 1),
-                'votes as dislikesCount' => fn (Builder $query) => $query->where('vote', -1),
-                'savedByUsers as savedCount'
-            ])
-            ->get();
+        return view('user.saved-recipes');
+    }
 
-        return view('user.saved-recipes', compact('recipes'));
+    public function likedRecipes(User $user)
+    {
+        Gate::authorize('viewLiked', $user->profile);
+
+        return view('user.liked-recipes');
     }
 }

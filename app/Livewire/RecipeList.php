@@ -7,12 +7,12 @@ use App\Models\Recipe;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Database\Eloquent\Builder;
-use App\HasSortingAndPagination;
+use App\HasSorting;
 
 class RecipeList extends Component
 {
     use WithPagination;
-    use HasSortingAndPagination;
+    use HasSorting;
 
     public $dish_category = '';
     public $dish_subcategory = '';
@@ -82,10 +82,10 @@ class RecipeList extends Component
                 $query->where('menu_id', $menu);
             });
 
-        // Sort filtered recipes using $this->sort
-        $this->applySorting($query);
+        // Sort
+        $query = $this->applySorting($query);
 
         // Paginate
-        return $this->paginateQuery($query, 2);
+        return $query->paginate(2);
     }
 }

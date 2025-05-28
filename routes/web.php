@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function (){
     Route::delete('/recipes/{recipe}', [RecipeController::class, 'destroy'])->name('recipes.destroy');
 
     Route::get('/users/profiles/{user}/saved', [ProfileController::class, 'savedRecipes'])->name('profiles.saved');
+    Route::get('/users/profiles/{user}/liked', [ProfileController::class, 'likedRecipes'])->name('profiles.liked');
 });
 
 Route::get('/users/profiles/{user}', [ProfileController::class, 'show_profile'])->name('profiles.show');
