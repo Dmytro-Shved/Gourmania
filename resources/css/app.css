@@ -34,7 +34,7 @@
     }
 
     .mobile-menu-btn-style{
-        @apply flex items-center space-x-2 py-2 text-white underline font-inclusive;
+        @apply flex items-center space-x-2 py-2 text-white font-inclusive;
     }
 
     .quick-link{
