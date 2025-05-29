@@ -37,17 +37,4 @@ abstract class AbstractRecipeList extends Component
 
         return $this->applySorting($query);
     }
-
-    public function applySorting($query)
-    {
-        return match ($this->sort){
-            'popularity' => $query
-                ->orderByDesc('savedCount')
-                ->orderByDesc('likesCount')
-                ->orderBy('dislikesCount')
-                ->orderByDesc('created_at'),
-            'newest' => $query->orderByDesc('created_at'),
-            'oldest' => $query->orderBy('created_at'),
-        };
-    }
 }

@@ -11,7 +11,9 @@
         <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
     </div>
 
-    <livewire:liked-recipes />
+    <div wire:key="liked-recipes-{{ request()->path() }}">
+        <livewire:liked-recipes />
+    </div>
 
     <br>
 </x-layout>
