@@ -11,7 +11,7 @@
         <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
     </div>
 
-    <livewire:saved-recipes/>
+    <livewire:saved-recipes />
 
     <br>
 </x-layout>

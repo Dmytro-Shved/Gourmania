@@ -4,16 +4,10 @@ namespace App\Livewire;
 
 use App\Http\Requests\RecipeFilterRequest;
 use App\Models\Recipe;
-use Livewire\Component;
-use Livewire\WithPagination;
 use Illuminate\Database\Eloquent\Builder;
-use App\HasSorting;
 
-class RecipeList extends Component
+class FilteredRecipes extends AbstractRecipeList
 {
-    use WithPagination;
-    use HasSorting;
-
     public $dish_category = '';
     public $dish_subcategory = '';
     public $cuisine = '';
@@ -44,16 +38,7 @@ class RecipeList extends Component
         }
     }
 
-    public function render()
-    {
-        $recipes = $this->getFilteredRecipes();
-
-        return view('livewire.recipe-list', [
-            'recipes' => $recipes
-        ]);
-    }
-
-    public function getFilteredRecipes(): \Illuminate\Pagination\LengthAwarePaginator
+    public function getBaseQuery(): Builder
     {
         // Initializing variables for query
         $dish_category = $this->dish_category;
@@ -62,13 +47,7 @@ class RecipeList extends Component
         $menu = $this->menu;
 
         // Filter logic using URL parameters
-        $query = Recipe::with(['user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory', 'savedByUsers'])
-            ->withCount([
-                'votes as likesCount' => fn (Builder $query) => $query->where('vote', 1),
-                'votes as dislikesCount' => fn (Builder $query) => $query->where('vote', -1),
-                'savedByUsers as savedCount',
-            ])
-            ->when($dish_category, function ($query) use ($dish_category, $dish_subcategory){
+        $query = Recipe::when($dish_category, function ($query) use ($dish_category, $dish_subcategory){
                 $query
                     ->where('dish_category_id', $dish_category)
                     ->when($dish_subcategory, function ($query, $dish_subcategory){
@@ -82,10 +61,6 @@ class RecipeList extends Component
                 $query->where('menu_id', $menu);
             });
 
-        // Sort
-        $query = $this->applySorting($query);
-
-        // Paginate
-        return $query->paginate(2);
+        return $query;
     }
 }
