@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class LikedRecipes extends AbstractRecipeList
+class LikedRecipes extends RecipeList
 {
     public function getBaseQuery(): Builder
     {

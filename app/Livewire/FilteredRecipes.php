@@ -6,7 +6,7 @@ use App\Http\Requests\RecipeFilterRequest;
 use App\Models\Recipe;
 use Illuminate\Database\Eloquent\Builder;
 
-class FilteredRecipes extends AbstractRecipeList
+class FilteredRecipes extends RecipeList
 {
     public $dish_category = '';
     public $dish_subcategory = '';

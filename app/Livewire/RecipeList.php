@@ -2,16 +2,15 @@
 
 namespace App\Livewire;
 
-use App\HasSorting;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Database\Eloquent\Builder;
 
-abstract class AbstractRecipeList extends Component
+abstract class RecipeList extends Component
 {
     use WithPagination;
-    use HasSorting;
 
+    // Default sorting parameter
     public string $sort = 'popularity';
 
     public function render()
@@ -24,8 +23,10 @@ abstract class AbstractRecipeList extends Component
         ]);
     }
 
+    // Child component must realize this logic
     abstract protected function getBaseQuery(): Builder;
 
+    // Get recipes and load relationships
     protected function getRecipes(){
         $query = $this->getBaseQuery()
             ->with(['user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory', 'savedByUsers'])
@@ -36,5 +37,19 @@ abstract class AbstractRecipeList extends Component
             ]);
 
         return $this->applySorting($query);
+    }
+
+    // Sorting logic
+    public function applySorting($query)
+    {
+        return match ($this->sort){
+            'popularity' => $query
+                ->orderByDesc('savedCount')
+                ->orderByDesc('likesCount')
+                ->orderBy('dislikesCount')
+                ->orderByDesc('created_at'),
+            'newest' => $query->orderByDesc('created_at'),
+            'oldest' => $query->orderBy('created_at'),
+        };
     }
 }
