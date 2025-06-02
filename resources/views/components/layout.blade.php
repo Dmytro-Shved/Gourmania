@@ -42,16 +42,10 @@
                  class="w-full h-full sm:w-full sm:h-full object-contain"/>
         </a>
 
-        {{-- Searchbar container --}}
+        {{-- Search sidebar button container --}}
         <div class="ml-auto w-full max-w-12 flex-col gap-1 font-inclusive text-neutral-600 relative">
-            {{-- Searchbar button --}}
-            <button x-on:click="open = true" class="px-1.5 py-1.5 text-white hover:gourmania-hover rounded-full transition-colors duration-200">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="white" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
-                </svg>
-            </button>
+            {{-- Search sidebar button --}}
+            <x-search-sidebar-button/>
         </div>
 
         {{-- Desktop Menu --}}
@@ -62,91 +56,7 @@
     </nav>
 
     {{-- Search sidebar --}}
-    <div>
-        {{-- Sidebar Overlay --}}
-        <div x-cloak x-show="open"
-             class="fixed inset-0 z-50 overflow-hidden font-inclusive">
-            <div @click="open = false"
-                 x-show="open"
-                 x-transition:enter="transition-opacity ease-out duration-300"
-                 x-transition:enter-start="opacity-0"
-                 x-transition:enter-end="opacity-100"
-                 x-transition:leave="transition-opacity ease-in duration-300"
-                 x-transition:leave-start="opacity-100"
-                 x-transition:leave-end="opacity-0"
-                 class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-            <!-- Sidebar Content -->
-            <section class="absolute inset-y-0 right-0 pl-10 max-w-full flex">
-                <div x-show="open"
-                     x-transition:enter="transition-transform ease-out duration-300"
-                     x-transition:enter-start="transform translate-x-full"
-                     x-transition:enter-end="transform translate-x-0"
-                     x-transition:leave="transition-transform ease-in duration-300"
-                     x-transition:leave-start="transform translate-x-0"
-                     x-transition:leave-end="transform translate-x-full"
-                     class="w-screen max-w-md">
-                    <div class="h-full flex flex-col py-6 bg-white shadow-xl">
-                        <!-- Sidebar Header -->
-                        <div class="flex items-center justify-between px-4">
-                            <h2 class="text-xl font-semibold text-black">Search</h2>
-                            <button x-on:click="open = false" class="text-gray-500 hover:text-gray-700">
-                                <span class="sr-only">Close</span>
-                                <svg class="h-6 w-6" x-description="Heroicon name: x" xmlns="http://www.w3.org/2000/svg"
-                                     fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
-                            </button>
-                        </div>
-                        <!-- Search Input -->
-                        <div class="mt-4 px-4">
-                            <input type="text" placeholder="Search for recipes..."
-                                   class="w-full p-2 border border-gray-300 rounded-md gourmania-focus">
-                        </div>
-                        <div class="mt-4 px-4">
-                            <p class="ml-2 text-gray-400">Results</p>
-                        </div>
-                        <!-- Sidebar Content -->
-                        <div class="mt-4 px-4 h-full overflow-auto">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <!-- Card 1 -->
-                                <div
-                                    class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300">
-                                    <h3 class="text-lg font-semibold text-black mb-2">Card 1</h3>
-                                    <p class="text-gray-600">Content for card 1.</p>
-                                </div>
-                                <!-- Card 2 -->
-                                <div
-                                    class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300">
-                                    <h3 class="text-lg font-semibold text-black mb-2">Card 2</h3>
-                                    <p class="text-gray-600">Content for card 2.</p>
-                                </div>
-                                <!-- Card 3 -->
-                                <div
-                                    class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300">
-                                    <h3 class="text-lg font-semibold text-black mb-2">Card 3</h3>
-                                    <p class="text-gray-600">Content for card 3.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Sidebar Footer -->
-                        <div class="mt-6 px-4">
-                            <button
-                                class="flex justify-center items-center bg-gourmania text-neutral-200 rounded-md text-sm p-2 gap-1">
-                                <svg width="1rem" height="1rem" viewBox="0 0 24 24" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M3 7C3 6.44772 3.44772 6 4 6H20C20.5523 6 21 6.44772 21 7C21 7.55228 20.5523 8 20 8H4C3.44772 8 3 7.55228 3 7ZM6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12ZM9 17C9 16.4477 9.44772 16 10 16H14C14.5523 16 15 16.4477 15 17C15 17.5523 14.5523 18 14 18H10C9.44772 18 9 17.5523 9 17Z"
-                                          fill="currentColor"></path>
-                                </svg>
-                                Filters
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
+    <x-search-sidebar/>
 </div>
 
 <div class="flex flex-col min-h-screen">

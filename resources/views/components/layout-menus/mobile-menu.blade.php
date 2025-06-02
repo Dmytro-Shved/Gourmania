@@ -2,7 +2,7 @@
     {{-- Mobile Menu Button --}}
     <button @click="mobileMenuIsOpen = true" type="button"
             class="flex text-neutral-600 dark:text-neutral-300 sm:hidden">
-        <!-- Open mobile menu -->
+        {{-- Open mobile menu --}}
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true"
              viewBox="0 0 24 24" stroke-width="2" stroke="white" class="size-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
@@ -19,9 +19,10 @@
     x-transition:leave="transition motion-reduce:transition-none ease-out duration-300"
     x-transition:leave-start="translate-y-0"
     x-transition:leave-end="-translate-y-full"
+    x-trap.noscroll="mobileMenuIsOpen"
     class="fixed max-h-svh overflow-y-auto inset-x-0 top-0 z-50 flex flex-col rounded-b-md border-b border-neutral-300 bg-[#c58f5c] px-8 pb-6 pt-10 dark:border-neutral-700 dark:bg-neutral-900 sm:hidden">
 
-    <!-- Close mobile menu -->
+    {{-- Close mobile menu --}}
     <div class="self-end absolute bg-amber-800 bg-opacity-50 p-2.5 rounded-full -mx-6 -mt-7">
         <svg @click="mobileMenuIsOpen = false" x-cloak x-show="mobileMenuIsOpen"
              xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true"
