@@ -26,11 +26,10 @@
     @livewireStyles
 </head>
 <body>
-{{--class="animate-spin"--}}
 
 {{-- Navbar + Sidebar --}}
 <div x-data="{ open: false }">
-    <!-- Navigation bar -->
+    {{-- Navigation bar --}}
     <nav
         x-data="{ mobileMenuIsOpen: false }"
         @click.away="mobileMenuIsOpen = false"
@@ -43,8 +42,17 @@
                  class="w-full h-full sm:w-full sm:h-full object-contain"/>
         </a>
 
-        {{-- Search Dropdown --}}
-        <livewire:search-dropdown />
+        {{-- Searchbar container --}}
+        <div class="ml-auto w-full max-w-12 flex-col gap-1 font-inclusive text-neutral-600 relative">
+            {{-- Searchbar button --}}
+            <button x-on:click="open = true" class="px-1.5 py-1.5 text-white hover:gourmania-hover rounded-full transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="white" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
+                </svg>
+            </button>
+        </div>
 
         {{-- Desktop Menu --}}
         <x-layout-menus.desktop-menu/>
@@ -53,11 +61,10 @@
         <x-layout-menus.mobile-menu/>
     </nav>
 
-    {{-- Mobile search sidebar --}}
+    {{-- Search sidebar --}}
     <div>
-        <!-- Sidebar Overlay -->
+        {{-- Sidebar Overlay --}}
         <div x-cloak x-show="open"
-
              class="fixed inset-0 z-50 overflow-hidden font-inclusive">
             <div @click="open = false"
                  x-show="open"
