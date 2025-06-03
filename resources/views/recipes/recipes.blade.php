@@ -11,9 +11,7 @@
         <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
     </div>
 
-    <div wire:key="filtered-recipes-{{ request()->path() }}">
-        <livewire:filtered-recipes />
-    </div>
+    <livewire:filtered-recipes :wire:key="'filtered-' . request()->fullUrl()" />
 
     <br>
 </x-layout>

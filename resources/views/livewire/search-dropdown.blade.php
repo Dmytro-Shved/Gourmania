@@ -1,7 +1,9 @@
 <div>
     {{-- Search input --}}
     <div class="mt-4 px-4">
-        <input type="text" placeholder="Search for recipes..."
+        <input
+               type="text"
+               placeholder="Search for recipes..."
                class="w-full p-2 border border-gray-300 rounded-md gourmania-focus">
     </div>
     <div class="mt-4 px-4">
