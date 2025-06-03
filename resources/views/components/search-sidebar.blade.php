@@ -37,8 +37,8 @@
                             </svg>
                         </button>
                     </div>
-                    {{-- Search dropdown --}}
-                    <livewire:search-dropdown/>
+                    {{-- Search list --}}
+                    <livewire:search-list/>
                 </div>
             </div>
         </section>
