@@ -37,7 +37,7 @@
 
         <div class="flex items-center space-x-3">
             {{-- Save Recipe --}}
-            <div class="flex items-center gap-1">
+            <div class="flex items-center gap-1 relative">
                 <livewire:bookmark :recipe="$recipe" icon-size="w-6 h-6"/>
                 <div class="flex items-center gap-2">
                     <span class="text-[15px]">save recipe</span>

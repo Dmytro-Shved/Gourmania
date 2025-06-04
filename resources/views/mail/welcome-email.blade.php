@@ -100,7 +100,7 @@
 <div class="container">
     <!-- Header -->
     <div class="header">
-        <img src="https://i.ibb.co/C98yFvx/Component-1.png" alt="Gourmania Logo">
+        <img src="https://i.postimg.cc/Hs8DzDsQ/gourmania-logo.webp" alt="Gourmania Logo">
     </div>
 
     <!-- Main Content -->
@@ -119,7 +119,7 @@
     <!-- Sections -->
     <!-- section 1 -->
     <div class="section">
-        <img src="https://i.ibb.co/mF48bsx/Component-3.png" alt="Rate the recipes">
+        <img src="https://i.postimg.cc/x1rrFxcB/rate-the-recipes.webp" alt="Rate the recipes">
         <div>
             <h2>Rate the recipes</h2>
             <p>If you liked the recipe you can show your reaction by rating the recipe!</p>
@@ -128,7 +128,7 @@
 
     <!-- section 2 -->
     <div class="section">
-        <img src="https://i.ibb.co/sQbLRWQ/Component-4.png" alt="Save the recipes">
+        <img src="https://i.postimg.cc/3xgMMXGN/save-the-recipes.webp" alt="Save the recipes">
         <div>
             <h2>Save the recipes</h2>
             <p>If there is a recipe you like and don't want to lose it, you can always save it for yourself and use it whenever you like.</p>
@@ -137,7 +137,7 @@
 
     <!-- section 3 -->
     <div class="section">
-        <img src="https://i.ibb.co/ggwrNDT/Component-5.png" alt="Create your own recipes">
+        <img src="https://i.postimg.cc/jd36smzk/create-your-own-recipes.png" alt="Create your own recipes">
         <div>
             <h2>Create your own recipes</h2>
             <p>If you feel like sharing your findings, you can create your own recipe.</p>
