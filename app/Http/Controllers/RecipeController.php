@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RecipeFilterRequest;
+use App\Http\Requests\RecipeSearchRequest;
 use App\Models\Recipe;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Gate;
@@ -12,11 +13,22 @@ class RecipeController extends Controller
 {
     public function index(RecipeFilterRequest $request)
     {
-        $title = collect($request->validated())->filter()->isEmpty()
+        $filters = $request->validated();
+
+        $title = collect($filters)->filter()->isEmpty()
             ? 'ALL RECIPES'
             : 'FILTERED RECIPES';
 
-        return view('recipes.recipes', compact('title'));
+        return view('recipes.recipes', compact(['title', 'filters']));
+    }
+
+    public function search(RecipeSearchRequest $request)
+    {
+        $param = $request->validated();
+
+        $q = $param['q'] ?? '';
+
+        return view('recipes.searched-recipes', compact('q'));
     }
 
     public function showEditForm(Recipe $recipe)

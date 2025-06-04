@@ -2,16 +2,15 @@
 
 namespace App\Livewire;
 
-use App\Http\Requests\RecipeFilterRequest;
 use App\Models\Recipe;
 use Illuminate\Database\Eloquent\Builder;
 
 class FilteredRecipes extends RecipeList
 {
-    public $dish_category = '';
-    public $dish_subcategory = '';
-    public $cuisine = '';
-    public $menu = '';
+    public string $dish_category = '';
+    public string $dish_subcategory = '';
+    public string $cuisine = '';
+    public string $menu = '';
 
     protected $queryString = [
         'dish_category',
@@ -20,17 +19,14 @@ class FilteredRecipes extends RecipeList
         'menu',
     ];
 
-    public function mount(RecipeFilterRequest $request): void
+    public function mount(array $filters): void
     {
-        // Validate URL params
-        $validatedRequest = $request->validated();
-
         // Assigning values to variables from $validatedRequest
         // set '' if variable isn't valid
-        $this->dish_category = $validatedRequest['dish_category'] ?? '';
-        $this->dish_subcategory = $validatedRequest['dish_subcategory'] ?? '';
-        $this->cuisine = $validatedRequest['cuisine'] ?? '';
-        $this->menu = $validatedRequest['menu'] ?? '';
+        $this->dish_category = $filters['dish_category'] ?? '';
+        $this->dish_subcategory = $filters['dish_subcategory'] ?? '';
+        $this->cuisine = $filters['cuisine'] ?? '';
+        $this->menu = $filters['menu'] ?? '';
 
         // Return 404 if a dish_subcategory without a dish_category is passed
         if (!$this->dish_category && $this->dish_subcategory) {
@@ -40,25 +36,19 @@ class FilteredRecipes extends RecipeList
 
     public function getBaseQuery(): Builder
     {
-        // Initializing variables for query
-        $dish_category = $this->dish_category;
-        $dish_subcategory = $this->dish_subcategory;
-        $cuisine = $this->cuisine;
-        $menu = $this->menu;
-
         // Filter logic using URL parameters
-        $query = Recipe::when($dish_category, function ($query) use ($dish_category, $dish_subcategory){
+        $query = Recipe::when($this->dish_category, function ($query) {
                 $query
-                    ->where('dish_category_id', $dish_category)
-                    ->when($dish_subcategory, function ($query, $dish_subcategory){
-                        $query->where('dish_subcategory_id', $dish_subcategory);
+                    ->where('dish_category_id', $this->dish_category)
+                    ->when($this->dish_subcategory, function ($query){
+                        $query->where('dish_subcategory_id', $this->dish_subcategory);
                     });
             })
-            ->when($cuisine, function ($query, $cuisine){
-                $query->where('cuisine_id', $cuisine);
+            ->when($this->cuisine, function ($query){
+                $query->where('cuisine_id', $this->cuisine);
             })
-            ->when($menu, function ($query, $menu){
-                $query->where('menu_id', $menu);
+            ->when($this->menu, function ($query){
+                $query->where('menu_id', $this->menu);
             });
 
         return $query;

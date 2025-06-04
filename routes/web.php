@@ -11,6 +11,7 @@ Route::view('/', 'index')->name('home');
 
 Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
 Route::get('/recipes/{recipe}/guide', [RecipeController::class, 'guide'])->name('recipes.guide');
+Route::get('/recipes/search', [RecipeController::class, 'search'])->name('recipes.search');
 
 Route::middleware('guest')->group(function (){
     Route::view('/login', 'auth.login')->name('login-page');

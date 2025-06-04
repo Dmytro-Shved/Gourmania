@@ -1,11 +1,16 @@
 <div>
     {{-- Search input --}}
-    <div class="mt-4 px-4">
+    <form id="recipeSearchForm"
+          action="{{ route('recipes.search') }}"
+          method="GET"
+          class="mt-4 px-4">
         <input wire:model.live.debounce.500ms="search"
+               required
+               name="q"
                type="text"
                placeholder="Search for recipes..."
                class="w-full p-2 border border-gray-300 rounded-md gourmania-focus">
-    </div>
+    </form>
     <div class="mt-4 px-4">
         <p class="ml-2 text-gray-400">Results</p>
     </div>
@@ -42,5 +47,25 @@
             </div>
         </div>
     </div>
+<!-- set ID for form [id="recipeSearchForm"] -->
+<script>
+    // wait full page load, run callback
+    document.addEventListener('DOMContentLoaded', function () {
+        // initialize const form
+        const form = document.getElementById('recipeSearchForm');
+
+        // listen for a form submit event, run callback
+        form.addEventListener('submit', function () {
+            // initialize const for all inputs in the form
+            const inputs = this.querySelectorAll('select, input');
+            // loop every input and disable it if its ''
+            inputs.forEach(input => {
+                if (input.value === '') {
+                    input.disabled = true;
+                }
+            });
+        });
+    });
+</script>
 </div>
 
