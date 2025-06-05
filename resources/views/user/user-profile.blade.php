@@ -93,7 +93,7 @@
                     </div>
                     <div class="flex flex-wrap gap-3  w-full lg:flex justify-center">
                         @forelse($userRecipes as $recipe)
-                            <x-recipe-card :recipe="$recipe"/>
+                            <x-recipes.recipe-card :recipe="$recipe"/>
                         @empty
                             <div class="pt-3 sm:pt-10  text-lg flex flex-col items-center justify-center text-center">
                                 <p class="w-72 break-words">

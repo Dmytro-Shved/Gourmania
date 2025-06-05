@@ -121,7 +121,7 @@
                 </li>
 
                 <!-- Logout modal -->
-                <x-user-logout-modal/>
+                <x-modals.user-logout-modal/>
             @endif
 
             <!-- Unauthenticated -->

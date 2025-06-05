@@ -34,7 +34,7 @@
             {{-- Recipes--}}
             @forelse($recipes as $recipe)
                 <div wire:key="recipe-{{ $recipe->id }}">
-                    <x-recipe-card :recipe="$recipe"/>
+                    <x-recipes.recipe-card :recipe="$recipe"/>
                 </div>
             @empty
                 <div class="pb-10 text-lg flex flex-col items-center justify-center text-center font-inclusive">
