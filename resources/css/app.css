@@ -42,7 +42,23 @@
     }
 
     .stats-text{
-        @apply text-[8.5px] px-1 items-center text-center flex space-x-0.5 sm:text-[14px] md:text-[15px] md:space-x-1.5 lg:text-lg xl:text-xl;
+        @apply text-[1rem] xs:text-[1.125rem] sm:text-[1.000rem] md:text-xl font-medium whitespace-nowrap;
+    }
+
+    .stats-big-leaf-left{
+        @apply absolute left-0 top-1/2 -translate-y-1/2 w-[3.5rem] sm:w-[4rem] md:w-[4.5rem] lg:w-[5.5rem] select-none hidden sm:block;
+    }
+
+    .stats-big-leaf-right{
+        @apply absolute right-0 top-1/2 -translate-y-1/2 w-[3.5rem] sm:w-[4rem] md:w-[4.5rem] lg:w-[5.5rem] transform scale-x-[-1] select-none hidden sm:block;
+    }
+
+    .stats-mobile-leaf-left{
+        @apply absolute left-2 top-1/2 -translate-y-1/2 w-7 select-none sm:hidden;
+    }
+
+    .stats-mobile-leaf-right{
+        @apply absolute right-2 top-1/2 -translate-y-1/2 w-7 transform scale-x-[-1] select-none sm:hidden;
     }
 
     .stats-ball{
@@ -54,7 +70,7 @@
     }
 
     .section-title{
-        @apply font-inknut text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4;
+        @apply font-inknut text-[23px] xl:text-3xl text-black px-4 break-words text-center block;
     }
 
     .border-line{
@@ -82,7 +98,7 @@
     }
 
     .see-more-btn{
-        @apply font-inclusive text-xs sm:text-sm md:text-lg text-black border border-black py-2 px-4 rounded-lg hover:bg-gourmania hover:text-neutral-200 transition-colors duration-300;
+        @apply font-inclusive text-lg text-black border border-black py-2 px-4 rounded-lg hover:bg-gourmania hover:text-neutral-200 transition-colors duration-300;
     }
 
     .author-container{
@@ -94,7 +110,7 @@
     }
 
     .author-name{
-        @apply text-xs font-semibold mb-2 sm:mb-3 sm:text-sm md:text-lg break-words;
+        @apply font-semibold mb-2 sm:mb-3 text-sm md:text-lg break-words;
     }
 
     .faq-question{

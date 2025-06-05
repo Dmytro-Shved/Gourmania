@@ -44,47 +44,53 @@
         {{-- Slogan --}}
         <div class="title-container select-none">
             <span class="flex-grow border-t border-black"></span>
-            <small class="font-inknut text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
+            <small class="font-inknut text-lg sm:text-2xl md:text-3xl text-black px-4 break-words text-center block">
                 BEST CHOICE FOR GOURMETS
             </small>
             <span class="flex-grow border-t border-black"></span>
         </div>
 
         {{-- Stats --}}
-        <div class="flex justify-between items-center">
-            <img class="max-sm:size-10 max-sm:hidden sm:size-14 md:size-16 lg:size-20 select-none"
-                 src="{{ asset('storage/objects/leaf.svg')  }}" alt="" rel="preload">
-            <img class="max-sm:size-4 xs:size-5 sm:hidden select-none"
-                 src="{{ asset('storage/objects/leave_right_mobile.svg')  }}" alt="" rel="preload">
+        <div class="relative py-4 px-6 sm:px-8">
+            {{-- Left big leaf --}}
+            <img src="{{ asset('storage/objects/leaf.svg') }}" alt="Big leaf" rel="preload" class="stats-big-leaf-left">
 
-            <div class="stats-text">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="#88C9CB" class="bi bi-circle-fill stats-ball"
-                     viewBox="0 0 16 16">
-                    <circle cx="8" cy="8" r="8"/>
-                </svg>
-                <span>999 original recipes</span>
+            {{-- Left mobile leaf --}}
+            <img src="{{ asset('storage/objects/leave_right_mobile.svg') }}" alt="Small leaf" rel="preload" class="stats-mobile-leaf-left">
+
+            {{-- Stats text --}}
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 mx-auto max-w-max">
+
+                {{-- 1 stats item --}}
+                <div class="stats-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#88C9CB" class="inline-block w-3 h-3 sm:w-3 sm:h-3" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8"/>
+                    </svg>
+                    <span class="ml-1 sm:ml-[0.375rem]">999 original recipes</span>
+                </div>
+
+                {{-- 2 stats item --}}
+                <div class="stats-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#CCD5AE" class="inline-block w-3 h-3 sm:w-3 sm:h-3" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8"/>
+                    </svg>
+                    <span class="ml-1 sm:ml-[0.375rem]">1800 authors</span>
+                </div>
+
+                {{-- 3 stats item --}}
+                <div class="stats-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#FEDC56" class="inline-block w-3 h-3 sm:w-3 sm:h-3" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8"/>
+                    </svg>
+                    <span class="ml-1 sm:ml-[0.375rem]">Explore 50+ cuisines</span>
+                </div>
             </div>
 
-            <div class="stats-text">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="#CCD5AE" class="bi bi-circle-fill stats-ball"
-                     viewBox="0 0 16 16">
-                    <circle cx="8" cy="8" r="8"/>
-                </svg>
-                <span>1000 authors</span>
-            </div>
+            {{-- Right big leaf --}}
+            <img src="{{ asset('storage/objects/leaf.svg') }}" alt="Big leaf" rel="preload" class="stats-big-leaf-right">
 
-            <div class="stats-text">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="#FEDC56" class="bi bi-circle-fill stats-ball"
-                     viewBox="0 0 16 16">
-                    <circle cx="8" cy="8" r="8"/>
-                </svg>
-                <span>Explore 50+ world cuisines</span>
-            </div>
-
-            <img class="max-sm:size-10 max-sm:hidden sm:size-14 md:size-16 lg:size-20 transform scale-x-[-1] select-none"
-                 src="{{ asset('storage/objects/leaf.svg')  }}" alt="" rel="preload">
-            <img class="max-sm:size-4 xs:size-5 sm:hidden transform scale-x-[-1] select-none"
-                 src="{{ asset('storage/objects/leave_right_mobile.svg')  }}" alt="" rel="preload">
+            {{-- Right mobile leaf --}}
+            <img src="{{ asset('storage/objects/leave_right_mobile.svg') }}" alt="Small leaf" rel="preload" class="stats-mobile-leaf-right">
         </div>
 
         {{-- Filter --}}
@@ -95,7 +101,7 @@
         {{-- Popular recipes --}}
         <div class="title-container">
             <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
-            <small class="font-inknut text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
+            <small class="section-title">
                 POPULAR RECIPES
             </small>
             <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
@@ -790,7 +796,7 @@
             </video>
         </div>
         <div class="see-more-container">
-            <a href="{{ route('techniques') }}"  class="see-more-btn">
+            <a href="{{ route('techniques') }}" class="see-more-btn">
                 See more
             </a>
         </div>
