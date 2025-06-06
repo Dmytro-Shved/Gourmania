@@ -11,7 +11,7 @@
     <div class="flex-1 ml-3 flex flex-col min-w-0">
         <!-- recipe name -->
         <div class="max-w-[350px]">
-            <div class="overflow-x-auto whitespace-nowrap">
+            <div class="line-clamp-1">
                 <a href="{{ route('recipes.guide', $recipe->id) }}" class="text-lg md:text-xl lg:text-2xl font-bold block">
                     {{ $recipe->name }}
                 </a>
