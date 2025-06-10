@@ -1,3 +1,4 @@
+@props(['recipe', 'similarRecipes'])
 <x-layout>
     @section('title', 'Guide')
 
@@ -143,14 +144,26 @@
     </div>
 
     {{-- Similar recipes title --}}
-    <div class="title-container text-center">
+    <div class="title-container text-center mt-24">
         <small class="font-inknut text-xl md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
             SIMILAR RECIPES
         </small>
     </div>
 
     {{-- Similar recipes grid --}}
-    <div class="grid-cols-1 mb-12">
-        {{--<x-recipe-card/>--}}
+    <div class="px-2 my-8">
+        <div class="flex flex-col gap-5">
+            @forelse($similarRecipes as $recipe)
+                <div wire:key="recipe-{{ $recipe->id }}">
+                    <x-recipes.recipe-card :recipe="$recipe"/>
+                </div>
+            @empty
+                <div class="pb-10 text-lg flex flex-col items-center justify-center text-center font-inclusive">
+                    <p class="w-72 break-words">
+                        <span class="block">No similar recipes found...</span>
+                    </p>
+                </div>
+            @endforelse
+        </div>
     </div>
 </x-layout>

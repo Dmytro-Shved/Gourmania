@@ -40,6 +40,7 @@ class RecipeController extends Controller
 
     public function guide(Recipe $recipe)
     {
+        // Take recipe
         $recipe->load(['user', 'ingredients.pivot.unit', 'userVote', 'savedByUsers'])
             ->loadCount([
                 'votes as likesCount' => fn (Builder $query) => $query->where('vote', 1),
@@ -47,7 +48,19 @@ class RecipeController extends Controller
                 'savedByUsers as savedCount'
             ]);
 
-        return view('recipes.recipe-guide', compact('recipe'));
+        // Take similar recipes
+        $similarRecipes = Recipe::where('id', '!=', $recipe->id)
+            ->where('dish_category_id', '=', $recipe->dish_category_id)
+            ->with(['user', 'ingredients.pivot.unit', 'cuisine', 'dishCategory', 'savedByUsers'])
+            ->withCount([
+                'votes as likesCount' => fn (Builder $query) => $query->where('vote', 1),
+                'votes as dislikesCount' => fn (Builder $query) => $query->where('vote', -1),
+                'savedByUsers as savedCount',
+            ])
+            ->take(10)
+            ->get();
+
+        return view('recipes.recipe-guide', compact(['recipe', 'similarRecipes']));
     }
 
     public function destroy(Recipe $recipe)
