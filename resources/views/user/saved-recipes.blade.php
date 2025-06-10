@@ -12,6 +12,4 @@
     </div>
 
     <livewire:saved-recipes :wire:key="'saved-' . request()->fullUrl()" />
-
-    <br>
 </x-layout>

@@ -12,6 +12,4 @@
     </div>
 
     <livewire:searched-recipes :q="$q"/>
-
-    <br>
 </x-layout>

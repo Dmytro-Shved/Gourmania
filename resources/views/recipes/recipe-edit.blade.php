@@ -1,8 +1,6 @@
 <x-layout>
     @section('title', 'Edit recipe')
 
-    {{--session message--}}
-
     {{--Edit recipe--}}
     <div class="title-container">
         <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
@@ -12,8 +10,7 @@
         <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
     </div>
 
-    <livewire:recipe-wizard :recipe="$recipe"/>
-
-    <br>
-    <br>
+    <div class="mb-16">
+        <livewire:recipe-wizard :recipe="$recipe"/>
+    </div>
 </x-layout>

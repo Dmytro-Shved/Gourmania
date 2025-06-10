@@ -12,6 +12,4 @@
     </div>
 
     <livewire:liked-recipes :wire:key="'liked-' . request()->fullUrl()" />
-
-    <br>
 </x-layout>

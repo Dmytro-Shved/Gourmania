@@ -1,15 +1,12 @@
 <form wire:submit.prevent="store">
     {{-- Form Card --}}
-    <div class="bg-gray-100 flex items-center justify-center p-4 font-inclusive">
+    <div class="bg-gray-100 flex items-center justify-center p-4 font-inclusive mb-16">
         <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
             {{-- Stepper --}}
             <x-wizard-stepper :form_step="$form_step"/>
 
-            <br>
-            <br>
-
             {{--STEPS--}}
-            <div class="space-y-4">
+            <div class="space-y-4 mt-16">
                 {{--STEP 1--}}
                 @if($form_step == 1)
                     <!-- Select Image -->
@@ -545,6 +542,4 @@
             {{--END STEPS--}}
         </div>
     </div>
-    <br>
-    <br>
 </form>

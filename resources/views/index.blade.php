@@ -96,8 +96,6 @@
         {{-- Filter --}}
         <livewire:filter/>
 
-        <br>
-
         {{-- Popular recipes --}}
         <div class="title-container">
             <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
@@ -136,6 +134,13 @@
             },
         ],
         currentSlideIndex: 0,
+        isReady: false,
+        init() {
+            this.currentSlideIndex = 0;
+            this.$nextTick(() => {
+                this.isReady = true;
+            });
+        },
         next() {
             this.currentSlideIndex = (this.currentSlideIndex + 1) % this.slides.length;
         },
@@ -143,13 +148,13 @@
             this.currentSlideIndex = (this.currentSlideIndex - 1 + this.slides.length) % this.slides.length;
         }
     }"
-            class="relative w-full h-[70vh] max-h-[800px] overflow-hidden bg-gray-900 group"
+            :class="{'opacity-100': isReady}"
+            class="relative w-full h-[70vh] max-h-[800px] overflow-hidden bg-gray-900 group opacity-0 transition-opacity duration-300"
         >
-
             <div class="relative w-full h-full mx-auto max-w-[1920px]">
                 <template x-for="(slide, index) in slides" :key="index">
                     <div
-                        x-show="currentSlideIndex === index"
+                        x-show="currentSlideIndex === index && isReady"
                         x-transition:enter="transition ease-out duration-500"
                         x-transition:enter-start="opacity-0"
                         x-transition:enter-end="opacity-100"
@@ -158,7 +163,6 @@
                         x-transition:leave-end="opacity-0"
                         class="absolute inset-0 flex items-center justify-center"
                     >
-                        {{-- Background Image--}}
                         <div class="absolute inset-0 z-0">
                             <img
                                 :src="slide.imgSrc"
@@ -167,16 +171,13 @@
                             />
                         </div>
 
-                        {{-- Gradient shadow --}}
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent z-10"></div>
 
-                        {{-- Content --}}
                         <div class="relative z-20 w-full px-6 text-center pb-20 sm:pb-28 max-w-2xl mx-auto space-y-2">
                             <p class="text-white/80 text-sm uppercase tracking-widest mb-2" x-text="slide.category"></p>
                             <h2 class="text-3xl sm:text-4xl font-bold text-white group-hover:text-amber-300 transition-colors duration-300" x-text="slide.title"></h2>
                             <p x-show="slide.location" class="text-white/80 text-lg" x-text="slide.location"></p>
 
-                            {{-- See more button --}}
                             <div class="mt-6">
                                 <a
                                     :href="slide.ctaUrl"
@@ -191,10 +192,10 @@
                 </template>
             </div>
 
-            {{-- Arrows --}}
             <button
                 @click="previous()"
                 class="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition"
+                x-show="isReady"
             >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -204,14 +205,14 @@
             <button
                 @click="next()"
                 class="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition"
+                x-show="isReady"
             >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
             </button>
 
-            {{-- Indicators --}}
-            <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex space-x-2 z-30">
+            <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex space-x-2 z-30" x-show="isReady">
                 <template x-for="(slide, index) in slides" :key="index">
                     <button
                         @click="currentSlideIndex = index"
@@ -224,8 +225,6 @@
                 </template>
             </div>
         </div>
-
-        <br>
 
         {{-- Latest recipes title --}}
         <div class="title-container">
@@ -348,8 +347,6 @@
             </button>
         </div>
 
-        <br>
-
         {{-- Meat dishes title --}}
         <div class="title-container">
             <span class="border-line"></span>
@@ -421,8 +418,6 @@
             </button>
         </div>
 
-        <br>
-
         {{-- Salads title --}}
         <div class="title-container">
             <span class="border-line"></span>
@@ -491,8 +486,6 @@
                 See more
             </button>
         </div>
-
-        <br>
 
         {{-- Breakfasts title --}}
         <div class="title-container">
@@ -563,8 +556,6 @@
             </button>
         </div>
 
-        <br>
-
         {{-- Bakery title --}}
         <div class="title-container">
             <span class="border-line"></span>
@@ -633,8 +624,6 @@
                 See more
             </button>
         </div>
-
-        <br>
 
         {{-- Desserts title --}}
         <div class="title-container">
@@ -705,8 +694,6 @@
             </button>
         </div>
 
-        <br>
-
         {{-- Drinks title --}}
         <div class="title-container">
             <span class="border-line"></span>
@@ -776,8 +763,6 @@
             </button>
         </div>
 
-        <br>
-
         {{-- Instruments title --}}
         <div class="title-container">
             <span class="border-line"></span>
@@ -814,8 +799,6 @@
             </a>
         </div>
 
-        <br>
-
         {{-- Techniques title --}}
         <div class="title-container">
             <span class="border-line"></span>
@@ -838,8 +821,6 @@
             </a>
         </div>
 
-        <br>
-
         {{-- Authors of the week title --}}
         <div class="title-container">
             <span class="border-line"></span>
@@ -850,7 +831,7 @@
         </div>
 
         {{-- Authors of the week section --}}
-        <section id="authors" class="bg-gray-100">
+        <section id="authors" class="bg-gray-100 mb-16">
             <div class="container mx-auto px-4 lg:px-20 xl:px-52 2xl:px-80">
                 <div class="grid grid-cols-3 gap-3">
                     {{-- Author 1 --}}
@@ -968,6 +949,5 @@
                 </div>
             </div>
         </section>
-        <br>
     </div>
 </x-layout>

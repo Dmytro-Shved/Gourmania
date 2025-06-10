@@ -12,6 +12,4 @@
     </div>
 
     <livewire:filtered-recipes :filters="$filters" :wire:key="'filtered-' . request()->fullUrl()" />
-
-    <br>
 </x-layout>

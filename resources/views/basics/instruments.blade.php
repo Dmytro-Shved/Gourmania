@@ -119,12 +119,7 @@
             </div>
         </div>
     </div>
-
-    <br>
-    <br>
-
-   @include('partials.useful-links')
-
-    <br>
-    <br>
+    <div class="my-16">
+       @include('partials.useful-links')
+    </div>
 </x-layout>

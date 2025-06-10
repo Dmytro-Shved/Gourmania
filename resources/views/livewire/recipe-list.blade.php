@@ -1,4 +1,4 @@
-<div>
+<div class="mb-12">
     <div class="font-inclusive text-center text-sm flex flex-col sm:flex-row items-center justify-center gap-2 sm:space-x-6 space-y-2 sm:space-y-0">
         {{-- Count of found recipes --}}
         <div class="flex gap-2 items-center">
@@ -20,9 +20,7 @@
         </div>
     </div>
 
-    <br>
-
-    <div class="px-2">
+    <div class="px-2 mt-8">
         <div class="flex flex-col gap-5">
             {{-- Pagination navigation --}}
             @if($recipes->currentPage() <= $recipes->lastPage())

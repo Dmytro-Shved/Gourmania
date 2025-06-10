@@ -1,8 +1,6 @@
 <x-layout>
     @section('title', 'Guide')
 
-    <br>
-
     {{-- Recipe name --}}
     <div class="title-container text-center uppercase">
         <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
@@ -11,8 +9,6 @@
         </small>
         <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
     </div>
-
-    <br>
 
     {{-- Servings, Cook Time, Save Recipe --}}
     <div class="w-full flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6 font-inclusive text-sm">
@@ -58,14 +54,12 @@
     </div>
 
     {{-- Description --}}
-    <div class="flex justify-center mx-auto w-full max-w-[500px] px-4">
+    <div class="flex justify-center mx-auto w-full max-w-[500px] px-4 mb-8">
         <span class="font-inclusive text-sm lg:text-[15px] text-center break-words">{{ $recipe->description }}</span>
     </div>
 
-    <br>
-
     {{-- Author card --}}
-    <div class="max-w-[500px] mx-auto font-inclusive">
+    <div class="max-w-[500px] mx-auto font-inclusive mb-8">
         <div class="border border-black mx-4 justify-center rounded-md p-1">
             <span class="text-sm m-1 md:text-[16px] lg:text-lg">Author</span>
             <div class="flex flex-row justify-between items-center m-1 md:m-2">
@@ -80,8 +74,6 @@
         </div>
     </div>
 
-    <br>
-
     {{-- Ingridients title --}}
     <div class="title-container text-center">
         <small class="font-inknut text-xl md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
@@ -90,7 +82,7 @@
     </div>
 
     {{-- Ingridients block --}}
-    <div class="max-w-[500px] mx-auto font-inclusive text-sm md:text-[16px] lg:text-[18px]">
+    <div class="max-w-[500px] mx-auto mb-12 font-inclusive text-sm md:text-[16px] lg:text-[18px]">
         <div class="border border-black mx-4 justify-center p-1">
             {{-- Ingridients--}}
             <div class="flex flex-col p-2 gap-2 md:gap-3 lg:gap-4">
@@ -107,8 +99,6 @@
             </div>
         </div>
     </div>
-
-    <br>
 
     {{-- Instruction title --}}
     <div class="title-container text-center">
@@ -148,12 +138,9 @@
         </button>
     </div>
 
-    <br>
-
-    @include('partials.useful-links')
-
-    <br>
-    <br>
+    <div class="mb-16 mt-10">
+        @include('partials.useful-links')
+    </div>
 
     {{-- Similar recipes title --}}
     <div class="title-container text-center">
@@ -163,9 +150,7 @@
     </div>
 
     {{-- Similar recipes grid --}}
-    <div class="grid-cols-1">
+    <div class="grid-cols-1 mb-12">
         {{--<x-recipe-card/>--}}
     </div>
-
-    <br>
 </x-layout>
