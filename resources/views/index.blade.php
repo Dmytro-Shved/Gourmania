@@ -126,7 +126,6 @@
                 ctaUrl: '#',
                 ctaText: 'See more'
             },
-
             {
                 imgSrc: '{{ asset('storage/recipes-images/salmon_teriyaki_fish_108544_1920x1080-min-opt.webp') }}',
                 imgAlt: 'Grilled salmon with sauce',
@@ -159,7 +158,7 @@
                         x-transition:leave-end="opacity-0"
                         class="absolute inset-0 flex items-center justify-center"
                     >
-                        <!-- Изображение на заднем плане -->
+                        {{-- Background Image--}}
                         <div class="absolute inset-0 z-0">
                             <img
                                 :src="slide.imgSrc"
@@ -316,6 +315,32 @@
                     </div>
                 </a>
             </div>
+
+            {{-- Card 7 --}}
+            <div class="recipe-card group">
+                <a href="#" class="block h-full">
+                    <img class="section-image"
+                         src="{{ asset('storage/recipes-images/pancakes_berries_dessert_157035_800x1200-min-opt.webp') }}"
+                         alt="Fluffy pancakes with sour cream and raspberries">
+                    <div class="hover-overlay">
+                        <div class="country-label">United Kingdom</div>
+                        <span class="overlay-text">Fluffy pancakes with sour cream and raspberries</span>
+                    </div>
+                </a>
+            </div>
+
+            {{-- Card 8 --}}
+            <div class="recipe-card group">
+                <a href="#" class="block h-full">
+                    <img class="section-image"
+                         src="{{ asset('storage/recipes-images/pancakes_berries_dessert_157035_800x1200-min-opt.webp') }}"
+                         alt="Fluffy pancakes with sour cream and raspberries">
+                    <div class="hover-overlay">
+                        <div class="country-label">United Kingdom</div>
+                        <span class="overlay-text">Fluffy pancakes with sour cream and raspberries</span>
+                    </div>
+                </a>
+            </div>
         </div>
         <div class="see-more-container">
             <button class="see-more-btn">
@@ -336,7 +361,7 @@
 
         {{-- Meat dishes grid --}}
         <div class="section-container">
-            {{-- Card 1--}}
+             {{--Card 1--}}
             <div class="recipe-card group">
                 <a href="#" class="block h-full">
                     <img class="section-image"
@@ -350,7 +375,7 @@
                 </a>
             </div>
 
-            {{-- Card 2 --}}
+            {{--Card 2 --}}
             <div class="recipe-card group">
                 <a href="#" class="block h-full">
                     <img class="section-image"
@@ -363,7 +388,7 @@
                 </a>
             </div>
 
-            {{-- Card 3 --}}
+             {{--Card 3 --}}
             <div class="recipe-card group">
                 <a href="#" class="block h-full">
                     <img class="section-image"
@@ -376,7 +401,7 @@
                 </a>
             </div>
 
-            {{-- Card 4 --}}
+             {{--Card 4 --}}
             <div class="recipe-card group">
                 <a href="#" class="block h-full">
                     <img class="section-image"
@@ -385,32 +410,6 @@
                     <div class="hover-overlay">
                         <div class="country-label">Poland</div>
                         <span class="overlay-text">Pan-seared steak</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 5 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('https://eda.ru/images/RecipePhoto/1280x960/kartofel-s-myasom-v-duhovke_140793_photo_157606.webp') }}"
-                         alt="Chicken broth">
-                    <div class="hover-overlay">
-                        <div class="country-label">Germany</div>
-                        <span class="overlay-text">Meat with potato in oven</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 6 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('https://eda.ru/images/RecipePhoto/1280x960/varenoe-mjaso-s-kislo-ostrim-sousom_20076_photo_56627.webp') }}"
-                         alt="Chicken broth">
-                    <div class="hover-overlay">
-                        <div class="country-label">France</div>
-                        <span class="overlay-text">Boiled meat with hot and sour sauce</span>
                     </div>
                 </a>
             </div>
@@ -475,32 +474,6 @@
             </div>
 
             {{-- Card 4 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/salad_lemon_cherry_tomatoes_107795_800x1200-min-opt.webp') }}"
-                         alt="Sour lemon with fresh cherry tomatoes and fresh herbs">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Sour lemon with fresh cherry tomatoes and fresh herbs</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 5 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/salad_lemon_cherry_tomatoes_107795_800x1200-min-opt.webp') }}"
-                         alt="Sour lemon with fresh cherry tomatoes and fresh herbs">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Sour lemon with fresh cherry tomatoes and fresh herbs</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 6 --}}
             <div class="recipe-card group">
                 <a href="#" class="block h-full">
                     <img class="section-image"
@@ -583,32 +556,6 @@
                     </div>
                 </a>
             </div>
-
-            {{-- Card 5 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/granola_strawberry_berries_207990_800x1200-min-opt.webp') }}"
-                         alt="Granola with strawberry">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Granola with strawberry</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 6 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/granola_strawberry_berries_207990_800x1200-min-opt.webp') }}"
-                         alt="Granola with strawberry">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Granola with strawberry</span>
-                    </div>
-                </a>
-            </div>
         </div>
         <div class="see-more-container">
             <button class="see-more-btn">
@@ -669,32 +616,6 @@
             </div>
 
             {{-- Card 4 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/cookies_chocolate_dessert_874621_800x1200-min-opt.webp') }}"
-                         alt="Chocolate chip cookie">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Chocolate chip cookie</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 5 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/cookies_chocolate_dessert_874621_800x1200-min-opt.webp') }}"
-                         alt="Chocolate chip cookie">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Chocolate chip cookie</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 6 --}}
             <div class="recipe-card group">
                 <a href="#" class="block h-full">
                     <img class="section-image"
@@ -777,32 +698,6 @@
                     </div>
                 </a>
             </div>
-
-            {{-- Card 5 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/cupcake_cherry_berries_289705_800x1200-min-opt.webp') }}"
-                         alt="Cupcake with cream and berries">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Cupcake with cream and berries</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 6 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/cupcake_cherry_berries_289705_800x1200-min-opt.webp') }}"
-                         alt="Cupcake with cream and berries">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Cupcake with cream and berries</span>
-                    </div>
-                </a>
-            </div>
         </div>
         <div class="see-more-container">
             <button class="see-more-btn">
@@ -874,32 +769,6 @@
                     </div>
                 </a>
             </div>
-
-            {{-- Card 5 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/cocktail_mint_glass_272604_800x1200-min-opt.webp') }}"
-                         alt="Mint Cocktail">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Mint Cocktail</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 6 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/cocktail_mint_glass_272604_800x1200-min-opt.webp') }}"
-                         alt="Mint Cocktail">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Mint Cocktail</span>
-                    </div>
-                </a>
-            </div>
         </div>
         <div class="see-more-container">
             <button class="see-more-btn">
@@ -923,15 +792,15 @@
             <div class="relative block overflow-hidden group w-full rounded-lg">
                 <a href="{{ route('instruments') }}" class="block">
                     <img
-                        class="w-full h-auto transform transition-transform duration-300 group-hover:scale-110"
+                        class="w-full h-auto transform transition-transform duration-300"
                         src="{{ asset('storage/basics/main-instruments.webp') }}"
                         alt="Cooking tools"
                     >
                     <div class="absolute inset-0 flex items-end justify-center pb-4 sm:pb-8 transition-all duration-300">
-                        <!-- Усиленная тень -->
+                        {{-- Shadow --}}
                         <div class="absolute bottom-0 w-full h-[45%] sm:h-1/3 bg-gradient-to-t from-black/90 via-black/60 to-transparent"></div>
 
-                        <!-- Текст с нужными стилями, но без фона -->
+                        {{-- Text --}}
                         <span class="relative text-white font-bold px-4 text-base sm:text-lg text-center group-hover:text-amber-400 transition-colors duration-300 leading-tight sm:leading-normal drop-shadow-lg">
                     Having the right tools can make cooking and food preparation much more enjoyable
                 </span>
@@ -984,7 +853,7 @@
         <section id="authors" class="bg-gray-100">
             <div class="container mx-auto px-4 lg:px-20 xl:px-52 2xl:px-80">
                 <div class="grid grid-cols-3 gap-3">
-                    <!-- Author 1 -->
+                    {{-- Author 1 --}}
                     <div class="author-container">
                         <a href="#">
                             <img src="{{ asset('storage/user_logo/default.svg') }}"
@@ -993,7 +862,7 @@
                         </a>
                     </div>
 
-                    <!-- Author 2 -->
+                    {{-- Author 2 --}}
                     <div class="author-container">
                         <a href="#">
                             <img
@@ -1003,7 +872,7 @@
                         </a>
                     </div>
 
-                    <!-- Author 3 -->
+                    {{-- Author 3 --}}
                     <div class="author-container">
                         <a href="#">
                             <img
@@ -1013,7 +882,7 @@
                         </a>
                     </div>
 
-                    <!-- Author 4 -->
+                    {{-- Author 4--}}
                     <div class="author-container">
                         <a href="#">
                             <img
@@ -1023,7 +892,7 @@
                         </a>
                     </div>
 
-                    <!-- Author 5 -->
+                    {{-- Author 5 --}}
                     <div class="author-container">
                         <a href="#">
                             <img
@@ -1033,7 +902,7 @@
                         </a>
                     </div>
 
-                    <!-- Author 6 -->
+                    {{-- Author 6 --}}
                     <div class="author-container">
                         <a href="#">
                             <img
@@ -1043,7 +912,7 @@
                         </a>
                     </div>
 
-                    <!-- Author 7 -->
+                    {{-- Author 7 --}}
                     <div class="author-container">
                         <a href="#">
                             <img src="{{ asset('storage/user_logo/default.svg') }}"
@@ -1052,7 +921,7 @@
                         </a>
                     </div>
 
-                    <!-- Author 8 -->
+                    {{-- Author 8 --}}
                     <div class="author-container">
                         <a href="#">
                             <img src="{{ asset('storage/user_logo/default.svg') }}"
@@ -1061,7 +930,7 @@
                         </a>
                     </div>
 
-                    <!-- Author 9 -->
+                    {{-- Author 9 --}}
                     <div class="author-container">
                         <a href="#">
                             <img src="{{ asset('storage/user_logo/default.svg') }}"
@@ -1070,7 +939,7 @@
                         </a>
                     </div>
 
-                    <!-- Author 10 -->
+                    {{-- Author 10 --}}
                     <div class="author-container">
                         <a href="#">
                             <img src="{{ asset('storage/user_logo/default.svg') }}"
@@ -1079,7 +948,7 @@
                         </a>
                     </div>
 
-                    <!-- Author 11 -->
+                    {{-- Author 11 --}}
                     <div class="author-container">
                         <a href="#">
                             <img src="{{ asset('storage/user_logo/default.svg') }}"
@@ -1088,7 +957,7 @@
                         </a>
                     </div>
 
-                    <!-- Author 12 -->
+                    {{-- Author 12 --}}
                     <div class="author-container">
                         <a href="#">
                             <img src="{{ asset('storage/user_logo/default.svg') }}"
