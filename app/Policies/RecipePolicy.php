@@ -3,13 +3,18 @@
 namespace App\Policies;
 
 use App\Models\Recipe;
+use App\Models\Role;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class RecipePolicy
 {
-    public function modifyRecipe(User $user, Recipe $recipe): bool
+    public function edit(User $user, Recipe $recipe): bool
     {
-        return $user->id === $recipe->user_id;
+        return $user->role_id == Role::IS_ADMIN || $recipe->user_id == $user->id;
+    }
+
+    public function delete(User $user, Recipe $recipe): bool
+    {
+        return $user->role_id == Role::IS_ADMIN || $recipe->user_id == $user->id;
     }
 }

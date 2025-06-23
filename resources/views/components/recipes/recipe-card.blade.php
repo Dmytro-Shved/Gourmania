@@ -103,10 +103,10 @@
         </div>
 
         <!-- Actions Dropdown -->
-        <!-- Show this block only if the user is the author of the recipe and if he is on the profile page -->
-        @if(auth()->check() && auth()->user()->id == $recipe->user->id && request()->routeIs('profiles.show'))
-            <x-recipes.recipe-actions-dropdown :recipeId="$recipe->id"/>
-            <x-modals.recipe-delete-modal :recipeId="$recipe->id" :recipeName="$recipe->name"/>
+        <!-- Show this block only if the user is on the profile page -->
+        @if(request()->routeIs('profiles.show'))
+            @can('edit', $recipe)<x-recipes.recipe-actions-dropdown :recipeId="$recipe->id"/>@endcan
+            @can('delete', $recipe)<x-modals.recipe-delete-modal :recipeId="$recipe->id" :recipeName="$recipe->name"/>@endcan
         @endif
     </div>
 

@@ -33,7 +33,7 @@ class RecipeController extends Controller
 
     public function showEditForm(Recipe $recipe)
     {
-        Gate::authorize('modifyRecipe', $recipe);
+        Gate::authorize('edit', $recipe);
 
         return view('recipes.recipe-edit', compact('recipe'));
     }
@@ -65,7 +65,7 @@ class RecipeController extends Controller
 
     public function destroy(Recipe $recipe)
     {
-        Gate::authorize('modifyRecipe', $recipe);
+        Gate::authorize('delete', $recipe);
 
         $recipe->delete();
 
