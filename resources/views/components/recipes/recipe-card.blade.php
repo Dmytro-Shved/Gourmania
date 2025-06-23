@@ -105,8 +105,13 @@
         <!-- Actions Dropdown -->
         <!-- Show this block only if the user is on the profile page -->
         @if(request()->routeIs('profiles.show'))
-            @can('edit', $recipe)<x-recipes.recipe-actions-dropdown :recipeId="$recipe->id"/>@endcan
-            @can('delete', $recipe)<x-modals.recipe-delete-modal :recipeId="$recipe->id" :recipeName="$recipe->name"/>@endcan
+            @can('edit', $recipe)
+                <x-recipes.recipe-actions-dropdown :recipeId="$recipe->id"/>
+            @endcan
+
+            @can('delete', $recipe)
+                <x-modals.recipe-delete-modal :recipeId="$recipe->id" :recipeName="$recipe->name"/>
+            @endcan
         @endif
     </div>
 

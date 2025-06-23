@@ -2,23 +2,29 @@
 
 namespace App\Policies;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Models\UserProfile;
 
 class UserProfilePolicy
 {
-    public function modify(User $user, UserProfile $userProfile): bool
+    public function edit(User $user, UserProfile $userProfile): bool
     {
-        return $user->id === $userProfile->user_id;
+        return $user->role_id == Role::IS_ADMIN || $user->id == $userProfile->user_id ;
     }
 
-    public function viewSaved(User $user, UserProfile $userProfile): bool
+    public function update(User $user, UserProfile $userProfile): bool
     {
-        return $user->id === $userProfile->user_id;
+        return $user->role_id == Role::IS_ADMIN || $user->id == $userProfile->user_id;
     }
 
-    public function viewLiked(User $user, UserProfile $userProfile): bool
+    public function viewSavedRecipes(User $user, UserProfile $userProfile): bool
     {
-        return $user->id === $userProfile->user_id;
+        return $user->role_id == Role::IS_ADMIN || $user->id == $userProfile->user_id;
+    }
+
+    public function viewLikedRecipes(User $user, UserProfile $userProfile): bool
+    {
+        return $user->role_id == Role::IS_ADMIN || $user->id == $userProfile->user_id;
     }
 }

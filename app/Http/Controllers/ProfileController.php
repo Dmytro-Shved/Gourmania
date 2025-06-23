@@ -30,7 +30,7 @@ class ProfileController extends Controller
     public function edit_profile(User $user)
     {
         // Authorizing the action
-        Gate::authorize('modify', $user->profile);
+        Gate::authorize('edit', $user->profile);
 
         return view('user.edit-profile', compact('user'));
     }
@@ -39,7 +39,7 @@ class ProfileController extends Controller
     public function update_profile(UpdateProfileRequest $request, User $user)
     {
         // Authorizing the action
-        Gate::authorize('modify', $user->profile);
+        Gate::authorize('update', $user->profile);
 
         // Old photo
         $path = $user->photo;
@@ -67,14 +67,16 @@ class ProfileController extends Controller
 
     public function savedRecipes(User $user)
     {
-        Gate::authorize('viewSaved', $user->profile);
+        // Authorizing the action
+        Gate::authorize('viewSavedRecipes', $user->profile);
 
         return view('user.saved-recipes');
     }
 
     public function likedRecipes(User $user)
     {
-        Gate::authorize('viewLiked', $user->profile);
+        // Authorizing the action
+        Gate::authorize('viewLikedRecipes', $user->profile);
 
         return view('user.liked-recipes');
     }

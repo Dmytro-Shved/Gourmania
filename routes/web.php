@@ -21,6 +21,8 @@ Route::middleware('guest')->group(function (){
     Route::post('/register', RegisterController::class)->name('register');
 });
 
+Route::get('/users/profiles/{user}', [ProfileController::class, 'show_profile'])->name('profiles.show');
+
 Route::middleware('auth')->group(function (){
     Route::post('/logout', LogoutController::class)->name('logout');
 
@@ -30,12 +32,9 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/users/profiles/{user}/saved', [ProfileController::class, 'savedRecipes'])->name('profiles.saved');
     Route::get('/users/profiles/{user}/liked', [ProfileController::class, 'likedRecipes'])->name('profiles.liked');
+    Route::get('/users/profiles/{user}/edit', [ProfileController::class, 'edit_profile'])->name('profiles.edit');
+    Route::put('/users/profiles/{user}', [ProfileController::class, 'update_profile'])->name('profiles.update');
 });
-
-Route::get('/users/profiles/{user}', [ProfileController::class, 'show_profile'])->name('profiles.show');
-Route::get('/users/profiles/{user}/edit', [ProfileController::class, 'edit_profile'])->name('profiles.edit')
-    ->middleware('auth');
-Route::put('/users/profiles/{user}', [ProfileController::class, 'update_profile'])->name('profiles.update');
 
 Route::view('/help/faq', 'help.faq')->name('faq');
 
