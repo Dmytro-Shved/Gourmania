@@ -132,13 +132,6 @@
         </div>
     @endforeach
 
-    {{-- Found a mistake? --}}
-    <div class="max-w-[500px] md:max-w-[1000px] md:h-auto flex flex-row justify-end mx-auto my-4 font-inclusive pt-6">
-        <button class="font-inclusive text-xs md:text-sm text-black py-1 px-2 hover:bg-red-500 hover:text-white rounded-lg transition-colors duration-200">
-            FOUND A MISTAKE?
-        </button>
-    </div>
-
     <div class="mb-16 mt-10">
         @include('partials.useful-links')
     </div>
