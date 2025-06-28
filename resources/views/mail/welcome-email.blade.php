@@ -100,13 +100,13 @@
 <div class="container">
     <!-- Header -->
     <div class="header">
-        <img src="https://thumbs2.imgbox.com/cd/91/xi1Mrpuo_t.png" alt="Gourmania Logo">
+        <img src="https://images2.imgbox.com/14/a0/jLmx8RVy_o.png" alt="Gourmania Logo">
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
         <h1>Welcome to Gourmania!</h1>
-        <img src="https://thumbs2.imgbox.com/fb/49/769JrZGQ_t.png" alt="Chef Hat" style="max-width: 200px; margin: 20px 0;">
+        <img src="https://images2.imgbox.com/72/dc/ckg2L3Wj_o.pngv" alt="Chef Hat" style="max-width: 200px; margin: 20px 0;">
         <p style="color: #253858;font-weight: bold">Wear that chief's hat with pleasure, {{ $name }}</p>
         <p>We're so glad you're here. Now you're able to rate recipes, save the recipes you like and create yours! <a href="#" style="color: #AE763E;">Visit site</a> to see more.</p>
         <a href="#" class="button" style="color: #ffffff">Get Started</a>
@@ -119,7 +119,7 @@
     <!-- Sections -->
     <!-- section 1 -->
     <div class="section">
-        <img src="https://thumbs2.imgbox.com/5b/97/bGGuxOLE_t.png" alt="Rate the recipes">
+        <img src="https://images2.imgbox.com/5b/d9/a4RuXonX_o.png" alt="Rate the recipes">
         <div>
             <h2>Rate the recipes</h2>
             <p>If you liked the recipe you can show your reaction by rating the recipe!</p>
@@ -128,7 +128,7 @@
 
     <!-- section 2 -->
     <div class="section">
-        <img src="https://thumbs2.imgbox.com/a8/6c/fatKyLZh_t.png" alt="Save the recipes">
+        <img src="https://images2.imgbox.com/c3/80/Z4yEyb4O_o.png" alt="Save the recipes">
         <div>
             <h2>Save the recipes</h2>
             <p>If there is a recipe you like and don't want to lose it, you can always save it for yourself and use it whenever you like.</p>
@@ -137,7 +137,7 @@
 
     <!-- section 3 -->
     <div class="section">
-        <img src="https://thumbs2.imgbox.com/5c/13/OiLW7lKz_t.png" alt="Create your own recipes">
+        <img src="https://images2.imgbox.com/9a/9f/BcD8B8AH_o.png" alt="Create your own recipes">
         <div>
             <h2>Create your own recipes</h2>
             <p>If you feel like sharing your findings, you can create your own recipe.</p>
