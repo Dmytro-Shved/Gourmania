@@ -76,19 +76,30 @@
                         Subscribe our newsletter to get a new recipes and dishes of the week!
                     </h1>
 
-                    <img src="" alt="">
-
-                    <div
-                        class="flex flex-col mt-6 space-y-3 md:space-y-0 md:flex-row px-3 my-3 bg-[#DDB892] rounded p-3">
-                        <input id="sub-email" type="text"
+                    <form action="{{ route('newsletter.subscribe') }}" method="POST" class="flex flex-col mt-6 space-y-3 md:space-y-0 md:flex-row px-3 my-3 bg-[#DDB892] rounded p-3">
+                        @csrf
+                        <input id="sub-email"
+                               name="email"
+                               type="email"
                                class="px-4 py-2 text-gray-700 font-serif border border-white bg-white rounded-lg focus:outline-none focus:ring-none focus:border-transparent focus:ring-2 focus:ring-[#AE763E]"
-                               placeholder="email"/>
+                               placeholder="E-mail address"/>
 
                         <button
+                            type="submit"
                             class="w-full px-6 py-2.5 text-sm font-inclusive tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-[#592D00] rounded-lg hover:bg-[#C58F5C]">
                             Subscribe
                         </button>
-                    </div>
+                    </form>
+
+                    {{-- Success message --}}
+                    @if(session('success'))
+                        <p class="mt-2 text-sm text-green-600 font-semibold">{{ session('success') }}</p>
+                    @endif
+
+                    {{-- Error message --}}
+                    @if(session('error'))
+                        <p class="mt-2 text-sm text-red-600 font-semibold">{{ session('error') }}</p>
+                    @endif
                 </div>
 
                 {{-- Quick links--}}

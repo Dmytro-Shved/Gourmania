@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'mailchimp' => [
+        'api_key' => env('MAILCHIMP_API_KEY'),
+        'server_prefix' => env('MAILCHMIP_SERVER_PREFIX'),
+        'list_id' => env('MAILCHIMP_LIST_ID'),
+        'reply_to' => env('MAILCHMIP_REPLY_TO'),
+    ],
 ];
