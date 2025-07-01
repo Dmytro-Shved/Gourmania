@@ -91,14 +91,9 @@
                         </button>
                     </form>
 
-                    {{-- Success message --}}
-                    @if(session('success'))
-                        <p class="mt-2 text-sm text-green-600 font-semibold">{{ session('success') }}</p>
-                    @endif
-
-                    {{-- Error message --}}
-                    @if(session('error'))
-                        <p class="mt-2 text-sm text-red-600 font-semibold">{{ session('error') }}</p>
+                    {{-- Subscribed message --}}
+                    @if(session('subscribed'))
+                        <p class="mt-2 text-sm text-green-600 font-semibold">{{ session('subscribed') }}</p>
                     @endif
                 </div>
 
