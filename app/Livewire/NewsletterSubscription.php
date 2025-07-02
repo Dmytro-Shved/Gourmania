@@ -50,7 +50,7 @@ class NewsletterSubscription extends Component
             } elseif ($response->status === "subscribed") {
 
                 // for subscribed
-                session()->flash('info', "You're already subscribed! Your profile was updated");
+                session()->flash('updated', "You're already subscribed! Your profile was updated");
             }
 
             $this->reset('email_address');

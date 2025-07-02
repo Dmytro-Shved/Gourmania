@@ -68,7 +68,7 @@
     {{-- Footer--}}
     <footer class="bg-gourmania dark:bg-gray-900">
         <div class="container px-6 py-12 mx-auto">
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
+            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
 
                 <livewire:newsletter-subscription />
 
