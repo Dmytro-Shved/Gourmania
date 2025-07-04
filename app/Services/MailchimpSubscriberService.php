@@ -17,6 +17,7 @@ class MailchimpSubscriberService implements SubscriberService
     {
         $hash = md5(strtolower($email));
 
+        // Add or update list member
         $this->client->lists->setListMember($listId, $hash, [
             'email_address' => $email,
             'status_if_new' => 'pending',
