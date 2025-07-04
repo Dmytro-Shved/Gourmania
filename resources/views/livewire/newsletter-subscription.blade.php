@@ -17,13 +17,12 @@
         </button>
     </form>
 
-    {{-- Subscribed --}}
+    {{-- Success message --}}
     @if (session()->has('success'))
         <p class="mt-2 text-[#4ADE80] font-inclusive">{{ session('success') }}</p>
     @endif
 
-    {{-- Updated --}}
-    @if (session()->has('updated'))
-        <p class="mt-2 text-[#4ADE80] font-inclusive">{{ session('updated') }}</p>
+    @if (session()->has('error'))
+        <span class="mt-2 text-red-900 font-inclusive">{{ session('error') }}</span>
     @endif
 </div>
