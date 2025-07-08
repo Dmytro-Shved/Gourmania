@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -28,6 +29,13 @@ class User extends Authenticatable implements FilamentUser
         'remember_token',
     ];
 
+    protected static function booted(): void
+    {
+        static::created(function ($user){
+            $user->profile()->create();
+        });
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->role_id == Role::IS_ADMIN;
@@ -39,6 +47,11 @@ class User extends Authenticatable implements FilamentUser
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
     }
 
     public function profile(): HasOne
