@@ -35,9 +35,5 @@ class AppServiceProvider extends ServiceProvider
                 ->subject('Verify Email Address')
                 ->view('mail.email-verification-message', ['url' => $url]);
         });
-
-        FilamentIcon::register([
-            'panels::pages.dashboard.navigation-item' => 'https://i.ibb.co/VcYT2TnS/restaurant-icon.png',
-        ]);
     }
 }

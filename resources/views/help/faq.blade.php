@@ -66,7 +66,7 @@
                                 </svg>
                             </span>
                         </summary>
-                        <p class="group-open:animate-fadeIn mt-3 text-neutral-600">Yes, to create your own recipe you must be logged in to our website, if you haven't registered yet,
+                        <p class="group-open:animate-fadeIn mt-3 text-neutral-600">Yes, to create your own recipe, you must be registered on our website, if you haven't registered yet,
                             <a class="underline text-[#AE763E]" href="{{ route('register-page') }}">you can do it now!</a></p>
                     </details>
                 </div>

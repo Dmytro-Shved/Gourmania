@@ -6,6 +6,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -32,6 +33,14 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->font('Inclusive Sans')
             ->brandName('Gourmaina')
+            ->navigationItems([
+                NavigationItem::make('Dashboard')
+                    ->icon(asset('storage/filament-icons/restaurant-inactive.svg'))
+                    ->activeIcon(asset('storage/filament-icons/restaurant-icon.svg'))
+                    ->isActiveWhen(fn (): bool => request()->routeIs('filament.admin.pages.dashboard'))
+                    ->url('/admin')
+
+            ])
             ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\\Filament\\Admin\\Resources')
             ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\\Filament\\Admin\\Pages')
             ->pages([
