@@ -70,17 +70,12 @@ class UserResource extends Resource
                 TextColumn::make('id')->sortable(),
                 ImageColumn::make('photo')->circular(),
                 TextColumn::make('name')->searchable(),
-                TextColumn::make('role_id')
+                TextColumn::make('role.name')
                     ->label('Role')
-                    ->formatStateUsing(function ($record){
-                        return $record->role_id == Role::IS_USER ? 'user' : 'admin';
-                    })
                     ->badge()
-                    ->color(function ($record) {
-                        return match($record->role_id) {
-                            Role::IS_ADMIN => 'info',
-                            default => 'primary'
-                        };
+                    ->color(fn ($record) => match($record->role_id) {
+                        Role::IS_ADMIN => 'info',
+                        default => 'primary'
                     }),
             ])
             ->filters([
