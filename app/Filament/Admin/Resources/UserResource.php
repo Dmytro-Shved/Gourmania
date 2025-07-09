@@ -6,16 +6,18 @@ use App\Filament\Admin\Resources\UserResource\Pages;
 use App\Filament\Admin\Resources\UserResource\RelationManagers;
 use App\Models\Role;
 use App\Models\User;
-use Faker\Provider\Text;
 use Filament\Forms;
-use Filament\Forms\Components\Actions\Action;
-use Filament\Forms\Components\Component;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UserResource extends Resource
 {
@@ -28,21 +30,21 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make()->schema([
-                    Forms\Components\Grid::make()->schema([
-                        Forms\Components\TextInput::make('name')->required(),
-                        Forms\Components\TextInput::make('email')
+                Section::make()->schema([
+                    Grid::make()->schema([
+                        TextInput::make('name')->required(),
+                        TextInput::make('email')
                             ->email()
                             ->required()
                             ->unique(ignoreRecord: true),
                     ])->columns(2),
-                    Forms\Components\TextInput::make('password')
+                    TextInput::make('password')
                         ->password()
                         ->revealable()
                         ->required()
                         ->maxLength(255)
                         ->hiddenOn('edit'),
-                    Forms\Components\TextInput::make('password_confirmation')
+                    TextInput::make('password_confirmation')
                         ->password()
                         ->revealable()
                         ->required()
@@ -50,12 +52,11 @@ class UserResource extends Resource
                         ->same('password')
                         ->label('Confirm Password')
                         ->hiddenOn('edit'),
-                    Forms\Components\Radio::make('role_id')->name('role')
-                        ->options([
-                            '1' => 'user',
-                            '2' => 'admin',
-                        ])->default('1'),
-                    Forms\Components\FileUpload::make('photo')
+                    Select::make('role_id')
+                        ->label('Role')
+                        ->relationship('role', 'name')
+                        ->required(),
+                    FileUpload::make('photo')
                         ->image()
                         ->hiddenOn('create')
                 ]),
@@ -66,14 +67,15 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id')->sortable(),
-                Tables\Columns\ImageColumn::make('photo')->circular(),
-                Tables\Columns\TextColumn::make('name')->searchable(),
-                Tables\Columns\TextColumn::make('role_id')
+                TextColumn::make('id')->sortable(),
+                ImageColumn::make('photo')->circular(),
+                TextColumn::make('name')->searchable(),
+                TextColumn::make('role_id')
                     ->label('Role')
                     ->formatStateUsing(function ($record){
                         return $record->role_id == Role::IS_USER ? 'user' : 'admin';
-                    })->badge()
+                    })
+                    ->badge()
                     ->color(function ($record) {
                         return match($record->role_id) {
                             Role::IS_ADMIN => 'info',
