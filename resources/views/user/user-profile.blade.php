@@ -58,7 +58,7 @@
                                 <span class="flex-1 border-s border-4 border-[#AE763E]"></span>
                             </div>
                             <ul class="list-disc pl-5 marker:text-[#AE763E]">
-                                <li class="mb-2">Joined: {{ date_format($user->created_at, 'Y M') }}</li>
+                                <li class="mb-2" title="{{ date_format($user->created_at, 'Y M d') }}">Joined: {{ date_format($user->created_at, 'Y M') }}</li>
                                 <li class="mb-2">Gender: {{ $user->profile->gender ?? '-' }}</li>
                                 <li class="mb-2">Birth: {{ $user->profile->birth_date ?? '-'}}</li>
                             </ul>

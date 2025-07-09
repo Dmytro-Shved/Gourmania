@@ -6,9 +6,7 @@ use App\Filament\Admin\Resources\UserResource\Pages;
 use App\Filament\Admin\Resources\UserResource\RelationManagers;
 use App\Models\Role;
 use App\Models\User;
-use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -31,13 +29,18 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Section::make()->schema([
-                    Grid::make()->schema([
-                        TextInput::make('name')->required(),
-                        TextInput::make('email')
-                            ->email()
-                            ->required()
-                            ->unique(ignoreRecord: true),
-                    ])->columns(2),
+                    FileUpload::make('photo')
+                        ->image()
+                        ->hiddenOn('create')
+                        ->avatar()
+                        ->imagePreviewHeight(50)
+                        ->imageEditorEmptyFillColor('#ffffff')
+                        ->imageCropAspectRatio('1:1')->alignCenter(),
+                    TextInput::make('name')->required(),
+                    TextInput::make('email')
+                        ->email()
+                        ->required()
+                        ->unique(ignoreRecord: true),
                     TextInput::make('password')
                         ->password()
                         ->revealable()
@@ -56,11 +59,8 @@ class UserResource extends Resource
                         ->label('Role')
                         ->relationship('role', 'name')
                         ->required(),
-                    FileUpload::make('photo')
-                        ->image()
-                        ->hiddenOn('create')
                 ]),
-            ])->columns(1);
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
@@ -69,8 +69,8 @@ class UserResource extends Resource
             ->columns([
                 TextColumn::make('id')->sortable(),
                 ImageColumn::make('photo')->circular(),
-                TextColumn::make('name')->searchable(),
-                TextColumn::make('role.name')
+                TextColumn::make('name')->sortable()->searchable(),
+                TextColumn::make('role.name')->sortable()->searchable()
                     ->label('Role')
                     ->badge()
                     ->color(fn ($record) => match($record->role_id) {
@@ -94,7 +94,7 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ProfileRelationManager::class,
         ];
     }
 

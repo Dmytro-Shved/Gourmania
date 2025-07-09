@@ -31,6 +31,7 @@ class User extends Authenticatable implements FilamentUser
 
     protected static function booted(): void
     {
+        // Create profile after user creation
         static::created(function ($user){
             $user->profile()->create();
         });
