@@ -4,6 +4,7 @@ namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\UserResource\Pages;
 use App\Filament\Admin\Resources\UserResource\RelationManagers;
+use App\Models\Role;
 use App\Models\User;
 use Faker\Provider\Text;
 use Filament\Forms;
@@ -66,8 +67,19 @@ class UserResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable(),
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('role_id'),
+                Tables\Columns\ImageColumn::make('photo')->circular(),
+                Tables\Columns\TextColumn::make('name')->searchable(),
+                Tables\Columns\TextColumn::make('role_id')
+                    ->label('Role')
+                    ->formatStateUsing(function ($record){
+                        return $record->role_id == Role::IS_USER ? 'user' : 'admin';
+                    })->badge()
+                    ->color(function ($record) {
+                        return match($record->role_id) {
+                            Role::IS_ADMIN => 'info',
+                            default => 'primary'
+                        };
+                    }),
             ])
             ->filters([
                 //
