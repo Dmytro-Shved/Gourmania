@@ -67,10 +67,16 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable(),
-                ImageColumn::make('photo')->circular(),
-                TextColumn::make('name')->sortable()->searchable(),
-                TextColumn::make('role.name')->sortable()->searchable()
+                TextColumn::make('id')
+                    ->sortable(),
+                ImageColumn::make('photo')
+                    ->circular(),
+                TextColumn::make('name')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('role.name')
+                    ->sortable()
+                    ->searchable()
                     ->label('Role')
                     ->badge()
                     ->color(fn ($record) => match($record->role_id) {

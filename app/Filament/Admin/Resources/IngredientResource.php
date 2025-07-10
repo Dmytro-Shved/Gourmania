@@ -27,7 +27,9 @@ class IngredientResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')->required()->unique(ignoreRecord: true),
+                TextInput::make('name')
+                    ->required()
+                    ->unique(ignoreRecord: true),
             ]);
     }
 
@@ -35,7 +37,8 @@ class IngredientResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
+                TextColumn::make('id')
+                    ->sortable(),
                 TextColumn::make('name')
                     ->label('Name')
                     ->sortable()

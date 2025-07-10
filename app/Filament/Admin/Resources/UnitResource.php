@@ -2,23 +2,26 @@
 
 namespace App\Filament\Admin\Resources;
 
-use App\Filament\Admin\Resources\CuisineResource\Pages;
-use App\Filament\Admin\Resources\CuisineResource\RelationManagers;
-use App\Models\Cuisine;
+use App\Filament\Admin\Resources\UnitResource\Pages;
+use App\Filament\Admin\Resources\UnitResource\RelationManagers;
+use App\Models\Unit;
+use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CuisineResource extends Resource
+class UnitResource extends Resource
 {
-    protected static ?string $model = Cuisine::class;
+    protected static ?string $model = Unit::class;
 
-    protected static ?string $navigationIcon = 'https://i.ibb.co/k2n0dtJx/cuisine-inactive.png';
-    protected static ?string $activeNavigationIcon = 'https://i.ibb.co/Q77BF2W8/cuisine-icon.png';
-    protected static ?string $navigationGroup = 'Culinary';
+    protected static ?string $navigationIcon = 'https://i.ibb.co/DfL7R4n4/unit-inactive.png';
+    protected static ?string $activeNavigationIcon = 'https://i.ibb.co/Rk0434rQ/unit-icon.png';
+    protected static ?string $navigationGroup = 'Ingredients';
 
     public static function form(Form $form): Form
     {
@@ -34,7 +37,8 @@ class CuisineResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
+                TextColumn::make('id')
+                    ->sortable(),
                 TextColumn::make('name')
                     ->label('Name')
                     ->sortable()
@@ -62,9 +66,9 @@ class CuisineResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCuisines::route('/'),
-            'create' => Pages\CreateCuisine::route('/create'),
-            'edit' => Pages\EditCuisine::route('/{record}/edit'),
+            'index' => Pages\ListUnits::route('/'),
+            'create' => Pages\CreateUnit::route('/create'),
+            'edit' => Pages\EditUnit::route('/{record}/edit'),
         ];
     }
 }
