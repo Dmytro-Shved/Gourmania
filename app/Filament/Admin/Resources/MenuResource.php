@@ -2,22 +2,25 @@
 
 namespace App\Filament\Admin\Resources;
 
-use App\Filament\Admin\Resources\CuisineResource\Pages;
-use App\Filament\Admin\Resources\CuisineResource\RelationManagers;
-use App\Models\Cuisine;
+use App\Filament\Admin\Resources\MenuResource\Pages;
+use App\Filament\Admin\Resources\MenuResource\RelationManagers;
+use App\Models\Menu;
+use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CuisineResource extends Resource
+class MenuResource extends Resource
 {
-    protected static ?string $model = Cuisine::class;
+    protected static ?string $model = Menu::class;
 
-    protected static ?string $navigationIcon = 'https://i.ibb.co/k2n0dtJx/cuisine-inactive.png';
-    protected static ?string $activeNavigationIcon = 'https://i.ibb.co/Q77BF2W8/cuisine-icon.png';
+    protected static ?string $navigationIcon = 'https://i.ibb.co/0VXZcQcw/menu-inactive.png';
+    protected static ?string $activeNavigationIcon = 'https://i.ibb.co/v447rCcD/menu-active.png';
     protected static ?string $navigationGroup = 'Culinary';
 
     public static function form(Form $form): Form
@@ -60,9 +63,9 @@ class CuisineResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCuisines::route('/'),
-            'create' => Pages\CreateCuisine::route('/create'),
-            'edit' => Pages\EditCuisine::route('/{record}/edit'),
+            'index' => Pages\ListMenus::route('/'),
+            'create' => Pages\CreateMenu::route('/create'),
+            'edit' => Pages\EditMenu::route('/{record}/edit'),
         ];
     }
 }
