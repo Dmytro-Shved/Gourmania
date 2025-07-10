@@ -22,6 +22,7 @@ class IngredientResource extends Resource
     protected static ?string $navigationIcon = 'https://i.ibb.co/JWY5L9DB/ingredients-inactive.png';
     protected static ?string $activeNavigationIcon = 'https://i.ibb.co/MyyfvpJN/ingredients-icon.png';
     protected static ?string $navigationGroup = 'Ingredients';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {

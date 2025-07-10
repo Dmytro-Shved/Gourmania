@@ -22,6 +22,7 @@ class MenuResource extends Resource
     protected static ?string $navigationIcon = 'https://i.ibb.co/0VXZcQcw/menu-inactive.png';
     protected static ?string $activeNavigationIcon = 'https://i.ibb.co/v447rCcD/menu-active.png';
     protected static ?string $navigationGroup = 'Culinary';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {

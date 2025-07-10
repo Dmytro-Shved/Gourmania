@@ -23,6 +23,8 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'https://i.ibb.co/27kVSDpF/chef-hat-inactive.png';
     protected static ?string $activeNavigationIcon = 'https://i.ibb.co/vGfLJsk/chef-hat-icon.png';
+    protected static ?string $navigationGroup = 'Users';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
