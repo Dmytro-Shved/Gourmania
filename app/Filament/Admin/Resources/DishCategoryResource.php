@@ -22,6 +22,7 @@ class DishCategoryResource extends Resource
     protected static ?string $navigationIcon = 'https://i.ibb.co/xKv4q5Rk/dish-categories-inactive.png';
     protected static ?string $activeNavigationIcon = 'https://i.ibb.co/NdCrPGzv/dish-categories-icon.png';
     protected static ?string $navigationGroup = 'Dish Categories';
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
