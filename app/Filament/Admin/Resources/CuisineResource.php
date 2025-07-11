@@ -36,7 +36,8 @@ class CuisineResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('name')
                     ->label('Name')
                     ->sortable()
@@ -53,12 +54,8 @@ class CuisineResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
-    }
-
-    public static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
+            ])
+            ->extremePaginationLinks();
     }
 
     public static function getPages(): array

@@ -70,7 +70,8 @@ class UserResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
                 ImageColumn::make('photo')
                     ->circular(),
                 TextColumn::make('name')
@@ -96,7 +97,8 @@ class UserResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->extremePaginationLinks();
     }
 
     public static function getRelations(): array
@@ -104,11 +106,6 @@ class UserResource extends Resource
         return [
             RelationManagers\ProfileRelationManager::class,
         ];
-    }
-
-    public static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
     }
 
     public static function getPages(): array
