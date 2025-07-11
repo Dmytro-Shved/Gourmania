@@ -2,9 +2,9 @@
 
 namespace App\Filament\Admin\Resources;
 
-use App\Filament\Admin\Resources\RoleResource\Pages;
-use App\Filament\Admin\Resources\RoleResource\RelationManagers;
-use App\Models\Role;
+use App\Filament\Admin\Resources\DishCategoryResource\Pages;
+use App\Filament\Admin\Resources\DishCategoryResource\RelationManagers;
+use App\Models\DishCategory;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -15,14 +15,13 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class RoleResource extends Resource
+class DishCategoryResource extends Resource
 {
-    protected static ?string $model = Role::class;
+    protected static ?string $model = DishCategory::class;
 
-    protected static ?string $navigationIcon = 'https://i.ibb.co/FkQgHn7p/roles-inactive.png';
-    protected static ?string $activeNavigationIcon = 'https://i.ibb.co/LDzktD0F/Component.png';
-    protected static ?string $navigationGroup = 'Users';
-    protected static ?int $navigationSort = 2;
+    protected static ?string $navigationIcon = 'https://i.ibb.co/xKv4q5Rk/dish-categories-inactive.png';
+    protected static ?string $activeNavigationIcon = 'https://i.ibb.co/NdCrPGzv/dish-categories-icon.png';
+    protected static ?string $navigationGroup = 'Dish Categories';
 
     public static function form(Form $form): Form
     {
@@ -41,26 +40,22 @@ class RoleResource extends Resource
                 TextColumn::make('id')
                     ->sortable(),
                 TextColumn::make('name')
-                    ->label('Role')
-                    ->badge()
-                    ->color(fn ($record) => match($record->id) {
-                        Role::IS_ADMIN => 'info',
-                        default => 'primary'
-                    })
+                    ->label('Name')
                     ->sortable()
+                    ->searchable()
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-            ->paginated(false);
+            ]);
     }
 
     public static function getNavigationBadge(): ?string
@@ -71,9 +66,9 @@ class RoleResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListRoles::route('/'),
-            'create' => Pages\CreateRole::route('/create'),
-            'edit' => Pages\EditRole::route('/{record}/edit'),
+            'index' => Pages\ListDishCategories::route('/'),
+            'create' => Pages\CreateDishCategory::route('/create'),
+            'edit' => Pages\EditDishCategory::route('/{record}/edit'),
         ];
     }
 }
