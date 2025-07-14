@@ -19,7 +19,7 @@ class CuisineResource extends Resource
     protected static ?string $navigationIcon = 'https://i.ibb.co/k2n0dtJx/cuisine-inactive.png';
     protected static ?string $activeNavigationIcon = 'https://i.ibb.co/Q77BF2W8/cuisine-icon.png';
     protected static ?string $navigationGroup = 'Culinary';
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {

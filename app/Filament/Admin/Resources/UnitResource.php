@@ -22,7 +22,7 @@ class UnitResource extends Resource
     protected static ?string $navigationIcon = 'https://i.ibb.co/DfL7R4n4/unit-inactive.png';
     protected static ?string $activeNavigationIcon = 'https://i.ibb.co/Rk0434rQ/unit-icon.png';
     protected static ?string $navigationGroup = 'Ingredients';
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
