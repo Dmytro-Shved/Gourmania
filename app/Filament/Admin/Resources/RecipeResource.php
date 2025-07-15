@@ -4,16 +4,25 @@ namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\RecipeResource\Pages;
 use App\Filament\Admin\Resources\RecipeResource\RelationManagers;
+use App\Models\DishCategory;
+use App\Models\DishSubcategory;
 use App\Models\Recipe;
-use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Wizard;
+use Filament\Forms\Components\TimePicker;
+use Illuminate\Support\Collection;
 
 class RecipeResource extends Resource
 {
@@ -28,7 +37,7 @@ class RecipeResource extends Resource
     {
         return $form
             ->schema([
-                //
+                // empty place here
             ]);
     }
 
@@ -91,6 +100,99 @@ class RecipeResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    public static function getInfo(): array
+    {
+        return [
+            // Image
+            FileUpload::make('image')
+                ->label('Image')
+                ->nullable()
+                ->image()
+                ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                ->helperText('Accepted types: JPG, PNG, WEBP'),
+
+            // Name
+            TextInput::make('name')
+                ->label('Name')
+                ->string()
+                ->maxLength(255)
+                ->required()
+                ->unique(ignoreRecord: true),
+
+            // Description
+            Textarea::make('description')
+                ->nullable()
+                ->string()
+                ->rows(3)
+                ->maxLength(255)
+                ->label('Description'),
+
+            // Dish Category & Dish Subcategory section
+            // Dependent dropdown logic
+            Section::make('Category & Subcategory')->schema([
+                // Dish Category
+                Select::make('dish_category_id')
+                    ->required()
+                    ->live()
+                    ->label('Dish Category')
+                    ->dehydrated(false)
+                    ->options(DishCategory::pluck('name', 'id')),
+
+                // Dish Subcategory
+                Select::make('dish_subcategory_id')
+                    ->label('Dish Subcategory')
+                    ->nullable()
+                    ->options(function (Get $get): Collection {
+                        return DishSubcategory::where('dish_category_id', $get('dish_category_id'))->pluck('name', 'id');
+                    }),
+            ]),
+
+            // Cuisine
+            Select::make('cuisine_id')
+                ->label('Cuisine')
+                ->relationship('cuisine', 'name')
+                ->required(),
+
+            // Menu
+            Select::make('menu_id')
+                ->label('Menu')
+                ->relationship('menu', 'name')
+                ->nullable(),
+
+            // Cook time & Servings grid
+            Grid::make(2)->schema([
+                // Cook time
+                TimePicker::make('cook_time')
+                    ->label('Cook Time')
+                    ->required()
+                    ->seconds(false)
+                    ->format('H:i'),
+
+                // Servings
+                TextInput::make('servings')
+                    ->label('Servings')
+                    ->required()
+                    ->integer()
+                    ->minValue(1)
+                    ->maxValue(99),
+            ]),
+        ];
+    }
+
+    public static function getIngredinets(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getGuide(): array
+    {
+        return [
+            //
+        ];
     }
 
     public static function getRelations(): array

@@ -3,17 +3,21 @@
 namespace App\Filament\Admin\Resources\RecipeResource\Pages;
 
 use App\Filament\Admin\Resources\RecipeResource;
-use Filament\Actions;
+use Filament\Forms\Components\Wizard\Step;
 use Filament\Resources\Pages\EditRecord;
 
 class EditRecipe extends EditRecord
 {
+    use EditRecord\Concerns\HasWizard;
+
     protected static string $resource = RecipeResource::class;
 
-    protected function getHeaderActions(): array
+    public function getSteps(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Step::make('Info')->schema(RecipeResource::getInfo()),
+            Step::make('Ingredients')->schema(RecipeResource::getIngredinets()),
+            Step::make('Guide')->schema(RecipeResource::getGuide()),
         ];
     }
 }
