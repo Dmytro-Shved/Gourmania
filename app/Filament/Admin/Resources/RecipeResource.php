@@ -7,8 +7,11 @@ use App\Filament\Admin\Resources\RecipeResource\RelationManagers;
 use App\Models\DishCategory;
 use App\Models\DishSubcategory;
 use App\Models\Recipe;
+use App\Models\Unit;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -102,6 +105,7 @@ class RecipeResource extends Resource
             ]);
     }
 
+    // Get Recipe info
     public static function getInfo(): array
     {
         return [
@@ -181,17 +185,62 @@ class RecipeResource extends Resource
         ];
     }
 
-    public static function getIngredinets(): array
+    public static function getIngredients(): array
     {
         return [
-            //
+            Repeater::make('ingredients')
+                ->schema([
+                Grid::make(3)->schema([
+                    // Ingredient name
+                    TextInput::make('name')
+                        ->label('Ingredient')
+                        ->required()
+                        ->string()
+                        ->maxLength(255),
+
+                    // Ingredient quantity
+                    TextInput::make('quantity')
+                        ->label('Quantity')
+                        ->required()
+                        ->numeric()
+                        ->minValue(0.1)
+                        ->maxValue(999.99),
+
+                    // Ingredient unit
+                    Select::make('unit')
+                    ->label('Unit')
+                        ->options(Unit::query()->pluck('name', 'id'))
+                        ->required()
+                        ->searchable(),
+                ]),
+            ])
+            ->defaultItems(1)
+            ->columnSpan('full'),
         ];
     }
 
     public static function getGuide(): array
     {
         return [
-            //
+            Repeater::make('steps')
+                ->schema([
+                    Grid::make(1)->schema([
+                        // Step image
+                        FileUpload::make('image')
+                            ->image()
+                            ->imageEditorEmptyFillColor('#ffffff')
+                            ->alignCenter()
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->helperText('Accepted types: JPG, PNG, WEBP'),
+
+                        // Step text
+                        Textarea::make('text')
+                            ->required()
+                            ->placeholder('First there was an egg...'),
+                    ]),
+                ])
+                ->defaultItems(1)
+                ->columnSpan('full'),
         ];
     }
 

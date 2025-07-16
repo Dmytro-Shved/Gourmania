@@ -37,7 +37,10 @@ class UserResource extends Resource
                         ->avatar()
                         ->imagePreviewHeight(50)
                         ->imageEditorEmptyFillColor('#ffffff')
-                        ->imageCropAspectRatio('1:1')->alignCenter(),
+                        ->imageCropAspectRatio('1:1')->alignCenter()
+                        ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                        ->helperText('Accepted types: JPG, PNG, WEBP'),
+
                     TextInput::make('name')->required(),
                     TextInput::make('email')
                         ->email()

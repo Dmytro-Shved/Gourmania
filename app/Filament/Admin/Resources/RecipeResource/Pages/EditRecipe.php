@@ -16,7 +16,7 @@ class EditRecipe extends EditRecord
     {
         return [
             Step::make('Info')->schema(RecipeResource::getInfo()),
-            Step::make('Ingredients')->schema(RecipeResource::getIngredinets()),
+            Step::make('Ingredients')->schema(RecipeResource::getIngredients()),
             Step::make('Guide')->schema(RecipeResource::getGuide()),
         ];
     }
