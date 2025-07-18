@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\DishCategory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DishCategoriesSeeder extends Seeder
 {
@@ -27,7 +28,8 @@ class DishCategoriesSeeder extends Seeder
     {
         foreach ($this->dish_categories as $dish_category){
             DishCategory::create([
-                'name' => $dish_category
+                'name' => $dish_category,
+                'slug' => Str::slug($dish_category)
             ]);
         }
     }
