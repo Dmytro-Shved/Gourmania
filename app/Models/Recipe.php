@@ -39,6 +39,12 @@ class Recipe extends Model
         return $this->belongsTo(User::class);
     }
 
+    // Relation for the Filament Repeater
+    public function ingredientRecipe(): HasMany
+    {
+        return $this->hasMany(IngredientRecipe::class);
+    }
+
     public function ingredients(): BelongsToMany
     {
         return $this->belongsToMany(Ingredient::class)

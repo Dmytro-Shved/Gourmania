@@ -105,7 +105,7 @@ class RecipeResource extends Resource
             ]);
     }
 
-    // Get Recipe info
+    // Get Recipe Info
     public static function getInfo(): array
     {
         return [
@@ -185,33 +185,38 @@ class RecipeResource extends Resource
         ];
     }
 
+    // Get Ingredients
     public static function getIngredients(): array
     {
         return [
-            Repeater::make('ingredients')
+            Repeater::make('ingredientRecipe')
+                ->label('ingredients')
+                ->relationship()
                 ->schema([
-                Grid::make(3)->schema([
-                    // Ingredient name
-                    TextInput::make('name')
-                        ->label('Ingredient')
-                        ->required()
-                        ->string()
-                        ->maxLength(255),
+                    Grid::make(3)->schema([
+                        // Ingredient name
+                        TextInput::make('ingredient_name')
+                            ->label('Ingredient')
+                            ->required()
+                            ->string()
+                            ->maxLength(255),
 
-                    // Ingredient quantity
-                    TextInput::make('quantity')
-                        ->label('Quantity')
-                        ->required()
-                        ->numeric()
-                        ->minValue(0.1)
-                        ->maxValue(999.99),
+                        // Ingredient quantity
+                        TextInput::make('quantity')
+                            ->label('Quantity')
+                            ->required()
+                            ->numeric()
+                            ->minValue(0.1)
+                            ->maxValue(999.99),
 
-                    // Ingredient unit
-                    Select::make('unit')
-                    ->label('Unit')
-                        ->options(Unit::query()->pluck('name', 'id'))
-                        ->required()
-                        ->searchable(),
+                        // Ingredient unit
+                        Select::make('unit_id')
+                            ->label('Unit')
+                            ->relationship('unit', 'name')
+                            ->label('Unit')
+                            ->options(Unit::query()->pluck('name', 'id'))
+                            ->required()
+                            ->searchable(),
                 ]),
             ])
             ->defaultItems(1)
@@ -244,6 +249,7 @@ class RecipeResource extends Resource
         ];
     }
 
+    // Get Guide Steps
     public static function getRelations(): array
     {
         return [
