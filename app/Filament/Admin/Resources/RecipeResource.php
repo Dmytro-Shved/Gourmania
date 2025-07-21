@@ -6,6 +6,7 @@ use App\Filament\Admin\Resources\RecipeResource\Pages;
 use App\Filament\Admin\Resources\RecipeResource\RelationManagers;
 use App\Models\DishCategory;
 use App\Models\DishSubcategory;
+use App\Models\Ingredient;
 use App\Models\Recipe;
 use App\Models\Unit;
 use Filament\Forms\Components\FileUpload;
@@ -219,6 +220,13 @@ class RecipeResource extends Resource
                             ->searchable(),
                 ]),
             ])
+            ->mutateRelationshipDataBeforeFillUsing(function (array $data): array {
+                if (isset($data['ingredient_id'])) {
+                    $data['ingredient_name'] = Ingredient::find($data['ingredient_id'])->name;
+                }
+
+                return $data;
+            })
             ->defaultItems(1)
             ->columnSpan('full'),
         ];
