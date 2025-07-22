@@ -26,4 +26,15 @@ class CreateRecipe extends CreateRecord
           Step::make('Guide')->schema(RecipeResource::getGuide()),
         ];
     }
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        dd($data);
+
+        if ($data['image'] === null){
+            unset($data['image']);
+        }
+
+        return $data;
+    }
 }

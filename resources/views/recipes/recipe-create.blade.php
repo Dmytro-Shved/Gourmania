@@ -3,10 +3,14 @@
 
     @if (session('recipe_created'))
         {{-- Recipe created --}}
-        <x-session.message :message="session('recipe_created')" title="Success!" type="success" />
+        <div class="mt-8">
+            <x-session.message :message="session('recipe_created')" title="Success!" type="success" />
+        </div>
     @elseif (session('recipe_updated'))
         {{-- Recipe updated --}}
-        <x-session.message :message="session('recipe_updated')" title="Updated!" type="info" />
+        <div class="mt-8">
+            <x-session.message :message="session('recipe_updated')" title="Updated!" type="info" />
+        </div>
     @endif
 
     {{--Create new recipe--}}

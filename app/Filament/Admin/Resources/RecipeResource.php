@@ -190,20 +190,20 @@ class RecipeResource extends Resource
     public static function getIngredients(): array
     {
         return [
-            Repeater::make('ingredientRecipe')
+            Repeater::make('ingredients')
                 ->label('ingredients')
-                ->relationship()
+//                ->relationship()
                 ->schema([
                     Grid::make(3)->schema([
                         // Ingredient name
-                        TextInput::make('ingredient_name')
+                        TextInput::make('ingredients.name')
                             ->label('Ingredient')
                             ->required()
                             ->string()
                             ->maxLength(255),
 
                         // Ingredient quantity
-                        TextInput::make('quantity')
+                        TextInput::make('ingredients.pivot.quantity')
                             ->label('Quantity')
                             ->required()
                             ->numeric()
@@ -211,9 +211,7 @@ class RecipeResource extends Resource
                             ->maxValue(999.99),
 
                         // Ingredient unit
-                        Select::make('unit_id')
-                            ->label('Unit')
-                            ->relationship('unit', 'name')
+                        Select::make('ingredients.pivot.unit')
                             ->label('Unit')
                             ->options(Unit::query()->pluck('name', 'id'))
                             ->required()
@@ -227,19 +225,25 @@ class RecipeResource extends Resource
 
                 return $data;
             })
+            ->mutateRelationshipDataBeforeCreateUsing(function (array $data): array {
+                dd($data);
+            })
             ->defaultItems(1)
             ->columnSpan('full'),
         ];
     }
 
+    // Get Guide Steps
     public static function getGuide(): array
     {
         return [
             Repeater::make('steps')
+                ->label('Steps')
+//                ->relationship('guideSteps')
                 ->schema([
                     Grid::make(1)->schema([
                         // Step image
-                        FileUpload::make('image')
+                        FileUpload::make('step_image')
                             ->image()
                             ->imageEditorEmptyFillColor('#ffffff')
                             ->alignCenter()
@@ -247,17 +251,17 @@ class RecipeResource extends Resource
                             ->helperText('Accepted types: JPG, PNG, WEBP'),
 
                         // Step text
-                        Textarea::make('text')
+                        Textarea::make('step_text')
                             ->required()
                             ->placeholder('First there was an egg...'),
                     ]),
                 ])
+                ->orderColumn('step_number')
                 ->defaultItems(1)
                 ->columnSpan('full'),
         ];
     }
 
-    // Get Guide Steps
     public static function getRelations(): array
     {
         return [
