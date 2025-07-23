@@ -86,6 +86,7 @@ class RecipeForm extends Form
             'menu_id' => $this->menu === "" ? null : $this->menu,
         ];
 
+        // If image doesn't exist unset it from the array
         if ($recipe_data['image'] === null){
             unset($recipe_data['image']);
         }

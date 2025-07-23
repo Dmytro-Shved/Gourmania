@@ -27,6 +27,7 @@ use Filament\Tables\Table;
 use Filament\Forms\Components\Wizard;
 use Filament\Forms\Components\TimePicker;
 use Illuminate\Support\Collection;
+use Filament\Support\Enums\Alignment;
 
 class RecipeResource extends Resource
 {
@@ -190,20 +191,20 @@ class RecipeResource extends Resource
     public static function getIngredients(): array
     {
         return [
-            Repeater::make('ingredients')
+            Repeater::make('ingredientRecipe')
                 ->label('ingredients')
-//                ->relationship()
+                ->relationship()
                 ->schema([
                     Grid::make(3)->schema([
                         // Ingredient name
-                        TextInput::make('ingredients.name')
+                        TextInput::make('ingredient_name')
                             ->label('Ingredient')
                             ->required()
                             ->string()
                             ->maxLength(255),
 
                         // Ingredient quantity
-                        TextInput::make('ingredients.pivot.quantity')
+                        TextInput::make('quantity')
                             ->label('Quantity')
                             ->required()
                             ->numeric()
@@ -211,25 +212,39 @@ class RecipeResource extends Resource
                             ->maxValue(999.99),
 
                         // Ingredient unit
-                        Select::make('ingredients.pivot.unit')
+                        Select::make('unit_id')
                             ->label('Unit')
-                            ->options(Unit::query()->pluck('name', 'id'))
+                            ->options(Unit::pluck('name', 'id'))
                             ->required()
                             ->searchable(),
-                ]),
-            ])
-            ->mutateRelationshipDataBeforeFillUsing(function (array $data): array {
-                if (isset($data['ingredient_id'])) {
-                    $data['ingredient_name'] = Ingredient::find($data['ingredient_id'])->name;
-                }
+                    ]),
+                ])
 
-                return $data;
-            })
-            ->mutateRelationshipDataBeforeCreateUsing(function (array $data): array {
-                dd($data);
-            })
-            ->defaultItems(1)
-            ->columnSpan('full'),
+                // Mutate Before Fill Repeater
+                // To see ingredient name in the edit form
+                ->mutateRelationshipDataBeforeFillUsing(function (array $data): array {
+                    if (isset($data['ingredient_id'])) {
+                        $data['ingredient_name'] = Ingredient::find($data['ingredient_id'])->name;
+                    }
+                    return $data;
+                })
+
+                // Mutate Before Store in the DB
+                ->mutateRelationshipDataBeforeCreateUsing(function (array $data): array {
+                    dump('mutate ingredients before create using');
+                    dd($data);
+
+                    // TODO: firstOrCreate the ingredient
+                    // TODO: groupIngredients and prepareIngredients
+                })
+
+                ->addActionLabel('Add ingredient')
+                ->addActionAlignment(Alignment::End)
+                ->reorderable(false)
+                ->minItems(1)
+                ->maxItems(99)
+                ->defaultItems(1)
+                ->columnSpan('full'),
         ];
     }
 
@@ -239,7 +254,7 @@ class RecipeResource extends Resource
         return [
             Repeater::make('steps')
                 ->label('Steps')
-//                ->relationship('guideSteps')
+                ->relationship('guideSteps')
                 ->schema([
                     Grid::make(1)->schema([
                         // Step image
@@ -256,7 +271,10 @@ class RecipeResource extends Resource
                             ->placeholder('First there was an egg...'),
                     ]),
                 ])
-                ->orderColumn('step_number')
+                ->collapsible()
+                ->reorderable(false)
+                ->addActionLabel('Add step')
+                ->addActionAlignment(Alignment::End)
                 ->defaultItems(1)
                 ->columnSpan('full'),
         ];

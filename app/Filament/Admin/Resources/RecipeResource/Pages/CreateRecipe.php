@@ -29,11 +29,13 @@ class CreateRecipe extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        dd($data);
-
+        // If image doesn't exist unset it from the array
         if ($data['image'] === null){
             unset($data['image']);
         }
+
+        // Assign Recipe's author using current authenticated user
+        $data['user_id'] = auth()->id();
 
         return $data;
     }
