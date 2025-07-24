@@ -6,12 +6,14 @@ use App\Filament\Admin\Resources\RecipeResource\Pages;
 use App\Filament\Admin\Resources\RecipeResource\RelationManagers;
 use App\Models\DishCategory;
 use App\Models\DishSubcategory;
+use App\Models\GuideStep;
 use App\Models\Ingredient;
 use App\Models\Recipe;
 use App\Models\Unit;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -220,7 +222,7 @@ class RecipeResource extends Resource
                     ]),
                 ])
 
-                // Mutate Before Fill Repeater
+                // Mutate Ingredients Before Fill Repeater
                 // To see ingredient name in the edit form
                 ->mutateRelationshipDataBeforeFillUsing(function (array $data): array {
                     if (isset($data['ingredient_id'])) {
@@ -231,11 +233,8 @@ class RecipeResource extends Resource
 
                 // Mutate Before Store in the DB
                 ->mutateRelationshipDataBeforeCreateUsing(function (array $data): array {
-                    dump('mutate ingredients before create using');
-                    dd($data);
-
-                    // TODO: firstOrCreate the ingredient
-                    // TODO: groupIngredients and prepareIngredients
+                    // Prepare Final Ingredients to save into DB
+                    return self::prepareIngredient($data);
                 })
 
                 ->addActionLabel('Add ingredient')
@@ -265,19 +264,66 @@ class RecipeResource extends Resource
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                             ->helperText('Accepted types: JPG, PNG, WEBP'),
 
+                        // Step Number
+                        Hidden::make('step_number'),
+
                         // Step text
                         Textarea::make('step_text')
                             ->required()
                             ->placeholder('First there was an egg...'),
                     ]),
                 ])
+
+                // Mutate Steps Before Store in the DB
+                ->mutateRelationshipDataBeforeCreateUsing(function (array $data): array {
+                    // Prepare Final Ingredients to save into DB
+                    return self::prepareStep($data);
+                })
+
+                ->addActionAlignment(Alignment::End)
+                ->minItems(1)
+                ->maxItems(99)
                 ->collapsible()
                 ->reorderable(false)
+                ->orderColumn('step_number')
                 ->addActionLabel('Add step')
-                ->addActionAlignment(Alignment::End)
                 ->defaultItems(1)
                 ->columnSpan('full'),
         ];
+    }
+
+    // Prepare final Ingredient
+    public static function prepareIngredient($ingredientData): array
+    {
+        // Check if the ingredient exists (get the existed one or create and save to database)
+        $newOrExistedIngredient = Ingredient::firstOrCreate([
+            'name' => trim($ingredientData['ingredient_name']) // Match by name
+        ]);
+
+        // Prepare data for pivot table
+        $finalIngredient = [
+            'ingredient_id' => $newOrExistedIngredient->id,
+            'quantity' => $ingredientData['quantity'],
+            'unit_id' => $ingredientData['unit_id'],
+        ];
+
+        return $finalIngredient;
+    }
+
+    public static function prepareStep($stepData): void
+    {
+        $preparedStep = [
+            'step_number' => $stepData['step_number'],
+            'step_text' => trim($stepData['step_text']),
+            'step_image' => $stepData['step_image']
+                ? $stepData['step_image']->store('guides-images', 'public')
+                : 'recipes-images/default/default_photo.png',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+
+        // Insert steps
+        GuideStep::insert($preparedStep);
     }
 
     public static function getRelations(): array

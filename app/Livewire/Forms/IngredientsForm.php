@@ -44,10 +44,10 @@ class IngredientsForm extends Form
     public function groupIngredients(): \Illuminate\Support\Collection
     {
         return collect($this->ingredients)
-            ->groupBy('name') // Group by ingredient name
+            ->groupBy(fn($item) => strtolower($item['name'])) // Group by ingredient name
             ->map(function ($group) {
                 return [
-                    'name' => $group->first()['name'], // Take the first name
+                    'name' => ucfirst($group->first()['name']), // Take the first name
                     'quantity' => $group->sum('quantity'), // Sum quantities
                     'unit' => $group->first()['unit'], // Take the first unit
                 ];
