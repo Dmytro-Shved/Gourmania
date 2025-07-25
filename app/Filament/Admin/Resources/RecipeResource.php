@@ -118,6 +118,8 @@ class RecipeResource extends Resource
                 ->label('Image')
                 ->nullable()
                 ->image()
+                ->disk('public')
+                ->directory('recipes-images')
                 ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                 ->helperText('Accepted types: JPG, PNG, WEBP'),
 
@@ -142,11 +144,11 @@ class RecipeResource extends Resource
             Section::make('Category & Subcategory')->schema([
                 // Dish Category
                 Select::make('dish_category_id')
-                    ->required()
                     ->live()
                     ->label('Dish Category')
                     ->dehydrated(false)
-                    ->options(DishCategory::pluck('name', 'id')),
+                    ->relationship('dishCategory', 'name')
+                    ->required(),
 
                 // Dish Subcategory
                 Select::make('dish_subcategory_id')
@@ -252,13 +254,15 @@ class RecipeResource extends Resource
     {
         return [
             Repeater::make('steps')
-                ->label('Steps')
                 ->relationship('guideSteps')
+                ->label('Steps')
                 ->schema([
                     Grid::make(1)->schema([
                         // Step image
                         FileUpload::make('step_image')
                             ->image()
+                            ->disk('public')
+                            ->directory('guides-images')
                             ->imageEditorEmptyFillColor('#ffffff')
                             ->alignCenter()
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
@@ -310,20 +314,16 @@ class RecipeResource extends Resource
         return $finalIngredient;
     }
 
-    public static function prepareStep($stepData): void
+    // Prepare Step
+    public static function prepareStep($stepData): array
     {
-        $preparedStep = [
+        return [
             'step_number' => $stepData['step_number'],
             'step_text' => trim($stepData['step_text']),
-            'step_image' => $stepData['step_image']
-                ? $stepData['step_image']->store('guides-images', 'public')
-                : 'recipes-images/default/default_photo.png',
+            'step_image' => $stepData['step_image'],
             'created_at' => now(),
             'updated_at' => now(),
         ];
-
-        // Insert steps
-        GuideStep::insert($preparedStep);
     }
 
     public static function getRelations(): array
