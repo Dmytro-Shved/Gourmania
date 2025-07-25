@@ -320,7 +320,7 @@ class RecipeResource extends Resource
         return [
             'step_number' => $stepData['step_number'],
             'step_text' => trim($stepData['step_text']),
-            'step_image' => $stepData['step_image'],
+            'step_image' => $stepData['step_image'] ?? 'recipes-images/default/default_photo.png',
             'created_at' => now(),
             'updated_at' => now(),
         ];
