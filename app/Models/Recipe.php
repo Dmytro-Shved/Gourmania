@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Recipe extends Model
 {
+    public const DEFAULT_IMAGE = 'recipes-images/default/default_photo.png';
+
     protected $fillable = [
         'name',
         'description',

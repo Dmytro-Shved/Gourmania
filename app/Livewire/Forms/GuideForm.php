@@ -108,7 +108,7 @@ class GuideForm extends Form
 
                     // If new image exists delete the old one and store new image
                     if (!empty($step['step_image'])) {
-                        if (isset($this->currentStepImages[$index]) && $this->currentStepImages[$index] != 'recipes-images/default/default_photo.png') {
+                        if (isset($this->currentStepImages[$index]) && $this->currentStepImages[$index] != GuideStep::DEFAULT_IMAGE) {
                             Storage::disk('public')->delete($this->currentStepImages[$index]);
                         }
                         $step_image_path = $step['step_image']->store('guides-images', 'public');
@@ -118,7 +118,7 @@ class GuideForm extends Form
                     $updateData[] = [
                         'id' => $existingSteps[$stepNumber],
                         'step_text' => $step['step_text'],
-                        'step_image' => $step_image_path ?? 'recipes-images/default/default_photo.png',
+                        'step_image' => $step_image_path ?? GuideStep::DEFAULT_IMAGE,
                         'updated_at' => now(),
                     ];
                 }else{
@@ -129,7 +129,7 @@ class GuideForm extends Form
                         'step_text' => $step['step_text'],
                         'step_image' => $step['step_image']
                             ? $step['step_image']->store('guides-images', 'public')
-                            : 'recipes-images/default/default_photo.png',
+                            : GuideStep::DEFAULT_IMAGE,
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
@@ -152,7 +152,7 @@ class GuideForm extends Form
             // Delete images that are not in new set
             $delete_images = array_diff($this->initialStepImages, $this->currentStepImages);
             foreach ($delete_images as $delete_image){
-                if ($delete_image != 'recipes-images/default/default_photo.png'){
+                if ($delete_image != GuideStep::DEFAULT_IMAGE){
                     Storage::disk('public')->delete($delete_image);
                 }
             }
@@ -165,7 +165,7 @@ class GuideForm extends Form
                     'step_text' => trim($step['text']),
                     'step_image' => $step['image']
                         ? $step['image']->store('guides-images', 'public')
-                        : 'recipes-images/default/default_photo.png',
+                        : GuideStep::DEFAULT_IMAGE,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];

@@ -63,7 +63,7 @@ class RecipeForm extends Form
         }else{
             $recipe_image_path = $this->current_image; // current path
             if ($this->image){
-                if ($this->current_image != 'recipes-images/default/default_photo.png'){
+                if ($this->current_image != Recipe::DEFAULT_IMAGE){
                     Storage::disk('public')->delete($this->current_image);
                 }
                 $recipe_image_path = $this->image->store('recipes-images', 'public');

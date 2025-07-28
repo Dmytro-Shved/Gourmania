@@ -16,6 +16,8 @@ class User extends Authenticatable implements FilamentUser
 {
     use HasFactory, Notifiable;
 
+    public const DEFAULT_IMAGE = 'user_logo/default-image.png';
+
     protected $fillable = [
         'name',
         'email',

@@ -46,7 +46,7 @@ class ProfileController extends Controller
 
         // If we have new image, delete old image and save the new one
         if ($request->hasFile('photo')){
-            if ($user->photo && $user->photo != 'user_logo/default-image.png' ){
+            if ($user->photo && $user->photo != User::DEFAULT_IMAGE ){
                 Storage::disk('public')->delete($user->photo);
             }
             $path = Storage::disk('public')->put('user_logo', $request->photo);

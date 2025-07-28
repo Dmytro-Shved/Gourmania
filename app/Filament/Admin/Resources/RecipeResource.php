@@ -10,6 +10,7 @@ use App\Models\GuideStep;
 use App\Models\Ingredient;
 use App\Models\Recipe;
 use App\Models\Unit;
+use Filament\Actions\DeleteAction;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
@@ -101,6 +102,7 @@ class RecipeResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
