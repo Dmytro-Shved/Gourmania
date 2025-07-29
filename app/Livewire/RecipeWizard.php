@@ -156,6 +156,6 @@ class RecipeWizard extends Component
         }
 
         // Redirect to create recipe page
-        $this->redirect(route('recipes.create'));
+        $this->redirect(route('recipes.edit', $recipe->id));
     }
 }
