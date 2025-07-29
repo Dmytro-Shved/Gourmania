@@ -263,6 +263,7 @@ class RecipeResource extends Resource
                         // Step image
                         FileUpload::make('step_image')
                             ->image()
+                            ->nullable()
                             ->disk('public')
                             ->directory('guides-images')
                             ->imageEditorEmptyFillColor('#ffffff')
@@ -276,6 +277,8 @@ class RecipeResource extends Resource
                         // Step text
                         Textarea::make('step_text')
                             ->required()
+                            ->string()
+                            ->maxLength(255)
                             ->placeholder('First there was an egg...'),
                     ]),
                 ])
