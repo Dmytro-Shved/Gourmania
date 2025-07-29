@@ -4,7 +4,6 @@ namespace App\Livewire\Forms;
 
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Rule;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
@@ -50,34 +49,12 @@ class RecipeForm extends Form
     {
         $this->image = null;
     }
-
-    public function updateOrStoreRecipeImage(): ?string
-    {
-        if ($this->id == 0){
-            // Check if temp image exists then store
-            if ($this->image){
-                $recipe_image_path = $this->image->store('recipes-images', 'public');
-            }else{
-                $recipe_image_path = null;
-            }
-        }else{
-            $recipe_image_path = $this->current_image; // current path
-            if ($this->image){
-                if ($this->current_image != Recipe::DEFAULT_IMAGE){
-                    Storage::disk('public')->delete($this->current_image);
-                }
-                $recipe_image_path = $this->image->store('recipes-images', 'public');
-            }
-        }
-        return $recipe_image_path;
-    }
-
     public function updateOrCreateRecipe($finalIngredients): Recipe
     {
         $recipe_data = [
             'name' => trim($this->name),
             'description' => trim($this->description),
-            'image' => $this->updateOrStoreRecipeImage(),
+            'image' => $this->image ? $this->image->store('recipes-images', 'public') : $this->current_image,
             'cook_time' => $this->cook_time,
             'servings' => $this->servings,
             'dish_category_id' => $this->category,
@@ -117,7 +94,7 @@ class RecipeForm extends Form
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', \Illuminate\Validation\Rule::unique('recipes')->ignore($this->id), 'max:255',],
+            'name' => ['required', 'string', \Illuminate\Validation\Rule::unique('recipes')->ignore($this->id), 'max:255'],
             'description' => ['nullable', 'string', 'max:255'],
             'category' => ['required'],
             'subcategory' => ['nullable'],
