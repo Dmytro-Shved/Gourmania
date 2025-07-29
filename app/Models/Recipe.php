@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Observers\RecipeObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -9,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Builder;
 
+#[ObservedBy(RecipeObserver::class)]
 class Recipe extends Model
 {
     public const DEFAULT_IMAGE = 'recipes-images/default/default_photo.png';
