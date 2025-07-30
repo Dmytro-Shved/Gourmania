@@ -29,7 +29,6 @@ class DishCategoriesSeeder extends Seeder
         foreach ($this->dish_categories as $dish_category){
             DishCategory::create([
                 'name' => $dish_category,
-                'slug' => Str::slug($dish_category)
             ]);
         }
     }

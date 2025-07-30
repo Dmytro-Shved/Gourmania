@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dish_categories', function (Blueprint $table) {
+        Schema::create('homepage_sections', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
             $table->string('slug')->unique();
+            $table->enum('type', ['popular', 'latest', 'category']);
+            $table->string('category_slug')->nullable();
+            $table->integer('order')->default(1);
+            $table->boolean('visible')->default(true);
+            $table->integer('limit')->default(4);
             $table->timestamps();
         });
     }
@@ -24,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dish_categories');
+        Schema::dropIfExists('homepage_sections');
     }
 };

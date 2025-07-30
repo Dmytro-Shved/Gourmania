@@ -5,16 +5,7 @@ namespace Database\Seeders;
 use App\Models\Cuisine;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\DishCategory;
-use App\Models\GuideStep;
-use App\Models\Ingredient;
-use App\Models\IngredientRecipe;
-use App\Models\Menu;
-use App\Models\Recipe;
-use App\Models\Role;
-use App\Models\Unit;
 use App\Models\User;
-use App\Models\UserProfile;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -59,5 +50,8 @@ class DatabaseSeeder extends Seeder
 
         // seed guide_steps table
         $this->call(GuideStepsSeeder::class);
+
+        // seed homepage_sections table
+        $this->call(HomepageSectionsSeeder::class);
     }
 }

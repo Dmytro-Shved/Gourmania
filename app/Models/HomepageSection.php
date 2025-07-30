@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Observers\HomepageSectionObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
+#[ObservedBy(HomepageSectionObserver::class)]
 class HomepageSection extends Model
 {
     protected $fillable = [
