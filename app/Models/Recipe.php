@@ -110,7 +110,7 @@ class Recipe extends Model
 
     public function scopeByCategory(Builder $query, string $categorySlug): Builder
     {
-        return $query->whereHas('category', function ($q) use ($categorySlug) {
+        return $query->whereHas('dishCategory', function ($q) use ($categorySlug) {
             $q->where('slug', $categorySlug);
         });
     }

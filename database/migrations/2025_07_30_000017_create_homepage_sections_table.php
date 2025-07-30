@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('homepage_sections', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('title')->unique();
             $table->string('slug')->unique();
             $table->enum('type', ['popular', 'latest', 'category']);
             $table->string('category_slug')->nullable();
