@@ -29,7 +29,7 @@ class HomepageSectionsSeeder extends Seeder
             [
                 'name' => 'Meat Dishes',
                 'type' => 'category',
-                'category_slug' => 'meat-dishes',
+                'category_slug' => 'main-dishes',
                 'order' => 3,
                 'visible' => true,
                 'limit' => 4,

@@ -41,64 +41,74 @@ class RecipeResource extends Resource
     protected static ?string $navigationGroup = 'Recipes';
     protected static ?int $navigationSort = 2;
 
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                // empty place here
-            ]);
-    }
-
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
+                // Id
                 TextColumn::make('id')
                     ->label('Id')
                     ->sortable()
                     ->searchable(),
+
+                // Name
                 TextColumn::make('name')
                     ->label('Name')
                     ->sortable()
                     ->searchable(),
+
+                // Image
                 ImageColumn::make('image')
                     ->label('Image'),
+
+                //Description
                 TextColumn::make('description')
                     ->label('Description')
                     ->limit(30),
+
+                // Cook Time
                 TextColumn::make('cook_time')
                     ->label('Cook Time')
                     ->sortable(),
+
+                // Servings
                 TextColumn::make('servings')
                     ->label('Servings')
                     ->sortable(),
+
+                // Dish Category
                 TextColumn::make('dishCategory.name')
                     ->label('Dish Category')
                     ->sortable()
                     ->searchable(),
+
+                // Dish Subcategory
                 TextColumn::make('dishSubcategory.name')
                     ->label('Dish Subcategory')
                     ->placeholder('-')
                     ->alignCenter()
                     ->sortable()
                     ->searchable(),
+
+                // Author name
                 TextColumn::make('user.name')
                     ->label('Author')
                     ->sortable()
                     ->searchable(),
+
+                // Cuisine
                 TextColumn::make('cuisine.name')
                     ->label('Cuisine')
                     ->sortable()
                     ->searchable(),
+
+                // Menu
                 TextColumn::make('menu.name')
                     ->label('Menu')
                     ->placeholder('-')
                     ->alignCenter()
                     ->sortable()
                     ->searchable(),
-            ])
-            ->filters([
-                //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -328,13 +338,6 @@ class RecipeResource extends Resource
             'step_image' => $stepData['step_image'] ?? 'recipes-images/default/default_photo.png',
             'created_at' => now(),
             'updated_at' => now(),
-        ];
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
         ];
     }
 
