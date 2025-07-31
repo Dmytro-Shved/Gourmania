@@ -96,7 +96,7 @@ class HomepageSectionResource extends Resource
                     ->color(fn (string $state): string => match ($state) {
                         'popular' => 'success',
                         'latest' => 'info',
-                        'category' => 'warning',
+                        'category' => 'primary',
                     })
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         'popular' => 'Popular',

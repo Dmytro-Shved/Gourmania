@@ -44,6 +44,10 @@ class DishCategoryResource extends Resource
                 TextColumn::make('name')
                     ->label('Name')
                     ->sortable()
+                    ->searchable(),
+                TextColumn::make('slug')
+                    ->label('Slug')
+                    ->sortable()
                     ->searchable()
             ])
             ->filters([
