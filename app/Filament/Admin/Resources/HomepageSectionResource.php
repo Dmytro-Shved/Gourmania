@@ -106,14 +106,7 @@ class HomepageSectionResource extends Resource
 
                 // Dish Category slug
                 Tables\Columns\TextColumn::make('category_slug')
-                    ->label('Dish Category')
-                    ->getStateUsing(function ($record) {
-                        if ($record->type === 'category' && $record->category_slug) {
-                            $dishCategory = DishCategory::where('slug', $record->category_slug)->first();
-                            return $dishCategory?->name ?? $record->category_slug;
-                        }
-                        return '-';
-                    })
+                    ->label('Category Slug')
                     ->placeholder('-'),
 
                 // Limit

@@ -10,7 +10,7 @@ class HomeController extends Controller
     public function index()
     {
         // Get visible and ordered homepage sections
-         $homepageSections = HomepageSection::visible()->ordered()->get();
+        $homepageSections = HomepageSection::visible()->ordered()->get();
 
          // Map sections to get a new array of sections
          $sections = $homepageSections->map(function ($section){

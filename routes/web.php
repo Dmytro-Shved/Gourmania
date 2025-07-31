@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProfileController;
@@ -7,8 +8,7 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'index')->name('home');
-
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
 Route::get('/recipes/{recipe}/guide', [RecipeController::class, 'guide'])->name('recipes.guide');
 Route::get('/recipes/search', [RecipeController::class, 'search'])->name('recipes.search');
