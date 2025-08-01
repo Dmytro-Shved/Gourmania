@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\HomepageSection;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function __invoke()
     {
         // Get visible and ordered homepage sections
         $homepageSections = HomepageSection::visible()->ordered()->get();
