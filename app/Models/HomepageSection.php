@@ -39,13 +39,16 @@ class HomepageSection extends Model
 
     public function getRecipes(): Collection
     {
-        $query = Recipe::with('dishCategory');
+        // Cache query to get recipes for 24h
+        return cache()->remember("homepage_section_recipes_{$this->id}", 60*60*24, function (){
+            $query = Recipe::with(['dishCategory', 'cuisine'])->select(['name', 'image', 'cuisine_id']);
 
-        return match($this->type) {
-            'popular' => $query->popular()->limit($this->limit)->get(),
-            'latest' => $query->latest()->limit($this->limit)->get(),
-            'category' => $query->byCategory($this->category_slug)->limit($this->limit)->get(),
-            default => collect(),
-        };
+            return match($this->type) {
+                'popular' => $query->popular()->limit($this->limit)->get(),
+                'latest' => $query->latest()->limit($this->limit)->get(),
+                'category' => $query->byCategory($this->category_slug)->limit($this->limit)->get(),
+                default => collect(),
+            };
+        });
     }
 }

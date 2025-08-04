@@ -8,20 +8,20 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        // Get visible and ordered homepage sections
+        // Get visible & ordered by 'order' column sections
         $homepageSections = HomepageSection::visible()->ordered()->get();
 
-         // Map sections to get a new array of sections
-         $sections = $homepageSections->map(function ($section){
-             return [
-                 'id' => $section->slug,
-                 'title' => $section->name,
-                 'recipes' => $section->getRecipes(),
-                 'visible' => $section->visible,
-                 'order' => $section->order,
-             ];
-         });
+        // Map homepageSections to get a new array of sections
+        $sections = $homepageSections->map(function ($section) {
+            return [
+                'id' => $section->slug,
+                'title' => $section->name,
+                'recipes' => $section->getRecipes(),
+                'visible' => $section->visible,
+                'order' => $section->order,
+            ];
+        });
 
-         return view('index', compact('sections'));
+        return view('index', compact('sections'));
     }
 }
