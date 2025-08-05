@@ -52,7 +52,7 @@ class HomepageSectionsSeeder extends Seeder
                 'limit' => 4,
             ],
             [
-                'name' => 'Bakery',
+                'name' => 'Baking And Desserts',
                 'type' => 'category',
                 'category_slug' => 'baking-and-desserts',
                 'order' => 6,
@@ -60,18 +60,10 @@ class HomepageSectionsSeeder extends Seeder
                 'limit' => 4,
             ],
             [
-                'name' => 'Desserts',
-                'type' => 'category',
-                'category_slug' => 'baking-and-desserts',
-                'order' => 7,
-                'visible' => true,
-                'limit' => 4,
-            ],
-            [
                 'name' => 'Drinks',
                 'type' => 'category',
                 'category_slug' => 'drinks',
-                'order' => 8,
+                'order' => 7,
                 'visible' => true,
                 'limit' => 4,
             ],

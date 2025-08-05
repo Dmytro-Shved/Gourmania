@@ -81,14 +81,16 @@
         <div
             x-data="{
         slides: [
-            {
-                imgSrc: '{{ asset('storage/recipes-images/steak_mushrooms_asparagus_103375_1920x1080-min-opt.webp') }}',
-                imgAlt: 'Grilled steak with vegetables',
-                title: 'Flavour Steak',
-                location: 'Ukraine',
-                ctaUrl: '#',
-                ctaText: 'See more'
-            },
+{{--            @foreach($recipes as $recipe)--}}
+{{--                {--}}
+{{--                    imgSrc: '{{ asset('storage/'. $recipe->image) }}',--}}
+{{--                    imgAlt: {{ $recipe->name . ' image' }},--}}
+{{--                    title: {{ $recipe->name }},--}}
+{{--                    location: '$recipe->name',--}}
+{{--                    ctaUrl: '/recipes?dish_category='{{ $recipe->dish_category_id }},--}}
+{{--                    ctaText: 'See more'--}}
+{{--                },--}}
+{{--            @endforeach--}}
             {
                 imgSrc: '{{ asset('storage/recipes-images/pizza_pastry_appetizing_117398_1920x1080-min-opt.webp') }}',
                 imgAlt: 'Grilled steak with vegetables',
@@ -199,542 +201,44 @@
             </div>
         </div>
 
-        {{-- Latest recipes title --}}
-        <div class="title-container">
-            <span class="border-line"></span>
-            <small class="section-title">
-                LATEST RECIPES
-            </small>
-            <span class="border-line"></span>
-        </div>
+         {{--Sections --}}
+        @foreach($sections as $section)
 
-        {{-- Latest recipes grid --}}
-        <div class="section-container">
-            {{-- Card 1 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/meat_stake_cuts_10247_800x1200-min-opt.webp') }}"
-                         alt="Delicious meat steak">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Delicious meat steak</span>
+             {{--title --}}
+            <div class="title-container">
+                <span class="border-line"></span>
+                <small class="section-title">
+                    {{ $section['title'] }}
+                </small>
+                <span class="border-line"></span>
+            </div>
+
+             {{--grid --}}
+            <div class="section-container">
+                @foreach($section['recipes'] as $recipe)
+                     {{--recipe card--}}
+                    <div class="recipe-card group">
+                        <a href="{{ route('recipes.guide', $recipe->id) }}" class="block h-full">
+                            <img class="section-image"
+                                 src="{{ asset('storage/'. $recipe->image) }}"
+                                 alt="Delicious meat steak">
+                            <div class="hover-overlay">
+                                <div class="country-label">{{ $recipe->cuisine->name }}</div>
+                                <span class="overlay-text">{{ $recipe->name }}</span>
+                            </div>
+                        </a>
                     </div>
+                @endforeach
+            </div>
+
+             {{--See more button--}}
+            <div class="see-more-container">
+                <a href="{{ route('recipes.index') }}" class="see-more-btn">
+                    See more
                 </a>
             </div>
 
-            {{-- Card 2 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/pizza_food_glass_73012_800x1200-min-opt.webp') }}"
-                         alt="Fresh hot pizza">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Fresh hot pizza</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 3 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/french_fries_appetizing_greens_112053_800x1200-min-opt.webp') }}"
-                         alt="Crispy french fries">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Crispy french fries</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 4 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/salad_vegetables_leaves_88299_800x1200-min-opt.webp') }}"
-                         alt="A salad full of vitamins">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">A salad full of vitamins</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 5 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/noodles_sauce_cheese_112659_800x1200-min-opt.webp') }}"
-                         alt="Pasta with vegetables and grated cheese">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Pasta with vegetables and grated cheese</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 6 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/pancakes_berries_dessert_157035_800x1200-min-opt.webp') }}"
-                         alt="Fluffy pancakes with sour cream and raspberries">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Fluffy pancakes with sour cream and raspberries</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 7 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/pancakes_berries_dessert_157035_800x1200-min-opt.webp') }}"
-                         alt="Fluffy pancakes with sour cream and raspberries">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Fluffy pancakes with sour cream and raspberries</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 8 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/pancakes_berries_dessert_157035_800x1200-min-opt.webp') }}"
-                         alt="Fluffy pancakes with sour cream and raspberries">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Fluffy pancakes with sour cream and raspberries</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="see-more-container">
-            <button class="see-more-btn">
-                See more
-            </button>
-        </div>
-
-        {{-- Meat dishes title --}}
-        <div class="title-container">
-            <span class="border-line"></span>
-            <small class="section-title">
-                MEAT DISHES
-            </small>
-            <span class="border-line"></span>
-        </div>
-
-        {{-- Meat dishes grid --}}
-        <div class="section-container">
-             {{--Card 1--}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('https://eda.ru/images/RecipePhoto/1280x960/mjaso-s-ajvoj_15909_photo_1143.webp') }}"
-                         alt="Chicken broth">
-
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Chicken broth</span>
-                    </div>
-                </a>
-            </div>
-
-            {{--Card 2 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('https://eda.ru/images/RecipePhoto/1280x960/steyk_53097_photo_63350.webp') }}"
-                         alt="Premium steak">
-                    <div class="hover-overlay">
-                        <div class="country-label">Australia</div>
-                        <span class="overlay-text">Premium steak</span>
-                    </div>
-                </a>
-            </div>
-
-             {{--Card 3 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('https://eda.ru/images/RecipePhoto/1280x960/steyk-ramp_188917_photo_196993.webp') }}"
-                         alt="Ramp steak">
-                    <div class="hover-overlay">
-                        <div class="country-label">Ukraine</div>
-                        <span class="overlay-text">Ramp steak</span>
-                    </div>
-                </a>
-            </div>
-
-             {{--Card 4 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('https://eda.ru/images/RecipePhoto/1280x960/steyk-na-skovorode_175094_photo_182874.webp') }}"
-                         alt="Pan-seared steak">
-                    <div class="hover-overlay">
-                        <div class="country-label">Poland</div>
-                        <span class="overlay-text">Pan-seared steak</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="see-more-container">
-            <button class="see-more-btn">
-                See more
-            </button>
-        </div>
-
-        {{-- Salads title --}}
-        <div class="title-container">
-            <span class="border-line"></span>
-            <small class="section-title">
-                SALADS
-            </small>
-            <span class="border-line"></span>
-        </div>
-
-        {{-- Salads grid --}}
-        <div class="section-container">
-            {{-- Card 1 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/salad_vegetables_leaves_108329_800x1200-min-opt.webp') }}"
-                         alt="Salad with vegetables, leaves, spinach and cucumbers">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Salad with vegetables, leaves, spinach and cucumbers</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 2 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/salad_vegetables_eggs_114547_800x1200-min-opt.webp') }}"
-                         alt="Healthy salad with vegetables, eggs and carrots">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Healthy salad with vegetables, eggs and carrots</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 3 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/salad_cheese_fruit_107087_800x1200-min-opt.webp') }}"
-                         alt="Aromatic cheese, fruits and vegetables">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Aromatic cheese, fruits and vegetables</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 4 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/salad_lemon_cherry_tomatoes_107795_800x1200-min-opt.webp') }}"
-                         alt="Sour lemon with fresh cherry tomatoes and fresh herbs">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Sour lemon with fresh cherry tomatoes and fresh herbs</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="see-more-container">
-            <button class="see-more-btn">
-                See more
-            </button>
-        </div>
-
-        {{-- Breakfasts title --}}
-        <div class="title-container">
-            <span class="border-line"></span>
-            <small class="section-title">
-                BREAKFASTS
-            </small>
-            <span class="border-line"></span>
-        </div>
-
-        {{-- Breakfasts grid --}}
-        <div class="section-container">
-            {{-- Card 1 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/pancakes_raspberries_syrup_115255_800x1200-min-opt.webp') }}"
-                         alt="Pancakes with raspberries and syrup">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Pancakes with raspberries and syrup</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 2 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/fried_eggs_bacon_toast_102470_800x1200-min-opt.webp') }}"
-                         alt="Fresh scrambled eggs and meat">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Fresh scrambled eggs and meat</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 3 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/belgian_waffle_waffle_berries_873742_800x1200-min-opt.webp') }}"
-                         alt="Fluffy waffles">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Fluffy waffles</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 4 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/granola_strawberry_berries_207990_800x1200-min-opt.webp') }}"
-                         alt="Granola with strawberry">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Granola with strawberry</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="see-more-container">
-            <button class="see-more-btn">
-                See more
-            </button>
-        </div>
-
-        {{-- Bakery title --}}
-        <div class="title-container">
-            <span class="border-line"></span>
-            <small class="section-title">
-                BAKERY
-            </small>
-            <span class="border-line"></span>
-        </div>
-
-        {{-- Bakery grid --}}
-        <div class="section-container">
-            {{-- Card 1 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/bread_almonds_cakes_112884_800x1200-min-opt.webp') }}"
-                         alt="Soft, flavorful bread">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Soft, flavorful bread</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 2 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/donut_icing_still_life_163211_800x1200-min-opt.webp') }}"
-                         alt="Doughnuts with glaze and sprinkles">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Doughnuts with glaze and sprinkles</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 3 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/croissant_berries_strawberries_180033_800x1200-min-opt.webp') }}"
-                         alt="Delicious croissants">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Delicious croissants</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 4 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/cookies_chocolate_dessert_874621_800x1200-min-opt.webp') }}"
-                         alt="Chocolate chip cookie">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Chocolate chip cookie</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="see-more-container">
-            <button class="see-more-btn">
-                See more
-            </button>
-        </div>
-
-        {{-- Desserts title --}}
-        <div class="title-container">
-            <span class="border-line"></span>
-            <small class="section-title">
-                DESSERTS
-            </small>
-            <span class="border-line"></span>
-        </div>
-
-        {{-- Desserts grid --}}
-        <div class="section-container">
-            {{-- Card 1 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/tartlet_berries_cream_111477_800x1200-min-opt.webp') }}"
-                         alt="Tartalette with berries and cream">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Tartalette with berries and cream</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 2 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/icecream_balls_bilberry_45151_800x1200-min-opt.webp') }}"
-                         alt="Chilled ice cream">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Chilled ice cream</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 3 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/cake_souffles_cream_114050_800x1200-min-opt.webp') }}"
-                         alt="Tender tiramisu">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Tender tiramisu</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 4 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/cupcake_cherry_berries_289705_800x1200-min-opt.webp') }}"
-                         alt="Cupcake with cream and berries">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Cupcake with cream and berries</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="see-more-container">
-            <button class="see-more-btn">
-                See more
-            </button>
-        </div>
-
-        {{-- Drinks title --}}
-        <div class="title-container">
-            <span class="border-line"></span>
-            <small class="section-title">
-                DRINKS
-            </small>
-            <span class="border-line"></span>
-        </div>
-
-        {{-- Drinks grid --}}
-        <div class="section-container">
-            {{-- Card 1 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/tea_cup_lemon_209994_800x1200-min-opt.webp') }}"
-                         alt="Warming flavored tea">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Warming flavored tea</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 2 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/coffee_drink_cup_207326_800x1200-min-opt.webp') }}"
-                         alt="Invigorating coffee">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Invigorating coffee</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 3 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/mojito_drink_lemon_177472_800x1200-min-opt.webp') }}"
-                         alt="A refreshing mojito">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">A refreshing mojito</span>
-                    </div>
-                </a>
-            </div>
-
-            {{-- Card 4 --}}
-            <div class="recipe-card group">
-                <a href="#" class="block h-full">
-                    <img class="section-image"
-                         src="{{ asset('storage/recipes-images/cocktail_mint_glass_272604_800x1200-min-opt.webp') }}"
-                         alt="Mint Cocktail">
-                    <div class="hover-overlay">
-                        <div class="country-label">United Kingdom</div>
-                        <span class="overlay-text">Mint Cocktail</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="see-more-container">
-            <button class="see-more-btn">
-                See more
-            </button>
-        </div>
+        @endforeach
 
         {{-- Instruments title --}}
         <div class="title-container">

@@ -16,7 +16,7 @@ abstract class RecipeList extends Component
     public function render()
     {
         $recipes = $this->getRecipes();
-        $recipes = $recipes->paginate(2)->withQueryString();
+        $recipes = $recipes->paginate(10)->withQueryString();
 
         return view('livewire.recipe-list', [
             'recipes' => $recipes

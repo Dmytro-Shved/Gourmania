@@ -41,7 +41,7 @@ class HomepageSection extends Model
     {
         // Cache query to get recipes for 24h
         return cache()->remember("homepage_section_recipes_{$this->id}", 60*60*24, function (){
-            $query = Recipe::with(['dishCategory', 'cuisine'])->select(['name', 'image', 'cuisine_id']);
+            $query = Recipe::with(['dishCategory', 'cuisine'])->select(['id', 'name', 'image', 'cuisine_id', 'dish_category_id']);
 
             return match($this->type) {
                 'popular' => $query->popular()->limit($this->limit)->get(),
