@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cuisine;
 use App\Models\HomepageSection;
+use App\Models\Recipe;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -22,6 +25,14 @@ class HomeController extends Controller
             ];
         });
 
-        return view('index', compact('sections'));
+        $statisticsData = cache()->remember('hero-section', 60*60*24, function (){
+           return [
+               'recipesCount' => Recipe::count(),
+               'authorsCount' => User::count(),
+               'cuisinesCount' => Cuisine::count(),
+           ];
+        });
+
+        return view('index', compact('sections', 'statisticsData'));
     }
 }

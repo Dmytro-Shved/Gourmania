@@ -15,7 +15,11 @@
     {{-- Main page--}}
     <div class="font-inclusive text-xl">
         {{-- Hero section--}}
-        <x-homepage-sections.hero-section/>
+        <x-homepage-sections.hero-section>
+            <x-slot name="statistics">
+                <x-statistics :data="$statisticsData" />
+            </x-slot>
+        </x-homepage-sections.hero-section>
 
         {{-- Carousel section--}}
         <x-homepage-sections.carousel-section/>

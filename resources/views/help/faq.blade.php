@@ -98,8 +98,7 @@
                             </span>
                         </summary>
                         <p class="group-open:animate-fadeIn mt-3 text-neutral-600">If you need help with our platform or
-                            have any other questions, you can contact the company's support team by submitting a support
-                            request through the website or by emailing <span class="text-[#AE763E]">support@gourmania.com</span>.
+                            have any other questions, you can contact the company by emailing <span class="text-[#AE763E]">support@gourmania.com</span>.
                         </p>
                     </details>
                 </div>
