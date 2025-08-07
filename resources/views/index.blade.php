@@ -24,7 +24,7 @@
         {{-- Carousel section--}}
         <x-homepage-sections.carousel-section/>
 
-         {{-- Recipe section --}}
+        {{-- Recipe section --}}
         @foreach($sections as $section)
             <x-homepage-sections.recipe-section :section="$section"/>
         @endforeach
@@ -36,6 +36,6 @@
         <x-homepage-sections.techniques-section/>
 
         {{-- Authors Sections --}}
-        <x-homepage-sections.authors-section/>
+        <x-homepage-sections.authors-section :authors="$authorsOfTheWeek"/>
     </div>
 </x-layout>

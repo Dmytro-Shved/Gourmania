@@ -6,6 +6,7 @@ use App\Models\Cuisine;
 use App\Models\HomepageSection;
 use App\Models\Recipe;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 
 class HomeController extends Controller
 {
@@ -33,6 +34,13 @@ class HomeController extends Controller
            ];
         });
 
-        return view('index', compact('sections', 'statisticsData'));
+        $authorsOfTheWeek = User::select(['id','name', 'photo'])->withCount([
+            'recipes as popular_recipes_count' => fn($query) => $query->popular()
+        ])
+            ->having('popular_recipes_count', '>', 0)
+            ->orderByDesc('popular_recipes_count')
+            ->get();
+
+        return view('index', compact('sections', 'statisticsData', 'authorsOfTheWeek'));
     }
 }

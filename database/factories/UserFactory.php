@@ -18,7 +18,7 @@ class UserFactory extends Factory
             'email_verified_at' => null,
             'password' => '321',
             'remember_token' => Str::random(10),
-            'role_id' => 1
+            'role_id' => 2 // admin
         ];
     }
 
