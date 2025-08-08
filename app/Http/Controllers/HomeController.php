@@ -6,7 +6,6 @@ use App\Models\Cuisine;
 use App\Models\HomepageSection;
 use App\Models\Recipe;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
 
 class HomeController extends Controller
 {
