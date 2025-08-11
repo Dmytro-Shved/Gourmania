@@ -107,11 +107,4 @@ class Recipe extends Model
     {
         return $query->orderBy('created_at', 'desc');
     }
-
-    public function scopeByCategory(Builder $query, string $categorySlug): Builder
-    {
-        return $query->whereHas('dishCategory', function ($q) use ($categorySlug) {
-            $q->where('slug', $categorySlug);
-        });
-    }
 }

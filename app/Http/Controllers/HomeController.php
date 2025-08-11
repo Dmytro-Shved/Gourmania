@@ -11,17 +11,55 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        // Get visible & ordered by 'order' column sections
+        // 1. Get all homepage sections
         $homepageSections = HomepageSection::visible()->ordered()->get();
 
-        // Map homepageSections to get a new array of sections
-        $sections = $homepageSections->map(function ($section) {
+        // 2. Collect category slugs & limits
+        $categorySlugs = $homepageSections
+            ->where('type', 'category')
+            ->pluck('category_slug')
+            ->unique()
+            ->toArray();
+
+        $popularLimit = $homepageSections->where('type', 'popular')->max('limit') ?? 4;
+        $latestLimit  = $homepageSections->where('type', 'latest')->max('limit') ?? 4;
+
+        // 3. Batch load recipes for each type
+
+        // Popular recipes
+        $popularRecipes = Recipe::with(['dishCategory', 'cuisine'])
+            ->popular()
+            ->limit($popularLimit)
+            ->get();
+
+        // Latest recipes
+        $latestRecipes = Recipe::with(['dishCategory', 'cuisine'])
+            ->latest()
+            ->limit($latestLimit)
+            ->get();
+
+        // All category recipes in one query
+        $categoryRecipes = collect();
+        if (!empty($categorySlugs)) {
+            $categoryRecipes = Recipe::with(['dishCategory', 'cuisine'])
+                ->whereHas('dishCategory', fn($q) => $q->whereIn('slug', $categorySlugs))
+                ->get()
+                ->groupBy(fn($recipe) => $recipe->dishCategory->slug);
+        }
+
+        // 4. Assign recipes to sections
+        $sections = $homepageSections->map(function ($section) use ($popularRecipes, $latestRecipes, $categoryRecipes) {
             return [
                 'id' => $section->slug,
                 'title' => $section->name,
-                'recipes' => $section->getRecipes(),
+                'recipes' => match ($section->type) {
+                    'popular' => $popularRecipes->take($section->limit),
+                    'latest' => $latestRecipes->take($section->limit),
+                    'category' => $categoryRecipes->get($section->category_slug, collect())->take($section->limit),
+                    default => collect(),
+                },
                 'visible' => $section->visible,
-                'order' => $section->order,
+                'order'   => $section->order,
             ];
         });
 
@@ -33,12 +71,14 @@ class HomeController extends Controller
            ];
         });
 
-        $authorsOfTheWeek = User::select(['id','name', 'photo'])->withCount([
-            'recipes as popular_recipes_count' => fn($query) => $query->popular()
-        ])
-            ->having('popular_recipes_count', '>', 0)
-            ->orderByDesc('popular_recipes_count')
-            ->get();
+        $authorsOfTheWeek = cache()->remember('authors-section', 60*60*24, function (){
+            return User::select(['id','name', 'photo'])->withCount([
+                'recipes as popular_recipes_count' => fn($query) => $query->popular()
+            ])
+                ->having('popular_recipes_count', '>', 0)
+                ->orderByDesc('popular_recipes_count')
+                ->get();
+        });
 
         return view('index', compact('sections', 'statisticsData', 'authorsOfTheWeek'));
     }
