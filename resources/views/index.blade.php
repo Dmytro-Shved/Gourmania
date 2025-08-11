@@ -17,7 +17,7 @@
         {{-- Hero section--}}
         <x-homepage-sections.hero-section>
             <x-slot name="statistics">
-                <x-statistics :data="$statisticsData" />
+                <x-statistics :data="$statistics" />
             </x-slot>
         </x-homepage-sections.hero-section>
 
