@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class search-sidebar-button extends Component
+class sections.tools extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class search-sidebar-button extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.sidebar-button');
+        return view('components.sections.tools');
     }
 }

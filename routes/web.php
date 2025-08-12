@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function (){
 Route::view('/help/faq', 'help.faq')->name('faq');
 
 Route::view('/basics', 'basics.index')->name('basics');
-Route::view('/basics/instruments', 'basics.instruments')->name('instruments');
+Route::view('/basics/tools', 'basics.tools')->name('tools');
 Route::view('/basics/techniques', 'basics.techniques')->name('techniques');
 
 Route::fallback(function (){

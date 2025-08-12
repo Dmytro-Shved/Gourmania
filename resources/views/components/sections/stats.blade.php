@@ -1,4 +1,4 @@
-@props(['data'])
+@props(['stats'])
 
 {{-- Stats --}}
 <div class="relative py-4 px-6 sm:px-8">
@@ -16,7 +16,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="#88C9CB" class="inline-block w-3 h-3 sm:w-3 sm:h-3" viewBox="0 0 16 16">
                 <circle cx="8" cy="8" r="8"/>
             </svg>
-            <span class="ml-1 sm:ml-[0.375rem]">{{ $data['recipesCount'] }} original recipes</span>
+            <span class="ml-1 sm:ml-[0.375rem]">{{ $stats['recipesCount'] }} original recipes</span>
         </div>
 
         {{-- 2 stats item --}}
@@ -24,7 +24,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="#CCD5AE" class="inline-block w-3 h-3 sm:w-3 sm:h-3" viewBox="0 0 16 16">
                 <circle cx="8" cy="8" r="8"/>
             </svg>
-            <span class="ml-1 sm:ml-[0.375rem]">{{ $data['authorsCount'] }} authors</span>
+            <span class="ml-1 sm:ml-[0.375rem]">{{ $stats['authorsCount'] }} authors</span>
         </div>
 
         {{-- 3 stats item --}}
@@ -32,7 +32,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="#FEDC56" class="inline-block w-3 h-3 sm:w-3 sm:h-3" viewBox="0 0 16 16">
                 <circle cx="8" cy="8" r="8"/>
             </svg>
-            <span class="ml-1 sm:ml-[0.375rem]">Explore {{ $data['cuisinesCount'] }} cuisines</span>
+            <span class="ml-1 sm:ml-[0.375rem]">Explore {{ $stats['cuisinesCount'] }} cuisines</span>
         </div>
     </div>
 

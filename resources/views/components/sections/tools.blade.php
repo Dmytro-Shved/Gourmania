@@ -1,19 +1,19 @@
-{{-- Instruments title --}}
+{{-- Tools title --}}
 <div class="title-container">
     <span class="border-line"></span>
     <small class="section-title">
-        INSTRUMENTS
+        TOOLS
     </small>
     <span class="border-line"></span>
 </div>
 
-{{-- Instruments section --}}
+{{-- Tools section --}}
 <div class="w-full md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] mx-auto px-3">
     <div class="relative block overflow-hidden group w-full rounded-lg">
-        <a href="{{ route('instruments') }}" class="block">
+        <a href="{{ route('tools') }}" class="block">
             <img
                 class="w-full h-auto transform transition-transform duration-300"
-                src="{{ asset('storage/basics/main-instruments.webp') }}"
+                src="{{ asset('storage/basics/main-tools.webp') }}"
                 alt="Cooking tools"
             >
             <div class="absolute inset-0 flex items-end justify-center pb-4 sm:pb-8 transition-all duration-300">
@@ -29,7 +29,7 @@
     </div>
 </div>
 <div class="see-more-container">
-    <a href="{{ route('instruments') }}" class="see-more-btn cursor-pointer">
+    <a href="{{ route('tools') }}" class="see-more-btn cursor-pointer">
         See more
     </a>
 </div>

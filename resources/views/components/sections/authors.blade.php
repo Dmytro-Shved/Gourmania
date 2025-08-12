@@ -1,7 +1,7 @@
 @props(['authors'])
 
 {{-- Authors of the week title --}}
-<div class="title-container">
+<div class="title-container" id="authorsOfTheWeek">
     <span class="border-line"></span>
     <small class="section-title">
         AUTHORS OF THE WEEK

@@ -1,6 +1,6 @@
 @props(['section'])
 
-{{-- Sectrion title --}}
+{{-- Section title --}}
 <div class="title-container">
     <span class="border-line"></span>
     <small class="section-title">

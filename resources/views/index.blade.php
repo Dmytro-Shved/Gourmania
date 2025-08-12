@@ -15,27 +15,27 @@
     {{-- Main page--}}
     <div class="font-inclusive text-xl">
         {{-- Hero section--}}
-        <x-homepage-sections.hero-section>
-            <x-slot name="statistics">
-                <x-statistics :data="$statistics" />
+        <x-sections.hero>
+            <x-slot name="stats">
+                <x-sections.stats :stats="$stats" />
             </x-slot>
-        </x-homepage-sections.hero-section>
+        </x-sections.hero>
 
         {{-- Carousel section--}}
-        <x-homepage-sections.carousel-section/>
+        <x-sections.carousel/>
 
         {{-- Recipe section --}}
         @foreach($sections as $section)
-            <x-homepage-sections.recipe-section :section="$section"/>
+            <x-sections.recipe :section="$section"/>
         @endforeach
 
-        {{-- Instruments section --}}
-        <x-homepage-sections.instruments-section/>
+        {{-- tools section --}}
+        <x-sections.tools/>
 
         {{-- Techniques Section --}}
-        <x-homepage-sections.techniques-section/>
+        <x-sections.techniques/>
 
         {{-- Authors Sections --}}
-        <x-homepage-sections.authors-section :authors="$authorsOfTheWeek"/>
+        <x-sections.authors :authors="$authorsOfTheWeek"/>
     </div>
 </x-layout>

@@ -65,7 +65,7 @@ class HomeController extends Controller
             });
         });
 
-        $statistics = cache()->remember('statistics-section', 60*60*24, function (){
+        $stats = cache()->remember('statistics-section', 60*60*24, function (){
            return [
                'recipesCount' => Recipe::count(),
                'authorsCount' => User::count(),
@@ -82,6 +82,6 @@ class HomeController extends Controller
                 ->get();
         });
 
-        return view('index', compact('sections', 'statistics', 'authorsOfTheWeek'));
+        return view('index', compact('sections', 'stats', 'authorsOfTheWeek'));
     }
 }

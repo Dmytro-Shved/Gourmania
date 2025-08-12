@@ -21,6 +21,6 @@ class search-sidebar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.search-sidebar');
+        return view('components.sidebar');
     }
 }

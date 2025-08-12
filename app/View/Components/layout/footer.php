@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\layout;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class homepage-sections.instruments-section extends Component
+class footer extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class homepage-sections.instruments-section extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.homepage-sections.instruments-section');
+        return view('components.layout.footer');
     }
 }

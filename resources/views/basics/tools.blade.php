@@ -1,18 +1,18 @@
 <x-layout>
-    @section('title',  'Instruments')
+    @section('title',  'Kitchen Tools')
 
     <livewire:filter/>
 
-    {{-- Instruments --}}
+    {{-- Tools --}}
     <div class="title-container">
         <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
         <small class="font-inknut text-lg md:text-xl lg:text-2xl xl:text-3xl text-black px-4">
-            INSTRUMENTS
+            TOOLS
         </small>
         <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
     </div>
 
-    {{-- Instruments Card --}}
+    {{-- Tools Card --}}
     <div class="relative w-full bg-white px-6 pt-10 pb-8 mt-8 shadow-lg ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-2xl sm:rounded-lg sm:px-10 font-inclusive text-lg">
         <div class="mx-auto px-0">
             <p class="mb-3 text-black">
@@ -25,7 +25,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="{{ asset('storage/basics/main-instruments.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/main-tools.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -34,7 +34,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="{{ asset('storage/basics/instruments/high-quality-chefs-knife.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/tools/high-quality-chefs-knife.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -43,7 +43,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="{{ asset('storage/basics/instruments/paring-knives.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/tools/paring-knives.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -52,7 +52,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="{{ asset('storage/basics/instruments/cutting-boards.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/tools/cutting-boards.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -61,7 +61,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="{{ asset('storage/basics/instruments/digital-kitchen-scale.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/tools/digital-kitchen-scale.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -70,7 +70,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="{{ asset('storage/basics/instruments/measuring-cups-spoons.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/tools/measuring-cups-spoons.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -79,7 +79,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="{{ asset('storage/basics/instruments/instant-read-thermometer.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/tools/instant-read-thermometer.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -88,7 +88,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="{{ asset('storage/basics/instruments/spatulas.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/tools/spatulas.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -97,7 +97,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="{{ asset('storage/basics/instruments/food-turners.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/tools/food-turners.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -106,7 +106,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="{{ asset('storage/basics/instruments/stainless-steel-tongs.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/tools/stainless-steel-tongs.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
 
             <p class="mt-10 mb-3 text-black">
@@ -115,7 +115,7 @@
             </p>
 
             <div class="my-6 overflow-hidden rounded-md">
-                <img src="{{ asset('storage/basics/instruments/garlic-press.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
+                <img src="{{ asset('storage/basics/tools/garlic-press.webp') }}" alt="Best kitchen tools" class="w-full h-auto object-cover rounded-md" />
             </div>
         </div>
     </div>
