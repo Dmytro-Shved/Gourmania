@@ -8,7 +8,7 @@
 {{-- Useful links section --}}
 <div class="w-[320px] sm:w-[400px] md:w-[500px] lg:md:w-[550px] xl:md:w-[600px] mx-auto px-5">
     <div class="flex flex-row">
-        {{-- Tools --}}
+        {{-- TOOLS --}}
         <div>
             <button class="relative block overflow-hidden group w-full">
                 <a href="{{ route('tools') }}" class="block">

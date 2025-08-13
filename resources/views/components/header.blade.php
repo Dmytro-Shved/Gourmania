@@ -3,5 +3,5 @@
     <x-nav/>
 
     {{-- Search sidebar --}}
-    <x-search.sidebar/>
+    <x-sidebar/>
 </header>

@@ -7,7 +7,7 @@
     <x-nav.logo/>
 
     {{-- Search sidebar button --}}
-    <x-search.sidebar-btn/>
+    <x-sidebar-btn/>
 
     {{-- Desktop Menu --}}
     <x-nav.menus.desktop/>
