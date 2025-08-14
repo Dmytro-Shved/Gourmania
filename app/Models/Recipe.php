@@ -92,7 +92,9 @@ class Recipe extends Model
 
     public function scopePopular(Builder $query): Builder
     {
-        return $query->withCount([
+        return $query->whereHas('votes', fn ($q) => $q->where('vote', 1))
+            ->orWhereHas('savedByUsers')
+            ->withCount([
             'votes as likesCount' => fn (Builder $query) => $query->where('vote', 1),
             'votes as dislikesCount' => fn (Builder $query) => $query->where('vote', -1),
             'savedByUsers as savedCount',

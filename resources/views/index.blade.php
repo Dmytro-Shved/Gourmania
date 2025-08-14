@@ -17,19 +17,26 @@
         {{-- Hero section--}}
         <x-sections.hero>
             <x-slot name="stats">
-                <x-sections.stats :stats="$stats" />
+                <x-sections.stats :$stats />
             </x-slot>
         </x-sections.hero>
 
-        {{-- Carousel section--}}
-        <x-sections.carousel/>
+        {{-- Sections --}}
+        @forelse($sections as $section)
+            @if($section['type'] == 'popular')
+                {{-- Carousel section--}}
+                <x-sections.carousel :$section/>
+            @else
+                {{-- Recipe section --}}
+                <x-sections.recipe :$section/>
+            @endif
+        @empty
+            <div class="flex justify-center my-5">
+                <span class="text-white bg-gourmania p-2 rounded-lg">No available sections</span>
+            </div>
+        @endforelse
 
-        {{-- Recipe section --}}
-        @foreach($sections as $section)
-            <x-sections.recipe :section="$section"/>
-        @endforeach
-
-        {{-- tools section --}}
+        {{-- Tools section --}}
         <x-sections.tools/>
 
         {{-- Techniques Section --}}

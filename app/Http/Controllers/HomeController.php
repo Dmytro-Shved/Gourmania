@@ -6,6 +6,8 @@ use App\Models\Cuisine;
 use App\Models\HomepageSection;
 use App\Models\Recipe;
 use App\Models\User;
+use App\View\Components\homepage;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -53,6 +55,7 @@ class HomeController extends Controller
                 return [
                     'id' => $section->slug,
                     'title' => $section->name,
+                    'type' => $section->type,
                     'recipes' => match ($section->type) {
                         'popular' => $popularRecipes->take($section->limit),
                         'latest' => $latestRecipes->take($section->limit),
@@ -73,14 +76,7 @@ class HomeController extends Controller
            ];
         });
 
-        $authorsOfTheWeek = cache()->remember('authors-section', 60*60*24, function (){
-            return User::select(['id','name', 'photo'])->withCount([
-                'recipes as popular_recipes_count' => fn($query) => $query->popular()
-            ])
-                ->having('popular_recipes_count', '>', 0)
-                ->orderByDesc('popular_recipes_count')
-                ->get();
-        });
+        $authorsOfTheWeek = [];
 
         return view('index', compact('sections', 'stats', 'authorsOfTheWeek'));
     }

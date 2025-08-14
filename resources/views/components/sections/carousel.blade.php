@@ -1,3 +1,4 @@
+@props(['section'])
 {{-- Popular recipes --}}
 <div class="title-container">
     <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
@@ -10,32 +11,16 @@
 <div
     x-data="{
         slides: [
-{{--            @foreach($recipes as $recipe)--}}
-{{--                {--}}
-{{--                    imgSrc: '{{ asset('storage/'. $recipe->image) }}',--}}
-{{--                    imgAlt: {{ $recipe->name . ' image' }},--}}
-{{--                    title: {{ $recipe->name }},--}}
-{{--                    location: '$recipe->name',--}}
-{{--                    ctaUrl: '/recipes?dish_category='{{ $recipe->dish_category_id }},--}}
-{{--                    ctaText: 'See more'--}}
-{{--                },--}}
-{{--            @endforeach--}}
+        @foreach($section['recipes'] as $recipe)
             {
-                imgSrc: '{{ asset('storage/recipes-images/pizza_pastry_appetizing_117398_1920x1080-min-opt.webp') }}',
-                imgAlt: 'Grilled steak with vegetables',
-                title: 'Hot Pizza',
-                location: 'United Kingdom',
-                ctaUrl: '#',
+                imgSrc: '{{ asset('storage/'. $recipe->image) }}',
+                imgAlt: '{{ $recipe->name }}',
+                title: '{{ $recipe->name }}',
+                location: '{{ $recipe->cuisine->name }}',
+                ctaUrl: '{{ route('recipes.guide', $recipe->id) }}',
                 ctaText: 'See more'
             },
-            {
-                imgSrc: '{{ asset('storage/recipes-images/salmon_teriyaki_fish_108544_1920x1080-min-opt.webp') }}',
-                imgAlt: 'Grilled salmon with sauce',
-                title: 'Fresh Fish',
-                location: 'Norway',
-                ctaUrl: '#',
-                ctaText: 'See more'
-            },
+        @endforeach
         ],
         currentSlideIndex: 0,
         isReady: false,
