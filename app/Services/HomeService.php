@@ -101,7 +101,7 @@ class HomeService
                     $query->selectRaw(
                         'COUNT(CASE WHEN votes.vote = 1 THEN 1 END) * 1 + ' .
                         'COUNT(CASE WHEN votes.vote = -1 THEN 1 END) * 1 + ' .
-                        'COUNT(DISTINCT saved_recipes.id) * 2'
+                        'COUNT(saved_recipes.id) * 2'
                     )
                         ->from('recipes')
                         ->leftJoin('votes', 'votes.recipe_id', '=', 'recipes.id')
