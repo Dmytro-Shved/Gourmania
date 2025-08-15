@@ -6,14 +6,12 @@ use App\Models\Cuisine;
 use App\Models\HomepageSection;
 use App\Models\Recipe;
 use App\Models\User;
-use App\View\Components\homepage;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
     public function __invoke()
     {
-        $sections = cache()->remember('homepage-sections', 60*60*24, function (){
+        $sections = cache()->remember('homepage-sections', now()->addDay(), function (){
             // 1. Get all homepage sections
             $homepageSections = HomepageSection::visible()->ordered()->get();
 
@@ -68,7 +66,7 @@ class HomeController extends Controller
             });
         });
 
-        $stats = cache()->remember('statistics-section', 60*60*24, function (){
+        $stats = cache()->remember('statistics-section', now()->addDay(), function (){
            return [
                'recipesCount' => Recipe::count(),
                'authorsCount' => User::count(),
@@ -76,7 +74,29 @@ class HomeController extends Controller
            ];
         });
 
-        $authorsOfTheWeek = [];
+        $authorsOfTheWeek = cache()->remember('authors-of-the-week', now()->addDay(), function (){
+            return User::query()
+                ->select([
+                    'id',
+                    'name',
+                    'photo',
+                ])
+                ->selectSub(function ($query) {
+                    $query->selectRaw(
+                        'COUNT(CASE WHEN votes.vote = 1 THEN 1 END) * 1 + ' .
+                        'COUNT(CASE WHEN votes.vote = -1 THEN 1 END) * 1 + ' .
+                        'COUNT(DISTINCT saved_recipes.id) * 2'
+                    )
+                        ->from('recipes')
+                        ->leftJoin('votes', 'votes.recipe_id', '=', 'recipes.id')
+                        ->leftJoin('saved_recipes', 'saved_recipes.recipe_id', '=', 'recipes.id')
+                        ->whereColumn('recipes.user_id', 'users.id');
+                }, 'popularity_score')
+                ->having('popularity_score', '>', 0)
+                ->orderByDesc('popularity_score')
+                ->limit(12)
+                ->get();
+        });
 
         return view('index', compact('sections', 'stats', 'authorsOfTheWeek'));
     }
