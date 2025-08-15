@@ -43,6 +43,6 @@
         <x-sections.techniques/>
 
         {{-- Authors Sections --}}
-        <x-sections.authors :authors="$authorsOfTheWeek"/>
+        <x-sections.authors :authors="$topAuthors"/>
     </div>
 </x-layout>
