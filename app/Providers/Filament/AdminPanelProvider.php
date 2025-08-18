@@ -30,6 +30,9 @@ class AdminPanelProvider extends PanelProvider
             ->profile()
             ->colors([
                 'primary' => '#AE763E',
+                'cyan' => '#88c9cb',
+                'olive' => '#ccd5ae',
+                'golden' => '#fedc56'
             ])
             ->font('Inclusive Sans')
             ->brandName('Gourmaina')
