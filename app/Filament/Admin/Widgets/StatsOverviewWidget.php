@@ -7,9 +7,12 @@ use App\Models\Recipe;
 use App\Models\User;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
+use Illuminate\Support\Carbon;
 
 class StatsOverviewWidget extends BaseWidget
 {
+    protected static ?int $sort = 1;
+
     protected function getStats(): array
     {
         return [
@@ -20,15 +23,15 @@ class StatsOverviewWidget extends BaseWidget
                 ->color('cyan'),
 
             // Users
-            Stat::make('Authors', User::count())
+            Stat::make('Users', User::count())
                 ->description($this->getMonthlyComparison(User::class))
-                ->descriptionIcon('heroicon-m-arrow-trending-up')
+                ->descriptionIcon('heroicon-m-user')
                 ->color('olive'),
 
-            // Cuisines
-            Stat::make('Cuisines', Cuisine::count())
-                ->description($this->getMonthlyComparison(Cuisine::class))
-                ->descriptionIcon('heroicon-m-arrow-trending-up')
+            // Today's recipes
+            Stat::make("Today' recipes", Recipe::whereDate('created_at', Carbon::today())->count())
+                ->description("Recipes created today")
+                ->descriptionIcon('heroicon-m-check-circle')
                 ->color('golden'),
         ];
     }
@@ -40,7 +43,7 @@ class StatsOverviewWidget extends BaseWidget
 
         $percentage = $this->getPercentageChange($current, $previous);
 
-        return "For this month: {$current} ({$percentage})";
+        return "{$percentage} from last month";
     }
 
     protected function getPercentageChange(float $current, float $previous): string
