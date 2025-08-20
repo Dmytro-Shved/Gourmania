@@ -2,7 +2,6 @@
 
 namespace App\Filament\Admin\Widgets;
 
-use App\Models\Cuisine;
 use App\Models\Recipe;
 use App\Models\User;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
@@ -12,6 +11,7 @@ use Illuminate\Support\Carbon;
 class StatsOverviewWidget extends BaseWidget
 {
     protected static ?int $sort = 1;
+    protected static ?string $pollingInterval = '60s';
 
     protected function getStats(): array
     {

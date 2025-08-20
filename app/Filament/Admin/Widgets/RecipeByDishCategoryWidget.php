@@ -9,6 +9,7 @@ class RecipeByDishCategoryWidget extends ChartWidget
 {
     protected static ?string $heading = 'Recipe by Category';
     protected static ?int $sort = 2;
+    protected static ?string $pollingInterval = '60s';
 
     protected function getData(): array
     {
