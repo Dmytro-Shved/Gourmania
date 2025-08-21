@@ -7,7 +7,7 @@ use Filament\Widgets\ChartWidget;
 
 class DailyRecipeTrendWidget extends ChartWidget
 {
-    protected static ?string $heading = 'Chart';
+    protected static ?string $heading = 'Daily Recipe Trend (Last 30 Days)';
     protected static ?int $sort = 3;
     protected static ?string $pollingInterval = '120s';
 
