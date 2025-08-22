@@ -29,7 +29,7 @@ class StatsOverviewWidget extends BaseWidget
                 ->color('olive'),
 
             // Today's recipes
-            Stat::make("Today' recipes", Recipe::whereDate('created_at', Carbon::today())->count())
+            Stat::make("Today's recipes", Recipe::whereDate('created_at', Carbon::today())->count())
                 ->description("Recipes created today")
                 ->descriptionIcon('heroicon-m-check-circle')
                 ->color('golden'),

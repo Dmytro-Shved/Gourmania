@@ -9,9 +9,9 @@
                     <button type="button" class="w-full py-6 text-left"
                             @click="selected !== 1 ? selected = 1 : selected = null">
                         <div class="flex items-center justify-between">
-                                        <span class="text-white font-inclusive hover:cursor-pointer">
-                                            Who we are?
-                                        </span>
+                            <span class="text-white font-inclusive hover:cursor-pointer">
+                                About us
+                            </span>
                         </div>
                     </button>
                     <div class="relative overflow-hidden transition-all max-h-0 duration-700" style=""
