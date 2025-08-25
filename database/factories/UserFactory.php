@@ -13,12 +13,12 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'dima',
-            'email' => 'dima@gmail.com',
-            'email_verified_at' => null,
-            'password' => '321',
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'email_verified_at' => now(),
+            'password' => bcrypt('secret'),
             'remember_token' => Str::random(10),
-            'role_id' => 2 // admin
+            'role_id' => 1, // user
         ];
     }
 
