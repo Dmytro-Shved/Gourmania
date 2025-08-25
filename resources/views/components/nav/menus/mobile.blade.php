@@ -70,7 +70,15 @@
     @endguest
     {{-- Links --}}
     <li class="p-2"><a href="{{ route('recipes.index') }}" class="mobile-menu-link">Recipes</a></li>
-    <li class="p-2"><a href="#" class="mobile-menu-link">Authors</a></li>
+    <li class="p-2">
+        <a href="#authors" @click.prevent="
+            mobileMenuIsOpen = false;
+            $nextTick(() => {
+                document.querySelector('#authors').scrollIntoView({ behavior: 'smooth' })
+            });"
+           class="mobile-menu-link">Authors
+        </a>
+    </li>
     <li class="p-2"><a href="{{ route('basics') }}" class="mobile-menu-link">Basics</a></li>
     <li class="p-2"><a href="{{ route('recipes.create') }}" class="mobile-menu-link tracking-wider text-white transition-colors duration-300 transform p-2 md:w-auto focus:outline-none bg-[#592D00] rounded-lg hover:bg-[#C58F5C]">Add recipe</a></li>
 
