@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 return new class extends Migration
 {
@@ -22,6 +24,19 @@ return new class extends Migration
             $table->integer('limit')->default(4);
             $table->timestamps();
         });
+
+        $sections = include(database_path('data/sections.php'));
+
+        $data = [];
+        foreach ($sections as $section) {
+            $section['slug'] = Str::slug($section['name']);
+            $section['created_at'] = now();
+            $section['updated_at'] = now();
+
+            $data[] = $section;
+        }
+
+        DB::table('homepage_sections')->insert($data);
     }
 
     /**

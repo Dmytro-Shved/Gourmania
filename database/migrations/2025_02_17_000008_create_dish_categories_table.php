@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 return new class extends Migration
 {
@@ -17,6 +19,17 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->timestamps();
         });
+
+        $categories = array_keys(include(database_path('data/dish_categories.php')));
+
+        foreach ($categories as $category){
+            DB::table('dish_categories')->insert([
+                'name' => $category,
+                'slug' => Str::slug($category),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 
     /**
