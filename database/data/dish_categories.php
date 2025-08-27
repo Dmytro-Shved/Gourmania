@@ -1,6 +1,6 @@
 <?php
 
-$categories = [
+return [
     'Breakfasts' => [
         'Porridges', 'Eggs', 'Omelette', 'Fried Eggs', 'Porridges with Water', 'Cottage Cheese Pancakes', 'Cottage Cheese Casserole',
         'Cottage Cheese Pancakes with Curd', 'Oatmeal', 'Rice Porridge', 'Milk Porridges', 'Frittata', 'Draniki', 'Millet Porridge',

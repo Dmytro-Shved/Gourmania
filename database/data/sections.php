@@ -1,6 +1,6 @@
 <?php
 
-$sections = [
+return [
     [
         'name' => 'Popular Recipes',
         'type' => 'popular',

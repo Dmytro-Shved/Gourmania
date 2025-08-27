@@ -39,7 +39,7 @@ return new class extends Migration
             DB::table('cuisines')->insert([
                 'name' => $country,
                 'created_at' => now(),
-                'updated_at' => now(),A
+                'updated_at' => now(),
             ]);
         }
     }
