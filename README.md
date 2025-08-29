@@ -6,18 +6,18 @@
 
 ## Gourmania is an open source project that lets you create and browse recipes.
 
-> [!WARNING]
-> It’s a beta version.
+>This project is under active development
+> 
+>  - core features are working
+>  - updates and improvements are ongoing
+>  - expect changes in future releases
 
 ## Table of contents
 
 - [Introduction](#introduction)
 - [Features](#features)
 - [Installation](#installation)
-- [Contact](#contact)
 - [Team](#team)
-- [Thank you, open source](#thank-you-open-source)
-
 
 ## Introduction
 
@@ -26,13 +26,12 @@ Gourmania is an open source project that enables you to create, search and save 
 ### Features
 
 - User profiles
-- Profile editing (name, photo, email, bio, birthday, gender)
-- Display of user’s own recipes
-- Step-by-step wizard form for creating and editing recipes
-- Individual recipe pages with ingredients and instructions
+- Display of user’s created, liked, saved recipes
+- Step-by-step wizard form for creating / editing recipes
+- Individual recipe page with ingredients and guide
 - Recipe library with pagination
-- Likes and dislikes for recipes 
-- Save recipes to personal cookbook with sorting and search
+- Likes / Dislikes for recipes 
+- Save recipes to personal cookbook
 - Global search for recipes by name
 - Advanced recipe filtering with dependent dropdowns
 - Quick filters by popularity, relevance, and time (week, month, year)
@@ -47,3 +46,60 @@ Gourmania is an open source project that enables you to create, search and save 
 
 ### Installation
 
+- Clone the repository
+
+```
+https://github.com/Dmytro-Shved/Gourmania.git
+```
+
+- Copy `.env.example` file to `.env` and edit database credentials there
+
+```
+copy .env.example .env
+```
+
+- Install dependencies
+
+```
+composer install
+npm install
+```
+
+- Generate key
+
+```
+php artisan key:generate
+```
+
+- Run migrations
+
+```
+php artisan migrate
+```
+
+- Seed the database with test data
+
+```
+php artisan db:seed
+```
+
+- Create a link
+
+```
+php artisan storage:link 
+``` 
+
+- Run the application
+
+```
+php artisan serve 
+npm run dev
+```
+- Launch the main URL and login with default credentials `admin@admin.com` | `1234567890`
+
+### Team
+
+At the moment the team consists of one person:
+- [Dmytro Shved](https://github.com/Dmytro-Shved)
+
+© 2025 Gourmania
