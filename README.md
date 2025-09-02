@@ -4,7 +4,7 @@
 
 <h1 align="center">Best choice for gourmets</h1>
 
-## Gourmania is an open source project that lets you create and browse recipes.
+## Gourmania is an open source project that lets you create, browse and store recipes.
 
 >This project is under active development
 > 
