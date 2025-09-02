@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
         // seed recipes table
         $this->call(RecipeSeeder::class);
 
+        // seed ingredients table
+        $this->call(IngredientsSeeder::class);
+
         // seed ingredient_recipe (pivot) table
         $this->call(IngredientRecipeSeeder::class);
 
