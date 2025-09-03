@@ -128,4 +128,20 @@
     .faq-question{
         @apply flex cursor-pointer list-none items-center justify-between font-medium;
     }
+
+    .markdown h1 {
+        @apply mb-5 text-2xl
+    }
+
+    .markdown h3 {
+        @apply mb-2 text-xl
+    }
+
+    .markdown p {
+        @apply mb-5 leading-relaxed
+    }
+
+    .markdown img {
+        @apply block my-6 mx-auto rounded-lg
+    }
 }

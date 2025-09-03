@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BasicsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -39,8 +40,8 @@ Route::middleware('auth')->group(function (){
 Route::view('/help/faq', 'help.faq')->name('faq');
 
 Route::view('/basics', 'basics.index')->name('basics');
-Route::view('/basics/tools', 'basics.tools')->name('tools');
-Route::view('/basics/techniques', 'basics.techniques')->name('techniques');
+Route::get('basics/tools', [BasicsController::class, 'tools'])->name('tools');
+Route::get('basics/techniques', [BasicsController::class, 'techniques'])->name('techniques');
 
 Route::fallback(function (){
      abort(404);

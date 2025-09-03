@@ -14,7 +14,7 @@
                 <a href="{{ route('tools') }}" class="block">
                     <img
                         class="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-105"
-                        src="{{ asset('storage/basics/useful-link-tools-min-opt.webp') }}"
+                        src="{{ asset('storage/basics/useful-link-tools.webp') }}"
                         alt="Basics"
                     >
                 </a>
@@ -27,7 +27,7 @@
                 <a href="{{ route('techniques') }}" class="block">
                     <img
                         class="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-105"
-                        src="{{ asset('storage/basics/useful-link-techniques-min-opt.webp') }}"
+                        src="{{ asset('storage/basics/useful-link-techniques.webp') }}"
                         alt="Techniques"
                     >
                 </a>
