@@ -102,4 +102,8 @@ npm run dev
 At the moment the team consists of one person:
 - [Dmytro Shved](https://github.com/Dmytro-Shved)
 
-© 2025 Gourmania
+## License
+
+Copyright © 2025 Gourmania
+
+Licensed under [the MIT License](/LICENSE.md).
