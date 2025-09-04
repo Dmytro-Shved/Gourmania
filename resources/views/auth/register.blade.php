@@ -77,7 +77,6 @@
                             :type="showPassword ? 'text' : 'password'"
                             class="@error('password') border-red-500 @enderror w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus pr-10"
                             placeholder="••••••••"
-                            autocomplete="new-password"
                         />
                         <button
                             type="button"
@@ -108,7 +107,6 @@
                             :type="showConfirmPassword ? 'text' : 'password'"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus pr-10"
                             placeholder="••••••••"
-                            autocomplete="new-password"
                         />
                         <button
                             type="button"
