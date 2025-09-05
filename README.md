@@ -26,6 +26,7 @@ Gourmania is an open source project that enables you to create, search and save 
 ### Features
 
 - User profiles
+- Authorization with Email Verification
 - Display of user’s created, liked, saved recipes
 - Step-by-step wizard form for creating / editing recipes
 - Individual recipe page with ingredients and guide
