@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\UserRegisteredEvent;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -18,13 +18,13 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // Send Welcome Email
-        event(new UserRegisteredEvent($user->name, $user->email));
-
         // Auth
         Auth::login($user);
 
+        // Dispatch Registered Event for Email Verification
+        event(new Registered($user));
+
         // Redirect with session message
-        return redirect()->route('home')->with('user_registered', 'You have successfully registered in our system!');
+        return redirect()->route('home')->with('user_registered', 'Check your inbox to verify your email!');
     }
 }

@@ -146,8 +146,9 @@
 
     <!-- Footer -->
     <div class="footer">
-        <p>If you would prefer to no longer receive messages like this, you can <a style="text-decoration: underline;color: #ffffff" href="#">unsubscribe</a>.</p>
-        <p><a style="text-decoration: underline;color: #ffffff" href="#">Privacy policy</a></p>
+        {{-- TODO: UPDATE THIS LINE WHEN PRIVACY AND POLICY WILL BE CREATED --}}
+        {{--<p>If you would prefer to no longer receive messages like this, you can <a style="text-decoration: underline;color: #ffffff" href="#">unsubscribe</a>.</p>--}}
+        {{--<p><a style="text-decoration: underline;color: #ffffff" href="#">Privacy policy</a></p>--}}
 
         <div>
             <a href="https://github.com/Dmytro-Shved" alt="Facebook">

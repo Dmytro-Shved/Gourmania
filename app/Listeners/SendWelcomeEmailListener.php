@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\UserRegisteredEvent;
+use App\Events\Verified;
 use App\Mail\WelcomeEmail;
 use Illuminate\Support\Facades\Mail;
 
@@ -19,7 +19,7 @@ class SendWelcomeEmailListener
     /**
      * Handle the event.
      */
-    public function handle(UserRegisteredEvent $event): void
+    public function handle(Verified $event): void
     {
         Mail::to($event->email)->send(new WelcomeEmail($event->name));
     }

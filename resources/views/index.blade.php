@@ -3,13 +3,13 @@
 
     @if(session()->has('user_registered'))
         {{-- Registered --}}
-        <x-session.message :message="session('user_registered')" title="Success!" type="success" />
+        <x-session.message :message="session('user_registered')" type="success" />
     @elseif(session()->has('logged_out'))
         {{-- Logged out --}}
-        <x-session.message :message="session('logged_out')" title="Logged out!" type="danger"/>
+        <x-session.message :message="session('logged_out')" type="danger"/>
     @elseif(session()->has('logged_in'))
         {{-- Logged in --}}
-        <x-session.message :message="session('logged_in')" title="Logged in!" type="success" />
+        <x-session.message :message="session('logged_in')" type="success" />
     @endif
 
     {{-- Main page--}}

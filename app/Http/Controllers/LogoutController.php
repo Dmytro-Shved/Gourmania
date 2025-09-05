@@ -13,6 +13,6 @@ class LogoutController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('home')->with('logged_out', "You're out of the system! See you again soon!");
+        return redirect()->route('home')->with('logged_out', "See you soon!");
     }
 }

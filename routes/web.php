@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BasicsController;
+use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -9,11 +10,10 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
+// Home Page
 Route::get('/', HomeController::class)->name('home');
-Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
-Route::get('/recipes/{recipe}/guide', [RecipeController::class, 'guide'])->name('recipes.guide');
-Route::get('/recipes/search', [RecipeController::class, 'search'])->name('recipes.search');
 
+// Guest routes
 Route::middleware('guest')->group(function (){
     Route::view('/login', 'auth.login')->name('login-page');
     Route::post('/login', LoginController::class)->name('login');
@@ -22,23 +22,50 @@ Route::middleware('guest')->group(function (){
     Route::post('/register', RegisterController::class)->name('register');
 });
 
+// Show Profile
 Route::get('/users/profiles/{user}', [ProfileController::class, 'show_profile'])->name('profiles.show');
 
+// Show Recipes
+Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
+Route::get('/recipes/{recipe}/guide', [RecipeController::class, 'guide'])->name('recipes.guide');
+Route::get('/recipes/search', [RecipeController::class, 'search'])->name('recipes.search');
+
+// Email Verification
 Route::middleware('auth')->group(function (){
-    Route::post('/logout', LogoutController::class)->name('logout');
-
-    Route::view('/recipes/create','recipes.recipe-create')->name('recipes.create');
-    Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'showEditForm'])->name('recipes.edit');
-    Route::delete('/recipes/{recipe}', [RecipeController::class, 'destroy'])->name('recipes.destroy');
-
-    Route::get('/users/profiles/{user}/saved', [ProfileController::class, 'savedRecipes'])->name('profiles.saved');
-    Route::get('/users/profiles/{user}/liked', [ProfileController::class, 'likedRecipes'])->name('profiles.liked');
-    Route::get('/users/profiles/{user}/edit', [ProfileController::class, 'edit_profile'])->name('profiles.edit');
-    Route::put('/users/profiles/{user}', [ProfileController::class, 'update_profile'])->name('profiles.update');
+    Route::get('/email/verify',[EmailVerificationController::class, 'notice'])
+        ->name('verification.notice');
+    Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
+        ->middleware('signed')
+        ->name('verification.verify');
+    Route::post('/email/verification-notification', [EmailVerificationController::class, 'resend'])
+        ->middleware('throttle:6,1')
+        ->name('verification.send');
 });
 
+// Auth routes
+Route::middleware('auth')->group(function (){
+    // Logout
+    Route::post('/logout', LogoutController::class)->name('logout');
+
+    // Verified Routes
+    Route::middleware('verified')->group(function (){
+        // Update Recipe
+        Route::view('/recipes/create','recipes.recipe-create')->name('recipes.create');
+        Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'showEditForm'])->name('recipes.edit');
+        Route::delete('/recipes/{recipe}', [RecipeController::class, 'destroy'])->name('recipes.destroy');
+
+        // Update Profile
+        Route::get('/users/profiles/{user}/saved', [ProfileController::class, 'savedRecipes'])->name('profiles.saved');
+        Route::get('/users/profiles/{user}/liked', [ProfileController::class, 'likedRecipes'])->name('profiles.liked');
+        Route::get('/users/profiles/{user}/edit', [ProfileController::class, 'edit_profile'])->name('profiles.edit');
+        Route::put('/users/profiles/{user}', [ProfileController::class, 'update_profile'])->name('profiles.update');
+    });
+});
+
+// FAQ Page
 Route::view('/help/faq', 'help.faq')->name('faq');
 
+// Basics routes
 Route::view('/basics', 'basics.index')->name('basics');
 Route::get('basics/tools', [BasicsController::class, 'tools'])->name('tools');
 Route::get('basics/techniques', [BasicsController::class, 'techniques'])->name('techniques');

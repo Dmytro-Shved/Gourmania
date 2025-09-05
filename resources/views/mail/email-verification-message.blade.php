@@ -24,17 +24,17 @@
         .header img {
             max-width: 300px;
         }
-        .main-content {
+        .content {
             margin-top: 20px;
             padding: 20px;
             text-align: center;
         }
-        .main-content h1 {
+        .content h1 {
             font-size: 24px;
             color: #253858;
             margin-bottom: 20px;
         }
-        .main-content p {
+        .content p {
             font-size: 16px;
             color: #5e6c84;
             line-height: 1.5;
@@ -42,10 +42,11 @@
         }
         .button {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 10px 50px;
             background-color: #AE763E;
             text-decoration: none;
             border-radius: 4px;
+            font-size: 20px;
         }
         .footer {
             text-align: center;
@@ -70,29 +71,29 @@
 <div class="container">
     <!-- Header -->
     <div class="header">
-        <img src="https://i.ibb.co/C98yFvx/Component-1.png" alt="Gourmania Logo">
+        <img src="https://images2.imgbox.com/14/a0/jLmx8RVy_o.png" alt="Gourmania Logo">
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <h1>Verify your email</h1>
-        <p>Please verify your email address by clicking the link below</p>
+    <!-- Content -->
+    <div class="content">
+        <h1>Please Confirm Your Email Addres</h1>
+        <p>You'll be able to create your recipes in seconds. We just need you to confirm that you're a human.</p>
     </div>
 
     <div style="text-align: center;">
-        <a href="{{ $url }}" class="button" style="color: #ffffff">Verify my account</a>
+        <a href="{{ $url }}" class="button" style="color: #ffffff">I'm Human</a>
     </div>
 
     <div class="info">
-        <img src="https://i.ibb.co/ycYyc0xy/hand-with-dish.png" alt="Chef Hat" style="max-width: 200px; margin-top: 15px">
-        <p>Thanks, <br>The Gourmania Team</p>
+        <img src="https://images2.imgbox.com/3a/fd/ime7uKJ7_o.png" alt="Hand Dish" style="max-width: 200px; margin-top: 15px">
+    </div>
+
+    <div class="content">
+        <p>Thanks, <br>Gourmania</p>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-        <p>If you would prefer to no longer receive messages like this, you can <a style="text-decoration: underline;color: #ffffff" href="#">unsubscribe</a>.</p>
-        <p><a style="text-decoration: underline;color: #ffffff" href="#">Privacy policy</a></p>
-
         <div>
             <a href="https://github.com/Dmytro-Shved" alt="Facebook">
                 <img src="https://img.icons8.com/?size=100&id=hbVaJ5lgpaax&format=png&color=ffffff" width="35" height="35" alt="Facebook">
