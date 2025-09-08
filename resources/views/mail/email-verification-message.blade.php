@@ -63,7 +63,7 @@
             text-align: center;
             font-size: 18px;
             color: #253858;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
     </style>
 </head>

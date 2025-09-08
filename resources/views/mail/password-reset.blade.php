@@ -25,20 +25,20 @@
             max-width: 300px;
         }
         .content {
-            margin-top: 20px;
+            margin-top: 5px;
             padding: 20px;
             text-align: center;
         }
         .content h1 {
             font-size: 24px;
             color: #253858;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         .content p {
             font-size: 16px;
             color: #5e6c84;
             line-height: 1.5;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
         }
         .button {
             display: inline-block;
@@ -63,7 +63,7 @@
             text-align: center;
             font-size: 18px;
             color: #253858;
-            margin-bottom: 10px;
+            margin-bottom: 1px;
         }
     </style>
 </head>
@@ -76,7 +76,7 @@
 
     <!-- Content -->
     <div class="content">
-        <h1>Hello</h1>
+        <h1>Reset Your Password</h1>
         <p>You are receiving this email because we received a password reset request for your account.</p>
     </div>
 
@@ -85,7 +85,7 @@
     </div>
 
     <div class="content">
-        <p>This password reset link will expire in <strong>60</strong> minutes.</p>
+        <p>This password reset link will expire in <strong>60 minutes</strong>.</p>
         <p>If you did not request a password reset, no further action is required.</p>
     </div>
 
