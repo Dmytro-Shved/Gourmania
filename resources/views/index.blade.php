@@ -4,12 +4,15 @@
     @if(session()->has('user_registered'))
         {{-- Registered --}}
         <x-session.message :message="session('user_registered')" type="success" />
-    @elseif(session()->has('logged_out'))
-        {{-- Logged out --}}
-        <x-session.message :message="session('logged_out')" type="danger"/>
+    @elseif(session()->has('email_verified'))
+        {{-- Logged in --}}
+        <x-session.message :message="session('email_verified')" type="success" />
     @elseif(session()->has('logged_in'))
         {{-- Logged in --}}
         <x-session.message :message="session('logged_in')" type="success" />
+    @elseif(session()->has('logged_out'))
+        {{-- Logged out --}}
+        <x-session.message :message="session('logged_out')" type="danger"/>
     @endif
 
     {{-- Main page--}}

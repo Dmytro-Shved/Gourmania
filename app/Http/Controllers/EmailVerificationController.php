@@ -22,7 +22,7 @@ class EmailVerificationController extends Controller
         // Send Welcome Email
         event(new Verified($request->user()->name, $request->user()->email));
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('email_verified', "Your email has been confirmed, thank you!");
     }
 
     // Email Verification Resending
