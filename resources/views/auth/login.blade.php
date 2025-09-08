@@ -32,9 +32,12 @@
 </head>
 <body>
 
+{{-- Password Reset Status --}}
+@if(session()->has('status'))
+    <x-session.message :message="session('status')" type="info" />
+@endif
+
 <div class="min-h-screen bg-gray-100 flex items-center justify-center p-4 font-inclusive">
-
-
     <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Log In</h2>
 
@@ -90,7 +93,7 @@
                            class="rounded border-gray-300 text-[#AE763E] focus:ring-[#AE763E]"/>
                     <span class="ml-2 text-[12px] text-gray-600">Remember me</span>
                 </label>
-                <a href="#" class="text-[13px] text-[#AE763E] hover:underline">Forgot password?</a>
+                <a href="{{ route('password.request') }}" class="text-[13px] text-[#AE763E] hover:underline">Forgot password?</a>
             </div>
 
             @error('login-failed')
@@ -112,7 +115,6 @@
     </div>
 </div>
 
-{{--<script src="../path/to/flowbite/dist/flowbite.min.js"></script>--}}
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 @livewireScripts

@@ -3,10 +3,10 @@
 
     @if(session()->has('user_registered'))
         {{-- Registered --}}
-        <x-session.message :message="session('user_registered')" type="success" />
+        <x-session.message :message="session('user_registered')" type="info" />
     @elseif(session()->has('email_verified'))
-        {{-- Logged in --}}
-        <x-session.message :message="session('email_verified')" type="success" />
+        {{-- Email Verified --}}
+        <x-session.message :message="session('email_verified')" type="info" />
     @elseif(session()->has('logged_in'))
         {{-- Logged in --}}
         <x-session.message :message="session('logged_in')" type="success" />

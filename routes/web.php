@@ -5,6 +5,7 @@ use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RegisterController;
@@ -20,6 +21,12 @@ Route::middleware('guest')->group(function (){
 
     Route::view('/register', 'auth.register')->name('register-page');
     Route::post('/register', RegisterController::class)->name('register');
+
+    // Password Reset routes
+    Route::view('/forgot-password', 'auth.forgot-password')->name('password.request');
+    Route::post('/forgot-password', [PasswordResetController::class, 'email'])->name('password.email');
+    Route::get('/reset-password/{token}', [PasswordResetController::class, 'reset'])->name('password.reset');
+    Route::post('/reset-password', [PasswordResetController::class, 'update'])->name('password.update');
 });
 
 // Show Profile
@@ -30,7 +37,7 @@ Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index'
 Route::get('/recipes/{recipe}/guide', [RecipeController::class, 'guide'])->name('recipes.guide');
 Route::get('/recipes/search', [RecipeController::class, 'search'])->name('recipes.search');
 
-// Email Verification
+// Email Verification routes
 Route::middleware('auth')->group(function (){
     Route::view('/email/verify', 'auth.verify-email')->name('verification.notice');
     Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
