@@ -8,12 +8,6 @@ use App\Events\Verified;
 
 class EmailVerificationController extends Controller
 {
-    // Email Verification Notice
-    public function notice()
-    {
-        return view('mail.verify-email');
-    }
-
     // Email Verification Handler
     public function verify(EmailVerificationRequest $request)
     {

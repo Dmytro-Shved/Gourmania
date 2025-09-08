@@ -32,8 +32,7 @@ Route::get('/recipes/search', [RecipeController::class, 'search'])->name('recipe
 
 // Email Verification
 Route::middleware('auth')->group(function (){
-    Route::get('/email/verify',[EmailVerificationController::class, 'notice'])
-        ->name('verification.notice');
+    Route::view('/email/verify', 'auth.verify-email')->name('verification.notice');
     Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
         ->middleware('signed')
         ->name('verification.verify');
