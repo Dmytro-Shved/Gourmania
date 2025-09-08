@@ -133,8 +133,16 @@
         @apply mb-5 text-2xl
     }
 
+    .markdown h2 {
+        @apply mb-5 mt-10 text-2xl font-bold
+    }
+
     .markdown h3 {
         @apply mb-2 text-xl
+    }
+
+    .markdown li {
+        @apply text-black
     }
 
     .markdown p {

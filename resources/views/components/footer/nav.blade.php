@@ -5,6 +5,8 @@
         <a href="{{ route('recipes.index') }}" class="quick-link">Recipes</a>
         <a href="#authors" class="quick-link">Authors</a>
         <a href="{{ route('basics') }}" class="quick-link">Basics</a>
+        <a href="{{ route('privacy') }}" class="quick-link">Privacy</a>
+        <a href="{{ route('terms') }}" class="quick-link">Terms</a>
         <a href="{{ route('faq') }}" class="quick-link">FAQ</a>
     </div>
 </div>

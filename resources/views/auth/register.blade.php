@@ -126,6 +126,12 @@
                 </div>
             </div>
 
+            <div class="flex items-center justify-between">
+                <label class="flex items-start">
+                    <span class="ml-2 text-[13px] md:text-[14px] text-gray-600">Registration signifies that you have read and agree to the <a href="{{ route('privacy') }}" class="text-[#AE763E] underline">Privacy Policy</a> and <a href="{{ route('terms') }}" class="text-[#AE763E] underline">Terms of Use</a>.</span>
+                </label>
+            </div>
+
             <button type="submit" class="w-full bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
                 Continue
             </button>

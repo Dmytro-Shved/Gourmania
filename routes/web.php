@@ -3,6 +3,7 @@
 use App\Http\Controllers\BasicsController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LegalController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PasswordResetController;
@@ -10,6 +11,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
+
+Route::view('/privacy', 'ad');
 
 // Home Page
 Route::get('/', HomeController::class)->name('home');
@@ -77,6 +80,10 @@ Route::view('/help/faq', 'help.faq')->name('faq');
 Route::view('/basics', 'basics.index')->name('basics');
 Route::get('basics/tools', [BasicsController::class, 'tools'])->name('tools');
 Route::get('basics/techniques', [BasicsController::class, 'techniques'])->name('techniques');
+
+// Legal routes
+Route::get('/privacy', [LegalController::class, 'privacy'])->name('privacy');
+Route::get('/terms', [LegalController::class, 'terms'])->name('terms');
 
 Route::fallback(function (){
      abort(404);
