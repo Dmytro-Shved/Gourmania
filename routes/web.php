@@ -21,12 +21,6 @@ Route::middleware('guest')->group(function (){
 
     Route::view('/register', 'auth.register')->name('register-page');
     Route::post('/register', RegisterController::class)->name('register');
-
-    // Password Reset routes
-    Route::view('/forgot-password', 'auth.forgot-password')->name('password.request');
-    Route::post('/forgot-password', [PasswordResetController::class, 'email'])->name('password.email');
-    Route::get('/reset-password/{token}', [PasswordResetController::class, 'reset'])->name('password.reset');
-    Route::post('/reset-password', [PasswordResetController::class, 'update'])->name('password.update');
 });
 
 // Show Profile
@@ -37,7 +31,7 @@ Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index'
 Route::get('/recipes/{recipe}/guide', [RecipeController::class, 'guide'])->name('recipes.guide');
 Route::get('/recipes/search', [RecipeController::class, 'search'])->name('recipes.search');
 
-// Email Verification routes
+// Email Verification
 Route::middleware('auth')->group(function (){
     Route::view('/email/verify', 'auth.verify-email')->name('verification.notice');
     Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
@@ -46,6 +40,14 @@ Route::middleware('auth')->group(function (){
     Route::post('/email/verification-notification', [EmailVerificationController::class, 'resend'])
         ->middleware('throttle:6,1')
         ->name('verification.send');
+});
+
+// Password Reset
+Route::middleware('guest')->group(function (){
+    Route::view('/forgot-password', 'auth.forgot-password')->name('password.request');
+    Route::post('/forgot-password', [PasswordResetController::class, 'email'])->name('password.email');
+    Route::get('/reset-password/{token}', [PasswordResetController::class, 'reset'])->name('password.reset');
+    Route::post('/reset-password', [PasswordResetController::class, 'update'])->name('password.update');
 });
 
 // Auth routes
