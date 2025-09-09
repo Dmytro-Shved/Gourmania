@@ -12,8 +12,6 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/privacy', 'ad');
-
 // Home Page
 Route::get('/', HomeController::class)->name('home');
 
@@ -26,8 +24,12 @@ Route::middleware('guest')->group(function (){
     Route::post('/register', RegisterController::class)->name('register');
 });
 
-// Show Profile
-Route::get('/users/profiles/{user}', [ProfileController::class, 'show_profile'])->name('profiles.show');
+// Profile
+Route::get('/users/profiles/{user}', [ProfileController::class, 'showProfile'])->name('profiles.show');
+Route::get('/users/profiles/{user}/saved', [ProfileController::class, 'savedRecipes'])->name('profiles.saved');
+Route::get('/users/profiles/{user}/liked', [ProfileController::class, 'likedRecipes'])->name('profiles.liked');
+Route::get('/users/profiles/{user}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
+Route::put('/users/profiles/{user}', [ProfileController::class, 'update'])->name('profiles.update');
 
 // Show Recipes
 Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
@@ -62,14 +64,8 @@ Route::middleware('auth')->group(function (){
     Route::middleware('verified')->group(function (){
         // Update Recipe
         Route::view('/recipes/create','recipes.recipe-create')->name('recipes.create');
-        Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'showEditForm'])->name('recipes.edit');
+        Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'edit'])->name('recipes.edit');
         Route::delete('/recipes/{recipe}', [RecipeController::class, 'destroy'])->name('recipes.destroy');
-
-        // Update Profile
-        Route::get('/users/profiles/{user}/saved', [ProfileController::class, 'savedRecipes'])->name('profiles.saved');
-        Route::get('/users/profiles/{user}/liked', [ProfileController::class, 'likedRecipes'])->name('profiles.liked');
-        Route::get('/users/profiles/{user}/edit', [ProfileController::class, 'edit_profile'])->name('profiles.edit');
-        Route::put('/users/profiles/{user}', [ProfileController::class, 'update_profile'])->name('profiles.update');
     });
 });
 

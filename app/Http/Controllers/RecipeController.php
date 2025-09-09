@@ -31,7 +31,7 @@ class RecipeController extends Controller
         return view('recipes.searched-recipes', compact('q'));
     }
 
-    public function showEditForm(Recipe $recipe)
+    public function edit(Recipe $recipe)
     {
         Gate::authorize('edit', $recipe);
 

@@ -10,18 +10,9 @@
         <span class="flex-grow border-s border-8 border-[#AE763E] md:border-[10px] lg:border-[12px]"></span>
     </div>
 
+    {{-- Session message --}}
     @if(session()->has('profile_updated'))
-        <!-- User Profile Updated -->
-        <div x-data="{ show : true }" class="absolute self-end end-1 z-30">
-            <div x-show="show" x-transition
-                 class="bg-green-500 border text-white px-4 py-3 rounded relative font-inclusive w-[250px]" role="alert">
-                <p>Updated!</p>
-                <span class="block sm:inline">{{ session('profile_updated') }}</span>
-                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-                    <svg  @click="show = false" class="fill-current h-6 w-6 text-white" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-                </span>
-            </div>
-        </div>
+        <x-session.message :message="session('profile_updated')" type="info" />
     @endif
 
     <div class="bg-gray-100 font-inclusive">
@@ -29,27 +20,27 @@
             <div class="grid grid-cols-1 px-2">
                 {{-- Profile info section --}}
                 <div class="col-span-1 sm:col-span-5">
-                    <!-- Profile card -->
+                    {{-- Profile card --}}
                     <div class="bg-white shadow rounded-lg p-6">
                         <form action="{{ route('profiles.update', $user) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <!-- Users info -->
+                            {{-- Users info --}}
                             <div class="flex flex-col items-center relative">
                                 <div class="text-center">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Current photo:</label>
-                                    <!-- Current Photo -->
+                                    {{-- Current Photo --}}
                                     <img src="{{ asset('./storage/'. $user->photo) }}" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0" alt="User photo">
                                 </div>
 
-                                <!-- Choose new photo -->
+                                {{-- Choose new photo --}}
                                 <div class="mt-1 mb-4 max-w-[201px]" x-data="{ files: null }">
                                     <label for="photo" class="border border-gray-300 p-3 w-full block rounded-lg cursor-pointer my-2 overflow-x-auto whitespace-nowrap">
                                         <input name="photo" type="file" class="sr-only" id="photo" x-on:change="files = Object.values($event.target.files)">
                                         <span x-text="files ? files.map(file => file.name).join(', ') : 'New photo...'"></span>
                                     </label>
 
-                                    <!-- mini photo -->
+                                    {{-- Mini photo --}}
                                     <template x-if="files && files.length > 0">
                                         <div class="mt-2">
                                             <label class="block text-sm font-medium text-gray-700 mb-1">New photo:</label>
@@ -57,48 +48,12 @@
                                         </div>
                                     </template>
 
-                                    <!-- reset button -->
+                                    {{-- Reset button --}}
                                     <button type="reset" @click="files = null" class="bg-gourmania text-white text-sm px-3 py-1 rounded-lg mt-2">Reset</button>
                                 </div>
-
-                                <!-- under name text -->
-                                <div class="w-full overflow-x-auto flex items-center gap-1 justify-center">
-                                    <!-- Current Name -->
-                                    <div class="p-1">
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Current name:</label>
-                                        <input
-                                            name="name"
-                                            type="text"
-                                            class="w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus"
-                                            placeholder="Gordon"
-                                            value="{{ $user->name }}"
-                                        />
-
-                                        @error('name')
-                                        <p class="text-red-500">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <!-- Current Email -->
-                                <div class="p-1">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Current email:</label>
-                                    <input
-                                        name="email"
-                                        type="email"
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus"
-                                        placeholder="your@email.com"
-                                        value="{{ $user->email }}"
-                                    />
-
-                                    @error('email')
-                                    <p class="text-red-500 w-48 break-words">{{ $message }}</p>
-                                    @enderror
-                                </div>
                             </div>
-                            <!-- line -->
                             <hr class="my-6 border-t border-gray-300">
-                            <!-- Info -->
+                            {{-- Info --}}
                             <div class="flex flex-col">
                                 <div class="mb-2 text-center flex items-center w-full">
                                     <span class="flex-1 border-s border-4 border-[#AE763E]"></span>
@@ -106,7 +61,7 @@
                                     <span class="flex-1 border-s border-4 border-[#AE763E]"></span>
                                 </div>
                                 <ul class="list-disc pl-5 marker:text-[#AE763E]">
-                                    <!-- Gender Select -->
+                                    {{-- Gender Select --}}
                                     <li class="mb-2">Gender:
                                         <div class="relative flex w-full max-w-xs flex-col gap-1 text-on-surface dark:text-on-surface-dark">
                                             <select id="gender" name="gender" class="w-full appearance-none rounded-radius border border-gray-300 bg-surface-alt px-4 py-2 text-sm gourmania-focus disabled:cursor-not-allowed disabled:opacity-75 rounded-lg">
@@ -116,7 +71,7 @@
                                             </select>
                                         </div>
                                     </li>
-                                    <!-- Date Picker -->
+                                    {{-- Date Picker --}}
                                     <li class="mb-2">Birth:
                                         <div class="relative max-w-sm">
                                             <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
@@ -133,8 +88,8 @@
                                     </li>
                                 </ul>
                             </div>
-                            <!-- Description -->
-                            <div class="w-full">
+                            {{-- Bio --}}
+                            <div class="w-full my-5">
                                 <div class="mb-2 text-center flex items-center">
                                     <span class="flex-1 border-s border-4 border-[#AE763E]"></span>
                                     <span class="text-black text-lg font-bold mx-2">Bio</span>
@@ -150,6 +105,107 @@
                                     </div>
                                 </p>
                             </div>
+
+                            {{-- Credentials --}}
+                            <div class="w-full my-5">
+                                <div class="mb-2 text-center flex items-center">
+                                    <span class="flex-1 border-s border-4 border-[#AE763E]"></span>
+                                    <span class="text-black text-lg font-bold mx-2">Credentials</span>
+                                    <span class="flex-1 border-s border-4 border-[#AE763E]"></span>
+                                </div>
+
+                                {{-- Name --}}
+                                <div class="p-1 mb-1">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Current name:</label>
+                                    <input
+                                        name="name"
+                                        type="text"
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus"
+                                        placeholder="Gordon"
+                                        value="{{ $user->name }}"
+                                    />
+
+                                    @error('name')
+                                    <p class="text-red-500">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                {{-- Email --}}
+                                <div class="p-1 mb-1">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Current email:</label>
+                                    <input
+                                        name="email"
+                                        type="email"
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus"
+                                        placeholder="your@email.com"
+                                        value="{{ $user->email }}"
+                                    />
+
+                                    @error('email')
+                                    <p class="text-red-500 w-48 break-words">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div x-data="{ showPassword: false, showConfirmPassword: false }">
+                                    {{-- Password --}}
+                                    <div class="mt-1 p-1 mb-1">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                                        <div class="relative">
+                                            <input
+                                                name="password"
+                                                :type="showPassword ? 'text' : 'password'"
+                                                class="@error('password') border-red-500 @enderror w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus pr-10"
+                                                placeholder="••••••••"
+                                            />
+                                            <button
+                                                type="button"
+                                                @click="showPassword = !showPassword"
+                                                class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700"
+                                                title="Toggle visibility"
+                                            >
+                                                <svg x-show="!showPassword" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                                                </svg>
+                                                <svg x-show="showPassword" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        @error('password')
+                                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    {{-- Password Confirmation --}}
+                                    <div class="mt-1 p-1 mb-1">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                                        <div class="relative">
+                                            <input
+                                                name="password_confirmation"
+                                                :type="showConfirmPassword ? 'text' : 'password'"
+                                                class="w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus pr-10"
+                                                placeholder="••••••••"
+                                            />
+                                            <button
+                                                type="button"
+                                                @click="showConfirmPassword = !showConfirmPassword"
+                                                class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700"
+                                                title="Toggle visibility"
+                                            >
+                                                <svg x-show="!showConfirmPassword" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                                                </svg>
+                                                <svg x-show="showConfirmPassword" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <button type="submit" class="bg-gourmania hover:gourmania-hover transition-colors duration-200 rounded-lg text-white font-inclusive w-full  mt-5 p-2">Update</button>
                         </form>
                     </div>

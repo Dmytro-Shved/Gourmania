@@ -6,12 +6,13 @@ use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
     // Show Profile
-    public function show_profile(User $user)
+    public function showProfile(User $user)
     {
         // requires package: composer require ajcastro/eager-load-pivot-relation
         $userRecipes = $user->recipes()
@@ -27,7 +28,7 @@ class ProfileController extends Controller
     }
 
     // Show Edit Profile Page
-    public function edit_profile(User $user)
+    public function edit(User $user)
     {
         // Authorizing the action
         Gate::authorize('edit', $user->profile);
@@ -36,7 +37,7 @@ class ProfileController extends Controller
     }
 
     // Update Profile Data
-    public function update_profile(UpdateProfileRequest $request, User $user)
+    public function update(UpdateProfileRequest $request, User $user)
     {
         // Authorizing the action
         Gate::authorize('update', $user->profile);
@@ -52,6 +53,13 @@ class ProfileController extends Controller
             $path = Storage::disk('public')->put('user_logo', $request->photo);
         }
 
+        // If there is a new password in request, update it
+        if ($request->validated('password')){
+            $user->update(['password' => Hash::make($request->password)]);
+        }
+
+        $oldEmail = $user->email;
+
         // Validation
         $user->update([
             'name' => $request->validated('name'),
@@ -59,10 +67,16 @@ class ProfileController extends Controller
             'photo' => $path
         ]);
 
+        // If olf email is not was the validated one, send email verification message again
+        if ($oldEmail != $request->validated('email')){
+            $user->update(['email_verified_at' => null]);
+            $user->sendEmailVerificationNotification();
+        }
+
         $user->profile->update($request->only(['gender', 'birth_date', 'description']));
 
         // redirect
-        return redirect()->back()->with('profile_updated', 'Your profile was successfully updated!');
+        return redirect()->back()->with('profile_updated', 'Profile updated!');
     }
 
     public function savedRecipes(User $user)
