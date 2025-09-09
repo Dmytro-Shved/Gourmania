@@ -18,6 +18,11 @@ class UserProfilePolicy
         return $user->role_id == Role::IS_ADMIN || $user->id == $userProfile->user_id;
     }
 
+    public function delete(User $user, UserProfile $userProfile): bool
+    {
+        return $user->role_id == Role::IS_ADMIN || $user->id == $userProfile->user_id;
+    }
+
     public function viewSavedRecipes(User $user, UserProfile $userProfile): bool
     {
         return $user->role_id == Role::IS_ADMIN || $user->id == $userProfile->user_id;

@@ -13,6 +13,9 @@
     @elseif(session()->has('logged_out'))
         {{-- Logged out --}}
         <x-session.message :message="session('logged_out')" type="danger"/>
+    @elseif(session()->has('profile_deleted'))
+        {{-- Profile deleted --}}
+        <x-session.message :message="session('profile_deleted')" type="danger"/>
     @endif
 
     {{-- Main page--}}

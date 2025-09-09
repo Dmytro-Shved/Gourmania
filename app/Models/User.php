@@ -30,11 +30,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Can
         'email_verified_at'
     ];
 
-    /**
-     * Send a password reset notification to the user.
-     *
-     * @param  string  $token
-     */
+    // Send a password reset notification to the user.
     public function sendPasswordResetNotification($token): void
     {
         $this->notify(new ResetPasswordNotification($token));

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -77,6 +79,20 @@ class ProfileController extends Controller
 
         // redirect
         return redirect()->back()->with('profile_updated', 'Profile updated!');
+    }
+
+    // Delete Profile
+    public function destroy(Request $request, User $user)
+    {
+        // Authorizing the action
+        Gate::authorize('delete', $user->profile);
+
+        $request->session()->regenerateToken();
+
+        $user->delete();
+
+        // redirect
+        return redirect()->route('home')->with('profile_deleted', 'Profile deleted');
     }
 
     public function savedRecipes(User $user)

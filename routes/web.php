@@ -30,6 +30,7 @@ Route::get('/users/profiles/{user}/saved', [ProfileController::class, 'savedReci
 Route::get('/users/profiles/{user}/liked', [ProfileController::class, 'likedRecipes'])->name('profiles.liked');
 Route::get('/users/profiles/{user}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
 Route::put('/users/profiles/{user}', [ProfileController::class, 'update'])->name('profiles.update');
+Route::delete('/users/profiles/{user}', [ProfileController::class, 'destroy'])->name('profiles.destroy');
 
 // Show Recipes
 Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');

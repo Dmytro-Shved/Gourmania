@@ -2,14 +2,14 @@
 
 {{-- Recipe Card --}}
 <div x-data="{ open: false }" class="relative w-full max-w-[350px] sm:max-w-[550px] bg-white border border-black rounded-lg p-4 flex flex-row sm:flex-row font-inclusive min-h-[200px] sm:min-h-[205px]">
-    <!-- Image -->
+    {{-- Image --}}
     <a href="{{ route('recipes.guide', $recipe->id) }}" class="w-[128px] h-[128px]">
         <img class="w-[128px] h-[128px] object-cover border border-black" src="{{ asset('storage/'. $recipe->image) }}" alt="Recipe Image">
     </a>
 
-    <!-- info block -->
+    {{-- Info block --}}
     <div class="flex-1 ml-3 flex flex-col min-w-0">
-        <!-- recipe name -->
+        {{-- Recipe name --}}
         <div class="max-w-[350px]">
             <div class="line-clamp-1">
                 <a href="{{ route('recipes.guide', $recipe->id) }}" class="text-lg md:text-xl lg:text-2xl font-bold block">
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <!-- user info -->
+        {{-- User Info --}}
         <h4 class="flex items-center mt-1 gap-0.5">
             <a href="{{ route('profiles.show', $recipe->user->id) }}">
                 <img src="{{ asset('storage/'. $recipe->user->photo) }}" title="{{ $recipe->user->name }}" alt="User Photo" class="w-8 h-8 md:w-10 md:h-10 rounded-full">
@@ -26,11 +26,11 @@
             <p class="text-[16px] md:text-[18px]">{{ $recipe->user->name }}</p>
         </h4>
 
-        <!-- recipe info -->
+        {{-- Recipe Info --}}
         <div class="mt-2 flex flex-col gap-1 text-sm sm:text-[15px] lg:text-[16px] lg:flex-row">
             <div class="flex items-center gap-1 relative">
                 {{ $recipe->ingredients->count() }} ingredients
-                <!-- Open mini ingredients list -->
+                {{-- Open mini ingredients list --}}
                 <button x-on:click="open = true">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                          stroke-width="1.5" stroke="currentColor">
@@ -39,13 +39,13 @@
                 </button>
             </div>
 
-            <!-- Servings -->
+            {{-- Servings --}}
             <p class="flex items-center gap-1">
                 <img class="w-5 h-5" src="{{ asset('storage/objects/plate.svg') }}" alt="plate">
                 {{ $recipe->servings }} servings
             </p>
 
-            <!-- Cook time -->
+            {{-- Cook Time --}}
             <p class="flex items-center gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1"
                      stroke="currentColor">
@@ -56,9 +56,9 @@
             </p>
         </div>
 
-        <!-- Recipe stats -->
+        {{-- Recipe Stats --}}
         <div class="absolute bottom-1 sm:bottom-2 right-2 text-sm flex items-center gap-2">
-            <!-- Category & Cuisine -->
+            {{-- Category & Cuisine --}}
             <div class="flex-col text-sm text-center">
                 <a class="hover:underline text-[#AE763E]" href="{{ route('recipes.index', ['dish_category' => $recipe->dishCategory->id]) }}">
                     {{ $recipe->dishCategory->name }}
@@ -69,7 +69,8 @@
                     </a>
                 </span>
             </div>
-            <!-- Saved -->
+
+            {{-- Saved --}}
             <div class="flex items-center gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="size-5 sm:size-5">
@@ -79,7 +80,7 @@
                 <span class="select-none cursor-default">{{ $recipe->savedCount }}</span>
             </div>
 
-            <!-- Likes & Dislikes -->
+            {{-- Likes & Dislikes --}}
             <div class="relative flex items-center gap-1">
                 {{-- Like --}}
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -97,13 +98,13 @@
             </div>
         </div>
 
-        <!-- Bookmark button -->
+        {{-- Bookmark button --}}
         <div class="absolute top-1 left-1">
             <livewire:bookmark :recipe="$recipe" icon-size="w-10 h-10" wire:key="bookmarkable-{{$recipe->id}}"/>
         </div>
 
-        <!-- Actions Dropdown -->
-        <!-- Show this block only if the user is on the profile page -->
+        {{-- Actions Dropdown --}}
+        {{-- Show this block only if the user is on the profile page --}}
         @if(request()->routeIs('profiles.show'))
             @can('edit', $recipe)
                 <x-recipes.recipe-actions-dropdown :recipeId="$recipe->id"/>
