@@ -16,6 +16,11 @@
 
 - [Introduction](#introduction)
 - [Features](#features)
+     - [User Features](#user-features)
+     - [Recipe Features](#recipe-features)
+     - [Admin Features](#admin-features)
+     - [Info & Legal Pages](#info--legal-pages)
+     - [Extra Features](#extra-features)
 - [Installation](#installation)
 - [Team](#team)
 
@@ -23,11 +28,15 @@
 
 Gourmania is an open source project that enables you to create, search and save recipes you like. It provides intuitive interface and a lot of valuable information for every gourmet.
 
-### Features
+## Features
+### User Features
+- Profile customization: name, photo, bio ... (with ability to update them)
+- Account credentials: email, password (with ability to update them)
+- Registration + Email Verification
+- Password reset
+- Display created, liked, saved recipes
 
-- User profiles
-- Authorization with Email Verification
-- Display of user’s created, liked, saved recipes
+### Recipe Features
 - Step-by-step wizard form for creating / editing recipes
 - Individual recipe page with ingredients and guide
 - Recipe library with pagination
@@ -36,12 +45,19 @@ Gourmania is an open source project that enables you to create, search and save 
 - Global search for recipes by name
 - Advanced recipe filtering with dependent dropdowns
 - Quick filters by popularity, relevance, and time (week, month, year)
+
+### Admin Features
 - User roles (user, admin) with permissions
 - Admin panel with user, recipe, ingredient management and more
 - Admin recipe wizard form via Filament
 - Dashboard analytics with charts for users, recipes and cuisines analytics
+
+### Info & Legal Pages
 - Informative pages: FAQ, Basics (cooking tools), Techniques (cooking methods)
-- Dynamic homepage with latest recipes, category recipes, and “Authors of the Week”
+- Legal pages: Privacy Policy, Terms Of Use
+
+### Extra Features
+- Dynamic homepage (manage and create sections: latest recipes, category recipes, “Authors of the Week”)
 - Newsletter subscription via email (footer)
 
 
