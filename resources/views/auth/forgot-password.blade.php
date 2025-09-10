@@ -64,7 +64,7 @@
         </form>
 
         <div class="flex justify-center mt-5">
-            <img class="size-14" src="{{ asset('storage/objects/paprika.svg') }}" alt="">
+            <img class="size-14" src="{{ asset('storage/objects/paprika.svg') }}" alt="Paprika">
         </div>
     </div>
 </div>

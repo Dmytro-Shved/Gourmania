@@ -36,9 +36,11 @@
     <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-6">
         <h2 class="text-2xl font-bold text-gray-900 mb-10 text-center">Sign Up</h2>
 
+        {{-- Register Form --}}
         <form action="{{ route('register') }}" method="POST" class="space-y-4">
             @csrf
 
+            {{-- Name --}}
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
                 <input
@@ -53,6 +55,7 @@
                 @enderror
             </div>
 
+            {{-- Email --}}
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
                 <input
@@ -126,30 +129,31 @@
                 </div>
             </div>
 
+            {{-- Legal --}}
             <div class="flex items-center justify-between">
                 <label class="flex items-start">
                     <span class="ml-2 text-[13px] md:text-[14px] text-gray-600">Registration signifies that you have read and agree to the <a href="{{ route('privacy') }}" class="text-[#AE763E] underline">Privacy Policy</a> and <a href="{{ route('terms') }}" class="text-[#AE763E] underline">Terms of Use</a>.</span>
                 </label>
             </div>
 
+            {{-- Submit --}}
             <button type="submit" class="w-full bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
                 Continue
             </button>
         </form>
 
+        {{-- Already have an account? --}}
         <div class="mt-6 text-center text-sm text-gray-600 sm:flex sm:justify-center sm:gap-2">
             <p>Already have an account?</p>
             <a href="{{ route('login-page') }}" class="text-[#AE763E] hover:underline">Log In here</a>
         </div>
 
         <div class="flex justify-center mt-5">
-            <img class="size-14" src="{{ asset('storage/objects/unopened-dish.svg') }}" alt="">
+            <img class="size-14" src="{{ asset('storage/objects/unopened-dish.svg') }}" alt="Unopened Dish">
         </div>
     </div>
-
 </div>
 
-{{--<script src="../path/to/flowbite/dist/flowbite.min.js"></script>--}}
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 @livewireScripts

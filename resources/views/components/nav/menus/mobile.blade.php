@@ -31,6 +31,7 @@
         </svg>
     </div>
 
+    {{-- Authenticated --}}
     @auth
         {{-- Name & email--}}
         <li class="mb-4 border-none">
@@ -44,12 +45,14 @@
         </li>
     @endauth
 
+    {{-- Unauthenticated --}}
     @guest
         <li class="mb-4 border-none">
             <div class="flex items-center gap-2 py-2">
                 <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile"
                      class="size-14 rounded-full object-cover ring-2 ring-[#603912]"/>
                 <div class="flex flex-row gap-4 ml-2 items-center">
+                    {{-- Login button --}}
                     <a href="{{ route('login-page') }}"
                        class="text-sm text-white font-inclusive rounded-lg p-1 flex items-center justify-center space-x-1 dark:text-white bg-gourmania hover:gourmania-hover transition-colors duration-200 ring-2 ring-[#603912]">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -60,6 +63,7 @@
                         <span class="text-sm">Log in</span>
                     </a>
                     <p class="text-[#603912]">|</p>
+                    {{-- Register button --}}
                     <a href="{{ route('register-page') }}"
                        class="text-sm text-white font-inclusive underline hover:text-gray-200 transition-colors duration-200">
                         Register
@@ -82,6 +86,7 @@
     <li class="p-2"><a href="{{ route('basics') }}" class="mobile-menu-link">Basics</a></li>
     <li class="p-2"><a href="{{ route('recipes.create') }}" class="mobile-menu-link tracking-wider text-white transition-colors duration-300 transform p-2 md:w-auto focus:outline-none bg-[#592D00] rounded-lg hover:bg-[#C58F5C]">Add recipe</a></li>
 
+    {{-- Authenticated--}}
     @auth
         <hr role="none" class="my-2 border-outline border-[#603912]">
 

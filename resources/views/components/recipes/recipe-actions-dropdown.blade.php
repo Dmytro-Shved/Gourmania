@@ -1,7 +1,7 @@
 @props(['recipeId'])
 
 <div x-data="{ isOpen: false, openedWithKeyboard: false }" x-on:keydown.esc.prevent="isOpen = false, openedWithKeyboard = false" class="absolute top-0.5 right-1 font-inclusive z-40">
-    <!-- Toggle Button -->
+    {{-- Toggle Button --}}
     <button type="button"
             aria-label="context menu"
             x-on:click="isOpen = ! isOpen"
@@ -18,7 +18,7 @@
         </svg>
     </button>
 
-    <!-- Dropdown Menu -->
+    {{-- Dropdown Menu --}}
     <div x-cloak x-show="isOpen || openedWithKeyboard"
          x-transition
          x-trap="openedWithKeyboard"
@@ -28,9 +28,9 @@
          class="font-semibold absolute top-0 right-0 mt-10 w-44 bg-white border border-black rounded-lg shadow-lg overflow-hidden z-50"
          role="menu"
     >
-        <!-- Action buttons -->
+        {{-- Action buttons --}}
         <ul class="flex flex-col py-1.5 space-y-0" role="none">
-            <!-- Dropdown Edit Section -->
+            {{-- Dropdown Edit Section --}}
             <li>
                 <a href="{{ route('recipes.edit', $recipeId) }}"
                    class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 focus-visible:bg-gray-200 cursor-pointer"
@@ -42,7 +42,7 @@
                     <span>Edit</span>
                 </a>
             </li>
-            <!-- Dropdown Delete Section -->
+            {{-- Dropdown Delete Section --}}
             <li>
                 <button
                     class="flex items-center gap-2 px-4 py-2 text-sm text-red-700 hover:bg-red-50 focus-visible:bg-red-100 cursor-pointer w-full text-left m-0 p-0"

@@ -58,7 +58,7 @@
             </div>
         </div>
     </div>
-<!-- set ID for form [id="recipeSearchForm"] -->
+{{-- set ID for form [id="recipeSearchForm"] --}}
 <script>
     // wait full page load, run callback
     document.addEventListener('DOMContentLoaded', function () {

@@ -15,7 +15,7 @@
     {{-- Basics Card --}}
     <div class="relative w-full bg-white px-6 pt-1 pb-1 mt-1 mb-16 shadow-lg ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-2xl sm:rounded-lg sm:px-10 font-inclusive text-lg">
         <div class="mx-auto px-0">
-            {{-- tools --}}
+            {{-- Tools --}}
             <a href="{{ route('tools') }}">
                 <div class="my-6 overflow-hidden rounded-md relative">
                     <img

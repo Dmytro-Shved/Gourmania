@@ -17,13 +17,13 @@
                     @keydown.down.prevent="openWithKeyboard = true"
                     class="rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
                     aria-controls="userMenu">
-                <!-- Authenticated user logo -->
+                {{-- Authenticated user logo --}}
                 @auth
                     <img src="{{ asset('./storage/' . auth()->user()->photo) }}" alt="User Profile"
                          rel="preload" class="size-10 rounded-full object-cover select-none"/>
                 @endauth
 
-                <!-- Unauthenticated user logo -->
+                {{-- Unauthenticated user logo --}}
                 @guest
                     <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile" rel="preload"
                          class="size-10 rounded-full object-cover select-none"/>
@@ -31,7 +31,7 @@
             </button>
         </div>
 
-        <!-- User Dropdown -->
+        {{-- User Dropdown --}}
         <ul x-cloak
             x-show="userDropDownIsOpen || openWithKeyboard"
             x-transition.opacity
@@ -43,7 +43,7 @@
             class="absolute right-0 top-12 z-50 flex w-full min-w-[12rem] flex-col overflow-hidden rounded-md border border-neutral-300 bg-neutral-50 py-1.5 dark:border-neutral-700 dark:bg-neutral-900"
         >
             @auth
-                <!-- Name & Email-->
+                {{-- Name & Email --}}
                 <li class="border-b border-neutral-300 dark:border-neutral-700">
                     <div class="flex flex-col px-4 py-2">
                         <span
@@ -52,7 +52,7 @@
                     </div>
                 </li>
 
-                <!-- Profile button -->
+                {{-- Profile button --}}
                 <li><a href="{{ route('profiles.show', auth()->id()) }}"
                        class="flex items-center space-x-1 bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -65,7 +65,7 @@
                     </a>
                 </li>
 
-                <!-- My recipes button-->
+                {{-- My recipes button --}}
                 <li><a href="{{ route('profiles.saved', auth()->id()) }}" class="flex items-center space-x-1 bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="darkred" viewBox="0 0 24 24"
                              stroke-width="1.5"
@@ -77,7 +77,7 @@
                     </a>
                 </li>
 
-                <!-- Liked Recipes button-->
+                {{-- Liked Recipes button --}}
                 <li><a href="{{ route('profiles.liked', auth()->id()) }}" class="flex items-center space-x-1 bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="size-[17px]">
@@ -87,7 +87,7 @@
                     </a>
                 </li>
 
-                <!-- Settings button -->
+                {{-- Settings button --}}
                 <li><a href="{{ route('profiles.edit', auth()->user()->id) }}" class="flex items-center space-x-1 bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                              stroke-width="1.5"
@@ -101,7 +101,7 @@
                     </a>
                 </li>
 
-                <!-- Sign out button-->
+                {{-- Sign out button --}}
                 <li>
                     <div class="bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
                         <button
@@ -120,14 +120,15 @@
                     </div>
                 </li>
 
-                <!-- Logout modal -->
+                {{-- Logout modal --}}
                 <x-modals.user-logout-modal/>
             @endif
 
-            <!-- Unauthenticated -->
+            {{-- Unauthenticated --}}
             @guest
                 <li class>
                     <div class="flex flex-col px-4 py-2">
+                        {{-- Login button --}}
                         <a href="{{ route('login-page') }}"
                            class="text-sm text-white font-inclusive rounded-lg p-1 flex flex-row items-center space-x-9 dark:text-white bg-gourmania hover:gourmania-hover transition-colors duration-200">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -137,6 +138,8 @@
                             </svg>
                             <span class="text-sm">Log in</span>
                         </a>
+
+                        {{-- Register button --}}
                         <a href="{{ route('register-page') }}"
                            class="text-sm text-black w-full font-inclusive rounded-lg p-1 flex justify-center hover:text-[#4F4F4F] transition-colors duration-200">
                             <span class="text-sm">Register</span>

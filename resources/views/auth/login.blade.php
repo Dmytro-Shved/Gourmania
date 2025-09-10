@@ -41,8 +41,11 @@
     <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Log In</h2>
 
+        {{-- Login Form --}}
         <form action="{{ route('login') }}" method="POST" class="space-y-4">
             @csrf
+
+            {{-- Email --}}
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
                 <input
@@ -57,6 +60,7 @@
                 @enderror
             </div>
 
+            {{-- Password --}}
             <div x-data="{ showPassword: false }">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
                 <div class="relative">
@@ -85,6 +89,7 @@
                 @enderror
             </div>
 
+            {{-- Remember me checkbox--}}
             <div class="flex items-center justify-between">
                 <label class="flex items-center">
                     <input name="remember"
@@ -93,17 +98,21 @@
                            class="rounded border-gray-300 text-[#AE763E] focus:ring-[#AE763E]"/>
                     <span class="ml-2 text-[12px] text-gray-600">Remember me</span>
                 </label>
+                {{-- Forgot password --}}
                 <a href="{{ route('password.request') }}" class="text-[13px] text-[#AE763E] hover:underline">Forgot password?</a>
             </div>
 
             @error('login-failed')
             <p class="text-red-500 break-words">{{ $message }}</p>
             @enderror
+
+            {{-- Submit --}}
             <button type="submit" class="w-full bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
                 Continue
             </button>
         </form>
 
+        {{-- Don't have an account? --}}
         <div class="mt-6 text-center text-sm text-gray-600 sm:flex sm:justify-center sm:gap-2">
             <p>Don't have an account?</p>
             <a href="{{ route('register-page') }}" class="text-[#AE763E] hover:underline">Create Account </a>

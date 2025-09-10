@@ -116,7 +116,7 @@
         @endif
     </div>
 
-    <!-- mini ingredients list -->
+    {{-- Mini Ingredients List --}}
     <div x-cloak x-show="open" x-on:click.away="open = false" class="bg-white w-[290px] left-1.5 xs:w-[320px] xs:left-2 min-w-[250px] text-gray-700 rounded-lg shadow-lg border border-black absolute mt-24 lg:mt-[105px] z-50">
         @foreach($recipe->ingredients as $ingredient)
             <div class="flex items-center px-2 text-[15px] md:text-[17px]">

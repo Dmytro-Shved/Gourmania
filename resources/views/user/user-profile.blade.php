@@ -11,11 +11,11 @@
             <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 px-2">
                 {{-- Profile info section --}}
                 <div class="col-span-1 sm:col-span-5">
-                    <!-- Profile card -->
+                    {{-- Profile card --}}
                     <div class="bg-white shadow rounded-lg p-6">
-                        <!-- Users info -->
+                        {{-- Users info --}}
                         <div class="flex flex-col items-center relative">
-                            <!-- Edit profile button -->
+                            {{-- Edit profile button --}}
                             @can('edit', $user->profile)
                                 <a href="{{ route('profiles.edit', $user) }}" class="absolute end-0">
                                     <button class="rounded-lg p-1 bg-gourmania hover:gourmania-hover transition-colors duration-200">
@@ -27,21 +27,21 @@
                             @endif
 
                             <div>
-                                <!-- image -->
+                                {{-- Image --}}
                                 <img src="{{ asset('./storage/' . $user->photo) }}" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0" alt="User photo">
                             </div>
-                            <!-- name -->
+                            {{-- Name --}}
                             <div class="w-full overflow-x-auto flex items-center gap-1 justify-center">
                                 <h1 class="text-xl font-bold overflow-x-auto">{{ $user->name }}</h1>
                             </div>
-                            <!-- under name text -->
+                            {{-- Under name text --}}
                             <div class="w-full overflow-x-auto flex items-center gap-1 justify-center">
                                 <p class="text-gray-700 text-center">{{ $user->email }}</p>
                             </div>
                         </div>
-                        <!-- line -->
+                        {{-- Line --}}
                         <hr class="my-6 border-t border-gray-300">
-                        <!-- Info -->
+                        {{-- Info --}}
                         <div class="flex flex-col">
                             <div class="mb-2 text-center flex items-center w-full">
                                 <span class="flex-1 border-s border-4 border-[#AE763E]"></span>
@@ -54,7 +54,7 @@
                                 <li class="mb-2">Birth: {{ $user->profile->birth_date ?? '-'}}</li>
                             </ul>
                         </div>
-                        <!-- Bio -->
+                        {{-- Bio --}}
                         <div class="w-full">
                             <div class="mb-2 text-center flex items-center">
                                 <span class="flex-1 border-s border-4 border-[#AE763E]"></span>
@@ -80,6 +80,7 @@
                         @endif
                         <span class="flex-1 border-s border-4 border-[#AE763E]"></span>
                     </div>
+                    {{-- User's Recipes --}}
                     <div class="flex flex-wrap gap-3  w-full lg:flex justify-center">
                         @forelse($userRecipes as $recipe)
                             <x-recipes.recipe-card :recipe="$recipe"/>

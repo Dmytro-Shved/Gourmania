@@ -40,7 +40,7 @@
                     data-modal-toggle="deleteModal-{{ $recipeId }}"
                     type="button"
                     class="w-32 py-2 px-4 text-sm font-medium text-gray-500 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-gray-900 transition-colors duration-200">
-                    No, cancel
+                    No
                 </button>
 
                 {{-- Confirmation button --}}
@@ -50,7 +50,7 @@
                     <button
                         type="submit"
                         class="w-32 py-2 px-4 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors duration-200">
-                        Yes, I'm sure
+                        Yes
                     </button>
                 </form>
             </div>

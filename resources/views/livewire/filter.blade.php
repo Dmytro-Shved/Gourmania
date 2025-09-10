@@ -1,6 +1,6 @@
-<!-- Filter -->
+{{-- Filter --}}
 <form id="recipeFilterForm" action="{{ route('recipes.index') }}" method="GET">
-    <!-- title -->
+    {{-- Title --}}
     <div class="title-container select-none">
         <span class="flex-grow border-b border-black"></span>
         <small
@@ -11,12 +11,12 @@
     </div>
 
     <div class="flex flex-col items-center px-2 gap-2 md:flex-row md:justify-center md:gap-0.5 md:items-center font-inclusive">
-        <!--Icon -->
+        {{-- Icon --}}
         <img class="size-12 sm:size-14 md:size-24 md:rotate-45 select-none" src="{{ asset('storage/objects/piper.svg') }}" alt="Pepper" rel="preload">
 
-        <!-- Double select -->
+        {{-- Double select --}}
         <div class="flex flex-col w-full max-w-xs items-center gap-1 md:w-1/4 md:px-2 md:py-2">
-            <!--Dish Categories -->
+            {{-- Dish Categories --}}
             <div class="relative w-full">
                 <select wire:model.live="dishCategory"
                         name="dish_category"
@@ -31,7 +31,7 @@
                 </select>
             </div>
         </div>
-        <!--Dish Subcategories -->
+        {{-- Dish Subcategories --}}
         <div class="flex flex-col w-full max-w-xs items-center gap-2 md:w-1/4 md:px-2 md:py-2">
             <div class="relative w-full">
                 <select wire:model.live="dishSubcategory"
@@ -48,7 +48,7 @@
             </div>
         </div>
 
-        <!-- Select cuisine -->
+        {{-- Select cuisine --}}
         <div class="w-full max-w-xs md:w-1/4  md:py-2">
             <select wire:model.live="cuisine"
                 name="cuisine"
@@ -64,7 +64,7 @@
             </select>
         </div>
 
-        <!-- Select menu -->
+        {{-- Select menu --}}
         <div class="w-full max-w-xs md:w-1/4 md:px-1 md:py-2">
             <select wire:model.live="menu"
                 name="menu"
@@ -79,7 +79,7 @@
             </select>
         </div>
 
-        <!-- Filter button -->
+        {{-- Filter button --}}
         <div class="w-full max-w-xs md:w-auto md:px-4 md:py-2 md:text-base">
             <button type="submit"
                     class="font-inclusive text-neutral-200 text-lg bg-gourmania hover:gourmania-hover transition rounded-xl px-4 py-1 w-full md:px-4 md:py-2 md:text-base">
@@ -88,7 +88,7 @@
         </div>
     </div>
 
-    <!-- set ID for form [id="recipeFilterForm"] -->
+    {{-- set ID for form [id="recipeFilterForm"] --}}
     <script>
         // wait full page load, run callback
         document.addEventListener('DOMContentLoaded', function () {

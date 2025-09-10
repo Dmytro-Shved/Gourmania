@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/vPsLc1c/gourmania-favicon.png">
     <title>Gourmania | Verify Email</title>
@@ -11,9 +10,7 @@
     {{-- Inknut Antiqua --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     {{-- Inclusive Sans --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,6 +39,8 @@
         <div class="mt-10 text-center text-sm text-gray-600 sm:flex sm:justify-center sm:gap-2">
             <p>Didn't get the message?</p>
         </div>
+
+        {{-- Send email again form --}}
         <form action="{{ route('verification.send') }}" method="POST" class="space-y-4">
             @csrf
             <button type="submit" class="w-full bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
@@ -50,7 +49,7 @@
         </form>
 
         <div class="flex justify-center mt-[30.5px]">
-            <img class="size-48" src="{{ asset('storage/objects/bread.svg') }}" alt="">
+            <img class="size-48" src="{{ asset('storage/objects/bread.svg') }}" alt="Bread">
         </div>
     </div>
 </div>

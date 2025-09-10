@@ -34,6 +34,7 @@
     <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Reset password</h2>
 
+        {{-- Reset password form --}}
         <form action="{{ route('password.update') }}" method="POST" class="space-y-4">
             @csrf
             {{-- Hidden Token --}}
@@ -120,7 +121,7 @@
         </form>
 
         <div class="flex justify-center mt-5">
-            <img class="size-14" src="{{ asset('storage/objects/garlic.svg') }}" alt="">
+            <img class="size-14" src="{{ asset('storage/objects/garlic.svg') }}" alt="Garlic">
         </div>
     </div>
 </div>
