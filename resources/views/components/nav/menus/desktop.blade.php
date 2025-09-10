@@ -88,7 +88,8 @@
                 </li>
 
                 {{-- Settings button --}}
-                <li><a href="{{ route('profiles.edit', auth()->user()->id) }}" class="flex items-center space-x-1 bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
+                <li>
+                    <a href="{{ route('profiles.edit', auth()->user()->id) }}" class="flex items-center space-x-1 bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                              stroke-width="1.5"
                              stroke="black" class="size-4">
@@ -101,15 +102,11 @@
                     </a>
                 </li>
 
-                {{-- Sign out button --}}
+                {{-- Sign Out --}}
                 <li>
-                    <div class="bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
-                        <button
-                            id="logoutButton"
-                            data-modal-target="logoutModal"
-                            data-modal-toggle="logoutModal"
-                            type="submit"
-                            class="flex flex-row items-center space-x-1 w-full">
+                    <form action="{{ route('logout') }}" method="POST" class="bg-neutral-50 px-3 py-2 text-sm text-neutral-600 font-inclusive hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
+                        @csrf
+                        <button type="submit" class="flex flex-row items-center space-x-1 w-full">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                  stroke-width="1.5"
                                  stroke="red" class="size-5">
@@ -117,11 +114,8 @@
                             </svg>
                             <span class="text-red-600">Log Out</span>
                         </button>
-                    </div>
+                    </form>
                 </li>
-
-                {{-- Logout modal --}}
-                <x-modals.user-logout-modal/>
             @endif
 
             {{-- Unauthenticated --}}

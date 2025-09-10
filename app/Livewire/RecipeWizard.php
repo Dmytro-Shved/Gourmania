@@ -149,10 +149,10 @@ class RecipeWizard extends Component
         // Flash message
         if ($this->recipeForm->id == 0){
             // Recipe created
-            session()->flash('recipe_created', 'Recipe created successfully!');
+            session()->flash('recipe_created', 'Recipe created');
         }else{
             // Recipe updated
-            session()->flash('recipe_updated', 'Recipe updated successfully!');
+            session()->flash('recipe_updated', 'Recipe updated');
         }
 
         // Redirect to create recipe page

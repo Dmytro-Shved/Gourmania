@@ -103,15 +103,23 @@
             <livewire:bookmark :recipe="$recipe" icon-size="w-10 h-10" wire:key="bookmarkable-{{$recipe->id}}"/>
         </div>
 
-        {{-- Actions Dropdown --}}
         {{-- Show this block only if the user is on the profile page --}}
         @if(request()->routeIs('profiles.show'))
             @can('edit', $recipe)
+                {{-- Actions Dropdown --}}
                 <x-recipes.recipe-actions-dropdown :recipeId="$recipe->id"/>
             @endcan
 
+            {{-- Confirmation modal --}}
             @can('delete', $recipe)
-                <x-modals.recipe-delete-modal :recipeId="$recipe->id" :recipeName="$recipe->name"/>
+                <x-modals.confirmation
+                    title="Are You Sure?"
+                    description="This is a destructive action. You can't undo this recipe deletion."
+                    :route="route('recipes.destroy', $recipe)"
+                    :modal-id="$recipe->id"
+                    form-method="POST"
+                    http-method="DELETE"
+                />
             @endcan
         @endif
     </div>

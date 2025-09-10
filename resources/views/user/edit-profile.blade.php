@@ -231,16 +231,25 @@
 
                                 {{-- Delete My Account button --}}
                                 <button id="deleteButton"
-                                        data-modal-target="deleteProfileModal"
-                                        data-modal-toggle="deleteProfileModal"
+                                        data-modal-target="confirmationModal-{{'delete-profile'}}"
+                                        data-modal-toggle="confirmationModal-{{'delete-profile'}}"
                                         class="bg-[#592D00] rounded-lg hover:bg-red-700 transition-colors duration-300 text-white font-bold w-50 py-2 px-4"
                                 >
                                     Delete My Account
                                 </button>
 
+
+
                                 {{-- Delete My Account modal --}}
                                 @can('delete', $user->profile)
-                                    <x-modals.profile-delete-modal :user="$user" />
+                                    <x-modals.confirmation
+                                        title="Are You Sure?"
+                                        description="This is a destructive action. You can't undo this account deletion."
+                                        :route="route('profiles.destroy', $user)"
+                                        :modal-id="'delete-profile'"
+                                        form-method="POST"
+                                        http-method="DELETE"
+                                    />
                                 @endcan
                             </div>
                         </div>
