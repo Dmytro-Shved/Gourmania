@@ -43,4 +43,4 @@ We may update these Terms as the service evolves. Continued use after changes me
 These Terms are governed by the laws of your jurisdiction unless otherwise required.
 
 ## Contact
-Questions? Email us at `support@gourmania.com`.
+Questions? Email us at `noreply.gourmania@gmail.com`.

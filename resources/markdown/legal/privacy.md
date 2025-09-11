@@ -44,4 +44,4 @@ Our service is intended for users **16+** (or the age of digital consent in your
 We may update this policy from time to time. We’ll post the new version here with the “Last updated” date.
 
 ## Contact
-If you have questions, reach us at `support@gourmania.com`.
+If you have questions, reach us at `noreply.gourmania@gmail.com`.
