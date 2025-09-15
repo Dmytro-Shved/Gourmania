@@ -108,8 +108,8 @@
         <h1>Welcome to Gourmania!</h1>
         <img src="https://images2.imgbox.com/72/dc/ckg2L3Wj_o.png" alt="Chef Hat" style="max-width: 200px; margin: 20px 0;">
         <p style="color: #253858;font-weight: bold">Wear that chief's hat with pleasure, {{ $name }}</p>
-        <p>We're so glad you're here. Now you're able to rate recipes, save the recipes you like and create yours! <a href="#" style="color: #AE763E;">Visit site</a> to see more.</p>
-        <a href="#" class="button" style="color: #ffffff">Get Started</a>
+        <p>We're so glad you're here. Now you're able to rate recipes, save the recipes you like and create yours! <a href="{{ $siteUrl }}" style="color: #AE763E;">Visit site</a> to see more.</p>
+        <a href="{{ $siteUrl }}" class="button" style="color: #ffffff">Get Started</a>
     </div>
 
     <div class="info">
@@ -146,10 +146,6 @@
 
     <!-- Footer -->
     <div class="footer">
-        {{-- TODO: UPDATE THIS LINE WHEN PRIVACY AND POLICY WILL BE CREATED --}}
-        {{--<p>If you would prefer to no longer receive messages like this, you can <a style="text-decoration: underline;color: #ffffff" href="#">unsubscribe</a>.</p>--}}
-        {{--<p><a style="text-decoration: underline;color: #ffffff" href="#">Privacy policy</a></p>--}}
-
         <div>
             <a href="https://github.com/Dmytro-Shved" alt="Facebook">
                 <img src="https://img.icons8.com/?size=100&id=hbVaJ5lgpaax&format=png&color=ffffff" width="35" height="35" alt="Facebook">

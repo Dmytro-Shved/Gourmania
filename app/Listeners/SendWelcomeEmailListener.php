@@ -8,19 +8,9 @@ use Illuminate\Support\Facades\Mail;
 
 class SendWelcomeEmailListener
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
 
-    /**
-     * Handle the event.
-     */
     public function handle(Verified $event): void
     {
-        Mail::to($event->email)->send(new WelcomeEmail($event->name));
+        Mail::to($event->email)->send(new WelcomeEmail($event->name, $event->siteUrl));
     }
 }

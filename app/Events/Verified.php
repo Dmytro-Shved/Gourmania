@@ -12,13 +12,15 @@ class Verified
 
     public string $name;
     public string $email;
+    public string $siteUrl;
 
     /**
      * Create a new event instance.
      */
-    public function __construct($name, $email)
+    public function __construct($name, $email, $siteUrl)
     {
         $this->name = $name;
         $this->email = $email;
+        $this->siteUrl = $siteUrl;
     }
 }
