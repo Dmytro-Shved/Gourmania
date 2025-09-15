@@ -147,13 +147,13 @@
     <!-- Footer -->
     <div class="footer">
         <div>
-            <a href="https://github.com/Dmytro-Shved" alt="Facebook">
+            <a href="https://www.facebook.com/gourmania.official" alt="Facebook">
                 <img src="https://img.icons8.com/?size=100&id=hbVaJ5lgpaax&format=png&color=ffffff" width="35" height="35" alt="Facebook">
             </a>
-            <a href="https://github.com/Dmytro-Shved" alt="Instagram">
+            <a href="https://www.instagram.com/gourmania.official/" alt="Instagram">
                 <img src="https://img.icons8.com/?size=100&id=Iatym1CIDVkh&format=png&color=ffffff" width="35" height="35" alt="Instagram">
             </a>
-            <a href="https://github.com/Dmytro-Shved" alt="GitHub">
+            <a href="https://github.com/Dmytro-Shved/Gourmania" alt="GitHub">
                 <img src="https://img.icons8.com/?size=100&id=WCL5hPLvhUjQ&format=png&color=ffffff" width="35" height="35" alt="GitHub">
             </a>
         </div>
