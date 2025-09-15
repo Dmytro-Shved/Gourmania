@@ -11,6 +11,10 @@ class EmailVerificationController extends Controller
     // Email Verification Handler
     public function verify(EmailVerificationRequest $request)
     {
+        if ($request->user()->hasVerifiedEmail()) {
+            return redirect()->route('home')->with('email_verified', 'Your email is already confirmed');
+        }
+
         $request->fulfill();
 
         // Send Welcome Email
