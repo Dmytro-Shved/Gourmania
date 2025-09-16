@@ -73,10 +73,10 @@
                     <div class="mb-2 text-center flex items-center w-full">
                         <span class="flex-1 border-s border-4 border-[#AE763E]"></span>
                         {{-- If the user is not the owner of the profile, he will see a heading with the owner's name and his recipes --}}
-                        @if(auth()->check() && auth()->user()->id != $user->id)
-                            <span class="text-black text-lg font-bold mx-2 capitalize">{{ $user->name }}'s Recipes</span>
-                        @else
+                        @if(auth()->check() && auth()->user()->id == $user->id)
                             <span class="text-black text-lg font-bold mx-2">Your recipes</span>
+                        @else
+                            <span class="text-black text-lg font-bold mx-2 capitalize">{{ $user->name }}'s Recipes</span>
                         @endif
                         <span class="flex-1 border-s border-4 border-[#AE763E]"></span>
                     </div>
