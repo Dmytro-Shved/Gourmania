@@ -15,7 +15,7 @@ class AverageCookingTimeWidget extends BaseWidget
         $averageSeconds = Recipe::selectRaw('AVG(TIME_TO_SEC(cook_time)) as avg_seconds')
             ->value('avg_seconds');
 
-        $averageTime = gmdate('H:i', $averageSeconds);
+        $averageTime = $averageSeconds ? gmdate('H:i', $averageSeconds) : '00:00';
 
         return [
             Stat::make("Cooking Time", $averageTime)
