@@ -51,11 +51,14 @@ class CreateUserCommand extends Command
             return -1;
         }
 
-
+        // Create user
         DB::transaction(function () use ($user, $role){
-            $user['password'] = Hash::make($user['password']);
-            $newUser = User::create($user);
-            $newUser->role_id = $role->id;
+            User::create([
+                'name' => $user['name'],
+                'password' => Hash::make($user['password']),
+                'email' => $user['email'],
+                'role_id' => $role->id
+            ]);
         });
 
         $this->info('User '.$user['email'].' created successfully');
