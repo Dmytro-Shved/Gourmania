@@ -31,7 +31,7 @@ class Filter extends Component
     public function cuisines()
     {
         return cache()->remember('cuisines', Carbon::today()->addDay(), function (){
-            return Cuisine::get();
+            return Cuisine::orderBy('name')->get();
         });
     }
 
