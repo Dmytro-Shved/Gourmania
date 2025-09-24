@@ -19,10 +19,7 @@
                          x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
                         <div class="p-6">
                             <p class="text-white text-[15px] font-inclusive">
-                                Gourmania is an open source project that lets you create, browse and store recipes. This project was created by <a
-                                    href="https://github.com/Dmytro-Shved" class="underline">Dmytro
-                                    Shved
-                                </a>
+                                Gourmania is an open source project that lets you create, browse and store recipes. If you don't use us we'll be sad, but we'll still love you.
                             </p>
                         </div>
                     </div>
