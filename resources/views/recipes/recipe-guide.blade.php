@@ -66,7 +66,7 @@
             <div class="flex flex-row justify-between items-center m-1 md:m-2">
                 <div class="flex items-center gap-2">
                     <a class="rounded-full" href="{{ route('profiles.show', $recipe->user->id) }}">
-                        <img class="size-10 md:size-12 lg:size-14 border border-black rounded-full" src="{{ asset('storage/'. $recipe->user->photo) }}" alt="Author Photo" title="{{ $recipe->user->name }}">
+                        <img class="size-10 md:size-12 lg:size-14 rounded-full" src="{{ asset('storage/'. $recipe->user->photo) }}" alt="Author Photo" title="{{ $recipe->user->name }}">
                     </a>
                 </div>
                 <div class="bg-gourmania text-white text-sm hover:gourmania-hover transition-colors duration-200 p-2 rounded-lg md:text-[16px] lg:text-lg break-words max-w-[80%] line-clamp-2">
