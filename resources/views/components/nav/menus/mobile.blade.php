@@ -36,7 +36,7 @@
         {{-- Name & email--}}
         <li class="mb-4 border-none">
             <div class="flex items-center gap-2 py-2">
-                <img src="{{ asset('./storage/' . auth()->user()->photo) }}" alt="User Profile" class="size-14 rounded-full object-cover ring-2 ring-[#603912]"/>
+                <img src="{{ asset('./storage/' . auth()->user()->photo) }}" alt="User Profile" class="size-14 rounded-full object-cover"/>
                 <div>
                     <span class="font-medium text-white font-inclusive">{{ auth()->user()->name}}</span>
                     <p class="text-sm text-white font-inclusive">{{ auth()->user()->email }}</p>
@@ -50,7 +50,7 @@
         <li class="mb-4 border-none">
             <div class="flex items-center gap-2 py-2">
                 <img src="{{ asset('storage/user_logo/default.svg') }}" alt="User Profile"
-                     class="size-14 rounded-full object-cover ring-2 ring-[#603912]"/>
+                     class="size-14 rounded-full object-cover"/>
                 <div class="flex flex-row gap-4 ml-2 items-center">
                     {{-- Login button --}}
                     <a href="{{ route('login-page') }}"
