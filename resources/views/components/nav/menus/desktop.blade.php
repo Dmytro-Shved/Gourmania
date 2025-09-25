@@ -1,7 +1,20 @@
 {{-- Desktop Menu --}}
 <ul class="hidden items-center gap-4 flex-shrink-0 sm:flex">
     <li><a href="{{ route('recipes.index') }}" class="desktop-menu-btn">Recipes</a></li>
-    <li><a href="#authors" class="desktop-menu-btn">Authors</a></li>
+    <li>
+        <a href="#authors" @click.prevent="
+            mobileMenuIsOpen = false;
+            $nextTick(() => {
+                const target = document.querySelector('#authors');
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    window.location.href = '{{ route("home") }}#authors';
+                }
+            });"
+           class="desktop-menu-btn">Authors
+        </a>
+    </li>
     <li><a href="{{ route('basics') }}" class="desktop-menu-btn">Basics</a></li>
     <li><a href="{{ route('recipes.create') }}" class="desktop-menu-btn tracking-wider text-white transition-colors duration-300 transform p-2 md:w-auto focus:outline-none bg-[#592D00] rounded-lg hover:bg-[#C58F5C]">Add recipe</a></li>
 
