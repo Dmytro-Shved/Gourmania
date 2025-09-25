@@ -78,7 +78,12 @@
         <a href="#authors" @click.prevent="
             mobileMenuIsOpen = false;
             $nextTick(() => {
-                document.querySelector('#authors').scrollIntoView({ behavior: 'smooth' })
+                const target = document.querySelector('#authors');
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    window.location.href = '{{ route("home") }}#authors';
+                }
             });"
            class="mobile-menu-link">Authors
         </a>
