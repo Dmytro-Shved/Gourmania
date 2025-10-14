@@ -17,14 +17,13 @@ class RegisterRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
+        // the package for email validation: propaganistas/laravel-disposable-email
         return [
             'name' => ['required', 'string', 'min:2', 'max:255'],
-            'email' => ['required', 'string', 'email', 'unique:users,email', 'min:2', 'max:255'],
+            'email' => ['required', 'string', 'email:rfc,dns', 'indisposable', 'unique:users,email', 'min:2', 'max:255'],
             'password' => ['required', Password::defaults(), 'confirmed'],
         ];
     }
