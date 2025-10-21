@@ -40,6 +40,8 @@
         <form action="{{ route('register') }}" method="POST" class="space-y-4">
             @csrf
 
+            <x-honeypot />
+
             {{-- Name --}}
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>

@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 // Home Page
 Route::get('/', HomeController::class)->name('home');
@@ -23,7 +24,9 @@ Route::middleware('guest')->group(function (){
 
     // Register
     Route::view('/register', 'auth.register')->name('register-page');
-    Route::post('/register', RegisterController::class)->name('register');
+    Route::post('/register', RegisterController::class)
+        ->middleware(ProtectAgainstSpam::class)
+        ->name('register');
 });
 
 // Logout
