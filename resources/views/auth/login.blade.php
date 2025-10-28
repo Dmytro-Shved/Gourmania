@@ -1,132 +1,94 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/vPsLc1c/gourmania-favicon.png">
-    <title>Gourmania | Login</title>
+@section('title',  'Login')
+<x-guest-layout>
+    {{-- Password Reset Status --}}
+    @if(session()->has('status'))
+        <x-session.message :message="session('status')" type="info" />
+    @endif
 
-    {{-- Inknut Antiqua --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+    <div class="min-h-screen bg-gray-100 flex items-center justify-center p-4 font-inclusive">
+        <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Log In</h2>
 
-    {{-- Inclusive Sans --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital@0;1&display=swap" rel="stylesheet">
+            {{-- Login Form --}}
+            <form action="{{ route('login') }}" method="POST" class="space-y-4">
+                @csrf
 
-    {{-- Inria Serif --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
-        rel="stylesheet">
-
-    @vite('resources/css/app.css')
-    @livewireStyles
-</head>
-<body>
-
-{{-- Password Reset Status --}}
-@if(session()->has('status'))
-    <x-session.message :message="session('status')" type="info" />
-@endif
-
-<div class="min-h-screen bg-gray-100 flex items-center justify-center p-4 font-inclusive">
-    <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Log In</h2>
-
-        {{-- Login Form --}}
-        <form action="{{ route('login') }}" method="POST" class="space-y-4">
-            @csrf
-
-            {{-- Email --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input
-                    name="email"
-                    type="text"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus"
-                    placeholder="your@email.com"
-                    value="{{ old('email') }}"
-                />
-                @error('email')
-                <p class="text-red-500">{{ $message }}</p>
-                @enderror
-            </div>
-
-            {{-- Password --}}
-            <div x-data="{ showPassword: false }">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                <div class="relative">
+                {{-- Email --}}
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
                     <input
-                        name="password"
-                        :type="showPassword ? 'text' : 'password'"
-                        class="@error('password') border-red-500 @enderror w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus pr-10"
-                        placeholder="••••••••"
+                        name="email"
+                        type="text"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus"
+                        placeholder="your@email.com"
+                        value="{{ old('email') }}"
                     />
-                    <button
-                        type="button"
-                        @click="showPassword = !showPassword"
-                        class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700"
-                    >
-                        <svg x-show="!showPassword" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
-                        </svg>
-                        <svg x-show="showPassword" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                    </button>
+                    @error('email')
+                    <p class="text-red-500">{{ $message }}</p>
+                    @enderror
                 </div>
-                @error('password')
-                <p class="text-red-500">{{ $message }}</p>
+
+                {{-- Password --}}
+                <div x-data="{ showPassword: false }">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <div class="relative">
+                        <input
+                            name="password"
+                            :type="showPassword ? 'text' : 'password'"
+                            class="@error('password') border-red-500 @enderror w-full px-4 py-2 border border-gray-300 rounded-lg gourmania-focus pr-10"
+                            placeholder="••••••••"
+                        />
+                        <button
+                            type="button"
+                            @click="showPassword = !showPassword"
+                            class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700"
+                        >
+                            <svg x-show="!showPassword" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                            </svg>
+                            <svg x-show="showPassword" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                    @error('password')
+                    <p class="text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- Remember me checkbox--}}
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center">
+                        <input name="remember"
+                               id="remember"
+                               type="checkbox"
+                               class="rounded border-gray-300 text-[#AE763E] focus:ring-[#AE763E]"/>
+                        <span class="ml-2 text-[12px] text-gray-600">Remember me</span>
+                    </label>
+                    {{-- Forgot password --}}
+                    <a href="{{ route('password.request') }}" class="text-[13px] text-[#AE763E] hover:underline">Forgot password?</a>
+                </div>
+
+                @error('login-failed')
+                <p class="text-red-500 break-words">{{ $message }}</p>
                 @enderror
+
+                {{-- Submit --}}
+                <button type="submit" class="w-full bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
+                    Continue
+                </button>
+            </form>
+
+            {{-- Don't have an account? --}}
+            <div class="mt-6 text-center text-sm text-gray-600 sm:flex sm:justify-center sm:gap-2">
+                <p>Don't have an account?</p>
+                <a href="{{ route('register-page') }}" class="text-[#AE763E] hover:underline">Create Account </a>
             </div>
 
-            {{-- Remember me checkbox--}}
-            <div class="flex items-center justify-between">
-                <label class="flex items-center">
-                    <input name="remember"
-                           id="remember"
-                           type="checkbox"
-                           class="rounded border-gray-300 text-[#AE763E] focus:ring-[#AE763E]"/>
-                    <span class="ml-2 text-[12px] text-gray-600">Remember me</span>
-                </label>
-                {{-- Forgot password --}}
-                <a href="{{ route('password.request') }}" class="text-[13px] text-[#AE763E] hover:underline">Forgot password?</a>
+            <div class="flex justify-center mt-5">
+                <img class="size-14" src="{{ asset('storage/objects/chicken-dish.svg') }}" alt="">
             </div>
-
-            @error('login-failed')
-            <p class="text-red-500 break-words">{{ $message }}</p>
-            @enderror
-
-            {{-- Submit --}}
-            <button type="submit" class="w-full bg-gourmania hover:gourmania-hover text-white font-medium py-2.5 rounded-lg transition-colors">
-                Continue
-            </button>
-        </form>
-
-        {{-- Don't have an account? --}}
-        <div class="mt-6 text-center text-sm text-gray-600 sm:flex sm:justify-center sm:gap-2">
-            <p>Don't have an account?</p>
-            <a href="{{ route('register-page') }}" class="text-[#AE763E] hover:underline">Create Account </a>
-        </div>
-
-        <div class="flex justify-center mt-5">
-            <img class="size-14" src="{{ asset('storage/objects/chicken-dish.svg') }}" alt="">
         </div>
     </div>
-</div>
-
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-@livewireScripts
-</body>
-</html>
-
+</x-guest-layout>
