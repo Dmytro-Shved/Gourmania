@@ -25,7 +25,7 @@ Route::middleware('guest')->group(function (){
     // Register
     Route::view('/register', 'auth.register')->name('register-page');
     Route::post('/register', RegisterController::class)
-        ->middleware(ProtectAgainstSpam::class)
+        ->middleware([ProtectAgainstSpam::class, 'throttle:3,1'])
         ->name('register');
 });
 
