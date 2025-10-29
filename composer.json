@@ -10,6 +10,7 @@
         "ajcastro/eager-load-pivot-relations": "^0.3.0",
         "filament/filament": "^3.3",
         "laravel/framework": "^11.31",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
         "mailchimp/marketing": "^3.0",

@@ -47,4 +47,8 @@ return [
         'secret_key' => env('RECAPTCHA_SECRET_KEY'),
         'min_score' => env('RECAPTCHA_MIN_SCORE', .5),
     ],
+
+    'mailgun' => [
+        'webhook_signing_key' => env('MAILGUN_WEBHOOK_SIGNING_KEY'),
+    ],
 ];
