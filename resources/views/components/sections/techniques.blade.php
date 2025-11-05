@@ -8,14 +8,26 @@
 </div>
 
 {{-- Techniques section --}}
-<div class="w-full md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] mx-auto px-3">
-    <video class="w-full h-auto rounded-lg" controls autoplay loop>
-        <source src="{{ asset('storage/video/video-optimized.mp4') }}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+<div class="w-full max-w-[1280px] mx-auto px-3">
+    <div class="relative block overflow-hidden rounded-lg mx-auto max-w-4xl">
+        <div class="aspect-[16/9] w-full overflow-hidden rounded-lg">
+            <video
+                class="w-full h-full object-cover rounded-lg"
+                controls
+                autoplay
+                loop
+                muted
+                playsinline
+            >
+                <source src="{{ asset('storage/video/video-optimized.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
 </div>
-<div class="see-more-container">
-    <a href="{{ route('techniques') }}" class="see-more-btn">
+
+<div class="see-more-container text-center mt-4">
+    <a href="{{ route('techniques') }}" class="see-more-btn inline-block px-6 py-2 border border-black rounded-md hover:bg-black hover:text-white transition">
         See more
     </a>
 </div>
