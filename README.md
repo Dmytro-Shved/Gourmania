@@ -8,6 +8,7 @@
 
 >This project is under active development
 > 
+>  - implementing automates tests with [Pest](https://pestphp.com/)
 >  - core features are working
 >  - updates and improvements are ongoing
 >  - expect changes in future releases
