@@ -115,6 +115,6 @@ At the moment the team consists of one person:
 
 ## License
 
-Copyright © 2025 Gourmania
+Copyright © 2026 Gourmania
 
 Licensed under [the MIT License](/LICENSE.md).
